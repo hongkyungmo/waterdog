@@ -1,31 +1,31 @@
 //build.gradle
-//1) gradle µµ±¸¿¡¼­ »ç¿ëÇÒ ¶óÀÌºê·¯¸® °¡Á®¿À±â
-apply plugin: 'java'  			// ÀÚ¹Ù ºôµå ¸í·É
-apply plugin: 'eclipse-wtp'  	// eclipse WTP Á¦¾î ¸í·É
-apply plugin: 'war' 			// web archive Á¦¾î ¸í·É 
+//1) gradle ë„êµ¬ì—ì„œ ì‚¬ìš©í•  ë¼ì´ë¸ŒëŸ¬ë¦¬ ê°€ì ¸ì˜¤ê¸°
+apply plugin: 'java'  			// ìë°” ë¹Œë“œ ëª…ë ¹
+apply plugin: 'eclipse-wtp'  	// eclipse WTP ì œì–´ ëª…ë ¹
+apply plugin: 'war' 			// web archive ì œì–´ ëª…ë ¹ 
 
-//2) ÀÚ¹Ù ¼Ò½º¿¡ ´ëÇÑ ±âº» ¼³Á¤
+//2) ìë°” ì†ŒìŠ¤ì— ëŒ€í•œ ê¸°ë³¸ ì„¤ì •
 compileJava {
-  options.encoding = "EUC-KR" //"UTF-8"	// ¼Ò½º ÄÚµåÀÇ ¹®Àâ ÁıÇÕ 
-  sourceCompatibility = 1.8		// ÀÚ¹Ù Çã¿ë ¹öÀü 
+  options.encoding = "EUC-KR" //"UTF-8"	// ì†ŒìŠ¤ ì½”ë“œì˜ ë¬¸ì¡ ì§‘í•© 
+  sourceCompatibility = 1.8		// ìë°” í—ˆìš© ë²„ì „ 
 }
 
-//3) À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ ¹öÀü ¼³Á¤
+//3) ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ ë²„ì „ ì„¤ì •
 eclipse {
   wtp {
     facet {
-      facet name: 'jst.web', version: '3.0' 	// ¼­ºí¸´ ½ºÆå ¹öÀü
+      facet name: 'jst.web', version: '3.0' 	// ì„œë¸”ë¦¿ ìŠ¤í™ ë²„ì „
       facet name: 'jst.java', version: '1.8'   
     }
   }
 }
 
-//4) ÀÇÁ¸ ¶óÀÌºê·¯¸®¸¦ ´Ù¿î·Îµå ¹ŞÀ» ¼­¹öÀÇ Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù.
+//4) ì˜ì¡´ ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ë‹¤ìš´ë¡œë“œ ë°›ì„ ì„œë²„ì˜ ì •ë³´ë¥¼ ì„¤ì •í•œë‹¤.
 repositories {
-    mavenCentral()  // ±âº»À¸·Î Maven Áß¾Ó ¼­¹ö¸¦ »ç¿ëÇÑ´Ù.
+    mavenCentral()  // ê¸°ë³¸ìœ¼ë¡œ Maven ì¤‘ì•™ ì„œë²„ë¥¼ ì‚¬ìš©í•œë‹¤.
 }
 
-//5) ÀÚµ¿À¸·Î ´Ù¿î·ÎµåÇÒ ÀÇÁ¸ ¶óÀÌºê·¯¸® Á¤º¸ ¼³Á¤
+//5) ìë™ìœ¼ë¡œ ë‹¤ìš´ë¡œë“œí•  ì˜ì¡´ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì •ë³´ ì„¤ì •
 dependencies {
   compile 'org.springframework:spring-webmvc:4.0.9.RELEASE'
   compile 'org.springframework:spring-jdbc:4.0.9.RELEASE'
@@ -46,23 +46,8 @@ dependencies {
   compile 'junit:junit:4.7'
   
   
-  // ÄÄÆÄÀÏ ÇÒ ¶§¸¸ »ç¿ëÇÏ°í ¹èÆ÷¿¡´Â Æ÷ÇÔÇÏÁö ¾Ê´Â ¶óÀÌºê·¯¸®.
+  // ì»´íŒŒì¼ í•  ë•Œë§Œ ì‚¬ìš©í•˜ê³  ë°°í¬ì—ëŠ” í¬í•¨í•˜ì§€ ì•ŠëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬.
   providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
   
-  // ÀÚµ¿À¸·Î ´Ù¿î·Îµå ¹ŞÁö ¸øÇÏ´Â ¶óÀÌºê·¯¸®¸¦ lib Æú´õ¿¡ Áı¾î³Ö°í °¡Áö°í ¿À´Â°Í.
+  // ìë™ìœ¼ë¡œ ë‹¤ìš´ë¡œë“œ ë°›ì§€ ëª»í•˜ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ lib í´ë”ì— ì§‘ì–´ë„£ê³  ê°€ì§€ê³  ì˜¤ëŠ”ê²ƒ.
   runtime fileTree(dir: 'lib', include:'*.jar')
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
