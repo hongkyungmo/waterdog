@@ -1,0 +1,327 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+    </script>
+    <!-- 부트스트랩 CDN -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+        
+        #background {
+            background-color: #CC99FF;
+            width: auto;
+            height: 100%;
+        }
+        
+        #menu-container {
+            background-color: #CC99FF;
+            width: 100%;
+            height: 8%;
+        }
+        
+        #title-container {
+            background-color: blueviolet;
+            margin-left: 3.7%;
+            width: 93%;
+            height: 15%;
+            padding-top: 1%;
+            padding-left: 2%;
+            -webkit-border-radius: 5px;
+        }
+        
+        #playList-container {
+            background-color: papayawhip;
+            margin-top: 1.2%;
+            margin-left: 3.7%;
+            padding-top: 2%;
+            width: 93%;
+            height: 62%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .title {
+            margin-left: 7%;
+            background-color: greenyellow;
+            float: left;
+            left: 10px;
+            width: 14.5%;
+            position: absolute;
+            height: 6.3%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .syllable-container {
+            background-color: black;
+            width: 42%;
+            height: 90%;
+            left: 2%;
+            margin-left: 17%;
+            padding: 2px 2px 2px 2px;
+            -webkit-border-radius: 5px;
+        }
+        
+        .control-container {
+            width: 45%;
+            height: 90%;
+            left: 58%;
+            margin-left: 58%;
+            margin-top: -5.2%;
+        }
+        
+        .play {
+            margin-left: 3%;
+            background-color: greenyellow;
+            float: left;
+            width: 15%;
+            height: 100%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .download {
+            background-color: greenyellow;
+            float: left;
+            width: 15%;
+            height: 100%;
+            margin-left: 1.5%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .clicks {
+            background-color: greenyellow;
+            float: left;
+            width: 15%;
+            height: 100%;
+            margin-left: 1.5%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .next {
+            background-color: greenyellow;
+            float: left;
+            width: 40%;
+            height: 100%;
+            margin-left: 1.5%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .display-container {
+            background-color: hotpink;
+            margin-top: 1.2%;
+            margin-left: 3.7%;
+            width: 93%;
+            height: 15%;
+            padding-top: 1%;
+            padding-left: 2%;
+            -webkit-border-radius: 5px;
+        }
+        
+        #key-container {
+            background-color: #CC99FF;
+            width: 100%;
+            height: 72%;
+            float: left;
+            padding-left: 1.7%;
+            padding-top: 2%;
+        }
+        
+        #key-clickable-black-container {
+            background-color: transparent;
+            width: 100%;
+            height: 2%;
+            position: absolute;
+            float: left;
+        }
+        
+        #emotion-chech-container {
+            background-color: white;
+            margin-left: 3.7%;
+            width: 93%;
+            height: 8%;
+            padding-top: 1%;
+            padding-left: 2%;
+            -webkit-border-radius: 5px;
+        }
+        
+        .menu {
+            float: right;
+            position: relative;
+            margin: 1%;
+            -webkit-border-radius: 5px;
+            text-align: center;
+        }
+        
+        .syllable {
+            background-color: transparent;
+            float: left;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .syllable-bar {
+            background-color: #C67BC0;
+            position: relative;
+            /*width: 100%;*/
+            height: 8%;
+            z-index: 0;
+        }
+        
+        .divider {
+            background-color: #FF59C1;
+            float: left;
+            width: 1%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        //variables
+        var clickSequence = 0; //입력한 음의 갯수
+        var octave = 2; //1,2,3,4(low to high)
+        //음과 박자를 저장하는 2차원 배열 구조체(?)
+        var arr = new Array(64);
+        for (var i = 0; i < 64; i++) {
+            arr[i] = new Array(2); //{음정, 박자}
+        }
+
+        //bind functions(control bar)
+        $(function () {
+            //play
+
+            $(".play").bind("mousedown", function () {
+                $(this).css("background-color", '#EEFFA9');
+                var idx = $(".play").index(this);
+                if ($(".display-bar").length < 1) {
+                    $(".syllable-container:eq("+idx+")").append("<div class='display-bar' style='background-color:#FFFF99;width:0.5%;height:6%;position:absolute;float:left;left:23.5%;z-index:1'></div>");
+
+                    $(".display-bar").animate({
+                        left: "58%"
+                    }, 500, function () {
+                        while ($(".display-bar").length > 0) {
+                            $(".display-bar").remove();
+                        }
+                    });
+                }
+            });
+            $(".play").bind("mouseup", function () {
+                $(this).css("background-color", 'greenyellow');
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="background">
+        <!-- 메뉴바 -->
+        <div id="menu-container">
+            <div class="glyphicon glyphicon-chevron-left" id="back"></div>
+            <!--<div id="menu">menu</div>-->
+            <span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
+        </div>
+        <!-- 제목바 -->
+        <div id="title-container">
+            <h1>
+          <center>welcome to community!</center>
+        </h1>
+        </div>
+        <!--감정항목-->
+        <div id="emotion-chech-container">Check :
+            <input type="radio" name="emotion" value="happy" checked="">행복&nbsp;
+            <input type="radio" name="emotion" value="sad">슬픔&nbsp;
+            <input type="radio" name="emotion" value="angry">분노&nbsp;
+            <input type="radio" name="emotion" value="huge">웅장함&nbsp;
+            <input type="radio" name="emotion" value="etc">기타&nbsp; Search :
+            <input>
+        </div>
+        <!-- playlist -->
+        <div id="playList-container">
+            <!--반복1-->
+            <div class="display-container">
+                <div class="title">
+                    <left>
+                        <h5>title:</h5>
+                    </left>
+                </div>
+                <div class="syllable-container"></div>
+                <div class="control-container">
+                    <div class="play">
+                        <center>
+                            <h4>
+                                <span class="glyphicon glyphicon-play"></span>
+                            </h4>
+                        </center>
+                    </div>
+                    <div class="download">
+                        <center>
+                            <h4>
+                  <span class="glyphicon glyphicon-arrow-down"></span>
+                </h4>
+                        </center>
+                    </div>
+                    <div class="clicks">
+                        <center>
+                            <h5>98회</h5>
+                        </center>
+                    </div>
+                    <div class="next">
+                        <center>
+                            <h6>#벚꽃#사랑#설..</h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!--반복2-->
+            <div class="display-container">
+                <div class="title">
+                    <left>
+                        <h5>title:</h5>
+                    </left>
+                </div>
+                <div class="syllable-container"></div>
+                <div class="control-container">
+                    <div class="play">
+                        <center>
+                            <h4>
+                  <span class="glyphicon glyphicon-play"></span>
+                </h4>
+                        </center>
+                    </div>
+                    <div class="download">
+                        <center>
+                            <h4>
+                  <span class="glyphicon glyphicon-arrow-down"></span>
+                </h4>
+                        </center>
+                    </div>
+                    <div class="clicks">
+                        <center>
+                            <h5>13회</h5>
+                        </center>
+                    </div>
+                    <div class="next">
+                        <center>
+                            <h6>#우울#이별..</h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!--playlist div-->
+    </div>
+    <!--전체 div -->
+</body>
+
+</html>
