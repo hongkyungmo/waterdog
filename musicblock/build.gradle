@@ -51,3 +51,4 @@ dependencies {
   
   // 자동으로 다운로드 받지 못하는 라이브러리를 lib 폴더에 집어넣고 가지고 오는것.
   runtime fileTree(dir: 'lib', include:'*.jar')
+  }
