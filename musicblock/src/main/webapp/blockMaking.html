@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
-    </script>
-
+    <!--<script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+    </script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
 
 
@@ -240,6 +243,14 @@
     </style>
 
     <script>
+        $(function () {
+            $("body").delegate(".syllable-bar", "mousedown", function () {
+                $(this).draggable({ containment: "parent", axis: "y" });
+            });
+        });
+
+
+
         //variables
         var clickSequence = 0; //입력한 음의 갯수
         var octave = 2; //1,2,3,4(low to high)
@@ -453,6 +464,9 @@
                     /*$(this).css("background-color", 'greenyellow');*/
                 });
             }
+        });
+        $(function () {
+            $("#draggable").draggable();
         });
     </script>
 </head>
