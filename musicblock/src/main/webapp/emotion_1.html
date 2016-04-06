@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Music Block</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+        
+        #background {
+            background-color: #CC99FF;
+            width: auto;
+            height: 100%;
+        }
+        
+        #menu-container {
+            background-color: #CC99FF;
+            width: 100%;
+            height: 8%;
+        }
+        
+        #back {
+            float: left;
+            position: relative;
+            margin: 1%;
+            text-align: center;
+            -webkit-border-radius: 5px;
+        }
+        
+        #menu {
+            float: right;
+            position: relative;
+            margin: 1%;
+            -webkit-border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        var flag = true;
+
+        $(function () {
+            var checkEmotion = $('.icon');
+
+            checkEmotion.on({
+                
+                'click': function () {
+
+                    if (flag) {
+                        $(this).attr('src', 'screenshots/changeIcon.JPG');
+                        flag = false;
+                    } else {
+                        $(this).attr('src', 'screenshots/icon1.JPG');
+                        flag = true;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="background">
+        <div id="menu-container">
+            <div class="glyphicon glyphicon-chevron-left" id="back"></div>
+            <!--<div id="menu">menu</div>-->
+            <span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
+        </div>
+        <div style="padding-top:10%">
+            <center>
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:15%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:15%" />
+            </center>
+        </div>
+        <div>
+            <center>
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:15%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:15%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:15%" />
+            </center>
+        </div>
+
+
+        <div class="form-inline" style="float:right;width:autos">
+            <div>
+                <label for="exampleInputName2">Subject</label>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="input here">
+            </div>
+
+            <div>
+                <input type="checkbox" value=""> Upload to ShareBox
+                <button type="submit" class="btn btn-default" style="float:right">Save</button>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

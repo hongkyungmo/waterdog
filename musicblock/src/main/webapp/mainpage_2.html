@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- jQuery CDN 공식 jquery버-->
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+    </script>
+
+
+
+
+    <!-- 부트스트랩 CDN -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+    <!-- slick CDN 설정 -->
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://kenwheeler.github.io/slick/slick/slick.min.js"></script>
+
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+        
+        #background {
+            background-color: #CC99FF;
+            width: auto;
+            height: 100%;
+        }
+        
+        #menu-container {
+            background-color: #CC99FF;
+            width: 100%;
+            height: 8%;
+        }
+        
+        #back {
+            float: left;
+            position: relative;
+            margin: 1%;
+            text-align: center;
+            -webkit-border-radius: 5px;
+        }
+        
+        #menu {
+            float: right;
+            position: relative;
+            margin: 1%;
+            -webkit-border-radius: 5px;
+            text-align: center;
+        }
+        
+        #create-container {
+            width: inherit;
+            height: 25%;
+        }
+        
+        .music {
+            width: 15%;
+            height: 12%;
+        }
+        
+        .newMusic {
+            width: 25%;
+            height: 10%;
+        }
+        
+        .whiteSpace {
+            margin: 10%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            $('.responsive').slick({
+                dots: true
+                , infinite: false
+                , slidesToShow: 4
+                , slidesToScroll: 4
+                , accessibility: true
+                , responsive: [
+                    {
+                        breakpoint: 600
+                        , settings: {
+                            slidesToShow: 3
+                            , slidesToScroll: 3
+                            , infinite: true
+                            , dots: true
+                        }
+    }
+
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+            });
+        });
+        
+        $(function () {
+         
+            $('.music').bind({
+                
+            });
+            
+        });
+    </script>
+</head>
+
+<body>
+    <div id="background">
+        <!-- 메뉴바 -->
+        <div id="menu-container">
+            <div class="glyphicon glyphicon-chevron-left" id="back"></div>
+            <!--<div id="menu">menu</div>-->
+            <span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
+        </div>
+        <div style="margin:5%"></div>
+        <div id="create-container">
+            <center>
+                <button class="newMusic btn btn-danger dropdown-toggle">
+                    <h3>New Music</h3></button>
+            </center>
+        </div>
+        <div class="whiteSpace"></div>
+
+        <div class="responsive btn-group-lg" role="group">
+            <button class=" music btn btn-secondary">My Music1</button>
+            <button class=" music btn btn-success">My Music2</button>
+            <button class=" music btn btn-secondary">My Music3</button>
+            <button class=" music btn btn-warning">My Music4</button>
+            <button class=" music btn btn-primary">My Music5</button>
+            <button class=" music btn btn-secondary">My Music6</button>
+            <button class=" music btn btn-info">My Music7</button>
+            <button class=" music btn btn-secondary">My Music8</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
