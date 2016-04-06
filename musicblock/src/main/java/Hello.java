@@ -10,6 +10,7 @@ public class Hello {
 		System.out.println("개소리");
 		System.out.println("충돌");
 		int a;
+		int b;
 	}
 
 }
