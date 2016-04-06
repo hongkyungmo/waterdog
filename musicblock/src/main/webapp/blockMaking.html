@@ -8,9 +8,9 @@
     <!-- jQuery CDN -->
     <!--<script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
     </script>-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-2.2.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
 
 
@@ -383,6 +383,17 @@
                         $(".syllable-bar").last().draggable({ containment: "parent", axis: "y" });
                         //친 음 갯수 추가
                         clickSequence++;
+                        
+                        //음 추가 애니메이션
+                        $("#key-clickable-container").append('<div id="ani" style="position:absolute;width:20.1%;height:97%;background-color:pink;opacity:0.5"></div>');
+                       $("#ani").animate({
+                            left: (100/clickSequence)+0+"%", top:(100+barLevel)/4-65+"%", width:barLevel/clickSequence+"%", height:"0.5%"
+                        }, 1000, function () {
+                            while ($("#ani").length > 0) {
+                                $("#ani").remove();
+                            }
+                            $("#play").css("background-color", 'greenyellow');
+                        });
                     }
                 });
                 whiteKey.bind("mouseup", function () {
