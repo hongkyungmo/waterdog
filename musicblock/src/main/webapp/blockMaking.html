@@ -243,14 +243,6 @@
     </style>
 
     <script>
-        $(function () {
-            $("body").delegate(".syllable-bar", "mousedown", function () {
-                $(this).draggable({ containment: "parent", axis: "y" });
-            });
-        });
-
-
-
         //variables
         var clickSequence = 0; //입력한 음의 갯수
         var octave = 2; //1,2,3,4(low to high)
@@ -286,7 +278,6 @@
                     });
                 }
             });
-
             //cancel
             $("#cancel").bind("mousedown", function () {
                 if ($("#display-bar").length == 0) {
@@ -342,6 +333,7 @@
                         }
                         displayObj = '<div class="divider"></div><div class="syllable" style="width:' + k + '%"></div>';
                     }
+                    //음정 조절
                     $("#syllable-container").append(displayObj);
                     //친 음 갯수 추가
                     clickSequence++;
@@ -387,6 +379,8 @@
                             displayObj = '<div class="divider"></div><div class="syllable" style="width:' + beat + '%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
                         }
                         $("#syllable-container").append(displayObj);
+                        //음정 조절
+                        $(".syllable-bar").last().draggable({ containment: "parent", axis: "y" });
                         //친 음 갯수 추가
                         clickSequence++;
                     }
@@ -436,6 +430,7 @@
                             displayObj = '<div class="divider"></div><div class="syllable" style="width:' + beat + '%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
                         }
                         $("#syllable-container").append(displayObj);
+                        $(".syllable-bar").last().draggable({ containment: "parent", axis: "y" });
                         clickSequence++;
                     }
                 });
