@@ -1,0 +1,5 @@
+1. HTML, CSS, Bootstrap, javascript, jQuery, jQueryMobile, AngularJS, JSON, Google Maps, SQL, XML, AJAX 등..
+우리가 알아야 할 것들을 배울 수 있는 사이트
+튜토리얼이 굉장히 잘 되어 있고, 설명도 어렵지 않음.
+ -> http://www.w3schools.com/
+ 
