@@ -29,7 +29,8 @@
     <style>
         html,
         body {
-            height: 100%
+            height: 100%;
+            overflow: hidden;
         }
         
         #background {
@@ -242,6 +243,24 @@
             height: 23.5%;
             width: 92.2%;
         }
+        
+        .menu-on {
+            height: 92%;
+            width: 40%;
+            background-color: black;
+            position: absolute;
+            left: 60%;
+            top: 8%;
+            z-index: 1000;
+            margin: 0px;
+            padding: 0px;
+            opacity:0.9;
+            text-align:center;
+            font-size:15px;
+        }
+        
+        .menu-off {
+        }
     </style>
 
     <script>
@@ -255,13 +274,15 @@
         }
         //menu
         $(function () {
-
-           
-            
-
             $("#menu").bind("mousedown", function () {
-                $("body").append('<div id="menu" style="height:92%;width:20%;background-color:black;position:absolute;left:80%;top:8%;z-index:1000;margin:0px; padding:0px;"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>');
-                $("body").append('<div style="height:92%;width:80%;background-color:gray;position:absolute;left:0%;top:8%;z-index:1000;opacity:0.7">zzzz</div>');
+                if($(".menu-on").length > 0){
+                    $(".menu-on").addClass("menu-off");
+                    $(".menu-on").removeClass("menu-on");
+                }else{
+                    $(".menu-off").addClass("menu-on");
+                    $(".menu-off").removeClass("menu-off");
+                    /*$("body").append('<div style="height:92%;width:80%;background-color:gray;position:absolute;left:0%;top:8%;z-index:1000;opacity:0.7">zzzz</div>');*/
+                }
             });
         });
 
@@ -589,6 +610,7 @@
             </div>
         </div>
     </div>
+    <div class="menu-off"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>
 </body>
 
 </html>
