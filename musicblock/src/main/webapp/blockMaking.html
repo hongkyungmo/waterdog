@@ -244,12 +244,11 @@
             width: 92.2%;
         }
         
-        .menu-on {
+        #menu-list{
             height: 92%;
             width: 40%;
             background-color: black;
             position: absolute;
-            left: 60%;
             top: 12%;
             z-index: 1000;
             margin: 0px;
@@ -259,7 +258,12 @@
             font-size:15px;
         }
         
+        .menu-on {
+            left: 60%;
+        }
+        
         .menu-off {
+            left: 95%;
         }
     </style>
 
@@ -525,14 +529,10 @@
     <div id="background">
         <!-- 메뉴바 -->
         <div id="menu-container">
-            <button type="button" class="btn btn-default btn-sm" id="back">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            </button>
+                <span class="glyphicon glyphicon-chevron-left fa-2x" aria-hidden="true" id="back"></span>
             <!--<div id="menu">menu</div>-->
             <!--<span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>-->
-            <button type="button" class="btn btn-default btn-sm" id="menu">
-                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            </button>
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" id="menu"></span>
         </div>
         <!-- 표시바 -->
         <div id="display-container">
@@ -615,7 +615,7 @@
             </div>
         </div>
     </div>
-    <div class="menu-off"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>
+    <div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>
 </body>
 
 </html>
