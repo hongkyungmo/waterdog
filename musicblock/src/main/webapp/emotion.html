@@ -4,25 +4,17 @@
 <head>
 <title>Music Block</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 
-<script src="https://code.jquery.com/jquery-2.2.2.js"
-	integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
-	crossorigin="anonymous">
-    </script>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- tag script -->
+<script src="https://code.jquery.com/jquery-1.7.js"></script>
 
+<!-- bootstrap script -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -71,7 +63,28 @@ html, body {
 
 <script>
         var flag = true;
+        var count = 0;
 
+        //tag 추가 function
+        $(function () {
+            $("#put").click(function () {
+                var what = $("#user-input").val();
+                //$("#user-tag").append("<span>#"+what+"</span>");
+                $("#user-tag").append('<span id="test' + count + '">#' + what);
+                count++;
+                $("#user-input").val(""); // 입력텍스트 초기화
+                //$("#user-tag").empty();
+            });
+        });
+
+        //tag 삭제 function
+        $(function () {
+            $("span").live('click', function () { // 위에 jquery 버전 바꾸면 동작안함
+                $(this).remove();
+            });
+        });
+
+        //emotion check function
         $(function () {
             var checkEmotion = $('.icon');
 
@@ -80,10 +93,10 @@ html, body {
                 'click': function () {
 
                     if (flag) {
-                        $(this).attr('src', 'images/changeIcon.JPG');
+                        $(this).attr('src', 'screenshots/changeIcon.JPG');
                         flag = false;
                     } else {
-                        $(this).attr('src', 'images/icon1.JPG');
+                        $(this).attr('src', 'screenshots/icon1.JPG');
                         flag = true;
                     }
                 }
@@ -102,13 +115,14 @@ html, body {
 		<div class="whiteSpace"></div>
 		<div>
 			<center>
-				<img class="icon" src="images/icon1.JPG"
+				<img class="icon" src="screenshots/icon1.JPG"
 					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/icon1.JPG" style="width: 15%; height: 20%" /> <img
-					class="icon" src="images/icon1.JPG" style="width: 15%; height: 20%" />
-				<img class="icon" src="images/icon1.JPG"
+					src="screenshots/icon1.JPG" style="width: 15%; height: 20%" /> <img
+					class="icon" src="screenshots/icon1.JPG"
 					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/icon1.JPG" style="width: 15%; height: 20%" />
+					src="screenshots/icon1.JPG" style="width: 15%; height: 20%" /> <img
+					class="icon" src="screenshots/icon1.JPG"
+					style="width: 15%; height: 20%" />
 			</center>
 		</div>
 
@@ -116,15 +130,14 @@ html, body {
 
 		<div class="form-inline">
 			<div class="ui-field-contain">
-				<label for="textinput-fc">Tag Input:</label> <input type="text"
-					name="textinput-fc" id="textinput-fc" placeholder="Tag input"
-					value="">
+				<label for="textinput-fc">Tag Input</label> <input id="user-input"
+					type="text" placeholder="Tag1,Tag2...">
+				<button id="put">PUT</button>
 			</div>
-			<div id="inputTag">입력된 태그 보여줄 위치</div>
+			<div id="user-tag"></div>
 			<div>
+				<input type="checkbox"> Upload to ShareBox
 				<button>Save</button>
-				<input type="checkbox" name="checkbox-0 "> Upload to
-				ShareBox
 			</div>
 		</div>
 	</div>
