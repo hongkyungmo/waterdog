@@ -2,66 +2,66 @@
 <html>
 
 <head>
-<title>Music Block</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Music Block</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- tag script -->
+    <script src="https://code.jquery.com/jquery-1.7.js"></script>
 
+    <!-- auto complete -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.7.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+    <!-- bootstrap script -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<!-- tag script -->
-<script src="https://code.jquery.com/jquery-1.7.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+        
+        #background {
+            background-color: #CC99FF;
+            width: auto;
+            height: 100%;
+        }
+        
+        #menu-container {
+            background-color: #CC99FF;
+            width: 100%;
+            height: 8%;
+        }
+        
+        #back {
+            float: left;
+            position: relative;
+            margin: 1%;
+            text-align: center;
+            -webkit-border-radius: 5px;
+        }
+        
+        #menu {
+            float: right;
+            position: relative;
+            margin: 1%;
+            -webkit-border-radius: 5px;
+            text-align: center;
+        }
+        
+        .whiteSpace {
+            margin: 5%;
+        }
+        
+        #inputTag {
+            background-color: white;
+            height: 10%;
+        }
+    </style>
 
-<!-- bootstrap script -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<style>
-html, body {
-	height: 100%
-}
-
-#background {
-	background-color: #CC99FF;
-	width: auto;
-	height: 100%;
-}
-
-#menu-container {
-	background-color: #CC99FF;
-	width: 100%;
-	height: 8%;
-}
-
-#back {
-	float: left;
-	position: relative;
-	margin: 1%;
-	text-align: center;
-	-webkit-border-radius: 5px;
-}
-
-#menu {
-	float: right;
-	position: relative;
-	margin: 1%;
-	-webkit-border-radius: 5px;
-	text-align: center;
-}
-
-.whiteSpace {
-	margin: 5%;
-}
-
-#inputTag {
-	background-color: white;
-	height: 10%;
-}
-</style>
-
-<script>
+    <script>
         var flag = true;
         var count = 0;
 
@@ -80,7 +80,12 @@ html, body {
         //tag 삭제 function
         $(function () {
             $("span").live('click', function () { // 위에 jquery 버전 바꾸면 동작안함
-                $(this).remove();
+               
+                var tagId=$(this).attr("id");
+                
+                if(tagId!='menu'){
+                    $("#"+tagId).remove();
+                }
             });
         });
 
@@ -102,45 +107,55 @@ html, body {
                 }
             });
         });
+
+        // auto complete function
+        $(function () {
+            var availableTags = [
+                "happy"
+                , "happiness"
+                , "hello"
+            ];
+            $("#user-input").autocomplete({
+                source: availableTags
+            });
+        });
     </script>
 </head>
 
 <body>
-	<div id="background">
-		<div id="menu-container">
-			<div class="glyphicon glyphicon-chevron-left" id="back"></div>
-			<!--<div id="menu">menu</div>-->
-			<span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
-		</div>
-		<div class="whiteSpace"></div>
-		<div>
-			<center>
-				<img class="icon" src="images/icon1.JPG"
-					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/icon1.JPG" style="width: 15%; height: 20%" /> <img
-					class="icon" src="images/icon1.JPG"
-					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/icon1.JPG" style="width: 15%; height: 20%" /> <img
-					class="icon" src="images/icon1.JPG"
-					style="width: 15%; height: 20%" />
-			</center>
-		</div>
+    <div id="background">
+        <div id="menu-container">
+            <div class="glyphicon glyphicon-chevron-left" id="back"></div>
+            <!--<div id="menu">menu</div>-->
+            <span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
+        </div>
+        <div class="whiteSpace"></div>
+        <div>
+            <center>
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+            </center>
+        </div>
 
-		<div class="whiteSpace"></div>
+        <div class="whiteSpace"></div>
 
-		<div class="form-inline">
-			<div class="ui-field-contain">
-				<label for="textinput-fc">Tag Input</label> <input id="user-input"
-					type="text" placeholder="Tag1,Tag2...">
-				<button id="put">PUT</button>
-			</div>
-			<div id="user-tag"></div>
-			<div>
-				<input type="checkbox"> Upload to ShareBox
-				<button>Save</button>
-			</div>
-		</div>
-	</div>
+        <div class="form-inline">
+            <div class="ui-field-contain">
+                <label for="user-input">Tag Input</label>
+                <input id="user-input" type="text" placeholder="Tag1,Tag2...">
+                <button id="put">PUT</button>
+            </div>
+            <div id="user-tag">
+            </div>
+            <div>
+                <input type="checkbox"> Upload to ShareBox
+                <button>Save</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
