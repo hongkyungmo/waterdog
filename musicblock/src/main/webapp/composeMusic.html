@@ -244,26 +244,26 @@
                     $item.clone().insertAfter($item);
                 _super($item, container);
             }
-            , onDrop: function($item, container){
-               
+            , onDrop: function ($item, container) {
+
                 console.log($item);
-                console.log(container);
+//                console.log(container);
+//                if($('li.swiper-slide').length){
+//                    console.log("zzzaaaz");
+//                }
 
                 $item.removeClass(container.group.options.draggedClass).removeAttr("style")
                 $("body").removeClass(container.group.options.bodyClass)
-                
-                
-//                 swiper1.appendSlide(['<li class="swiper-slide"><i class=\'icon-move\'></i>' + $item + '</li>']);
-                
+
+
             }
-             
+
         });
-            
+
         $("ol.simple_with_no_drop").sortable({
             group: 'no-drop'
-            , drop: false 
+            , drop: false
         });
-        
     </script>
 </body>
 
