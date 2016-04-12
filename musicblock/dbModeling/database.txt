@@ -1,0 +1,557 @@
+﻿/* 새 데이터베이스 */
+USE [NEW_DATABASE]
+GO
+
+/* Block */
+DROP TABLE [BLOCK]
+GO
+
+/* Music */
+DROP TABLE [MUSIC]
+GO
+
+/* User */
+DROP TABLE [USER]
+GO
+
+/* 해시태그 */
+DROP TABLE [BLOCK_HASH]
+GO
+
+/* 음악해시태그 */
+DROP TABLE [MUSIC_HASH]
+GO
+
+/* Block */
+CREATE TABLE [BLOCK] (
+	[BCODE] [int] NOT NULL,  /* BlockCode */
+	[UCODE] [int] NOT NULL,  /* UserCode */
+	[NOTE] [varchar](max) NOT NULL,  /* 음표 */
+	[EMOTION] [int] NOT NULL,  /* Emotion */
+	[PCOUNT] [int] NOT NULL,  /* PlayCount */
+	[DCOUNT] [int] NOT NULL /* DownCount */
+)
+GO
+
+/* Block 기본키 */
+ALTER TABLE [BLOCK]
+	ADD
+		CONSTRAINT [PK_BLOCK]
+		PRIMARY KEY NONCLUSTERED (
+			[BCODE] ASC
+		)
+GO
+
+/* Block 인덱스 */
+CREATE NONCLUSTERED INDEX [IX_BLOCK] ON [BLOCK] (
+	[EMOTION] ASC
+)
+GO
+
+/* Block */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Block', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK'
+GO
+
+/* BlockCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'BlockCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'BCODE'
+GO
+
+/* UserCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'UserCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'UCODE'
+GO
+
+/* 음표 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'음표', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'NOTE'
+GO
+
+/* Emotion */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Emotion', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'EMOTION'
+GO
+
+/* PlayCount */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'PlayCount', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'PCOUNT'
+GO
+
+/* DownCount */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'DownCount', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'COLUMN', @level2name=N'DCOUNT'
+GO
+
+/* Block 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Block 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'CONSTRAINT', @level2name=N'PK_BLOCK'
+GO
+
+/* Block 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Block 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'INDEX', @level2name=N'PK_BLOCK'
+GO
+
+/* Block 인덱스 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Block 인덱스', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'INDEX', @level2name=N'IX_BLOCK'
+GO
+
+/* Music */
+CREATE TABLE [MUSIC] (
+	[MCODE] [int] NOT NULL,  /* MusicCode */
+	[UCODE] [int] NOT NULL,  /* UserCode */
+	[CMPT] [clob] NOT NULL,  /* 가진음표 */
+	[EMOTION] [int] NOT NULL,  /* Emotion */
+	[PCOUNT] [int] NOT NULL,  /* PlayCount */
+	[DCOUNT] [int] NOT NULL /* DownCount */
+)
+GO
+
+/* Music 기본키 */
+ALTER TABLE [MUSIC]
+	ADD
+		CONSTRAINT [PK_MUSIC]
+		PRIMARY KEY NONCLUSTERED (
+			[MCODE] ASC
+		)
+GO
+
+/* Music 인덱스 */
+CREATE NONCLUSTERED INDEX [IX_MUSIC] ON [MUSIC] (
+	[EMOTION] ASC
+)
+GO
+
+/* Music */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Music', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC'
+GO
+
+/* MusicCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'MusicCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'MCODE'
+GO
+
+/* UserCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'UserCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'UCODE'
+GO
+
+/* 가진음표 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'가진음표', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'CMPT'
+GO
+
+/* Emotion */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Emotion', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'EMOTION'
+GO
+
+/* PlayCount */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'PlayCount', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'PCOUNT'
+GO
+
+/* DownCount */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'DownCount', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'COLUMN', @level2name=N'DCOUNT'
+GO
+
+/* Music 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Music 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'CONSTRAINT', @level2name=N'PK_MUSIC'
+GO
+
+/* Music 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Music 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'INDEX', @level2name=N'PK_MUSIC'
+GO
+
+/* Music 인덱스 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Music 인덱스', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'INDEX', @level2name=N'IX_MUSIC'
+GO
+
+/* User */
+CREATE TABLE [USER] (
+	[UCODE] [int] NOT NULL,  /* UserCode */
+	[NICK] [varchar](20) NOT NULL /* Nickname */
+)
+GO
+
+/* User 기본키 */
+ALTER TABLE [USER]
+	ADD
+		CONSTRAINT [PK_USER]
+		PRIMARY KEY NONCLUSTERED (
+			[UCODE] ASC
+		)
+GO
+
+/* User 유니크 제약 */
+ALTER TABLE [USER]
+	ADD
+		CONSTRAINT [UK_USER]
+		UNIQUE NONCLUSTERED (
+			[NICK] ASC
+		)
+GO
+
+/* User */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER'
+GO
+
+/* UserCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'UserCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'COLUMN', @level2name=N'UCODE'
+GO
+
+/* Nickname */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Nickname', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'COLUMN', @level2name=N'NICK'
+GO
+
+/* User 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'CONSTRAINT', @level2name=N'PK_USER'
+GO
+
+/* User 유니크 제약 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User 유니크 제약', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'CONSTRAINT', @level2name=N'UK_USER'
+GO
+
+/* User 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'INDEX', @level2name=N'PK_USER'
+GO
+
+/* User 유니크 인덱스 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User 유니크 인덱스', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'USER', 
+	@level2type=N'INDEX', @level2name=N'UIX_USER'
+GO
+
+/* 해시태그 */
+CREATE TABLE [BLOCK_HASH] (
+	[HCODE] [int] NOT NULL,  /* 해시태그번호 */
+	[BCODE] [int] NOT NULL,  /* BlockCode */
+	[TAG] [varchar](20) NOT NULL /* HashTag */
+)
+GO
+
+/* 해시태그 기본키 */
+ALTER TABLE [BLOCK_HASH]
+	ADD
+		CONSTRAINT [PK_BLOCK_HASH]
+		PRIMARY KEY NONCLUSTERED (
+			[HCODE] ASC
+		)
+GO
+
+/* 해시태그 인덱스 */
+CREATE NONCLUSTERED INDEX [IX_BLOCK_HASH] ON [BLOCK_HASH] (
+	[TAG] ASC
+)
+GO
+
+/* 해시태그 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH'
+GO
+
+/* 해시태그번호 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그번호', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'COLUMN', @level2name=N'HCODE'
+GO
+
+/* BlockCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'BlockCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'COLUMN', @level2name=N'BCODE'
+GO
+
+/* HashTag */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'HashTag', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'COLUMN', @level2name=N'TAG'
+GO
+
+/* 해시태그 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'CONSTRAINT', @level2name=N'PK_BLOCK_HASH'
+GO
+
+/* 해시태그 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'INDEX', @level2name=N'PK_BLOCK_HASH'
+GO
+
+/* 해시태그 인덱스 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그 인덱스', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'INDEX', @level2name=N'IX_BLOCK_HASH'
+GO
+
+/* 음악해시태그 */
+CREATE TABLE [MUSIC_HASH] (
+	[HCODE] [int] NOT NULL,  /* 해시태그번호 */
+	[MCODE] [int] NOT NULL,  /* MusicCode */
+	[TAG] [varchar](20) NOT NULL /* HashTag */
+)
+GO
+
+/* 음악해시태그 기본키 */
+ALTER TABLE [MUSIC_HASH]
+	ADD
+		CONSTRAINT [PK_MUSIC_HASH]
+		PRIMARY KEY NONCLUSTERED (
+			[HCODE] ASC
+		)
+GO
+
+/* 음악해시태그 인덱스 */
+CREATE NONCLUSTERED INDEX [IX_MUSIC_HASH] ON [MUSIC_HASH] (
+	[TAG] ASC
+)
+GO
+
+/* 음악해시태그 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'음악해시태그', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH'
+GO
+
+/* 해시태그번호 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'해시태그번호', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'COLUMN', @level2name=N'HCODE'
+GO
+
+/* MusicCode */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'MusicCode', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'COLUMN', @level2name=N'MCODE'
+GO
+
+/* HashTag */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'HashTag', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'COLUMN', @level2name=N'TAG'
+GO
+
+/* 음악해시태그 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'음악해시태그 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'CONSTRAINT', @level2name=N'PK_MUSIC_HASH'
+GO
+
+/* 음악해시태그 기본키 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'음악해시태그 기본키', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'INDEX', @level2name=N'PK_MUSIC_HASH'
+GO
+
+/* 음악해시태그 인덱스 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'음악해시태그 인덱스', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'INDEX', @level2name=N'IX_MUSIC_HASH'
+GO
+
+/* User -> Block */
+ALTER TABLE [BLOCK]
+	ADD
+		CONSTRAINT [FK_USER_TO_BLOCK]
+		FOREIGN KEY (
+			[UCODE]
+		)
+		REFERENCES [USER] (
+			[UCODE]
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+GO
+
+/* User -> Music */
+ALTER TABLE [MUSIC]
+	ADD
+		CONSTRAINT [FK_USER_TO_MUSIC]
+		FOREIGN KEY (
+			[UCODE]
+		)
+		REFERENCES [USER] (
+			[UCODE]
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+GO
+
+/* Block -> 해시태그 */
+ALTER TABLE [BLOCK_HASH]
+	ADD
+		CONSTRAINT [FK_BLOCK_TO_BLOCK_HASH]
+		FOREIGN KEY (
+			[BCODE]
+		)
+		REFERENCES [BLOCK] (
+			[BCODE]
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+GO
+
+/* Music -> 음악해시태그 */
+ALTER TABLE [MUSIC_HASH]
+	ADD
+		CONSTRAINT [FK_MUSIC_TO_MUSIC_HASH]
+		FOREIGN KEY (
+			[MCODE]
+		)
+		REFERENCES [MUSIC] (
+			[MCODE]
+		)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+GO
+
+/* User -> Block */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User -> Block', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK', 
+	@level2type=N'CONSTRAINT', @level2name=N'FK_USER_TO_BLOCK'
+GO
+
+/* User -> Music */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'User -> Music', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC', 
+	@level2type=N'CONSTRAINT', @level2name=N'FK_USER_TO_MUSIC'
+GO
+
+/* Block -> 해시태그 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Block -> 해시태그', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'BLOCK_HASH', 
+	@level2type=N'CONSTRAINT', @level2name=N'FK_BLOCK_TO_BLOCK_HASH'
+GO
+
+/* Music -> 음악해시태그 */
+EXEC sp_addextendedproperty 
+	@name=N'MS_Description', @value=N'Music -> 음악해시태그', 
+	@level0type=N'SCHEMA', @level0name=N'MY_SCHEMA', 
+	@level1type=N'TABLE', @level1name=N'MUSIC_HASH', 
+	@level2type=N'CONSTRAINT', @level2name=N'FK_MUSIC_TO_MUSIC_HASH'
+GO
