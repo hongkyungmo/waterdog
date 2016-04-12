@@ -62,7 +62,6 @@
     </style>
 
     <script>
-        var flag = true;
         var count = 0;
 
         //tag 추가 function
@@ -80,30 +79,26 @@
         //tag 삭제 function
         $(function () {
             $("span").live('click', function () { // 위에 jquery 버전 바꾸면 동작안함
-               
-                var tagId=$(this).attr("id");
-                
-                if(tagId!='menu'){
-                    $("#"+tagId).remove();
+
+                var tagId = $(this).attr("id");
+
+                if (tagId != 'menu') {
+                    $("#" + tagId).remove();
                 }
             });
         });
 
         //emotion check function
         $(function () {
-            var checkEmotion = $('.icon');
-
-            checkEmotion.on({
-
-                'click': function () {
-
-                    if (flag) {
-                        $(this).attr('src', 'images/changeIcon.JPG');
-                        flag = false;
-                    } else {
-                        $(this).attr('src', 'images/icon1.JPG');
-                        flag = true;
-                    }
+            var emotion=$('.icon');
+            emotion.live('click', function () {
+                var checkIcon= $(this).attr('src');
+                if (checkIcon=='screenshots/icon1.JPG') {
+                    $(this).attr('src', 'screenshots/changeIcon.JPG');
+                    flag = false;
+                } else {
+                    $(this).attr('src', 'screenshots/icon1.JPG');
+                    flag = true;
                 }
             });
         });
@@ -112,7 +107,11 @@
         $(function () {
             var availableTags = [
                 "happy"
+
+                
                 , "happiness"
+
+                
                 , "hello"
             ];
             $("#user-input").autocomplete({
@@ -132,11 +131,11 @@
         <div class="whiteSpace"></div>
         <div>
             <center>
-                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
-                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
-                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
-                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
-                <img class="icon" src="images/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="screenshots/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="screenshots/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="screenshots/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="screenshots/icon1.JPG" style="width:15%;height:20%" />
+                <img class="icon" src="screenshots/icon1.JPG" style="width:15%;height:20%" />
             </center>
         </div>
 
@@ -145,7 +144,7 @@
         <div class="form-inline">
             <div class="ui-field-contain">
                 <label for="user-input">Tag Input</label>
-                <input id="user-input" type="text" placeholder="Tag1,Tag2...">
+                <input id="user-input" type="text" placeholder="here One Tag">
                 <button id="put">PUT</button>
             </div>
             <div id="user-tag">
