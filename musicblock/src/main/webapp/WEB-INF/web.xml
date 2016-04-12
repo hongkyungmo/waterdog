@@ -4,25 +4,25 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	metadata-complete="true" version="3.0">
 	
-	<!-- 
+	
     <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	-->
+	
 	
 	<!-- Business Logic을 수행하기 위한,
 	DB연결정보, SQL Mappning, 선후처리, transaction -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:config/context-aspect.xml,
+			<!-- classpath:config/context-aspect.xml,  -->
 			classpath:config/context-common.xml,
 			classpath:config/context-mybatis.xml,
 			classpath:config/context-transaction.xml
 		</param-value>
 	</context-param>
 	
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -30,12 +30,12 @@
 			<param-value>/config/springMVC/common-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet> -->
+	</servlet>
 	
-	<!-- <servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping>
 	 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
