@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MusicMapper">
+	<!-- SQL : INSERT -->
+	<insert 	id="addMusic"		parameterType="music" >
+	 	<!-- INSERT
+		INTO music(ucode , nick) 
+		VALUES	 (	#{ucode} , #{nick} )
+		VALUES	 (	seq_user_ucode_nextval , #{nick} ) -->
+	 </insert>
+</mapper>
