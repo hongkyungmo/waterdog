@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<html>
+
+<head>
+    <title>Music Block</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 사용자가 Zoom할 수 없도록 설정한다-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- JQuery Load Start -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- JQuery Load End -->
+
+    <!--  JQuery Mobile using ajax load Start  -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).bind('mobileinit', function () {
+            $.mobile.changePage.defaults.changeHash = false;
+            $.mobile.hashListeningEnabled = false;
+            $.mobile.pushStateEnabled = false; // 위 두줄은 필요없고, 이 코드만 있으면 된다고 하는 내용도 있네요.
+        });
+    </script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!--  JQuery Mobile using ajax load End  -->
+
+    <!--  BootStrap Load Start  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!--  BootStrap Load End  -->
+
+
+    <!-- External css load Start   -->
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/main-content.css">
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/project.css">
+
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" tyoe="text/css" href="css/composeMusic/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/application.css">
+    <!-- External css load End   -->
+
+    <style>
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            width: 250px;
+            /*             Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        
+        .block-item {
+            text-align: center;
+            font-size: 18px;
+            width: 450px;
+            /*            cursor: pointer;*/
+            flex-shrink: 0;
+            height: 100%;
+            position: relative;
+            /*
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+*/
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main-content">
+        <div class="ui-content workspace">
+            <div class="part-selector">
+                <div class="part-empty">
+                    a
+                </div>
+                <div class="part-melody">
+                    Melody
+                </div>
+                <div class="part-session">
+                    Session
+                </div>
+            </div>
+            <div class="layer-selector">
+
+
+                <div class='layer-melody-block'>
+                    <ol class='swiper-wrapper simple_with_drop vertical'>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 1
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 2
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 3
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 4
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 5
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 6
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 7
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 8
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 9
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item 0
+                        </li>
+                        <li class="swiper-slide">
+                            <i class='icon-move'></i> Item -
+                        </li>
+
+                    </ol>
+                    <!-- Add Scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <!--block-frame-->
+        <div class="block-frame">
+            <!-- layer-melody-block -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class='span4'>
+                            <h3>Block Repository</h3>
+                            <ol class='simple_with_no_drop vertical'>
+                                <li class='highlight'>
+                                    <i class='icon-move'></i> Item 1
+                                </li>
+                                <li class='highlight'>
+                                    <i class='icon-move'></i> Item 2
+                                </li>
+                                <li class='highlight'>
+                                    <i class='icon-move'></i> Item 3
+                                </li>
+                            </ol>
+
+                        </div>
+                    </div>
+                    <div class="swiper-slide">Music Repository</div>
+                    <div class="swiper-slide">Option</div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- JQuery-Sortable JS   -->
+    <script src='javascript/composeMusic/jquery-sortable.js'></script>
+    <!-- Swiper JS -->
+    <script src="javascript/composeMusic/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination'
+            , paginationClickable: true
+            , spaceBetween: 30
+            , loop: true
+            , grabCursor: false
+        });
+
+        var swiper1 = new Swiper('.layer-melody-block', {
+            scrollbar: '.swiper-scrollbar'
+            , scrollbarHide: true
+            , slidesPerView: 'auto'
+            , spaceBetween: 0
+            , grabCursor: false
+            , freeMode: true
+
+        });
+
+        $("ol.simple_with_drop").sortable({
+            group: 'no-drop'
+            , handle: 'i.icon-move'
+            , onDragStart: function ($item, container, _super) {
+                // Duplicate items of the no drop area
+                if (!container.options.drop)
+                    $item.clone().insertAfter($item);
+                _super($item, container);
+            }
+            , onDrop: function($item, container){
+               
+                console.log($item);
+                console.log(container);
+
+                $item.removeClass(container.group.options.draggedClass).removeAttr("style")
+                $("body").removeClass(container.group.options.bodyClass)
+                
+                
+//                 swiper1.appendSlide(['<li class="swiper-slide"><i class=\'icon-move\'></i>' + $item + '</li>']);
+                
+            }
+             
+        });
+            
+        $("ol.simple_with_no_drop").sortable({
+            group: 'no-drop'
+            , drop: false 
+        });
+        
+    </script>
+</body>
+
+</html>
