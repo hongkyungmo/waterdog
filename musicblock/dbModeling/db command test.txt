@@ -1,0 +1,2 @@
+1. User 테이블에 Insert
+INSERT INTO users(ucode, nick) values (seq_user_ucode_nextval, 'kmhong');
