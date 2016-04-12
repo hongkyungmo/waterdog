@@ -6,24 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-       <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<<<<<<< .mine
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+=======
     <link rel="stylesheet" href="/resources/demos/style.css">
+>>>>>>> .r62
     <!--scroll-->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- Link Swiper's CSS -->
+<<<<<<< .mine
+    <link rel="stylesheet" href="css/min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+=======
     <link rel="stylesheet" href="css/min.css"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
+>>>>>>> .r62
     <!--profile이미지-->
-    <!--<link rel="stylesheet" href="css/profile.css">-->
+    <link rel="stylesheet" href="css/profile.css">
+
+
     <!-- 부트스트랩 CDN -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="lib/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="lib/js/bootstrap.min.js"></script>
-    <!--에러발생-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
 
 
 
@@ -46,10 +58,21 @@
         #menu-icon {
             float: right;
             position: relative;
+            align-content: center;
             margin: 1%;
             z-index: 150;
             -webkit-border-radius: 5px;
             text-align: center;
+        }
+        
+        #menu-search {
+            float: right;
+            right: 10%;
+            position: relative;
+            margin: 1%;
+            text-align: center;
+            z-index: 150;
+            -webkit-border-radius: 5px;
         }
         
         .menu {
@@ -67,9 +90,20 @@
         }
         
         .contain-list {
+            width: 100%;
+            height: 20%;
             background-color: lightgrey;
             position: relative;
             z-index: 10;
+        }
+        .swiper-container{
+             background-color: lightgrey;
+            position: relative;
+            z-index: 10;
+            
+            width: 100%;
+        height: 300px;
+        margin: 20px auto;
         }
         
         .contain-layer {
@@ -88,12 +122,26 @@
         }*/
         /*게시판*/
         
+        .swiper-slide {
+            /*     text-align: center;
+            font-size: 18px;
+            background: #fff;*/
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            background-color: lightgrey;
+            position: relative;
+            z-index: 10;
+        }
+        
         .people {
             position: relative;
             margin-top: 2%;
             margin-bottom: -10%;
             padding: 6%;
-            width: 72%;
+            /*width: 82%;*/
             height: 160px;
             font-family: "Helvetica Neue", Helvetica, sans-serif, Bold;
             font-size: 10px;
@@ -108,7 +156,7 @@
             position: relative;
             margin: 0 0 0 0;
             padding: 10px 8px 8px 54px;
-            width: 85%;
+            width: 100%;
             height: 80%;
             border: 2px solid #bbbbbb;
             border-radius: 4px;
@@ -165,13 +213,10 @@
 
 <body>
     <div class="menu" style="width:100%; height:12%;">
-        <!--<span class="glyphicon glyphicon-chevron-left" id="menu-back">fsfsfsf</span>-->
-        <button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-</button>
-
-			<!--<div id="menu">menu</div>-->
-			<span class="glyphicon glyphicon-menu-hamburger" id="menu-icon" ></span>
+        <span class="glyphicon glyphicon-chevron-left" id="menu-back"></span>
+        <!--<div id="menu">menu</div>-->
+        <span class="glyphicon glyphicon-search" id="menu-search"></span>
+        <span class="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
     </div>
     <div class="music-menu" style="width:100%; height:10%;">
         <ul class="nav nav-pills">
@@ -191,84 +236,241 @@
 
         </ul>
     </div>
-    <div class="contain-list" style="width:100%; height:1000%; ">
+    <div class="swiper-container" style="width:100%; height:100%; ">
         <!--height조정?-->
         <!--left컨테이너-->
-        <div class="contain-layer" style="width:50%; float:left; ">
-            <!--<div class="contain">-->
-            <!--썸네일-->
-            <div class="people">
-                <!-- <ul id="people">-->
-                <li>
-                    <a href=#><img src="images/3.png" /></a>
-                    <h2>치킨이 떙길때 듣는노래</h2>
-                    <span class="info">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><!-- 2개씩 -->
+                <div class="contain-layer" style="width:50%; float:left; ">
+                    <!--<div class="contain">-->
+                    <!--썸네일-->
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>치킨이 떙길때 듣는노래</h2>
+                            <span class="info">
                             <em>은혜가은행가네</em>
                             <em>2016-04-08 20:04:03</em>
                            <em> --------------------------------------------------------</em>
 		                </span>
-                </li>
-            </div>
+                        </li>
+                    </div>
 
-            <div class="people">
-                <!-- <ul id="people">-->
-                <li>
-                    <a href=#><img src="images/3.png" /></a>
-                    <h2>술이 떙길때 듣는노래</h2>
-                    <span class="info">
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>술이 떙길때 듣는노래</h2>
+                            <span class="info">
                             <em>은혜가은행가네</em>
                             <em>2016-04-08 20:04:03</em>
                            <em> --------------------------------------------------------</em>
 		                </span>
-                </li>
-            </div>
+                        </li>
+                    </div>
+
+                  </div>
+
+            <!--</div>-->
 
 
-        </div>
-
-
-        <!--///////////////////////////////////////////////////////-->
-        <!--right컨테이너-->
-        <div class="contain-layer" style="width:50%;  float:right;">
-            <div class="people">
-                <li>
-                    <a href=#><img src="images/3.png" /></a>
-                    <h2>꼬깔콘먹으면서 듣는노래</h2>
-                    <span class="info">
+            <!--///////////////////////////////////////////////////////-->
+            <!--right컨테이너-->
+            <!--<div class="swiper-slide">-->
+                <div class="contain-layer" style="width:50%;  float:right;">
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>꼬깔콘먹으면서 듣는노래</h2>
+                            <span class="info">
                             <em>이산돌</em>
                             <em>2016-04-08 20:09:03</em>
                            <em> --------------------------------------------------------</em>
 		                </span>
-                </li>
-            </div>
-        </div>
+                        </li>
+                    </div>
 
-        <div class="contain-layer" style="width:50%;  float:right;">
-            <div class="people">
-                <li>
-                    <a href=#><img src="images/3.png" /></a>
-                    <h2>먹으면서 듣는노래</h2>
-                    <span class="info">
+
+
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>먹으면서 듣는노래</h2>
+                            <span class="info">
                             <em>이산돌</em>
                             <em>2016-04-08 20:09:03</em>
                            <em> --------------------------------------------------------</em>
 		                </span>
-                </li>
+                        </li>
+                    </div>
+            </div>
+        </div><!--두개씩-->
+
+            
+            <div class="swiper-slide"><!-- 2개씩 -->
+                <div class="contain-layer" style="width:50%; float:left; ">
+                    <!--<div class="contain">-->
+                    <!--썸네일-->
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>밥이 떙길때 듣는노래</h2>
+                            <span class="info">
+                            <em>은혜가은행가네</em>
+                            <em>2016-04-08 20:04:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>소주이 떙길때 듣는노래</h2>
+                            <span class="info">
+                            <em>은혜가은행가네</em>
+                            <em>2016-04-08 20:04:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+                  </div>
+
+            <!--</div>-->
+
+
+            <!--///////////////////////////////////////////////////////-->
+            <!--right컨테이너-->
+            <!--<div class="swiper-slide">-->
+                <div class="contain-layer" style="width:50%;  float:right;">
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>족발먹으면서 듣는노래</h2>
+                            <span class="info">
+                            <em>이산돌</em>
+                            <em>2016-04-08 20:09:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+
+
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>먹으면서 듣는노래</h2>
+                            <span class="info">
+                            <em>이산돌</em>
+                            <em>2016-04-08 20:09:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+                    
+
+               
             </div>
         </div>
+        
+            
+                      <div class="swiper-slide"><!-- 2개씩 -->
+                <div class="contain-layer" style="width:50%; float:left; ">
+                    <!--<div class="contain">-->
+                    <!--썸네일-->
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>밥이 떙길때 듣는노래</h2>
+                            <span class="info">
+                            <em>은혜가은행가네</em>
+                            <em>2016-04-08 20:04:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+                    <div class="people">
+                        <!-- <ul id="people">-->
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>소주이 떙길때 듣는노래</h2>
+                            <span class="info">
+                            <em>은혜가은행가네</em>
+                            <em>2016-04-08 20:04:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+                  </div>
+
+            <!--</div>-->
+
+
+            <!--///////////////////////////////////////////////////////-->
+            <!--right컨테이너-->
+            <!--<div class="swiper-slide">-->
+                <div class="contain-layer" style="width:50%;  float:right;">
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>족발먹으면서 듣는노래</h2>
+                            <span class="info">
+                            <em>이산돌</em>
+                            <em>2016-04-08 20:09:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+
+
+
+                    <div class="people">
+                        <li>
+                            <a href=#><img src="images/3.png" /></a>
+                            <h2>먹으면서 듣는노래</h2>
+                            <span class="info">
+                            <em>이산돌</em>
+                            <em>2016-04-08 20:09:03</em>
+                           <em> --------------------------------------------------------</em>
+		                </span>
+                        </li>
+                    </div>
+                    
+
+               
+            </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
 
     </div>
+    <!--swipperslider-->
+
+   
+   
+  
     <!--container list-->
 
     <!-- Swiper JS -->
     <script src="javascript/swiper.min.js"></script>
     <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination'
-            , paginationClickable: true
-            , direction: 'vertical'
-        });
+        <script>
+    var swiper = new Swiper('.swiper-container', {
+        scrollbar: '.swiper-scrollbar',
+        scrollbarHide: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        direction: 'vertical',
+        spaceBetween: 30,
+        grabCursor: true
+    });
     </script>
 
 </body>
