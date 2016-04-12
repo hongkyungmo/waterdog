@@ -1,4 +1,17 @@
-﻿/* Block */
+﻿DROP SEQUENCE seq_user_ucode;
+DROP SEQUENCE seq_block_bcode;
+DROP SEQUENCE seq_block_hash_hcode;
+DROP SEQUENCE seq_music_mcode;
+DROP SEQUENCE seq_music_hash_hcode;
+
+CREATE SEQUENCE seq_user_ucode	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_block_bcode	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_block_hash_hcode	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_music_mcode	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_music_hash_hcode	INCREMENT BY 1 START WITH 1;
+
+
+/* Block */
 DROP TABLE BLOCK 
 	CASCADE CONSTRAINTS;
 
