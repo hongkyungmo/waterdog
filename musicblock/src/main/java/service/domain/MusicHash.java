@@ -1,4 +1,4 @@
-package app.music;
+package service.domain;
 
 public class MusicHash {
 
