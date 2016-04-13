@@ -1,5 +1,10 @@
-1. HTML, CSS, Bootstrap, javascript, jQuery, jQueryMobile, AngularJS, JSON, Google Maps, SQL, XML, AJAX 등..
-우리가 알아야 할 것들을 배울 수 있는 사이트
-튜토리얼이 굉장히 잘 되어 있고, 설명도 어렵지 않음.
- -> http://www.w3schools.com/
+<front-end 학습용 사이트>
+w3schools : http://www.w3schools.com/
  
+NHN 코딩 컨벤션 : http://nuli.navercorp.com/sharing/fe/coding
+
+지구별 안내서 : http://aboooks.tistory.com/category/css
+
+웨버스터디 : http://webberstudy.com/
+
+생활코딩 : https://opentutorials.org/course/1
