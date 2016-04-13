@@ -47,7 +47,7 @@ public class AjaxTest {
 		// -> xxxService.addYYY(zzz);
 		User user = new User();
 		user.setTestVar(3);
-		user.setNick("hahahahaha");
+		user.setNick("hahahahahahahaha");
 		
 		userService.addUser(user);
 		model.addAttribute("user", user);
