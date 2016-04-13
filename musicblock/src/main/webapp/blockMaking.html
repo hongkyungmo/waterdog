@@ -223,7 +223,8 @@
             width: 8%;
             height: 3000%;
         }
-        .key{
+        
+        .key {
             float: left;
         }
         
@@ -314,6 +315,8 @@
                             $(".glyphicon-stop").removeClass("glyphicon-stop");
                         }
                         $("#play").css("background-color", 'greenyellow');
+                        //animation 완료 후 음 정지
+                        o.stop();
                     });
                 }
             });
@@ -522,7 +525,7 @@
             $("#draggable").draggable();
         });
     </script>
-    
+
     <script src="/javascript/makesound.js"></script>
 
 
