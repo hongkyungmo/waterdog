@@ -1,5 +1,7 @@
 package app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,10 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.domain.User;
+import service.user.UserService;
 
 @Controller
 @RequestMapping("/test/*")
 public class AjaxTest {
+	///Field
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
+	
+	public AjaxTest() {
+		System.out.println("AjaxTest default contstructor");
+	}
+
 	/////////////////////////////////////////////////////////////
 	@RequestMapping( value="ajaxTest", method=RequestMethod.POST )
 	public void addJsonUser( @RequestBody User user, Model model ) throws Exception {
@@ -18,7 +31,9 @@ public class AjaxTest {
 		System.out.println("ajaxTest : " + user);
 		//Business Logic
 		// -> xxxService.addYYY(zzz);
-
+		user.setNick("testNick");
+		
+		
 		model.addAttribute("user", user);
 
 	}
