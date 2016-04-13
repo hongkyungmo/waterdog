@@ -10,6 +10,6 @@
 	 	INSERT
 		INTO users(ucode , nick) 
 		<!-- VALUES	 (	#{ucode} , #{nick} ) -->
-		VALUES	 (	seq_user_ucode_nextval , #{nick} )
+		VALUES	 (	seq_user_ucode.nextval , #{nick} )
 	 </insert>
 </mapper>

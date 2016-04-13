@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.domain.User;
 import service.user.UserService;
+import service.user.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/test/*")
@@ -46,6 +47,9 @@ public class AjaxTest {
 		// -> xxxService.addYYY(zzz);
 		User user = new User();
 		user.setTestVar(3);
+		user.setNick("hahahahaha");
+		
+		userService.addUser(user);
 		model.addAttribute("user", user);
 	}
 }

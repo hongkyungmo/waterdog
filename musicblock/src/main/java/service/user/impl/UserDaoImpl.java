@@ -25,6 +25,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void addUser(User user) throws Exception {
+		System.out.println("userDaoImpl 동작 확인");
 		sqlSession.insert("UserMapper.addUser", user);
 	}
 
