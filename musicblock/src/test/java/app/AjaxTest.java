@@ -46,8 +46,7 @@ public class AjaxTest {
 		//Business Logic
 		// -> xxxService.addYYY(zzz);
 		User user = new User();
-		user.setTestVar(3);
-		user.setNick("hahahahahahahaha");
+		user.setNick("ha");
 		
 		userService.addUser(user);
 		model.addAttribute("user", user);
