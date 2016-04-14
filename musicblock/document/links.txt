@@ -10,3 +10,5 @@ NHN 코딩 컨벤션 : http://nuli.navercorp.com/sharing/fe/coding
 생활코딩 : https://opentutorials.org/course/1
 
 크로스 도메인 메세지 : Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin'
+
+크로스 도메인 해결책 : http://ooz.co.kr/232
