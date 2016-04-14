@@ -75,6 +75,7 @@ $(function () {
         var count = 0;
         if (clickSequence != 0) {
             setInterval(function () {
+				alert("a");
                 var temp = 100 - $(".syllable-bar:eq("+count+")").offset().top;
                 freq = 130.8128 + -1.5999999999999943 + 1.90937499999999988125 * temp;
                 o.frequency.value = o.frequency.value + 10 * count;
