@@ -1,15 +1,15 @@
 package service.domain;
 
 public class User {
-	private	int testVar;
-	private String nick;
+	private	int uCode;		// User Code
+	private String nick;	// Nickname
 
-	public int getTestVar() {
-		return testVar;
+	public int getUCode() {
+		return uCode;
 	}
 
-	public void setTestVar(int testVar) {
-		this.testVar = testVar;
+	public void setUCode(int uCode) {
+		this.uCode = uCode;
 	}
 
 	public String getNick() {

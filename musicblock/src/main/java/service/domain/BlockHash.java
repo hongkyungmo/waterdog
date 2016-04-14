@@ -2,9 +2,12 @@ package service.domain;
 
 public class BlockHash {
 
-	private int hCode;
-	private int bCode;
-	private String tag;
+	private int hCode;	// Hash Code
+	private int bCode;	// Block Code
+	private String tag;	// Tag
+	
+	
+	public BlockHash() {	}
 	
 	public int gethCode() {
 		return hCode;
@@ -29,8 +32,6 @@ public class BlockHash {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
-	public BlockHash() {	}
 
 	public String toString(){
 		return "BlockHash: [hCode] : "+hCode+"[bCode] : "+bCode+"[tag] : "+tag;

@@ -1,12 +1,12 @@
 package service.domain;
 
 public class Block {
-	private int bCode;
-	private int uCode;
-	private String note;
-	private int emotion;
-	private int pCount;
-	private int dCount;
+	private int bCode;		// Block Code
+	private int uCode;		// User Code
+	private String note;	// 계이름
+	private int emotion;	// Emotion
+	private int pCount;		// Play Count
+	private int dCount;		// Download Count
 
 	public Block() {	}
 
