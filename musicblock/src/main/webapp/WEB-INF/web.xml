@@ -40,6 +40,7 @@
 		<filter-name>cors</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- cross domain 해결 부분  끝-->
 
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
