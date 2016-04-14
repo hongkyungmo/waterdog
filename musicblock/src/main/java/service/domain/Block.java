@@ -1,5 +1,7 @@
 package service.domain;
 
+import java.util.List;
+
 public class Block {
 	private int bCode;		// Block Code
 	private int uCode;		// User Code
@@ -7,6 +9,8 @@ public class Block {
 	private int emotion;	// Emotion
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
+	List<BlockHash> blockHashList;
+	
 
 	public Block() {	}
 

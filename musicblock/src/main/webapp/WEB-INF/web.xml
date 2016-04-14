@@ -32,7 +32,7 @@
 	</servlet>
 
 	<!-- cross domain 해결 부분 -->
-	<filter>
+	  <filter>
 		<filter-name>cors</filter-name>
 		<filter-class>common.SimpleCORSFilter</filter-class>
 	</filter>
