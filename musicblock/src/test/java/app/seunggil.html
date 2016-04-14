@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+
+<html>
+
+
+
+<head>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} 
+		else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		 
+		//Ajax구현부분
+		xmlhttp.onreadystatechange = function() {
+				alert("state change 콜백함수 호출됨!\nxmlhttp.readyState = " + xmlhttp.readyState + "\nxmlhttp.status = " + xmlhttp.status + "\nxmlhttp.responseText = " + xmlhttp.responseText );
+				if (xmlhttp.status == 200) {
+					alert("200까지는 성공");
+					if(xmlhttp.readyState == 4){
+						alert("readystate가 4 : 성공!");
+					}else{
+						alert("readystate가 4가 아님 : 실패!");
+					}
+				}
+		}
+		xmlhttp.open("GET", "http://localhost:8080/test/ajaxTest", true);
+		xmlhttp.send();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+        	$.ajaxPrefilter( "json script", function( options ) {
+        		  options.crossDomain = true;
+        		});
+            $.ajax({
+                url: 'http://localhost:8080/test/ajaxTest'
+                , type: 'POST'
+                , contentType : 'application/json;charset=UTF-8'
+                , data: JSON.stringify({testVar:'aaaaa'})
+                , dataType: 'json'
+                , success: onSuccess
+                , error: onError
+            })
+        });
+
+        function onSuccess(data) {
+            alert(data);
+        }
+
+        function onError(data) {
+            alert(data);
+            alert("Ajax error!!");
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+ -->
+
+
+
+
+
+
+<!--
+
+<html>
+
+
+
+<head>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+        	$.ajaxPrefilter( "json script", function( options ) {
+        		  options.crossDomain = true;
+        		});
+            $.ajax({
+                url: 'http://localhost:8080/test/ajaxTest'
+                , type: "GET"
+                , contentType : 'application/json;charset=UTF-8'
+                , data: JSON.stringify({testVar:'aaaaa'})
+		, jsonpCallback : "myCallback"
+                , dataType: 'jsonp'
+                , success: onSuccess
+                , error: onError
+            })
+        });
+
+        function onSuccess(data) {
+            alert(data);
+        }
+
+        function onError(data, xhr, thrownError) {
+            alert(data + ", " + xhr + ", " + thrownError);
+            alert("Ajax error!!");
+        }
+
+function myCallback(){
+	alert("!!!!");
+}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>-->
