@@ -6,7 +6,7 @@ apply plugin: 'war' 			// web archive 제어 명령
 
 //2) 자바 소스에 대한 기본 설정
 compileJava {
-  options.encoding = "EUC-KR" //"UTF-8"	// 소스 코드의 문잡 집합 
+  options.encoding = "UTF-8" //"UTF-8"	// 소스 코드의 문잡 집합 
   sourceCompatibility = 1.8		// 자바 허용 버전 
 }
 
