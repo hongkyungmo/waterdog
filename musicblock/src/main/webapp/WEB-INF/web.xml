@@ -34,7 +34,7 @@
 	<!-- cross domain 해결 부분 -->
 	<filter>
 		<filter-name>cors</filter-name>
-		<filter-class>com.company.project.util.domain.SimpleCORSFilter</filter-class>
+		<filter-class>common.SimpleCORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>cors</filter-name>
