@@ -2,6 +2,7 @@ package app;
 
 import java.util.Map;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import service.block.BlockService;
-import service.block.impl.BlockServiceImpl;
-import service.domain.Block;
 import service.domain.User;
 import service.user.UserService;
 
@@ -35,10 +33,9 @@ public class AjaxTest {
 	}
 
 	/////////////////////////////////////////////////////////////
-	@RequestMapping(value = "ajaxTest/{value}", method = RequestMethod.POST)
-	public void addJsonUserGET(@PathVariable String value, @RequestBody Map user, Model model) throws Exception {
+	@RequestMapping(value = "ajaxTest", method = RequestMethod.POST)
+	public void addJsonUserGET( @RequestBody Map user, Model model) throws Exception {
 
-		System.out.println("value : " + value);
 		System.out.println("User : " + user);
 		// Business Logic
 		// -> xxxService.addYYY(zzz);
