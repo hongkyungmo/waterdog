@@ -19,7 +19,7 @@
 
 	<resultMap type="BlockHash" id="BlockHashResultMap">
 		<result property="hCode" column="hcode" jdbcType="INTEGER" />
-		<result property="bCode" column="hcode" jdbcType="INTEGER" />
+		<result property="bCode" column="bcode" jdbcType="INTEGER" />
 		<result property="tag" column="tag" jdbcType="VARCHAR" />
 	</resultMap>
 
@@ -35,20 +35,15 @@
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
 
 	<insert id="addBlockHash" parameterType="BlockHash">
-	
-	INSERT
-	INTO
-	block_hash(hcode,bcode,tag)
-	values (SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{bcode},#{tag})
 
-		<!-- <foreach item="item" index="index" collection="list" open="INSERT "
-			close=" " separator=" ">
+		INSERT
+		INTO
+		block_hash(hcode,bcode,tag)
+		VALUES(SEQ_BLOCK_HASH_HCODE.NEXTVAL,1,#{tag})
 
-			INTO
-			block_hash (hcode,bcode,tag )
-			VALUES
-			(SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag})
-		</foreach> -->
+		<!-- <foreach item="item" index="index" collection="list" open="INSERT 
+			" close=" " separator=" "> INTO block_hash (hcode,bcode,tag ) VALUES (SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag}) 
+			</foreach> -->
 	</insert>
 
 </mapper>
