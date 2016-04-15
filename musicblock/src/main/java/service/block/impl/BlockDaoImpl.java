@@ -20,8 +20,8 @@ public class BlockDaoImpl implements BlockDao{
 
 	@Override
 	public void addBlock(Block block) {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert("BlockMapper.addBlock", block);
+		sqlSession.insert("BlockMapper.addBlockHash", block.getblockHashList());
 	}
 
 	@Override
