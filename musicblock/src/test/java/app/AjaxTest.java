@@ -53,6 +53,13 @@ public class AjaxTest {
 		// userService.addUser(user);
 		BlockService blockService = new BlockServiceImpl();
 		Block block = new Block();
+		block.setdCount(1);
+		block.setEmotion(1);
+		block.setNote("도1,레2,레1");
+		block.setpCount(0);
+		block.setdCount(0);
+		block.setuCode(1);
+		
 		blockService.addBlock(block);
 		model.addAttribute("user", "aaa11");
 
