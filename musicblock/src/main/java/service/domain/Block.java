@@ -12,7 +12,9 @@ public class Block {
 	List<BlockHash> blockHashList;
 	
 
-	public Block() {	}
+	public Block() {	
+		System.out.println(this.getClass());
+	}
 
 	public int getbCode() {
 		return bCode;
