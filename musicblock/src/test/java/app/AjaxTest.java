@@ -1,12 +1,12 @@
 package app;
 
-import java.util.Map;
-
+import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,15 +34,8 @@ public class AjaxTest {
 
 	/////////////////////////////////////////////////////////////
 	@RequestMapping(value = "ajaxTest", method = RequestMethod.POST)
-	public void addJsonUserGET( @RequestBody Map user, Model model) throws Exception {
-
-		System.out.println("User : " + user);
-		// Business Logic
-		// -> xxxService.addYYY(zzz);
-		
-		model.addAttribute(user);
-		System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-
+	public void addJsonUserGET(@RequestBody String user) throws Exception {
+		System.out.println("requestbody : " + user);
 	}
 
 	@RequestMapping(value = "ajaxTest/{value}", method = RequestMethod.GET)
