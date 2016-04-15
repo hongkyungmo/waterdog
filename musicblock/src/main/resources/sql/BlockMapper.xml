@@ -13,13 +13,14 @@
 		<result property="emotion" column="emotion" jdbcType="INTEGER" />
 		<result property="pCount" column="pcount" jdbcType="INTEGER" />
 		<result property="dCount" column="dcount" jdbcType="INTEGER" />
-		<collection property="blockHashList" javaType="java.util.List" resultMap="BlockHashResultMap"/>
-	</resultMap> 
-	
+		<collection property="blockHashList" javaType="java.util.List"
+			resultMap="BlockHashResultMap" />
+	</resultMap>
+
 	<resultMap type="BlockHash" id="BlockHashResultMap">
-		<result property="hCode" column="hcode" jdbcType="INTEGER"/>
-		<result property="bCode" column="hcode" jdbcType="INTEGER"/>
-		<result property="tag" column="tag" jdbcType="VARCHAR"/>
+		<result property="hCode" column="hcode" jdbcType="INTEGER" />
+		<result property="bCode" column="hcode" jdbcType="INTEGER" />
+		<result property="tag" column="tag" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<!-- SQL : INSERT -->
@@ -27,18 +28,22 @@
 		INSERT
 		INTO
 		block(bcode,ucode,note,emotion,pcount,dcount )
-		VALUES (SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},0,0 )
+		VALUES
+		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},0,0 )
 	</insert>
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
 
 	<insert id="addBlockHash" parameterType="java.util.List">
-		INSERT 
-		INTO 
-		block_hash (hcode,bcode,tag ) VALUES
-		<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
-			SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag}
+
+		<foreach item="item" index="index" collection="list" open="INSERT "
+			close=" " separator=" ">
+
+			INTO
+			block_hash (hcode,bcode,tag )
+			VALUES
+			(SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag})
 		</foreach>
 	</insert>
-	
+
 </mapper>
