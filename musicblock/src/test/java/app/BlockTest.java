@@ -70,7 +70,7 @@ public class BlockTest {
 		
 		BlockHash bh = new BlockHash();
 		bh.setbCode(1);
-		bh.setTag("test");
+		bh.setTag("test123");
 		List<BlockHash> hashList = new ArrayList();
 		
 		hashList.add(bh);

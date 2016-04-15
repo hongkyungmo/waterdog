@@ -34,16 +34,21 @@
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
 
-	<insert id="addBlockHash" parameterType="java.util.List">
+	<insert id="addBlockHash" parameterType="BlockHash">
+	
+	INSERT
+	INTO
+	block_hash(hcode,bcode,tag)
+	values (SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{bcode},#{tag})
 
-		<foreach item="item" index="index" collection="list" open="INSERT "
+		<!-- <foreach item="item" index="index" collection="list" open="INSERT "
 			close=" " separator=" ">
 
 			INTO
 			block_hash (hcode,bcode,tag )
 			VALUES
 			(SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag})
-		</foreach>
+		</foreach> -->
 	</insert>
 
 </mapper>
