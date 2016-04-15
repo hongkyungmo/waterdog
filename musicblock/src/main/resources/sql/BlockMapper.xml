@@ -27,7 +27,7 @@
 		INSERT
 		INTO
 		block(bcode,ucode,note,emotion,pcount,dcount )
-		VALUES (SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},#{pCount},#{dCount} )
+		VALUES (SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},0,0 )
 	</insert>
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
