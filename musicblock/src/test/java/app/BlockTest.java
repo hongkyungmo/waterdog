@@ -68,8 +68,12 @@ public class BlockTest {
 		block.setdCount(0);
 		block.setuCode(1);
 		
-		List<String> hashList = new ArrayList();
-		hashList.add("test");
+		BlockHash bh = new BlockHash();
+		bh.setbCode(1);
+		bh.setTag("test");
+		List<BlockHash> hashList = new ArrayList();
+		
+		hashList.add(bh);
 		
 		
 		System.out.println(block.toString());
