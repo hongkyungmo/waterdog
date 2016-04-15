@@ -32,27 +32,14 @@ public class BlockTest {
 	private BlockService blockService;
 
 	public BlockTest() {
-		System.out.println("AjaxTest default contstructor 생성됨ㅋ");
+		System.out.println(this.getClass());
 	}
-
-	/////////////////////////////////////////////////////////////
-	/*@RequestMapping(value = "ajaxTest", method = RequestMethod.POST)
-	
-	public @ResponseBody void addJsonUser(@RequestBody User user, Model model) throws Exception {
-
-		System.out.println("User : " + user);
-		// Business Logic
-		// -> xxxService.addYYY(zzz);
-		// user.setNick("testNick");
-
-		// model.addAttribute("JSON", user);
-
-	}*/
 
 	@RequestMapping(value = "BlockTest", method = RequestMethod.GET)
 	public void addJsonUserGET(Model model) throws Exception {
 
-		System.out.println("ajaxTest : ");
+
+		System.out.println("<<    BlockTest.java Start   >>");
 		// Business Logic
 		// -> xxxService.addYYY(zzz);
 		// User user = new User();
@@ -69,20 +56,18 @@ public class BlockTest {
 		block.setuCode(1);
 		
 		BlockHash bh = new BlockHash();
-		bh.setbCode(1);
+		bh.setbCode(10);
 		bh.setTag("test123");
 		List<BlockHash> hashList = new ArrayList();
 		
 		hashList.add(bh);
-		
+		block.setblockHashList(hashList);
 		
 		System.out.println(block.toString());
 		
 		blockService.addBlock(block);
-		
-		model.addAttribute("user", "aaa11");
 
-		System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+		System.out.println("<<    BlockTest.java End   >>");
 	}
 
 //	@RequestMapping(value = "/user1", method = RequestMethod.POST)
@@ -104,20 +89,3 @@ public class BlockTest {
 //	}
 
 }
-
-/*
- * @Controller
- * 
- * @RequestMapping("/test/*") public class AjaxTest {
- * /////////////////////////////////////////////////////////////
- * 
- * @RequestMapping( value="ajaxTest", method=RequestMethod.POST ) public void
- * addJsonUser( @RequestBody User user, Model model ) throws Exception {
- * 
- * System.out.println("ajaxTest : " + user); //Business Logic // ->
- * xxxService.addYYY(zzz);
- * 
- * model.addAttribute("user", user);
- * 
- * } }
- */

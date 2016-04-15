@@ -28,10 +28,11 @@ public class BlockServiceImpl implements BlockService{
 
 		///Method
 		public void addBlock(Block block) throws Exception {
-			System.out.println("method>> addblock");
+			System.out.println("<<    ServiceImpl/addBlock Start   >>");
+			System.out.println();
 			//blockDao = new BlockDaoImpl();
 			blockDao.addBlock(block);
-			System.out.println("aaa");
+			System.out.println("<<    ServiceImpl/BlockTest End   >>");
 		}
 
 		public void updateBlock(Block block) throws Exception {
