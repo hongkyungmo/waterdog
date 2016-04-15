@@ -5,11 +5,43 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BlockMapper">
+
+	<resultMap type="Block" id="BlockSelectMap">
+		<result property="bCode" column="bcode" jdbcType="INTEGER" />
+		<result property="uCode" column="ucode" jdbcType="INTEGER" />
+		<result property="note" column="note" jdbcType="VARCHAR" />
+		<result property="emotion" column="emotion" jdbcType="INTEGER" />
+		<result property="pCount" column="pcount" jdbcType="INTEGER" />
+		<result property="dCount" column="dcount" jdbcType="INTEGER" />
+		<collection property="blockHashList" javaType="java.util.List" resultMap="BlockHashResultMap"/>
+	</resultMap> 
+	
+	<resultMap type="BlockHash" id="BlockHashResultMap">
+		<result property="hCode" column="hcode" jdbcType="INTEGER"/>
+		<result property="bCode" column="hcode" jdbcType="INTEGER"/>
+		<result property="tag" column="tag" jdbcType="VARCHAR"/>
+	</resultMap>
+
 	<!-- SQL : INSERT -->
-	<insert 	id="addBlock"		parameterType="block" >
-	 	<!-- INSERT
-		INTO block(ucode , nick) 
-		VALUES	 (	#{ucode} , #{nick} )
-		VALUES	 (	seq_user_ucode.nextval , #{nick} ) -->
-	 </insert>
+	<insert id="addBlock" parameterType="block">
+		INSERT
+		INTO
+		block(bcode,ucode,note,emotion,pcount,dcount )
+		VALUES (SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},#{pCount},#{dCount} )
+	</insert>
+
+	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
+
+	<insert id="addBlockHash" parameterType="java.util.List">
+		INSERT 
+		INTO 
+		BLOCK_HASH(	hcode,bcode,tag ) VALUES
+		<foreach item="item" index="index" collection="list" open="("
+			separator="),(" close=")">
+			#{item.hcode}
+			, #{item.bcode}
+			, #{item.tag}
+		</foreach>
+	</insert>
+	
 </mapper>
