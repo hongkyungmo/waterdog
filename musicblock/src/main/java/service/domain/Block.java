@@ -63,9 +63,14 @@ public class Block {
 	}
 	
 	public void setblockHashList(List HashList){
+		
 //		for(int i=0;i<HashList.size();i++){
-//			this.blockHashList<BlockHash>=HashList(i);
+//			blockHashList=HashList;
 //		}
+//		
+//		this.blockHashList=HashList;
+		
+		// 여기수정!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	
 	public List<BlockHash> getblockHashList(){
