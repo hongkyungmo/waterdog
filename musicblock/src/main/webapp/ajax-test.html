@@ -3,10 +3,16 @@
 <head>
     <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
+    
+</head>
+
+<body>
+
+</body>
+<script>
         $(function () {
             $.ajax({
-                url: 'http://192.168.0.89:8080/test/ajaxTest/user01'
+                url: 'test/ajaxTest/user01'
                 , method: 'post'
                 , data : JSON.stringify({
                     "uCode" : 1111,
@@ -29,10 +35,4 @@
             console.log("Ajax error!!");
         }
     </script>
-</head>
-
-<body>
-
-</body>
-
 </html>
