@@ -37,7 +37,7 @@
 		INTO 
 		block_hash (hcode,bcode,tag ) VALUES
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
-			#{item}
+			SEQ_BLOCK_HASH_HCODE.NEXTVAL,#{item.bcode},#{item.tag}
 		</foreach>
 	</insert>
 	
