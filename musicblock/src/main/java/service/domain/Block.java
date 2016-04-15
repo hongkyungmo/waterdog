@@ -62,6 +62,16 @@ public class Block {
 		this.dCount = dCount;
 	}
 	
+	public void setblockHashList(List HashList){
+//		for(int i=0;i<HashList.size();i++){
+//			this.blockHashList<BlockHash>=HashList(i);
+//		}
+	}
+	
+	public List<BlockHash> getblockHashList(){
+		return blockHashList;
+	}
+	
 	public String toString(){
 		return "Block : [bCode] : "+bCode+"[uCode] : "+uCode+"[note] : "+note
 				+"[emotion] : "+emotion+"[pCount] : "+pCount+"[dCount] : "+dCount;
