@@ -36,7 +36,7 @@ public class BlockTest {
 	}
 
 	/////////////////////////////////////////////////////////////
-	@RequestMapping(value = "ajaxTest", method = RequestMethod.POST)
+	/*@RequestMapping(value = "ajaxTest", method = RequestMethod.POST)
 	
 	public @ResponseBody void addJsonUser(@RequestBody User user, Model model) throws Exception {
 
@@ -47,9 +47,9 @@ public class BlockTest {
 
 		// model.addAttribute("JSON", user);
 
-	}
+	}*/
 
-	@RequestMapping(value = "ajaxTest", method = RequestMethod.GET)
+	@RequestMapping(value = "BlockTest", method = RequestMethod.GET)
 	public void addJsonUserGET(Model model) throws Exception {
 
 		System.out.println("ajaxTest : ");
