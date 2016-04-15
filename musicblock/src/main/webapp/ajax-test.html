@@ -12,11 +12,11 @@
 <script>
         $(function () {
             $.ajax({
-                url: 'test/ajaxTest/user01'
+                url: 'test/ajaxTest'
                 , method: 'post'
                 , data : JSON.stringify({
-                    "UCode" : 1111,
-                    "Nick" : "aaaa"
+                    "uCode" : "1111",
+                    "nick" : "aaaa"
                 })
                 , dataType: "json"
                 , headers:{
