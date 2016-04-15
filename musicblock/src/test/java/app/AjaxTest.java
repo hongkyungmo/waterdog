@@ -22,6 +22,10 @@ public class AjaxTest {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	
+	@Autowired
+	@Qualifier("blockServiceImpl")
+	private BlockService blockService;
 
 	public AjaxTest() {
 		System.out.println("AjaxTest default contstructor 생성됨ㅋ");
@@ -51,7 +55,7 @@ public class AjaxTest {
 		// user.setNick("ha11");
 		//
 		// userService.addUser(user);
-		BlockService blockService = new BlockServiceImpl();
+		//BlockService blockService = new BlockServiceImpl();
 		Block block = new Block();
 		block.setdCount(1);
 		block.setEmotion(1);
