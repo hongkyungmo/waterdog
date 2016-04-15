@@ -28,7 +28,9 @@ public class BlockDaoImpl implements BlockDao{
 	public void addBlock(Block block) {
 		System.out.println("DaoImpl : addBlock()호출됨");
 		sqlSession.insert("BlockMapper.addBlock", block);
-		if(block.getblockHashList().size()!=0){
+		System.out.println("addBlockHash list : " + block.getblockHashList());
+		if(block.getblockHashList()!=null){
+			System.out.println("addBlockHash list : " + block.getblockHashList());
 			sqlSession.insert("BlockMapper.addBlockHash", block.getblockHashList());
 		}
 		//Dao에서 for문을 통해 매번 addBlockHash를 부르지 않는 이유 :
