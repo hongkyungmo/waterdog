@@ -35,9 +35,8 @@
 	<insert id="addBlockHash" parameterType="java.util.List">
 		INSERT 
 		INTO 
-		BLOCK_HASH(	hcode,bcode,tag ) VALUES
-		<foreach item="item" index="index" collection="list" open="("
-			separator="),(" close=")">
+		block_hash (hcode,bcode,tag ) VALUES
+		<foreach item="item" index="index" collection="list">
 			#{item.hcode}
 			, #{item.bcode}
 			, #{item.tag}
