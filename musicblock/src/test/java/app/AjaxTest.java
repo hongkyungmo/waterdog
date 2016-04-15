@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import service.block.BlockService;
+import service.block.impl.BlockServiceImpl;
+import service.domain.Block;
 import service.domain.User;
 import service.user.UserService;
 
@@ -48,6 +51,9 @@ public class AjaxTest {
 		// user.setNick("ha11");
 		//
 		// userService.addUser(user);
+		BlockService blockService = new BlockServiceImpl();
+		Block block = new Block();
+		blockService.addBlock(block);
 		model.addAttribute("user", "aaa11");
 
 		System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");

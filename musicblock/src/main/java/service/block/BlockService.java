@@ -1,5 +1,8 @@
 package service.block;
 
-public interface BlockService {
+import service.domain.Block;
 
+public interface BlockService {
+	public void addBlock(Block block) throws Exception;
+	public void updateBlock(Block block) throws Exception;
 }

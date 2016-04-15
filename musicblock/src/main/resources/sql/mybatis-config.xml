@@ -17,6 +17,7 @@
 		<typeAlias alias="user" type="service.domain.User" />
 		<typeAlias alias="block" type="service.domain.Block" />
 		<typeAlias alias="music" type="service.domain.Music" />
+		<typeAlias alias="BlockHash" type="service.domain.BlockHash" />
 	</typeAliases>
 	
 	 <!-- SQL Definition :: file include -->
