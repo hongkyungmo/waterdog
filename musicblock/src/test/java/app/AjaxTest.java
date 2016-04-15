@@ -60,7 +60,10 @@ public class AjaxTest {
 		block.setdCount(0);
 		block.setuCode(1);
 		
+		System.out.println(block.toString());
+		
 		blockService.addBlock(block);
+		
 		model.addAttribute("user", "aaa11");
 
 		System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");

@@ -27,6 +27,7 @@ public class BlockServiceImpl implements BlockService{
 
 		///Method
 		public void addBlock(Block block) throws Exception {
+			System.out.println("method>> addblock");
 			blockDao.addBlock(block);
 		}
 
