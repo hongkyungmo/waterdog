@@ -9,7 +9,7 @@ public class Block {
 	private int emotion;	// Emotion
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
-	List<BlockHash> blockHashList;
+	private List<BlockHash> blockHashList;
 	
 
 	public Block() {	
