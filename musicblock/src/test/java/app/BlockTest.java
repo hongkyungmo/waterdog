@@ -37,16 +37,7 @@ public class BlockTest {
 
 	@RequestMapping(value = "BlockTest", method = RequestMethod.GET)
 	public void addJsonUserGET(Model model) throws Exception {
-
-
 		System.out.println("<<    BlockTest.java Start   >>");
-		// Business Logic
-		// -> xxxService.addYYY(zzz);
-		// User user = new User();
-		// user.setNick("ha11");
-		//
-		// userService.addUser(user);
-		//BlockService blockService = new BlockServiceImpl();
 		Block block = new Block();
 		block.setdCount(1);
 		block.setEmotion(1);
@@ -63,29 +54,10 @@ public class BlockTest {
 		hashList.add(bh);
 		block.setblockHashList(hashList);
 		
-		System.out.println(block.toString());
+		System.out.println("[8080/test/BlockTest] Block(+hashList) : " + block.toString());
 		
 		blockService.addBlock(block);
 
 		System.out.println("<<    BlockTest.java End   >>");
 	}
-
-//	@RequestMapping(value = "/user1", method = RequestMethod.POST)
-//	public void getJsonUser1(@RequestBody User user, Model model) throws Exception {
-//		System.out.println("/getJsonUser2 : POST value : " + user);
-//		User user1 = new User(0, "Haha", "1234");
-//		model.addAttribute("user", user1);
-//	}
-//
-//	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-//	public void addUser(@RequestBody User user, HttpServletResponse response) {
-//		System.out.println("addUser called" + user.getUem());
-//		try {
-//			userService.addUser(user);
-//			response.getWriter().print("success");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 }
