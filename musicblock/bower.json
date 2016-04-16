@@ -26,8 +26,9 @@
     "sources": {
       "bootstrap": "bower_components/bootstrap/dist/**",
       "jquery": "bower_components/jquery/dist/**",
-      "blueimp-file-upload": "bower_components/blueimp-file-upload/**"
-      
+      "blueimp-file-upload": "bower_components/blueimp-file-upload/**",
+      "jquery-ui": "bower_components/jquery-ui/**",
+      "jquery-ui-tabs": "bower_components/jquery-ui-tabs/**"
     }
   }
 }
