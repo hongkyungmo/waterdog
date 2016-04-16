@@ -25,13 +25,13 @@
         }
         
         #background {
-            background-color: #66aa72;
+            background-color: #26aa72;
             width: auto;
             height: 100%;
         }
         
         #menu-container {
-            background-color: #66aa72;
+            background-color: #26aa72;
             width: 100%;
             height: 8%;
         }
@@ -77,13 +77,35 @@
         
         #save-popup{
             background-color:azure;
-            width:80%;
+            width:70%;
             height:60%;
             position:absolute;
             top:20%;
-            left:10%;
-            opacity:0.9;
+            left:15%;
+            opacity:0.95;
             padding:3%;
+            -webkit-border-radius: 7px;
+        }
+        #popup-btn1{
+            background-color:#79992a;
+            position:relative;
+            float:left;
+            top:30%;
+            left:5%;
+            width:40%;
+            height:40%;
+            padding-top:5%;
+            -webkit-border-radius: 7px;
+        }
+        #popup-btn2{
+            background-color:orange;
+            position:relative;
+            float:right;
+            top:30%;
+            height:40%;
+            width:40%;
+            right:5%;
+            padding-top:3%;
             -webkit-border-radius: 7px;
         }
     </style>
@@ -201,12 +223,17 @@
                     , success: function (data, status) {
                         console.log(status);
                         console.log("JSONData : " + JSON.stringify(data));
-                        $("body").append("<div id='save-popup'><font size='4px' color='red'>"+JSON.stringify(data)+"</font><br><br><font color='black'><center><테스트용 화면><br>저장성공:ok<br>저장실패:fail</center></font></div>");
-                        $("#save-popup").click(function () {
+                        /*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
+                        $("body").append("<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+                        $("#popup-btn1").click(function () {
+                            $("#save-popup").remove();
+                            location.href="http://127.0.0.1:8080/blockMaking.html";
+                        });
+                        $("#popup-btn2").click(function () {
                             $("#save-popup").remove();
                             location.href="http://127.0.0.1:8080/composeMusic.html";
                         });
-                        $("#save-popup").delay(1500).fadeOut(500, function () {
+                        $("#save-popup").delay(3000).fadeOut(500, function () {
                             $("#save-popup").remove();
                             location.href="http://127.0.0.1:8080/composeMusic.html";
                         });
