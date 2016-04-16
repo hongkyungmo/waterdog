@@ -10,6 +10,16 @@
 	</listener>
 
 
+	<!-- log4j -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+
+
 	<!-- Business Logic을 수행하기 위한, DB연결정보, SQL Mappning, 선후처리, transaction -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -30,14 +40,14 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- cross domain 해결 부분 -->
-	  <filter>
+	<filter>
 		<filter-name>cors</filter-name>
 		<filter-class>common.SimpleCORSFilter</filter-class>
 	</filter>
@@ -45,9 +55,9 @@
 		<filter-name>cors</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- cross domain 해결 부분  끝-->
+	<!-- cross domain 해결 부분 끝 -->
 
-	
+
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
