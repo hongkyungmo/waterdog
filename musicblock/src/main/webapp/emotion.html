@@ -2,115 +2,124 @@
 <html>
 
 <head>
-    <title>Music Block</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- tag script -->
-    <script src="https://code.jquery.com/jquery-1.7.js"></script>
+<title>Music Block</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- tag script -->
+<script src="https://code.jquery.com/jquery-1.7.js"></script>
 
-    <!-- auto complete -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.7.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- auto complete -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.7.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <!-- bootstrap script -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- bootstrap script -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <style>
-        html,
-        body {
-            height: 100%
-        }
-        
-        #background {
-            background-color: #26aa72;
-            width: auto;
-            height: 100%;
-        }
-        
-        #menu-container {
-            background-color: #26aa72;
-            width: 100%;
-            height: 8%;
-        }
-        
-        #ui-field-contain {
-            padding-left: 3%;
-        }
-        
-        #save-container {
-            margin-top: 1%;
-            padding-left: 3%;
-        }
-        
-        #back {
-            float: left;
-            position: relative;
-            margin: 1%;
-            text-align: center;
-            -webkit-border-radius: 5px;
-        }
-        
-        #menu {
-            float: right;
-            position: relative;
-            margin: 1%;
-            -webkit-border-radius: 5px;
-            text-align: center;
-        }
-        
-        .whiteSpace {
-            margin: 5%;
-        }
-        
-        #inputTag {
-            background-color: white;
-            height: 10%;
-        }
-        
-        #user-tag {
-            padding-left: 3%;
-            padding-right: 3%;
-        }
-        
-        #save-popup{
-            background-color:azure;
-            width:70%;
-            height:60%;
-            position:absolute;
-            top:20%;
-            left:15%;
-            opacity:0.95;
-            padding:3%;
-            -webkit-border-radius: 7px;
-        }
-        #popup-btn1{
-            background-color:#79992a;
-            position:relative;
-            float:left;
-            top:30%;
-            left:5%;
-            width:40%;
-            height:40%;
-            padding-top:5%;
-            -webkit-border-radius: 7px;
-        }
-        #popup-btn2{
-            background-color:orange;
-            position:relative;
-            float:right;
-            top:30%;
-            height:40%;
-            width:40%;
-            right:5%;
-            padding-top:3%;
-            -webkit-border-radius: 7px;
-        }
-    </style>
+<style>
+html, body {
+	height: 100%
+}
 
-    <script>
+#background {
+	background-color: #26aa72;
+	width: auto;
+	height: 100%;
+}
+
+#menu-container {
+	background-color: #26aa72;
+	width: 100%;
+	height: 8%;
+}
+
+#ui-field-contain {
+	padding-left: 3%;
+}
+
+#save-container {
+	margin-top: 1%;
+	padding-left: 3%;
+}
+
+#back {
+	float: left;
+	position: relative;
+	margin: 1%;
+	text-align: center;
+	-webkit-border-radius: 5px;
+}
+
+#menu {
+	float: right;
+	position: relative;
+	margin: 1%;
+	-webkit-border-radius: 5px;
+	text-align: center;
+}
+    
+#emotion-container{
+    padding-top:6%;
+}
+
+.whiteSpace {
+	margin: 5%;
+}
+
+#inputTag {
+	background-color: white;
+	height: 10%;
+}
+
+#user-tag {
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+#save-popup {
+	background-color: azure;
+	width: 70%;
+	height: 60%;
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	opacity: 0.95;
+	padding: 3%;
+	-webkit-border-radius: 7px;
+}
+
+#popup-btn1 {
+	background-color: #79992a;
+	position: relative;
+	float: left;
+	top: 30%;
+	left: 5%;
+	width: 40%;
+	height: 40%;
+	padding-top: 5%;
+	-webkit-border-radius: 7px;
+}
+
+#popup-btn2 {
+	background-color: orange;
+	position: relative;
+	float: right;
+	top: 30%;
+	height: 40%;
+	width: 40%;
+	right: 5%;
+	padding-top: 3%;
+	-webkit-border-radius: 7px;
+}
+</style>
+
+<script>
         var count = 0;
 
         //tag 추가 function
@@ -248,39 +257,43 @@
 </head>
 
 <body>
-    <div id="background">
-        <div id="menu-container">
-            <div class="glyphicon glyphicon-chevron-left" id="back"></div>
-            <!--<div id="menu">menu</div>-->
-            <span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
-        </div>
-        <div class="whiteSpace"></div>
-        <div>
-            <center>
-                <img class="icon" src="images/smile_yellow.png" style="width:15%;height:20%" />
-                <img class="icon" src="images/smile_red.png" style="width:15%;height:20%" />
-                <img class="icon" src="images/smile_violet.png" style="width:15%;height:20%" />
-                <img class="icon" src="images/smile_orange.png" style="width:15%;height:20%" />
-                <img class="icon" src="images/smile_blue.png" style="width:15%;height:20%" />
-            </center>
-        </div>
+<!--공통모듈 : 메뉴바-->
+		<script src="/javascript/common/commonMenu.js"></script>
+	<div id="background">
+		
+		<!-- <div id="menu-container">
+			<div class="glyphicon glyphicon-chevron-left" id="back"></div>
+			<div id="menu">menu</div>
+			<span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
+		</div> -->
+		<div id="emotion-container">
+			<center>
+				<img class="icon" src="images/smile_yellow.png"
+					style="width: 15%; height: 20%" /> <img class="icon"
+					src="images/smile_red.png" style="width: 15%; height: 20%" /> <img
+					class="icon" src="images/smile_violet.png"
+					style="width: 15%; height: 20%" /> <img class="icon"
+					src="images/smile_orange.png" style="width: 15%; height: 20%" /> <img
+					class="icon" src="images/smile_blue.png"
+					style="width: 15%; height: 20%" />
+			</center>
+		</div>
 
-        <div class="whiteSpace"></div>
+		<div class="whiteSpace"></div>
 
-        <div class="form-inline">
-            <div id="ui-field-contain">
-                <label for="user-input">Tag Input</label>
-                <input id="user-input" type="text" placeholder="here One Tag">
-                <button id="put">PUT</button>
-            </div>
-            <div id="user-tag">
-            </div>
-            <div id="save-container">
-                <input type="checkbox"> Upload to ShareBox
-                <button id="save">Save</button>
-            </div>
-        </div>
-    </div>
+		<div class="form-inline">
+			<div id="ui-field-contain">
+				<label for="user-input">Tag Input</label> <input id="user-input"
+					type="text" placeholder="here One Tag">
+				<button id="put">PUT</button>
+			</div>
+			<div id="user-tag"></div>
+			<div id="save-container">
+				<input type="checkbox"> Upload to ShareBox
+				<button id="save">Save</button>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
