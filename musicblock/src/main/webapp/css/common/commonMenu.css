@@ -1,0 +1,15 @@
+#back {
+	float: left;
+	position: relative;
+	margin: 1%;
+	text-align: center;
+	-webkit-border-radius: 5px;
+}
+
+#menu {
+	float: right;
+	position: relative;
+	margin: 1%;
+	-webkit-border-radius: 5px;
+	text-align: center;
+}
