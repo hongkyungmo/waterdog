@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    
+    
+    
+    
 
     <!-- jQuery CDN -->
     <!--<script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
@@ -25,6 +29,8 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+    
+    
 
     <style>
         html,
@@ -270,6 +276,11 @@
     </style>
 
     <script>
+        $(function () {
+        $("body").append("<div id='menu-container'><span class = 'glyphicon glyphicon-chevron-left fa-2x' aria - hidden = 'true' id='back'></span><span class='glyphicon glyphicon-menu-hamburger' aria-hidden='true' id='menu'></span></div>");
+    });
+        
+        
         //variables
         var clickSequence = 0; //입력한 음의 갯수
         var octave = 2; //1,2,3,4(low to high)
@@ -590,14 +601,11 @@
 </head>
 
 <body>
+    <!--공통모듈 : 메뉴바-->
+    <script src="/javascript/common/commonMenu.js"></script>
     <div id="background">
         <!-- 메뉴바 -->
-        <div id="menu-container">
-            <span class="glyphicon glyphicon-chevron-left fa-2x" aria-hidden="true" id="back"></span>
-            <!--<div id="menu">menu</div>-->
-            <!--<span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>-->
-            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" id="menu"></span>
-        </div>
+        
         <!-- 표시바 -->
         <div id="display-container">
             <div id="syllable-container">
