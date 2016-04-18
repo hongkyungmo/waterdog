@@ -29,8 +29,7 @@ gain.connect(audioContext.destination); //데스티네이션(스피커)와 연�
 
 //오실레이터 시작
 oscillator.start();
-audioContext.suspend();
-
+gain.disconnect(audioContext.destination);
 
 
 
@@ -75,9 +74,9 @@ $(function () {
 
 var playNote = function (noteVal) {
     oscillator.frequency.value = noteVal;
-    audioContext.resume();
+    gain.connect(audioContext.destination);
     setTimeout(function () {
-        audioContext.suspend();
+        gain.disconnect(audioContext.destination);
     }, 1000);
     //테스트코드
     console.log(noteVal);
