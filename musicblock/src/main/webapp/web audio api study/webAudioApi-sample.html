@@ -14,7 +14,7 @@
         var gain = audioContext.createGain();
 
         //오실레이터 설정
-        oscillator.type = 'sine';           //파형의 형태 sine, square, saw 등
+        oscillator.type = 'sine';           //파형의 형태 sine, square, sawtooth, triangle, custom 등
         oscillator.frequency.value = 500;   //주파수
         oscillator.connect(gain);           //게인과 연결
 
