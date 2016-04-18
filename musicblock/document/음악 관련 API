@@ -1,0 +1,24 @@
+Web Audio API 공식 홈
+ -> https://www.w3.org/TR/webaudio/
+
+Web Audio API 사용법(mozilla 제공)
+ -> https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API
+Web Audio API : Audio Context
+ -> https://developer.mozilla.org/en-US/docs/Web/API/AudioContext
+ 
+<Web Audio APIs>
+AudioBuffer
+AudioBufferSourceNode
+AudioContext
+AudioDestinationNode
+AudioListener
+AudioNode
+AudioParam
+AudioProcessingEvent
+HTMLAudioElement
+MediaElementAudioSourceNode
+MediaStreamAudioDestinationNode
+MediaStreamAudioSourceNode
+NotifyAudioAvailableEvent
+OfflineAudioCompletionEvent
+OfflineAudioContext
