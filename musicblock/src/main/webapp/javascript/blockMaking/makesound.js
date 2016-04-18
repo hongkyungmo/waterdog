@@ -61,13 +61,13 @@ function play(freq, octave_for_play) {
 			* Math.pow(1.0594630943592952645618252949463, 12 * octave_for_play);
 	o = c.createOscillator();
 	g = c.createGain();
-	o.type = 'saw';
+	o.type = 'sine';
 
 	g.connect(c.destination);
 	o.connect(g);
 
 	o.frequency.value = freq;
-	g.gain.value = 2.5;
+	g.gain.value = 1;
 
 	o.start();
 };
