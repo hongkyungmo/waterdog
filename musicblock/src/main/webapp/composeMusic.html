@@ -26,7 +26,7 @@
             $.mobile.pushStateEnabled = false; // 위 두줄은 필요없고, 이 코드만 있으면 된다고 하는 내용도 있네요.
         });
     </script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!--    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
     <!--  JQuery Mobile using ajax load End  -->
 
     <!--  BootStrap Load Start  -->
@@ -60,7 +60,7 @@
             text-align: center;
             font-size: 18px;
             background: #fff;
-            width: 250px;
+            width: 1%;
             /*             Center slide text vertically */
             display: -webkit-box;
             display: -ms-flexbox;
@@ -103,6 +103,10 @@
             -webkit-align-items: center;
             align-items: center;
         }
+        
+        .highlight {
+            width: 100px;
+        }
     </style>
 
 </head>
@@ -127,39 +131,47 @@
 
                 <div class='layer-melody-block'>
                     <ol class='swiper-wrapper simple_with_drop vertical'>
-                        <li class="swiper-slide">
+
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 1
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 2
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 3
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 4
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 5
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 6
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 7
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 8
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 9
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item 0
                         </li>
-                        <li class="swiper-slide">
+                        <li class="swiper-slide highlight">
+                            <i class='icon-move'></i> Item `
+                        </li>
+                        <li class="swiper-slide highlight">
                             <i class='icon-move'></i> Item -
                         </li>
+                        <li class="swiper-slide highlight">
+                            <i class='icon-move'></i> Item =
+                        </li>
+
 
                     </ol>
                     <!-- Add Scrollbar -->
@@ -182,13 +194,13 @@
                         <div class='span4'>
                             <h3>Block Repository</h3>
                             <ol class='simple_with_no_drop vertical'>
-                                <li class='highlight'>
+                                <li class='no_drop swiper-slide highlight'>
                                     <i class='icon-move'></i> Item 1
                                 </li>
-                                <li class='highlight'>
+                                <li class='no_drop swiper-slide highlight'>
                                     <i class='icon-move'></i> Item 2
                                 </li>
-                                <li class='highlight'>
+                                <li class='no_drop swiper-slide highlight'>
                                     <i class='icon-move'></i> Item 3
                                 </li>
                             </ol>
@@ -232,28 +244,54 @@
             , spaceBetween: 0
             , grabCursor: false
             , freeMode: true
-
         });
-
+        var parent = null;
+        var placeHoler = null;
+        var wrapper = null;
+        var i = null;
+        var comparedNoDrop = "simple_with_no_drop";
+        var comparedWrapper = "swiper-wrapper";
         $("ol.simple_with_drop").sortable({
+
             group: 'no-drop'
             , handle: 'i.icon-move'
             , onDragStart: function ($item, container, _super) {
                 // Duplicate items of the no drop area
+
+                parent = $item.parent();
+                parent = parent[0].className;
+                parent = parent.split(" ");
                 if (!container.options.drop)
                     $item.clone().insertAfter($item);
                 _super($item, container);
             }
             , onDrop: function ($item, container) {
+                $item.removeClass(container.group.options.draggedClass).removeAttr("style");
+                $("body").removeClass(container.group.options.bodyClass);
 
-                console.log($item);
-//                console.log(container);
-//                if($('li.swiper-slide').length){
-//                    console.log("zzzaaaz");
-//                }
+                // Index 파악
+                wrapper = swiper1.wrapper[0].children;
+                for (i = 0; i < wrapper.length; i++) {
+                    var classNames = wrapper[i].className.split(" ");
+                    placeHoler = wrapper[i - 1];
+                    if (classNames[0] == "no_drop") {
+                        break;
+                    }
+                }
+                $item.removeClass("no_drop");
+                
+                if (parent[0] == comparedNoDrop) {
+                    //                    console.log(swiper1.wrapper[0].childElementCount);
+                    // 해당 Index에 추가
+                    if (i <= 0) {
+                        $(placeHoler).before($item[0]);
+                    } else {
+                        $(placeHoler.className).after($item[0]);
+                    }
+                    //                    swiper1.wrapper[0].appendChild($item[0]);
+                    swiper1.params.loop && swiper1.createLoop(), swiper1.params.observer && swiper1.support.observer || swiper1.update(!0)
+                }
 
-                $item.removeClass(container.group.options.draggedClass).removeAttr("style")
-                $("body").removeClass(container.group.options.bodyClass)
 
 
             }
