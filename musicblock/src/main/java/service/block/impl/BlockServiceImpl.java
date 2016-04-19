@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import service.block.BlockDao;
 import service.block.BlockService;
 import service.domain.Block;
+import service.domain.BlockEmotion;
+import service.domain.BlockHash;
 import service.user.UserService;
 
 @Service("blockServiceImpl")
@@ -28,15 +30,18 @@ public class BlockServiceImpl implements BlockService{
 
 		///Method
 		public void addBlock(Block block) throws Exception {
-			System.out.println("<<    ServiceImpl/addBlock Start   >>");
-			System.out.println();
-			//blockDao = new BlockDaoImpl();
 			blockDao.addBlock(block);
-			System.out.println("<<    ServiceImpl/BlockTest End   >>");
+			int bcode = blockDao.getCurrentBlockCode();
+			System.out.println("bcode>>"+bcode);
+			
+			blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
+			blockDao.addBlockHash(block.getblockHashList(),bcode);
+
 		}
 
 		public void updateBlock(Block block) throws Exception {
 			blockDao.updateBlock(block);
 		}
+
 
 }

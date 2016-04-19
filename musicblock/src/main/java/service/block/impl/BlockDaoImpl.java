@@ -1,6 +1,7 @@
 package service.block.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import service.block.BlockDao;
 import service.domain.Block;
+import service.domain.BlockEmotion;
 import service.domain.BlockHash;
 
 @Repository("blockDaoImpl")
@@ -21,27 +23,38 @@ public class BlockDaoImpl implements BlockDao{
 		this.sqlSession = sqlSession;
 	}
 	
-	
-	
 	public BlockDaoImpl() {
 		System.out.println(this.getClass());
 	}
 
 	@Override
 	public void addBlock(Block block) {
-		System.out.println("<<    DaoImpl/addBlock Start   >>");
 		sqlSession.insert("BlockMapper.addBlock", block);
-		
-		if(block.getblockHashList()!=null){
-			HashMap<String, Object> param = new HashMap<String,Object>();
-			param.put("list", block.getblockHashList());
-			sqlSession.insert("BlockMapper.addBlockHash",param);
+	}
+	
+	
+	public void addBlockEmotion(List<BlockEmotion> be, int bCode){
+		HashMap<String, Object> emotion = new HashMap<String,Object>();
+		System.out.println("addBlockEmotion>>"+bCode);
+		for(int i=0;i<be.size();i++){
+			be.get(i).setbCode(bCode);
 		}
-		//Dao에서 for문을 통해 매번 addBlockHash를 부르지 않는 이유 :
-		//dao 함수 호출 - mapper id 검색 - db 오픈 - query 수행 >> 이 매번 일어나니까
-		//지금 방식으로 하면 query 수행 전의 과정이 한번만 발생하고 query 수행만 여러번!
-		
-		System.out.println("<<    DaoImpl/addBlock End   >>");
+		emotion.put("list", be);
+		sqlSession.insert("BlockMapper.addBlockEmotion",emotion);
+	}
+	public void addBlockHash(List<BlockHash> bh, int bCode){
+		HashMap<String, Object> hash = new HashMap<String,Object>();
+		System.out.println("addBlockHash>>"+bCode);
+		for(int i=0;i<bh.size();i++){
+			bh.get(i).setbCode(bCode);
+		}
+		hash.put("list", bh);
+		sqlSession.insert("BlockMapper.addBlockHash",hash);
+
+	}
+	
+	public int getCurrentBlockCode(){
+		return sqlSession.selectOne("BlockMapper.getCurrentBlockCode");
 	}
 
 	@Override

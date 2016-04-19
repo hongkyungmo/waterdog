@@ -6,10 +6,10 @@ public class Block {
 	private int bCode;		// Block Code
 	private int uCode;		// User Code
 	private String note;	// 계이름
-	private int emotion;	// Emotion
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
-	private List<BlockHash> blockHashList;
+	List<BlockHash> blockHashList;
+	List<BlockEmotion> blockEmotionList;
 	
 
 	public Block() {	
@@ -40,13 +40,6 @@ public class Block {
 		this.note = note;
 	}
 
-	public int getEmotion() {
-		return emotion;
-	}
-
-	public void setEmotion(int emotion) {
-		this.emotion = emotion;
-	}
 
 	public int getpCount() {
 		return pCount;
@@ -79,11 +72,20 @@ public class Block {
 		return blockHashList;
 	}
 
+	public List<BlockEmotion> getBlockEmotionList() {
+		return blockEmotionList;
+	}
+
+	public void setBlockEmotionList(List<BlockEmotion> blockEmotionList) {
+		this.blockEmotionList = blockEmotionList;
+	}
+
 	@Override
 	public String toString() {
-		return "Block [bCode=" + bCode + ", uCode=" + uCode + ", note=" + note + ", emotion=" + emotion + ", pCount="
-				+ pCount + ", dCount=" + dCount + ", blockHashList=" + blockHashList + "]";
+		return "Block [bCode=" + bCode + ", uCode=" + uCode + ", note=" + note + ", pCount=" + pCount + ", dCount="
+				+ dCount + ", blockHashList=" + blockHashList + ", blockEmotionList=" + blockEmotionList + "]";
 	}
+
 	
 	
 	
