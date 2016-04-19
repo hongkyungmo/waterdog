@@ -6,6 +6,15 @@ Web Audio API 사용법(mozilla 제공)
 Web Audio API : Audio Context
  -> https://developer.mozilla.org/en-US/docs/Web/API/AudioContext
  
+<Web Audio API - visualization>
+AnalyserNode(한글번역본)
+ -> https://developer.mozilla.org/ko/docs/Web/API/AnalyserNode
+Visualizations with Web Audio API
+ -> https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+
+
+
+
 <Web Audio APIs>
 AudioBuffer
 AudioBufferSourceNode
