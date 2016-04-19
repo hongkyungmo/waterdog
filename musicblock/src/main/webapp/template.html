@@ -82,11 +82,13 @@
                                 <span class="nLikes">1</span></p></ui>
             
                         <ui><p class="download">
-                                <span class="glyphicon glyphicon-download-alt"></span> 50</p></ui>
+                                <span class="glyphicon glyphicon-download-alt"></span>
+                            <span class="nDown">50</span></p></ui>
                         <ui><p class="chat">
                                 <span class="glyphicon glyphicon-option-horizontal"></span>3</p></ui>
                          <ui><p class="player">
-                                <span class="glyphicon glyphicon-play"></span> 300</p></ui>
+                                <span class="glyphicon glyphicon-play"></span>
+                                <span class="nPlayers">30</span></p>   </ui>
        
                     </ul>
                            
@@ -258,8 +260,9 @@
             grabCursor: true
         });
         
+        /*좋아요 증가*/
         $(document).ready(function() {
-
+            
             function increaseLikes(){
               var myString = $(this).children('.nLikes').first().html();
               var myInteger = parseInt(myString);
@@ -273,6 +276,43 @@
             $('.likes').click(increaseLikes);
 
             });
+        
+        /*다운로드 증가*/
+         $(document).ready(function() {
+            
+            function increaseDownLoad(){
+              var DownLoadString = $(this).children('.nDown').first().html();
+              var DownLoadInteger = parseInt(DownLoadString);
+              var DownLoadNewInteger = DownLoadInteger + 1;
+              var nDownloads = DownLoadNewInteger.toString();
+
+              $(this).children('.nDown').first().html(nDownloads);
+            }
+
+            $('.download').click(increaseDownLoad);
+
+            });
+    
+               
+        
+        /*재생수 증가*/
+       $(document).ready(function() {     
+        function increasePlayer(){
+              var playersString = $(this).children('.nPlayers').first().html();
+              var playersInteger = parseInt(playersString);
+              var playersNewInteger = playersInteger + 1;
+              var nPlayersUp = playersNewInteger.toString();
+
+              $(this).children('.nPlayers').first().html(nPlayersUp);
+            }
+
+            /*$('#tab-navigation li').click(changeTab);*/
+            $('.player').click(increasePlayer);
+
+            });
+        
+        
+        
     </script>
 </body>
 
