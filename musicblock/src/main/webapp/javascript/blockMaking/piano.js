@@ -3,15 +3,27 @@ var c = new webkitAudioContext();
 var o;
 var g;
 
+var mainVolume = 2;
+var playNote = function (noteVal) {
+    o.frequency.value = noteVal;
+    g.connect(audioContext.destination);
+    setTimeout(function () {
+        g.disconnect(audioContext.destination);
+    }, 1000);
+    //테스트코드
+    console.log(noteVal);
+}
+
 $(function() {
-	$(".key").bind("mousedown", function() {
+	$(".key").bind("touchstart", function() {
 		var index_of_key = $(".key").index(this);
 		// octave = 1;
 		var octave_for_play = octave;
 		octave_for_play = octave_for_play - 2;
 		switch (index_of_key) {
 		case 0:
-			play(261.6256, octave_for_play);
+			//play(261.6256, octave_for_play);
+			playNote(13);
 			break;
 		case 1:
 			play(293.6648, octave_for_play);
@@ -51,7 +63,7 @@ $(function() {
 });
 
 $(function() {
-	$(".key").bind("mouseup", function() {
+	$(".key").bind("touchend", function() {
 		o.stop();
 	});
 });
@@ -67,7 +79,7 @@ function play(freq, octave_for_play) {
 	o.connect(g);
 
 	o.frequency.value = freq;
-	g.gain.value = 1;
+	g.gain.value = mainVolume;
 
 	o.start();
 };

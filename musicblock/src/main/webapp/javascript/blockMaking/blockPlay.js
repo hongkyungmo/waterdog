@@ -70,15 +70,7 @@ $(function () {
     });
 });
 
-var playNote = function (noteVal) {
-    oscillator.frequency.value = noteVal;
-    gain.connect(audioContext.destination);
-    setTimeout(function () {
-        gain.disconnect(audioContext.destination);
-    }, 1000);
-    //테스트코드
-    console.log(noteVal);
-}
+
 
 function sleep(milliseconds) {
   var start = new Date().getTime();
