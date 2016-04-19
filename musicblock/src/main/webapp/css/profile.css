@@ -275,3 +275,16 @@ html,
 		  	cursor: pointer;
 	  	}
 
+    .player {
+                -webkit-transition: color .2s ease-out;
+                -moz-transition: color .2s ease-out;
+                -o-transition: color .2s ease-out;
+                -ms-transition: color .2s ease-out;
+                transition: color .2s ease-out;
+            }
+
+	.player:hover {
+        color: darkviolet;
+		  	cursor: pointer;
+	  	}
+
