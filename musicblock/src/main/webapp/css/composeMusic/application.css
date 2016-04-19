@@ -7488,13 +7488,13 @@ ol.vertical li.placeholder {
 ol.vertical li.placeholder:before {
     position: absolute;
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     margin-top: 0px;
     -webkit-transform: rotate(45deg);
     transform: rotate(90deg);
     left: -5px;
-    top: -4px;
+    top: 5px;
     border: 5px solid transparent;
     border-left-color: red;
     border-right: none;
@@ -7528,7 +7528,7 @@ ol li.highlight {
 /* line 39, /Users/jonasvonandrian/jquery-sortable/source/css/application.css.sass */
 
 ol li.highlight i.icon-move {
-    background-image: url("../img/glyphicons-halflings-white.png");
+/*    background-image: url("../img/glyphicons-halflings-white.png");*/
 }
 
 

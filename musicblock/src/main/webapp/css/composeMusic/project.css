@@ -9,23 +9,6 @@
     padding: 2px 0px;
 }
 
-.stop {
-    float: left;
-    left: 40%;
-    padding: 2px 0px;
-}
-
-.play {
-    float: left;
-    left: 40%;
-    padding: 2px 0px;
-}
-
-.workspace {
-    border: 3px solid;
-    border-radius: 3px;
-}
-
 .layer-progress {
     height: 10%;
     width: 100%;
@@ -53,12 +36,23 @@
     border: 1px solid;
 }
 
+.layer-melody-block {
+    height: 90%;
+    width: 100%;
+    padding-top: 0%;
+    position: relative;
+    border: 1px solid;
+    overflow: hidden;
+}
+
 .part-melody {
     height: 90%;
     position: relative;
     padding: 5px;
     border: 1px solid;
 }
+
+
 
 .part-selector {
     float: left;
@@ -67,33 +61,12 @@
     border: 1px solid;
 }
 
-.layer-selector {
-    float: left;
-    height: 100%;
-    width: 90%;
-    border: 1px solid;
-}
 
 .part-session {
     height: 90%;
     position: relative;
     padding: 5px;
     border: 1px solid;
-}
-
-.layer-melody-block {
-
-    height: 100%;
-    width: 100%;
-    position: relative;
-    padding: 5px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border: 1px solid;
-    margin: 5px auto;
-    position: relative;
-    overflow: hidden;
-    
 }
 
 .layer-session-block {
@@ -105,14 +78,25 @@
     border: 1px solid;
 }
 
-.block-frame {
-    height: 44%;
+.layer-selector {
+    float: left;
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+}
+
+.workspace {
+    width: 100%;
+    height: 30%;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+
+.block-repository {
+    height: 70%;
     position: relative;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-bottom: 5px;
-    padding-right: 5px;
-    border: 3px solid;
+    border: 1px solid;
     border-radius: 3px;
 }
 
