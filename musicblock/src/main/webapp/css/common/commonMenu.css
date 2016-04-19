@@ -13,3 +13,9 @@
 	-webkit-border-radius: 5px;
 	text-align: center;
 }
+
+#menu-container {
+	background-color: #45a712;
+	width: 100%;
+	height: 12%;
+}
