@@ -280,5 +280,6 @@ ALTER TABLE MUSIC_EMOTION
 		REFERENCES MUSIC (
 			MCODE
 		);
-		
+
+INSERT INTO users(ucode,nick) VALUES(seq_user_ucode,test)
 commit;
