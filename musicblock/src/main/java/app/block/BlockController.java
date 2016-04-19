@@ -32,27 +32,31 @@ public class BlockController {
 
 		System.out.println("(/block/blockSave)RequestBody로 전달받은 String(JSON) : "+map);
 		
-		//hash info
-		BlockHash bh = new BlockHash();
-		bh.setTag("해시태그1");
-		BlockHash bh2 = new BlockHash();
-		bh2.setTag("hash2");
-
-		List<BlockHash> hashList = new ArrayList();
-		hashList.add(bh);
-		hashList.add(bh2);
-
-		//emotion info
-		BlockEmotion be = new BlockEmotion();
-		be.setEmotion(1);
-		BlockEmotion be2 = new BlockEmotion();
-		be.setEmotion(2);
+		//emotion 정보 담기
+		BlockEmotion emotion = new BlockEmotion();
+		List<BlockEmotion> emotionList = new ArrayList<BlockEmotion>();
 		
-		List<BlockEmotion> emotionList=new ArrayList();
-		emotionList.add(be);
-		emotionList.add(be2);
+		String emotionArray[] = ((String)map.get("emotion")).split(",");
 		
-		//블록에 정보 담기
+		for(int i=0;i<emotionArray.length;i++){
+			System.out.println("emotionArray>>"+emotionArray[i]);
+			emotion.setEmotion(Integer.parseInt(emotionArray[i]));
+			emotionList.add(emotion);
+		}
+		
+	
+		// hash 정보 담기
+		BlockHash hash = new BlockHash();
+		List<BlockHash> hashList = new ArrayList<BlockHash>();
+		
+		String hashArray[] = ((String)map.get("hashCode")).split(",");
+		
+		for(int i=0;i<hashArray.length;i++){
+			System.out.println("hashArray>>"+hashArray[i]);
+			hash.setTag(hashArray[i]);
+			hashList.add(hash);
+		}
+		
 		Block block = new Block();
 		block.setNote((String)map.get("note"));
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함
