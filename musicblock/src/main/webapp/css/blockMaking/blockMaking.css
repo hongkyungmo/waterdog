@@ -168,9 +168,10 @@ html, body {
 }
 
 .black-key {
+    position:absolute;
+    width: 9%;
+	height: 64%;
 	background-color: black;
-	width: 8%;
-	height: 3000%;
 }
 
 .key {
