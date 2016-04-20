@@ -129,9 +129,10 @@ $(function () {
 //건반 클릭
 $(function () {
     $(".key").bind("mousedown", function () {
-        //alert($(".key").index(this));
         var barLevel = 92 - (((octave - 1) * 12 + $(".key").index(this)) * 1.95);
 
+        //var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
+				//음정 표시
         if (clickSequence == 0) {
             displayObj = '<div class="syllable" style="width:100%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
         } else {
@@ -142,6 +143,14 @@ $(function () {
             }
             displayObj = '<div class="divider"></div><div class="syllable" style="width:' + beat + '%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
         }
+        //음 디스플레이에 표시
+        $("#syllable-container").append(displayObj);
+        //음정 조절
+        $(".syllable-bar").last().draggable({
+            containment: "parent"
+                , axis: "y"
+        });
+        clickSequence++;
     });
 })
 
