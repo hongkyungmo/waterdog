@@ -19,7 +19,7 @@
         oscillator.connect(gain);           //게인과 연결
 
         //게인 설정
-        gain.value = 0.5;                       //볼륨
+        gain.gain.value = 0.5;                       //볼륨
         gain.connect(audioContext.destination); //데스티네이션(스피커)와 연결
 
         //오실레이터 시작
