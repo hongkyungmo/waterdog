@@ -31,3 +31,7 @@ MediaStreamAudioSourceNode
 NotifyAudioAvailableEvent
 OfflineAudioCompletionEvent
 OfflineAudioContext
+
+
+이럴수가.. 튜토리얼이 있었다니..
+https://github.com/fairesy/hear-color/wiki/Web%20Audio%20School%20:%20PART%201
