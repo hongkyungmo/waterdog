@@ -1,4 +1,8 @@
 var mainVolume = 0;
+//블록 플레이를 위한 변수
+var timerIdForPlaying = 0;
+var countForPlaying = 0; //clickSequence의 복제품
+var noteArr = new Array();
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -25,7 +29,13 @@ oscillator.start();
 
 
 
-
+//건반 클릭
+$(function () {
+    $(".key").mousedown(function () {
+        var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
+        noteArr[clickSequence-1] = (octave - 1) * 12 + $(".key").index(this)+1;
+    });
+});
 
 
 //notecode(1~48)을 주파수로 변환해주는 함수
@@ -41,7 +51,7 @@ var playNote = function (noteVal) {
     setTimeout(function () {
         /*oscillator.connect(gain);
         oscillator.disconnect(gain);*/
-        gain.gain.value=0;
+        //gain.gain.value=0;
     }, 1000);
     //테스트코드
     console.log(noteVal);

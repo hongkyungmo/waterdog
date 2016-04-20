@@ -54,7 +54,7 @@ $(function() {
 	$(".key").bind("mouseup", function() {
 		//oscillator.stop();
         //oscillator.disconnect(gain);
-        //gain.gain.value = 0;
+        gain.gain.value = 0;
 	});
 });
 

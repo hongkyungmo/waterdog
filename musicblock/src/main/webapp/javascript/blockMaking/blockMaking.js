@@ -2,7 +2,8 @@
  * 블록 생성
  */
 
-var blockAnimateTime;
+//block이 플레이되는 시간
+var blockAnimateTime = 2000;
 
 $(function () {
     $("body").append("<div id='menu-container'><span class = 'glyphicon glyphicon-chevron-left fa-2x' aria - hidden = 'true' id='back'></span><span class='glyphicon glyphicon-menu-hamburger' aria-hidden='true' id='menu'></span></div>");
@@ -47,7 +48,7 @@ $(function () {
             $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1.5%;height:16.7%;position:absolute;float:left;left:5.9%;z-index:1;top:13.5%;opacity:0.3'></div>");
             $("#display-bar").animate({
                 left: "51.3%"
-            }, 2000, function () {
+            }, blockAnimateTime, function () {
                 while ($("#display-bar").length > 0) {
                     $("#display-bar").remove();
                     $(".glyphicon-stop").addClass("glyphicon glyphicon-play");
@@ -129,10 +130,10 @@ $(function () {
 //건반 클릭
 $(function () {
     $(".key").bind("mousedown", function () {
-        var barLevel = 92 - (((octave - 1) * 12 + $(".key").index(this)) * 1.95);
+        var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
 
         //var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
-				//음정 표시
+        //음정 표시
         if (clickSequence == 0) {
             displayObj = '<div class="syllable" style="width:100%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
         } else {
@@ -148,11 +149,13 @@ $(function () {
         //음정 조절
         $(".syllable-bar").last().draggable({
             containment: "parent"
-                , axis: "y"
+            , axis: "y"
         });
         clickSequence++;
     });
-})
+});
+
+
 
 //흰건반 클릭
 /*$(function () {
