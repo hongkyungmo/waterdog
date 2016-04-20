@@ -1,4 +1,4 @@
-var mainVolume = 2;
+var mainVolume = 0;
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -11,17 +11,17 @@ var gain = audioContext.createGain();
 
 //오실레이터 설정
 oscillator.type = 'sine'; //파형의 형태 sine, square, sawtooth, triangle, custom 등
-oscillator.frequency.value = 500; //주파수
+oscillator.frequency.value = 100; //주파수
 oscillator.connect(gain); //게인과 연결
 
 //게인 설정
-gain.value = mainVolume; //볼륨
+gain.gain.value = mainVolume; //볼륨
 gain.connect(audioContext.destination); //데스티네이션(스피커)와 연결
 
 //오실레이터 시작
 oscillator.start();
 //gain.disconnect(audioContext.destination);
-oscillator.disconnect(gain);
+//oscillator.disconnect(gain);
 
 
 
@@ -31,4 +31,18 @@ oscillator.disconnect(gain);
 //notecode(1~48)을 주파수로 변환해주는 함수
 var noteCodeToFreq = function (noteVal) {
     return 130.8128 * Math.pow(1.0594630943592952645618252949463, noteVal - 1);
+}
+
+//음 코드(1~48)를 넣으면 1초간 음을 연주해주는 함수
+var playNote = function (noteVal) {
+    oscillator.frequency.value = noteVal;
+    
+    gain.gain.value = 2;
+    setTimeout(function () {
+        /*oscillator.connect(gain);
+        oscillator.disconnect(gain);*/
+        gain.gain.value=0;
+    }, 1000);
+    //테스트코드
+    console.log(noteVal);
 }

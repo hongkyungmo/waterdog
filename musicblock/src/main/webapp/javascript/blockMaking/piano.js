@@ -1,56 +1,37 @@
-//음 코드(1~48)를 넣으면 1초간 음을 연주해주는 함수
-var playNote = function (noteVal) {
-    oscillator.frequency.value = noteVal;
-    oscillator.connect(gain);
-    /*setTimeout(function () {
-        oscillator.connect(gain);
-        oscillator.disconnect(gain);
-    }, 1000);*/
-    //테스트코드
-    console.log(noteVal);
-}
+
 
 
 $(function() {
 	$(".key").bind("mousedown", function() {
 		var index_of_key = $(".key").index(this);
         
-        var noteCodeForPlayNote = index_of_key + 12 * (octave-1);
+        var noteCodeForPlayNote = index_of_key + 12 * (octave-1) + 1;
 		switch (index_of_key) {
 		case 0:
-			//play(261.6256, octave_for_play);
 			playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 1:
-			//play(293.6648, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 2:
-			//play(329.6276, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 3:
-			//play(349.2282, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 4:
-			//play(391.9954, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 5:
-			//play(440, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 6:
-			//play(493.8833, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 7:
-			//play(277.1826, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 8:
-			//play(311.1270, octave_for_play);
             playNote(noteCodeToFreq(noteCodeForPlayNote));
 			break;
 		case 9:
@@ -72,7 +53,8 @@ $(function() {
 $(function() {
 	$(".key").bind("mouseup", function() {
 		//oscillator.stop();
-        oscillator.disconnect(gain);
+        //oscillator.disconnect(gain);
+        //gain.gain.value = 0;
 	});
 });
 
