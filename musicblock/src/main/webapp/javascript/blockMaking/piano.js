@@ -2,7 +2,7 @@
 
 
 $(function() {
-	$(".key").bind("mousedown", function() {
+	$(".key").bind(keyDown, function() {
 		var index_of_key = $(".key").index(this);
         
         var noteCodeForPlayNote = index_of_key + 12 * (octave-1) + 1;
@@ -51,7 +51,7 @@ $(function() {
 });
 
 $(function() {
-	$(".key").bind("mouseup", function() {
+	$(".key").bind(keyUp, function() {
 		//oscillator.stop();
         //oscillator.disconnect(gain);
         gain.gain.value = 0;

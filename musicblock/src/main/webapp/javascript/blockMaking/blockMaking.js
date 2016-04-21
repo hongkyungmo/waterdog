@@ -4,7 +4,17 @@
 
 //block이 플레이되는 시간
 var blockAnimateTime = 6000;
+//피아노건반을 누른 음이 저장되는 배열
 var noteArr = new Array();
+//이벤트 타입(모바일/데스크탑) 전환
+//var keyDown = "touchstart";
+//var keyUp = "touchend";
+var keyDown = "mousedown";
+var keyUp = "mouseup";
+
+
+
+
 
 $(function () {
     $("body").append("<div id='menu-container'><span class = 'glyphicon glyphicon-chevron-left fa-2x' aria - hidden = 'true' id='back'></span><span class='glyphicon glyphicon-menu-hamburger' aria-hidden='true' id='menu'></span></div>");
@@ -21,7 +31,7 @@ for (var i = 0; i < 64; i++) {
 }
 //menu
 $(function () {
-    $("#menu").bind("mousedown", function () {
+    $("#menu").bind(keyDown, function () {
         if ($(".menu-on").length > 0) {
             $(".menu-on").addClass("menu-off");
             $(".menu-on").removeClass("menu-on");
@@ -35,7 +45,7 @@ $(function () {
 //bind functions(control bar)
 $(function () {
     //play
-    $("#play").bind("mousedown", function () {
+    $("#play").bind(keyDown, function () {
         if ($("#display-bar").length > 0) {
             $("#display-bar").stop();
             $("#play").css("background-color", 'greenyellow');
@@ -62,7 +72,7 @@ $(function () {
         }
     });
     //cancel
-    $("#cancel").bind("mousedown", function () {
+    $("#cancel").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
             $("#cancel").css("background-color", '#EEFFA9');
             if (clickSequence > 0) {
@@ -77,22 +87,22 @@ $(function () {
             }
         }
     });
-    $("#cancel").bind("mouseup", function () {
+    $("#cancel").bind(keyUp, function () {
         $("#cancel").css("background-color", 'greenyellow');
     });
     //clear
-    $("#clear").bind("mousedown", function () {
+    $("#clear").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
             $("#clear").css("background-color", '#EEFFA9');
             $("#syllable-container").empty();
             clickSequence = 0;
         }
     });
-    $("#clear").bind("mouseup", function () {
+    $("#clear").bind(keyUp, function () {
         $("#clear").css("background-color", 'greenyellow');
     });
     //next
-    $("#next").bind("mousedown", function () {
+    $("#next").bind(keyDown, function () {
     	//음 배열 -> 음 String으로 저장(쉼표 추가)
     	var noteStr = "";
     	for(var i=0;i<noteArr.length;i++){
@@ -102,14 +112,14 @@ $(function () {
         location.href = "/emotion.html?var=" + noteStr.slice(0,-1);
         $("#next").css("background-color", '#EEFFA9');
     });
-    $("#next").bind("mouseup", function () {
+    $("#next").bind(keyUp, function () {
         $("#next").css("background-color", 'greenyellow');
     });
 });
 //공백건반 클릭
 $(function () {
     var spaceKey = $("#space-key");
-    spaceKey.bind("mousedown", function () {
+    spaceKey.bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
             $(this).css("background-color", '#33dd33');
             //디스플레이 창에 엘리먼트 추가
@@ -129,14 +139,14 @@ $(function () {
             clickSequence++;
         }
     });
-    spaceKey.bind("mouseup", function () {
+    spaceKey.bind(keyUp, function () {
         $(this).css("background-color", '#65f712');
     });
 });
 
 //건반 클릭
 $(function () {
-    $(".key").bind("mousedown", function () {
+    $(".key").bind(keyDown, function () {
         var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
 
         //var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
@@ -168,7 +178,7 @@ $(function () {
 /*$(function () {
 	for (var i = 0; i < 7; i++) {
 		var whiteKey = $(".white-key:eq(" + i + ")");
-		whiteKey.bind("mousedown", function () {
+		whiteKey.bind(keyDown, function () {
 			if ($("#display-bar").length == 0) {
 				$(this).css("background-color", '#33669a');
 				var displayObj;
@@ -222,7 +232,7 @@ $(function () {
                         });
 			}
 		});
-		whiteKey.bind("mouseup", function () {
+		whiteKey.bind(keyUp, function () {
 			$(this).css("background-color", 'white');
 		});
 	}
@@ -231,7 +241,7 @@ $(function () {
 	//검은건반 클릭
 	for (var i = 0; i < 5; i++) {
 		var blackKey = $(".black-key:eq(" + i + ")");
-		blackKey.bind("mousedown", function () {
+		blackKey.bind(keyDown, function () {
 			if ($("#display-bar").length == 0) {
 				$(this).css("background-color", '#22aaba');
 				var displayObj;
@@ -274,7 +284,7 @@ $(function () {
 				clickSequence++;
 			}
 		});
-		blackKey.bind("mouseup", function () {
+		blackKey.bind(keyUp, function () {
 			$(this).css("background-color", 'black');
 		});
 	}
@@ -283,7 +293,7 @@ $(function () {
     //옥타브 변환
     for (var i = 0; i < 4; i++) {
         var octaveDisplay = $(".octave-display:eq(" + i + ")");
-        octaveDisplay.bind("mousedown", function () {
+        octaveDisplay.bind(keyDown, function () {
             /*$(this).css("background-color", 'white');*/
             //$(this).attr("id", "octave-display-on");
             $("#octave-display-on").empty();
@@ -295,7 +305,7 @@ $(function () {
             //옥타브 등록
             octave = 4 - $(this).index();
         });
-        octaveDisplay.bind("mouseup", function () {
+        octaveDisplay.bind(keyUp, function () {
             /*$(this).css("background-color", 'greenyellow');*/
         });
     }

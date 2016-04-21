@@ -1,7 +1,7 @@
 // play버튼 눌러서 블럭 연주
 $(function () {
     // 블럭연주 - 음
-    $("#play").bind("mousedown", function () {
+    $("#play").bind(keyDown, function () {
         var count = 0;
         if (clickSequence != 0) {
             countForPlaying = clickSequence;
@@ -24,7 +24,7 @@ $(function () {
         }
     });
 
-    $("#play").bind("mouseup", function () {
+    $("#play").bind(keyUp, function () {
 
     });
 });
