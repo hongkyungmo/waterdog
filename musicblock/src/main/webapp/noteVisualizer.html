@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <!-- jQuery CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <style>
+        .noteVisualContainer {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: transparent;
+            border:solid;
+            border-width:1px;
+        }
+        
+        .noteVisualBar {
+            position: absolute;
+            float: left;
+            width: 20%;
+            height: 0%;
+            bottom: 0%;
+            background-color: #6865d4;
+        }
+        
+        .noteVisualOne{
+            background-color:#73a381;
+        }
+        .noteVisualTwo{
+            background-color:#a92765;
+        }
+        .noteVisualThree{
+            background-color:#3378c7;
+        }
+        .noteVisualFour{
+            background-color:#dc65d4;
+        }
+        .noteVisualFive{
+            background-color:#2543e1;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            var barSpeed=400;
+            
+            $(".noteVisualContainer").click(function () {
+                var timerIdForPlaying = setInterval(function () {
+                    var i=0;
+                    for(var i=0;i<5;i++){
+                        var rand = Math.floor((Math.random() * 100) + 1);
+                        $(".noteVisualBar:eq("+i+")").animate({
+                            height: rand + "%"
+                        }, barSpeed, function () {
+                            $("#play").css("background-color", 'greenyellow');
+                        });
+                    }
+                },barSpeed);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="noteVisualContainer">
+        <div class="noteVisualBar noteVisualOne" style="left:0%;">
+        </div>
+        <div class="noteVisualBar noteVisualTwo" style="left:20%;">
+        </div>
+        <div class="noteVisualBar noteVisualThree" style="left:40%;">
+        </div>
+        <div class="noteVisualBar noteVisualFour" style="left:60%;">
+        </div>
+        <div class="noteVisualBar noteVisualFive" style="left:80%;">
+        </div>
+    </div>
+</body>
+
+</html>
