@@ -1,21 +1,103 @@
+/* User Define */
+
+
+/*
 #back {
-	float: left;
-	position: relative;
-	margin: 1%;
-	text-align: center;
-	-webkit-border-radius: 5px;
+    float: left;
+    position: relative;
+    margin: 1%;
+    text-align: center;
+    -webkit-border-radius: 5px;
 }
 
 #menu {
-	float: right;
-	position: relative;
-	margin: 1%;
-	-webkit-border-radius: 5px;
-	text-align: center;
+    float: right;
+    position: relative;
+    margin: 1%;
+    -webkit-border-radius: 5px;
+    text-align: center;
+}
+*/
+
+#backward,
+#play {
+    position: relative;
+    margin: 1%;
+    -webkit-border-radius: 5px;
+    text-align: center;
 }
 
 #menu-container {
-	background-color: #45a712;
-	width: 100%;
-	height: 12%;
+    background-color: #45a712;
+    width: 100%;
+    height: 12%;
+}
+
+#menu-list {
+    height: 92%;
+    width: 40%;
+    background-color: black;
+    position: absolute;
+    top: 12%;
+    z-index: 1000;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0.9;
+    text-align: center;
+    font-size: 15px;
+}
+
+.menu-on {
+    left: 60%;
+}
+
+.menu-off {
+    left: 100%;
+}
+
+
+/* Overriding BootStrapk */
+
+.row {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+.col-xs-1 {
+    padding: 0.5%;
+    height: 100%;
+}
+
+.col-xs-4 {
+    height: 100%;
+}
+
+.col-xs-10 {
+    height: 100%;
+}
+
+/*
+.glyphicon {
+    position: relative;
+    content: " ";
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+*/
+
+.btn {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 0 0;
+    border-radius: 0px;
 }
