@@ -209,7 +209,8 @@ html, body {
         $(function () {
             var saveBtn = $('#save');
             saveBtn.click(function () {
-                var dummyNote = "미2,레#2,솔1,파#4,라3";
+                var dummyNote = location.href.substr(location.href.lastIndexOf('=') + 1);
+                //"미2,레#2,솔1,파#4,라3";
                 var dummyHashCodes = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
                 var dummyEmotion = "3";
 
