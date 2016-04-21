@@ -214,7 +214,7 @@ html, body {
                 var dummyEmotion = "3";
 
                 $.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-                    url: 'http://localhost:8080/block/blockSave'
+                    url: 'block/blockSave'
                     , type: 'POST' //Request하는 방식.
 
                     
@@ -236,15 +236,15 @@ html, body {
                         $("body").append("<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
                         $("#popup-btn1").click(function () {
                             $("#save-popup").remove();
-                            location.href="http://127.0.0.1:8080/blockMaking.html";
+                            location.href="blockMaking.html";
                         });
                         $("#popup-btn2").click(function () {
                             $("#save-popup").remove();
-                            location.href="http://127.0.0.1:8080/composeMusic.html";
+                            location.href="composeMusic.html";
                         });
                         $("#save-popup").delay(3000).fadeOut(500, function () {
                             $("#save-popup").remove();
-                            location.href="http://127.0.0.1:8080/composeMusic.html";
+                            location.href="composeMusic.html";
                         });
                     }
                     , error: function (status) {
