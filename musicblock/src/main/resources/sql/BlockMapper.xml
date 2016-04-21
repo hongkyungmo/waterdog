@@ -53,11 +53,12 @@
 	<insert id="addBlockEmotion" parameterType="java.util.HashMap">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			INTO block_hash (bcode,emotion)
+			INTO block_emotion (bcode,emotion)
 			VALUES (#{item.bCode}, #{item.emotion})
 		</foreach>
 	</insert>
 	
-	<select id="getCurrentBlockCode" resultType="int"></select>
-	SELECT SEQ_BLOCK_BCODE.CURRVAL FROM DUAL
+	<select id="getCurrentBlockCode" resultType="int">
+	select last_number from user_sequences where sequence_name='seq_block_bcode'
+	</select>
 </mapper>
