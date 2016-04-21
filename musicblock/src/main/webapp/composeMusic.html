@@ -3,13 +3,14 @@
 <html>
 
 <head>
+
     <title>Music Block</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- 사용자가 Zoom할 수 없도록 설정한다-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Zoom 방지-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- JQuery Load Start -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -29,6 +30,7 @@
     <!--    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
     <!--  JQuery Mobile using ajax load End  -->
 
+
     <!--  BootStrap Load Start  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -37,71 +39,35 @@
 
 
     <!-- External css load Start   -->
-    <link rel="stylesheet" type="text/css" href="css/composeMusic/main-content.css">
-    <link rel="stylesheet" type="text/css" href="css/composeMusic/project.css">
 
+    <!--  ////////////////////////////
+    Consider order
+//////////////////////////  -->
 
-    <!-- Link Swiper's CSS -->
+    
+
+    <!-- Player   -->
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/player.css">
+
+    <!-- Common Module -->
+    <link rel="stylesheet" href="css/common/commonMenu.css">
+
+    <!-- Swiper -->
     <link rel="stylesheet" tyoe="text/css" href="css/composeMusic/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="css/composeMusic/application.css">
+
+    <!-- Block   -->
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/sortable.css">
     <!-- External css load End   -->
 
-    <style>
-        body {
-            background: #ffffff;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color: #000;
-            margin: 0;
-        }
-        
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-           
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            align-items: baseline;
-        }
-        
-        .block-item {
-            text-align: center;
-            font-size: 18px;
-            width: 100px;
-            flex-shrink: 0;
-            height: 100%;
-            position: relative;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-        
-       
-        
-        ol li.highlight{
-            width: 80px;
-            height:60%;
-        }
-     
-    </style>
+    <!-- User Defined & Overriding   -->
+    <link rel="stylesheet" type="text/css" href="css/composeMusic/composeMusic.css">
 
 </head>
 
 <body>
+
+    <!-- 공통 모듈 -->
+    <script src="javascript/common/commonMenu.js"></script>
 
     <!-- 전체 영역  -->
     <div class="main-content">
@@ -111,68 +77,63 @@
 
             <!-- 레이어 선택자 -->
             <div class="layer-selector">
-                
+
                 <!-- 재생 구간영역 -->
-                <div class="part-empty">
+                <div class="jAudio--player">
+
+                    <div class='jAudio--progress-bar'>
+                        <div class='jAudio--progress-bar-wrapper'>
+                            <div class='jAudio--progress-bar-played'>
+                                <span class='jAudio--progress-bar-pointer'></span>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
                 <!-- 멜로디 블럭 레이어 -->
                 <div class='layer-melody-block'>
-
                     <!-- 블럭 리스트 -->
                     <ol class='swiper-wrapper simple_with_drop vertical'>
-                        
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 1
-                        </li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 2
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 1</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 3
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 2</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 4
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 3</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 5
-                        </li>
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 6
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 4</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 7
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 5</li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 6</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 8
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 7</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 9
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 8</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item 0
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 9</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item `
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item 0</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i>Item -
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item `</li>
 
-                        <li class="swiper-slide highlight">
-                            <i class='icon-move'><span class = "glyphicon glyphicon-move"></span></i> Item =
-                        </li>
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i>Item -</li>
+
+                        <li class="swiper-slide highlight"><i class='icon-move'><span
+								class="glyphicon glyphicon-move"></span></i> Item =</li>
 
 
                         <!-- 블럭 리스트 끝 -->
@@ -215,53 +176,30 @@
                             <!-- 블럭 리스트 -->
                             <ol class='simple_with_no_drop vertical'>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 1
-                                </li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 2
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i></li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 3
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 2</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 4
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 3</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 5
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 4</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 6
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 5</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 7
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 6</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 8
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 7</li>
+
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 8</li>
 
                                 <!-- 블럭 리스트 끝 -->
                             </ol>
@@ -271,7 +209,7 @@
 
                         <!-- 스와이퍼 슬라이드 끝 -->
                     </div>
-                    
+
                     <!-- 스와이퍼 슬라이드 -->
                     <div class="swiper-slide">
 
@@ -283,54 +221,30 @@
                             <!-- 블럭 리스트 -->
                             <ol class='simple_with_no_drop vertical'>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 1
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 1</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 2
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 2</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 3
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 3</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 4
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 4</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 5
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 5</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 6
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 6</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item 7
-                                </li>
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item 7</li>
 
-                                <li class='no_drop swiper-slide highlight'>
-                                    <i class='icon-move'>
-                                        <span class = "glyphicon glyphicon-move"></span>
-                                    </i> Item
-                                </li>
-                                
+                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
+								</i> Item</li>
+
                                 <!-- 블럭 리스트 끝 -->
                             </ol>
 
@@ -352,26 +266,18 @@
                             <ol class='vertical option-list'>
 
                                 <a href="blockMaking.html">
-                                    <li class='swiper-slide block-item'>
-                                        Create block
-                                    </li>
+                                    <li class='swiper-slide block-item'>Create block</li>
                                 </a>
-                                
+
                                 <a href="template.html">
-                                <li class='swiper-slide block-item'>
-                                    Commity
-                                </li>
+                                    <li class='swiper-slide block-item'>Commity</li>
                                 </a>
-                                
+
                                 <a href="emotion.html">
-                                <li class='swiper-slide block-item'>
-                                    Complete
-                                </li>
+                                    <li class='swiper-slide block-item'>Complete</li>
                                 </a>
 
-                                <li class='swiper-slide block-item'>
-
-                                </li>
+                                <li class='swiper-slide block-item'></li>
 
 
 
@@ -396,88 +302,18 @@
 
         <!-- 전체 영역 끝 -->
     </div>
-
-
-
+    <div class="menu-off" id="menu-list">
+        <font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font>
+    </div>
 
 
     <!-- JQuery-Sortable JS   -->
-    <script src='javascript/composeMusic/jquery-sortable.js'></script>
+    <script src='javascript/composeMusic/sortable.js'></script>
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
+    <!-- User Defined   -->
+    <script src="javascript/composeMusic/composeMusic.js"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination'
-            , paginationClickable: true
-            , spaceBetween: 30
-            , loop: true
-            , grabCursor: false
-        });
-
-        var swiper1 = new Swiper('.layer-melody-block', {
-            scrollbar: '.swiper-scrollbar'
-            , scrollbarHide: true
-            , slidesPerView: 'auto'
-            , spaceBetween: 0
-            , grabCursor: false
-            , freeMode: true
-        });
-
-
-        var parent = null;
-        var placeHoler = null;
-        var wrapper = null;
-        var i = null;
-        var comparedNoDrop = "simple_with_no_drop";
-        var comparedWrapper = "swiper-wrapper";
-
-
-        $("ol.simple_with_drop").sortable({
-            group: 'no-drop'
-            , handle: 'i.icon-move'
-            , onDragStart: function ($item, container, _super) {
-                // Duplicate items of the no drop area
-                parent = $item.parent();
-                parent = parent[0].className;
-                parent = parent.split(" ");
-                if (!container.options.drop)
-                    $item.clone().insertAfter($item);
-                _super($item, container);
-            }
-            , onDrop: function ($item, container) {
-                $item.removeClass(container.group.options.draggedClass).removeAttr("style");
-                $("body").removeClass(container.group.options.bodyClass);
-                // Index 파악
-                wrapper = swiper1.wrapper[0].children;
-                for (i = 0; i < wrapper.length; i++) {
-                    var classNames = wrapper[i].className.split(" ");
-                    placeHoler = wrapper[i - 1];
-                    if (classNames[0] == "no_drop") {
-                        break;
-                    }
-                }
-                $item.removeClass("no_drop");
-
-                if (parent[0] == comparedNoDrop) {
-                    // 해당 Index에 추가
-                    if (i <= 0) {
-                        $(placeHoler).before($item[0]);
-                    } else {
-                        $(placeHoler.className).after($item[0]);
-                    }
-                    swiper1.params.loop && swiper1.createLoop(), swiper1.params.observer && swiper1.support.observer || swiper1.update(!0)
-                }
-            }
-
-        });
-
-        $("ol.simple_with_no_drop").sortable({
-            group: 'no-drop'
-            , drop: false
-        });
-    </script>
 </body>
 
 </html>
