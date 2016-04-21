@@ -111,10 +111,6 @@ ol li.highlight {
 	margin: 0;
 }
 
-.btn {
-	
-}
-
 .jAudio--controls {
 	float: left;
 	position: relative;
@@ -122,4 +118,18 @@ ol li.highlight {
 	-webkit-border-radius: 5px;
 }
 
+.jAudio--controls {
+    width: 100%;
+    display: table;
+    background: #fafafa;
+}
+
+#btn-prev span:before {
+    border-right: 1px solid #ddd;
+}
+
+#btn-prev span:after{
+    border-right: 15px solid #ddd; 
+    border-left: 0;
+}
 

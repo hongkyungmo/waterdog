@@ -258,8 +258,10 @@ a:hover {
 /* line 561, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
 
 .row {
+/*
     margin-left: -20px;
     *zoom: 1;
+*/
 }
 
 
