@@ -59,6 +59,6 @@
 	</insert>
 	
 	<select id="getCurrentBlockCode" resultType="int">
-	select last_number from user_sequences where sequence_name=upper('seq_block_bcode')
+	select max(bcode) from block
 	</select>
 </mapper>
