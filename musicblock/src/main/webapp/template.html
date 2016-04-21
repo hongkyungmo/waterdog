@@ -586,14 +586,19 @@
             $('.glyphicon-play').click(function(){
                 var index = $('.glyphicon-play').index(this);
                 increasePlayers(index);
-                
                  $('.glyphicon-play:eq('+index+')').hide();
                  $('.glyphicon-pause:eq('+index+')').show();
                 
-                  $('.glyphicon-pause:eq('+index+')').hide();
-                 $('.glyphicon-play:eq('+index+')').show();
+                
             });
-
+            
+            
+             $('.glyphicon-pause').click(function(){
+                 
+                 var index = $('.glyphicon-pause').index(this);
+                   $('.glyphicon-pause:eq('+index+')').hide();
+                 $('.glyphicon-play:eq('+index+')').show();
+           });
 
         });
     </script>
