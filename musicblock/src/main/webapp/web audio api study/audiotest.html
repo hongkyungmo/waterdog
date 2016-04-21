@@ -5,15 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <script>
-        // create web audio api context
-        var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+        // 오디오 컨텍스트 생성
+        var audioContext = new(window.AudioContext || window.webkitAudioContext)();
 
-        // create Oscillator node
-        var oscillator = audioCtx.createOscillator();
+        // 오실레이터 생성
+        var oscillator = audioContext.createOscillator();
 
-        oscillator.type = 'square';
-        oscillator.frequency.value = 3000; // value in hertz
+        // 게인노드 생성
+        var gainNode = audioContext.createGain();
+        
+        // 파형 및 주파수 설정
+        oscillator.type = 'sine';
+        oscillator.frequency.value = 261.6256;
+        
+        //오실레이터 -> 게인 연결
+        oscillator.connect(gainNode);
+        
+        //게인 설정
+        gainNode.gain.value = 0;
+        gainNode.gain.setTargetAtTime(1, 0, 0.7);
+        gainNode.gain.setTargetAtTime(0, 1, 0.7);
+        
+        //5초간 연주
         oscillator.start();
+        oscillator.stop(audioContext.currentTime+5);
+        
+        //게인 -> 데스티네이션 연결
+        gainNode.connect(audioContext.destination);
     </script>
 </head>
 
