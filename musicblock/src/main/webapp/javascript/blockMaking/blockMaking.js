@@ -4,6 +4,7 @@
 
 //block이 플레이되는 시간
 var blockAnimateTime = 6000;
+var noteArr = new Array();
 
 $(function () {
     $("body").append("<div id='menu-container'><span class = 'glyphicon glyphicon-chevron-left fa-2x' aria - hidden = 'true' id='back'></span><span class='glyphicon glyphicon-menu-hamburger' aria-hidden='true' id='menu'></span></div>");
@@ -92,7 +93,13 @@ $(function () {
     });
     //next
     $("#next").bind("mousedown", function () {
-        location.href = "/emotion.html";
+    	//음 배열 -> 음 String으로 저장(쉼표 추가)
+    	var noteStr = "";
+    	for(var i=0;i<noteArr.length;i++){
+    		noteStr = noteStr + noteArr[i] + ",";
+    	}
+    	console.log(noteStr.slice(0,-1));
+        location.href = "/emotion.html?var=" + noteStr.slice(0,-1);
         $("#next").css("background-color", '#EEFFA9');
     });
     $("#next").bind("mouseup", function () {
