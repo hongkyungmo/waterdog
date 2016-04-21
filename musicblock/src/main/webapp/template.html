@@ -97,6 +97,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -133,6 +134,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -170,6 +172,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -203,6 +206,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -246,6 +250,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -282,6 +287,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -319,6 +325,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -352,6 +359,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -395,6 +403,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -431,6 +440,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -468,6 +478,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -501,6 +512,7 @@
                                 <ui>
                                     <p class="player">
                                         <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-pause"></span>
                                         <span class="nPlayers">30</span></p>
                                 </ui>
                             </ul>
@@ -528,9 +540,10 @@
             grabCursor: true
         });
 
-        /*좋아요 증가*/
-        $(document).ready(function () {
 
+        $(function () {
+
+            //좋아요 클릭시 카운트 증가
             function increaseLikes() {
                 var myString = $(this).children('.nLikes').first().html();
                 var myInteger = parseInt(myString);
@@ -539,14 +552,9 @@
 
                 $(this).children('.nLikes').first().html(nlikesUp);
             }
-
             /*$('#tab-navigation li').click(changeTab);*/
             $('.likes').click(increaseLikes);
 
-        });
-
-        /*다운로드 증가*/
-        $(document).ready(function () {
 
             function increaseDownLoad() {
                 var DownLoadString = $(this).children('.nDown').first().html();
@@ -559,61 +567,35 @@
 
             $('.download').click(increaseDownLoad);
 
-        });
+            $('.glyphicon-pause').hide(); /*공통부분*/
 
+            /*
+             1.클릭시 해당 인덱스의 이벤트만 변경되어야한다.
+            -> 해당 인덱스가 재생버튼일때만 증가함수가 호출된다.
+             */
+      
 
-        var changePauseIcon = function () {
-            $('.glyphicon-play').addClass('glyphicon-pause');
-            $('.glyphicon-play').removeClass('glyphicon-play');
-
-            /*$('#tab-navigation li').click(changeTab);*/
-
-        }
-
-        var changePlayerIcon=function(){
-             $('.glyphicon-pause').addClass('glyphicon-play');
-             $('.glyphicon-pause').removeClass('glyphicon-pause') };
-
-
-        /*재생수 증가*/
-        $(function () {
-            function increasePlayer() {
-                var playersString = $(this).children('.nPlayers').first().html();
+            function increasePlayers(index) {
+                var playersString = $('.nPlayers:eq(' + index + ')').html();
                 var playersInteger = parseInt(playersString);
                 var playersNewInteger = playersInteger + 1;
                 var nPlayersUp = playersNewInteger.toString();
-
-                $(this).children('.nPlayers').first().html(nPlayersUp);
-
-
+                $('.nPlayers:eq(' + index + ')').html(nPlayersUp);
             }
 
-            function changePauseIcon() {
-                $('.glyphicon-play').addClass('glyphicon-pause');
-                $('.glyphicon-play').removeClass('glyphicon-play');
-
-            }
-
-            /*function changePlayerIcon() {
-                alert("eee");
-                $('.glyphicon-pause:eq(0)').addClass('glyphicon-play');
-                $('.glyphicon-pause:eq(0)').removeClass('glyphicon-pause');
-            }*/
-
-            $('.player').click(increasePlayer);
-            $('.player').click(changePauseIcon);
-            $('.glyphicon-pause:eq(0)').live('click'{
+            $('.glyphicon-play').click(function(){
+                var index = $('.glyphicon-play').index(this);
+                increasePlayers(index);
                 
-            };
+                 $('.glyphicon-play:eq('+index+')').hide();
+                 $('.glyphicon-pause:eq('+index+')').show();
+                
+                  $('.glyphicon-pause:eq('+index+')').hide();
+                 $('.glyphicon-play:eq('+index+')').show();
+            });
 
-            /* $('.glyphicon-pause').click(changePlayerIcon);*/
 
         });
-
-
-        /* $('.glyphicon glyphicon-play').bind('click()', function(){
-              alert("들어옴");
-          });*/
     </script>
 </body>
 
