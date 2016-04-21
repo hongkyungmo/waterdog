@@ -10,34 +10,52 @@
 		<result property="bCode" column="bcode" jdbcType="INTEGER" />
 		<result property="uCode" column="ucode" jdbcType="INTEGER" />
 		<result property="note" column="note" jdbcType="VARCHAR" />
-		<result property="emotion" column="emotion" jdbcType="INTEGER" />
 		<result property="pCount" column="pcount" jdbcType="INTEGER" />
 		<result property="dCount" column="dcount" jdbcType="INTEGER" />
+
 		<collection property="blockHashList" javaType="java.util.List"
 			resultMap="BlockHashResultMap" />
+
+		<collection property="blockEmotionList" javaType="java.util.List"
+			resultMap="BlockEmotionResultMap" />
 	</resultMap>
 
-	<resultMap type="BlockHash" id="BlockHashResultMap">
-		<result property="hCode" column="hcode" jdbcType="INTEGER" />
+	<resultMap type="blockHash" id="BlockHashResultMap">
 		<result property="bCode" column="bcode" jdbcType="INTEGER" />
 		<result property="tag" column="tag" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap type="blockEmotion" id="BlockEmotionResultMap">
+		<result property="bCode" column="bcode" jdbcType="INTEGER" />
+		<result property="emotion" column="emotion" jdbcType="INTEGER" />
 	</resultMap>
 
 	<!-- SQL : INSERT -->
 	<insert id="addBlock" parameterType="block">
 		INSERT
 		INTO
-		block(bcode,ucode,note,emotion,pcount,dcount )
+		block(bcode,ucode,note,pcount,dcount )
 		VALUES
-		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{emotion},0,0 )
+		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{emotion},0,0 )
 	</insert>
+
+	<!-- insert uCode 수정 -->
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
 	<insert id="addBlockHash" parameterType="java.util.HashMap">
-		INSERT INTO
-		block_hash (hcode,bcode,tag)
-		<foreach item="item" collection="list" separator=" , ">
-			 VALUES (SEQ_BLOCK_HASH_HCODE.NEXTVAL, #{item.bCode}, #{item.tag}) 
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO block_hash (bcode,tag)
+			VALUES (#{item.bCode},#{item.tag})
+		</foreach>
+	</insert>
+
+	<insert id="addBlockEmotion" parameterType="java.util.HashMap">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO block_hash (bcode,emotion)
+
+			VALUES (#{item.bCode}, #{item.emotion})
 		</foreach>
 	</insert>
 </mapper>
