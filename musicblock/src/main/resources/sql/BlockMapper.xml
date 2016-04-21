@@ -36,7 +36,7 @@
 		INTO
 		block(bcode,ucode,note,pcount,dcount )
 		VALUES
-		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{emotion},0,0 )
+		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},0,0 )
 	</insert>
 
 	<!-- insert uCode 수정 -->
@@ -54,7 +54,6 @@
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
 			INTO block_hash (bcode,emotion)
-
 			VALUES (#{item.bCode}, #{item.emotion})
 		</foreach>
 	</insert>
