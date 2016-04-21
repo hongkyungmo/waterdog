@@ -3,7 +3,7 @@
  */
 
 //block이 플레이되는 시간
-var blockAnimateTime = 2000;
+var blockAnimateTime = 6000;
 
 $(function () {
     $("body").append("<div id='menu-container'><span class = 'glyphicon glyphicon-chevron-left fa-2x' aria - hidden = 'true' id='back'></span><span class='glyphicon glyphicon-menu-hamburger' aria-hidden='true' id='menu'></span></div>");
