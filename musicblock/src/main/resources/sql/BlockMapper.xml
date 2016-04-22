@@ -10,6 +10,7 @@
 		<result property="bCode" column="bcode" jdbcType="INTEGER" />
 		<result property="uCode" column="ucode" jdbcType="INTEGER" />
 		<result property="note" column="note" jdbcType="VARCHAR" />
+		<result property="title" column="btitle" jdbcType="VARCHAR" />
 		<result property="pCount" column="pcount" jdbcType="INTEGER" />
 		<result property="dCount" column="dcount" jdbcType="INTEGER" />
 
@@ -34,9 +35,9 @@
 	<insert id="addBlock" parameterType="block">
 		INSERT
 		INTO
-		block(bcode,ucode,note,pcount,dcount )
+		block(bcode,ucode,note,btitle,pcount,dcount )
 		VALUES
-		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},0,0 )
+		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},#{title},0,0 )
 	</insert>
 
 	<!-- insert uCode 수정 -->

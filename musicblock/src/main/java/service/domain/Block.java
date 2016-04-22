@@ -6,6 +6,7 @@ public class Block {
 	private int bCode;		// Block Code
 	private int uCode;		// User Code
 	private String note;	// 계이름
+	private String title; 	// 제목
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
 	List<BlockHash> blockHashList;
@@ -38,6 +39,14 @@ public class Block {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 

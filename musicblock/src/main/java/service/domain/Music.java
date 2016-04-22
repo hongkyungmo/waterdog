@@ -5,6 +5,7 @@ public class Music {
 	int mCode;		// Music Code
 	int uCode;		// User Code
 	String CMPT;	// Note
+	String title;	// title
 	int emotion;	// emotion
 	int pCount;		// Play Count
 	int dCount; 	// Download Count
@@ -30,6 +31,12 @@ public class Music {
 	}
 	public void setCMPT(String cMPT) {
 		CMPT = cMPT;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public int getEmotion() {
 		return emotion;

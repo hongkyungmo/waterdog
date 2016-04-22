@@ -59,6 +59,7 @@ public class BlockController {
 		
 		Block block = new Block();
 		block.setNote((String)map.get("note"));
+		block.setTitle("경모오빠상큼");
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함
 		block.setblockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
