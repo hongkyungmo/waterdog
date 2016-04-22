@@ -4,15 +4,9 @@ html, body {
 }
 
 #background {
-	background-color: #45a712;
+	background-color: #E1F6FA;
 	width: auto;
-	height: 100%;
-}
-
-
-#create-container {
-	width: inherit;
-	height: 25%;
+	height: 88%;
 }
 
 .music {
@@ -21,10 +15,38 @@ html, body {
 }
 
 .newMusic {
-	width: 25%;
+	width: 45%;
 	height: 10%;
 }
 
 .whiteSpace {
-	margin: 10%;
+	height: 13%;
 }
+
+.noteVisualOne {
+	left: 0%;
+	background-color: #73a381;
+}
+
+.noteVisualTwo {
+	left: 20%;
+	background-color: #a92765;
+}
+
+.noteVisualThree {
+	left: 40%;
+	background-color: #3378c7;
+}
+
+.noteVisualFour {
+	left: 60%;
+	background-color: #dc65d4;
+}
+
+.noteVisualFive {
+	left: 80%;
+	background-color: #2543e1;
+}
+
+/* 
+https://color.adobe.com/ko/explore/most-popular/?time=all */

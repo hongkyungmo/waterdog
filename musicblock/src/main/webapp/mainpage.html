@@ -44,11 +44,10 @@
 
 <link rel="stylesheet" href="/css/common/commonMenu.css">
 <link rel="stylesheet" href="/css/mainpage/mainpage.css">
-
 <script type="text/javascript">
 	$(function() {
 
-		 $('.responsive').slick({
+		$('.responsive').slick({
 			dots : true,
 			infinite : false,
 			slidesToShow : 4,
@@ -68,21 +67,41 @@
 			// settings: "unslick"
 			// instead of a settings object
 			]
-		}); 
+		});
 	});
 
 	//버튼클릭
 
-	$(function () {
-            var barCycleLength = 400;
-            var timerIdForPlayingArr = new Array();
+	$(function() {
+		var barCycleLength = 400;
+		var timerIdForPlayingArr = new Array();
 
-            $(".responsive").click(function () {
-            	alert("1");
-            });
-            
-            
-        });
+		$(".button").click(function() {
+			/*if(getElementById(this)=='create')
+			    return;*/
+			var music = $(".button").index(this);
+			if (timerIdForPlayingArr[music] == undefined) { // 다시클릭시 멈추려고
+
+				timerIdForPlayingArr[music] = setInterval(function() {
+					var i = 0;
+					for (var i = music; i < music+5; i++) { // bar 의 갯수
+						var rand = Math.floor((Math.random() * 100) + 1); //bar의 높이
+						$("ui blue button").children(":eq(" + i + ")").animate({
+                           
+							height : rand*10 + "px"
+						}, barCycleLength, function() {
+							//매 주기마다 하고 싶은 것이 있으면 이곳에 기술하면 됨
+						});
+					}
+				}, barCycleLength);
+			} else {
+				clearInterval(timerIdForPlayingArr[music]);
+				timerIdForPlayingArr[music] = undefined;
+			}
+
+		});
+
+	});
 </script>
 </head>
 
@@ -94,22 +113,78 @@
 		<div class="whiteSpace"></div>
 		<div>
 			<center>
-				<button class="newMusic ui black button">
+				<div id="create" class="newMusic ui orange button">
 					<h3>New Music</h3>
-				</button>
+				</div>
 			</center>
 		</div>
 		<div class="whiteSpace"></div>
 
 		<div class="responsive " role="group">
-			<div class="ui teal button">My Music1</div>
-			<div class="ui blue button">My Music2</div>
-			<div class="ui teal button">My Music3</div>
-			<div class="ui blue button">My Music4</div>
-			<div class="ui teal button">My Music5</div>
-			<div class="ui blue button">My Music6</div>
-			<div class="ui teal button">My Music7</div>
-			<div class="ui blue button">My Music8</div>
+			<div class="ui blue button">
+                My Music1
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music2
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music3
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music4
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music5
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music6
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music7
+				<div class="noteVisualOne"></div>
+				<div class="noteVisualTwo"></div>
+				<div class="noteVisualThree"></div>
+				<div class="noteVisualFour"></div>
+				<div class="noteVisualFive"></div>
+			</div>
+			<div class="ui blue button">
+				My Music8
+				<div class="noteVisualBar noteVisualOne"></div>
+				<div class="noteVisualBar noteVisualTwo"></div>
+				<div class="noteVisualBar noteVisualThree"></div>
+				<div class="noteVisualBar noteVisualFour"></div>
+				<div class="noteVisualBar noteVisualFive"></div>
+			</div>
 
 		</div>
 
