@@ -48,12 +48,12 @@ $(function () {
     $("#play").bind(keyDown, function () {
         if ($("#display-bar").length > 0) {
             $("#display-bar").stop();
-            $("#play").css("background-color", 'greenyellow');
+            $("#play").css("background-color", '#e1f6fa');
             $("#display-bar").remove();
             $(".glyphicon-stop").addClass("glyphicon glyphicon-play");
             $(".glyphicon-stop").removeClass("glyphicon-stop");
         } else if ($("#display-bar").length < 1) {
-            $("#play").css("background-color", 'red');
+            $("#play").css("background-color", '#e1f6fa');
             $(".glyphicon-play").addClass("glyphicon glyphicon-stop");
             $(".glyphicon-play").removeClass("glyphicon-play");
             $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1.5%;height:16.7%;position:absolute;float:left;left:5.9%;z-index:1;top:13.5%;opacity:0.3'></div>");
@@ -65,7 +65,7 @@ $(function () {
                     $(".glyphicon-stop").addClass("glyphicon glyphicon-play");
                     $(".glyphicon-stop").removeClass("glyphicon-stop");
                 }
-                $("#play").css("background-color", 'greenyellow');
+                $("#play").css("background-color", '#e1f6fa');
                 //animation 완료 후 음 정지
                 //o.stop();
             });
@@ -74,7 +74,7 @@ $(function () {
     //cancel
     $("#cancel").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
-            $("#cancel").css("background-color", '#EEFFA9');
+            $("#cancel").css("background-color", '#e1f6fa');
             if (clickSequence > 0) {
                 $(".syllable").last().remove();
                 $(".divider").last().remove();
@@ -88,18 +88,18 @@ $(function () {
         }
     });
     $("#cancel").bind(keyUp, function () {
-        $("#cancel").css("background-color", 'greenyellow');
+        $("#cancel").css("background-color", '#e1f6fa');
     });
     //clear
     $("#clear").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
-            $("#clear").css("background-color", '#EEFFA9');
+            $("#clear").css("background-color", '#e1f6fa');
             $("#syllable-container").empty();
             clickSequence = 0;
         }
     });
     $("#clear").bind(keyUp, function () {
-        $("#clear").css("background-color", 'greenyellow');
+        $("#clear").css("background-color", '#e1f6fa');
     });
     //next
     $("#next").bind(keyDown, function () {
@@ -110,10 +110,10 @@ $(function () {
     	}
     	console.log(noteStr.slice(0,-1));
         location.href = "/emotion.html?var=" + noteStr.slice(0,-1);
-        $("#next").css("background-color", '#EEFFA9');
+        $("#next").css("background-color", '##e1f6fa');
     });
     $("#next").bind(keyUp, function () {
-        $("#next").css("background-color", 'greenyellow');
+        $("#next").css("background-color", '#e1f6fa');
     });
 });
 //공백건반 클릭
@@ -121,7 +121,7 @@ $(function () {
     var spaceKey = $("#space-key");
     spaceKey.bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
-            $(this).css("background-color", '#33dd33');
+            $(this).css("background-color", '#e1f6fa');
             //디스플레이 창에 엘리먼트 추가
             var displayObj;
             if (clickSequence == 0) {
@@ -140,7 +140,7 @@ $(function () {
         }
     });
     spaceKey.bind(keyUp, function () {
-        $(this).css("background-color", '#65f712');
+        $(this).css("background-color", '#e1f6fa');
     });
 });
 
