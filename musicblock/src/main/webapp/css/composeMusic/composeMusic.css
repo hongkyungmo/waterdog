@@ -97,6 +97,12 @@ ol li.highlight {
 	height: 60%;
 }
 
+/* Overriding Bootstrap */
+.col-xs-4 {
+    height: 100%;
+}
+
+
 /* Overriding player.css */
 .jAudio--player {
 	width: 100%;
