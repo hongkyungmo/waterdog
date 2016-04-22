@@ -1,18 +1,19 @@
 html, body {
 	height: 100%;
 	overflow: hidden;
-    background-color: #e1f6fa;
+    background-color: #9df;
 }
 
 #background {
 	width: auto;
 	height: 100%;
-    background-color: #e1f6fa;
+    background-color: transparent;
 }
 
 
 #syllable-container {
-	background-color: #e0c030;
+	/*background-color: #78d2f4;*/
+    background-color: ghostwhite;
 	width: 52%;
 	height: 90%;
 	float: left;
@@ -39,7 +40,7 @@ html, body {
 }
 
 #key-container {
-	background-color: #e1f6fa;
+	background-color: transparent;
 	width: 100%;
 	height: 66%;
 	float: left;
@@ -119,7 +120,7 @@ html, body {
 }
 
 #clear {
-	background-color: #e1c6fa;
+	background-color: #e1f6fa;
 	float: left;
 	width: 23%;
 	height: 100%;
@@ -178,7 +179,7 @@ html, body {
 }
 
 #octave-display-on {
-	background-color: #91f6df;
+	background-color: #86c7f7;
 	border-style: double;
 	padding: 15%;
 	margin: 4%;

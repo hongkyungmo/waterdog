@@ -3,7 +3,7 @@
  */
 
 //block이 플레이되는 시간
-var blockAnimateTime = 6000;
+var blockAnimateTime = 2000;
 //피아노건반을 누른 음이 저장되는 배열
 var noteArr = new Array();
 //이벤트 타입(모바일/데스크탑) 전환
@@ -53,10 +53,10 @@ $(function () {
             $(".glyphicon-stop").addClass("glyphicon glyphicon-play");
             $(".glyphicon-stop").removeClass("glyphicon-stop");
         } else if ($("#display-bar").length < 1) {
-            $("#play").css("background-color", '#e1f6fa');
+            $("#play").css("background-color", '#ee4c8d');
             $(".glyphicon-play").addClass("glyphicon glyphicon-stop");
             $(".glyphicon-play").removeClass("glyphicon-play");
-            $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1.5%;height:16.7%;position:absolute;float:left;left:5.9%;z-index:1;top:13.5%;opacity:0.3'></div>");
+            $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1.5%;height:16.7%;position:absolute;float:left;left:5.9%;z-index:1;top:16.5%;opacity:0.3'></div>");
             $("#display-bar").animate({
                 left: "51.3%"
             }, blockAnimateTime, function () {
@@ -93,7 +93,7 @@ $(function () {
     //clear
     $("#clear").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
-            $("#clear").css("background-color", '#e1f6fa');
+            $("#clear").css("background-color", '#33ffbd');
             $("#syllable-container").empty();
             clickSequence = 0;
         }
