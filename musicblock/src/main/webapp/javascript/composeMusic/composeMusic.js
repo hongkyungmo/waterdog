@@ -72,5 +72,3 @@ $("ol.simple_with_no_drop").sortable({
     , drop: false
 });
 
-// jAudio 플러그인 적용
-//$("body").jAudio({});

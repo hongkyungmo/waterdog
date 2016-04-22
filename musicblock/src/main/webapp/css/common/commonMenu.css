@@ -19,7 +19,7 @@
 }
 */
 
-#menu-container {
+#COMMON-MENUBAR {
     background-color: #46B8FF;
     width: 100%;
     height: 12%;
@@ -47,10 +47,10 @@
     left: 100%;
 }
 
-
 /* Overriding BootStrapk */
 
-.btn {
+/* Overriding .btn */
+.COMMON-MENUBAR-BTN {
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -61,22 +61,22 @@
     border-radius: 0px;
 }
 
-
-
-.row {
+/* Overriding .row */
+.COMMON-MENUBAR-ROW {
     width: 100%;
     height: 100%;
     margin: 0px;
 }
 
-.col-xs-1 {
+/* Overriding .col-xs-1 */
+.COMMON-MENUBAR-GRID-1 {
     padding: 0.5%;
     height: 100%;
 }
 
 
-
-.col-xs-10 {
+/* Overriding .col-xs-10 */
+.COMMON-MENUBAR-GRID-10 {
     height: 100%;
 }
 

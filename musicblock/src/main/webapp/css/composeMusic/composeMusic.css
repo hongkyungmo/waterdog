@@ -98,7 +98,9 @@ ol li.highlight {
 }
 
 /* Overriding Bootstrap */
-.col-xs-4 {
+
+/* Overriding col-xs-4 */
+.COMMON-MENUBAR-GRID-4 {
     height: 100%;
 }
 
