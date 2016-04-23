@@ -1,52 +1,112 @@
-html, body {
-	height: 100%;
-	overflow-x: hidden;
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
 }
 
 #background {
-	background-color: #E1F6FA;
-	width: auto;
-	height: 88%;
+    background-color: #E1F6FA;
+    width: auto;
+    height: 88%;
+}
+
+#new-music {
+    display: block;
+    position: relative;
+    left: 40%;
+    top: 10%;
+    width: 20%;
+    height: 50px;
+    padding-top: 14px;
+}
+
+#musics {
+    position: relative;
+    top: 20%;
 }
 
 .music {
-	width: 15%;
-	height: 12%;
+    display: block;
+    height: 160px;
 }
 
-.newMusic {
-	width: 45%;
-	height: 10%;
+.music-name {
+    position: relative;
+    top: 20px;
 }
 
-.whiteSpace {
-	height: 13%;
+.noteVisualContainer {
+    position: relative;
+    float: left;
+    top:10px;
+    left: 0%;
+    width: 100%;
+    height: 100px;
+    background-color: transparent;
+    /*border: solid;
+    border-width: 1px;*/
+    z-index:100000000;
+}
+
+.noteVisualBar {
+    position: absolute;
+    float: left;
+    width: 10%;
+    height: 0%;
+    bottom: 0%;
+    background-color: #6865d4;
 }
 
 .noteVisualOne {
-	left: 0%;
-	background-color: #73a381;
+    left: 0%;
+    background-color: #73a381;
 }
 
 .noteVisualTwo {
-	left: 20%;
-	background-color: #a92765;
+    left: 10%;
+    background-color: #a92765;
 }
 
 .noteVisualThree {
-	left: 40%;
-	background-color: #3378c7;
+    left: 20%;
+    background-color: #3378c7;
 }
 
 .noteVisualFour {
-	left: 60%;
-	background-color: #dc65d4;
+    left: 30%;
+    background-color: #dc65d4;
 }
 
 .noteVisualFive {
-	left: 80%;
-	background-color: #2543e1;
+    left: 40%;
+    background-color: #2543e1;
 }
+
+.noteVisualSix {
+    left: 50%;
+    background-color: #73a381;
+}
+
+.noteVisualSeven {
+    left: 60%;
+    background-color: #a92765;
+}
+
+.noteVisualEight {
+    left: 70%;
+    background-color: #3378c7;
+}
+
+.noteVisualNine {
+    left: 80%;
+    background-color: #dc65d4;
+}
+
+.noteVisualTen {
+    left: 90%;
+    background-color: #2543e1;
+}
+
 
 /* 
 https://color.adobe.com/ko/explore/most-popular/?time=all */
