@@ -42,69 +42,69 @@ body {
     left: 0%;
     width: 100%;
     height: 100px;
-    background-color: transparent;
-    border: solid;
+    background-color: black;
+     border: dotted;
     border-width: 1px;
+    border-color:white; 
     z-index:100000000;
 }
 
 .noteVisualBar {
     position: absolute;
     float: left;
-    width: 10%;
+    width: 4%;
     height: 0%;
     bottom: 0%;
-    background-color: #6865d4;
 }
 
 .noteVisualOne {
-    left: 0%;
-    background-color: #36a846;
+    left: 3.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualTwo {
-    left: 10%;
-    background-color: #a92765;
+    left: 13.5%;
+	background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualThree {
-    left: 20%;
-    background-color: #872916;
+    left: 23.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualFour {
-    left: 30%;
-    background-color: #dc65d4;
+    left: 33.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualFive {
-    left: 40%;
-    background-color: #2543e1;
+    left: 43.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualSix {
-    left: 50%;
-    background-color: #27a471;
+    left: 53.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualSeven {
-    left: 60%;
-    background-color: #a92765;
+    left: 63.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualEight {
-    left: 70%;
-    background-color: #6a4392;
+    left: 73.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualNine {
-    left: 80%;
-    background-color: #dc65d4;
+    left: 83.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 .noteVisualTen {
-    left: 90%;
-    background-color: #2543e1;
+    left: 93.5%;
+    background: linear-gradient( to top, yellow, green );
 }
 
 
