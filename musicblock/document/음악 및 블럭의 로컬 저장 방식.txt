@@ -5,7 +5,7 @@
 2) localStorage
 3) sessionStorage - 휘발성이므로 X
 4) web sql database
-5) application cache - 갱신 유실 가능하므로 X
+5) application cache - 용량 꽉 찼을 때 의도치 않은 갱신이나 유실 가능하므로 X
 
 <2차 후보 - 수정, 삭제를 고려해서 하나의 파일에 모두 저장하는 방식 배제>
 1) 파일 입출력
@@ -23,7 +23,18 @@
      localStorage.getItem('foo'); //--> "bar"
 4) web sql database
    - 가장 적합할 것 같음(CRUD 모두 효율적). 하지만 생소한 거라 적용에 시간이 걸릴 듯.
-   
+
+
+
+
 <최종안>
 우선 가장 적합할 것으로 보이는 web sql database를 적용해 보고, 예상치 못한 문제가 발생하면 파일 입출력 방식으로 변경할 예정.
-일단은 web sql database를 적용한 샘플을 작성할 예정. 
+일단은 web sql database를 적용한 샘플을 작성할 예정.
+ - 로컬 음악의 저장 형태 예시
+ {
+ 	"musicTitle":"학교종이 땡땡땡",
+ 	"notes":["4s,3,6,2,3,12,46,33,25,7",
+ 			 "4s,5,7,22,5,18,4,36,2,17,24",
+ 			 "8s,7,42,3,12,46,6,22,33,5,8,19,7"]
+ }
+
