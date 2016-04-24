@@ -11,7 +11,8 @@
 <script src="https://code.jquery.com/jquery-2.2.2.js"
 	integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
 	crossorigin="anonymous">
-    </script>
+	
+</script>
 
 <!-- 부트스트랩 CDN -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -46,101 +47,115 @@
 <link rel="stylesheet" href="/css/common/commonMenu.css">
 <link rel="stylesheet" href="/css/mainpage/mainpage.css">
 <script type="text/javascript">
-        $(function () {
+	$(function() {
 
-            $('.responsive').slick({
-                dots: true
-                , infinite: false
-                , slidesToShow: 4
-                , slidesToScroll: 4
-                , accessibility: true
-                , responsive: [{
-                        breakpoint: 600
-                        , settings: {
-                            slidesToShow: 3
-                            , slidesToScroll: 3
-                            , infinite: true
-                            , dots: true
-                        }
+		$('.responsive').slick({
+			dots : true,
+			infinite : false,
+			slidesToShow : 4,
+			slidesToScroll : 4,
+			accessibility : true,
+			responsive : [ {
+				breakpoint : 600,
+				settings : {
+					slidesToShow : 3,
+					slidesToScroll : 3,
+					infinite : true,
+					dots : true
+				}
 			}
 
 			// You can unslick at a given breakpoint now by adding:
 			// settings: "unslick"
 			// instead of a settings object
 			]
-            });
-        });
+		});
+	});
 
-        
-        var currentPlayingIndex = -1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
-        //음악 재생 애니메이션
-        $(function () {
-            $(".noteVisualContainer").click(function () {
-            	var barCycleLength = 300;
-            	
-            	//<기존 플레이 되던 엘리먼트 stop>
-            	$(".noteVisualContainer:eq("+currentPlayingIndex+")").empty();
-            	
-            	//<현재 클릭한 엘리먼트 play>
-            	//play animating div 생성
-            	currentPlayingIndex = $(".noteVisualContainer").index(this);
-            	$(".noteVisualContainer:eq("+currentPlayingIndex+")").append('<div class="noteVisualBar noteVisualOne"></div><div class="noteVisualBar noteVisualTwo"></div><div class="noteVisualBar noteVisualThree"></div><div class="noteVisualBar noteVisualFour"></div><div class="noteVisualBar noteVisualFive"></div><div class="noteVisualBar noteVisualSix"></div><div class="noteVisualBar noteVisualSeven"></div><div class="noteVisualBar noteVisualEight"></div><div class="noteVisualBar noteVisualNine"></div><div class="noteVisualBar noteVisualTen"></div>');
-            	
-            	setInterval(function () {
-                    var i = 0;
+	var currentPlayingIndex = -1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
+	//음악 재생 애니메이션
+	$(function() {
+		$(".noteVisualContainer")
+				.click(
+						function() {
+							var barCycleLength = 200;
 
-                    for (var i = 0; i < 10; i++) {
-                        var rand = Math.floor((Math.random() * 100) + 1);
-                        $(".noteVisualContainer:eq(" + currentPlayingIndex + ")").children(":eq(" + i + ")").animate({
-                            //실질적인 애니메이션이 들어가는 곳
-                            //여기서 하고 싶은 것을 하면 됨
-                            height: rand + "%"
-                        }, barCycleLength, function () {
-                            //매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
-                        });
-                    }
-                }, barCycleLength);
-           	});
-        });
-        
-        
-        /* $(function () {
-            var barCycleLength = 300;
-            var timerIdForPlayingArr = new Array();
+							//<기존 플레이 되던 엘리먼트 stop>
+							$(
+									".noteVisualContainer:eq("
+											+ currentPlayingIndex + ")")
+									.empty();
 
-            $(".noteVisualContainer").click(function () {
-            	//현재 애니메이션 실행
-                var nThVisualContainer = $(".noteVisualContainer").index(this);
-				if (timerIdForPlayingArr[nThVisualContainer] == undefined) {
-                    timerIdForPlayingArr[nThVisualContainer] = setInterval(function () {
-                        var i = 0;
+							//<현재 클릭한 엘리먼트 play>
+							//play animating div 생성
+							currentPlayingIndex = $(".noteVisualContainer")
+									.index(this);
+							$(
+									".noteVisualContainer:eq("
+											+ currentPlayingIndex + ")")
+									.append(
+											'<div class="noteVisualBar noteVisualOne"></div><div class="noteVisualBar noteVisualTwo"></div><div class="noteVisualBar noteVisualThree"></div><div class="noteVisualBar noteVisualFour"></div><div class="noteVisualBar noteVisualFive"></div><div class="noteVisualBar noteVisualSix"></div><div class="noteVisualBar noteVisualSeven"></div><div class="noteVisualBar noteVisualEight"></div><div class="noteVisualBar noteVisualNine"></div><div class="noteVisualBar noteVisualTen"></div>');
 
-                        for (var i = 0; i < 10; i++) {
-                            var rand = Math.floor((Math.random() * 100) + 1);
-                            $(".noteVisualContainer:eq(" + nThVisualContainer + ")").children(":eq(" + i + ")").animate({
-                                //실질적인 애니메이션이 들어가는 곳
-                                //여기서 하고 싶은 것을 하면 됨
-                                height: rand + "%"
-                            }, barCycleLength, function () {
-                                //매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
-                            });
-                        }
-                    }, barCycleLength);
-                } else {
-                    clearInterval(timerIdForPlayingArr[nThVisualContainer]);
-                    timerIdForPlayingArr[nThVisualContainer] = undefined;
-                }
-            });
+							setInterval(
+									function() {
+										var i = 0;
 
-        }); */
+										for (var i = 0; i < 10; i++) {
+											var rand = Math.floor((Math
+													.random() * 100) + 1);
+											$(
+													".noteVisualContainer:eq("
+															+ currentPlayingIndex
+															+ ")").children(
+													":eq(" + i + ")").animate({
+												//실질적인 애니메이션이 들어가는 곳
+												//여기서 하고 싶은 것을 하면 됨
+												height : rand + "%"
+											}, barCycleLength, function() {
+												//매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
+											});
+										}
+									}, barCycleLength);
+						});
+	});
 
-        $(function () {
-            var newMusicBtn = $("#new-music");
-            newMusicBtn.click(function () {
-                location.href = "composeMusic.html";
-            });
-        });
-    </script>
+	/* $(function () {
+	    var barCycleLength = 300;
+	    var timerIdForPlayingArr = new Array();
+
+	    $(".noteVisualContainer").click(function () {
+	    	//현재 애니메이션 실행
+	        var nThVisualContainer = $(".noteVisualContainer").index(this);
+			if (timerIdForPlayingArr[nThVisualContainer] == undefined) {
+	            timerIdForPlayingArr[nThVisualContainer] = setInterval(function () {
+	                var i = 0;
+
+	                for (var i = 0; i < 10; i++) {
+	                    var rand = Math.floor((Math.random() * 100) + 1);
+	                    $(".noteVisualContainer:eq(" + nThVisualContainer + ")").children(":eq(" + i + ")").animate({
+	                        //실질적인 애니메이션이 들어가는 곳
+	                        //여기서 하고 싶은 것을 하면 됨
+	                        height: rand + "%"
+	                    }, barCycleLength, function () {
+	                        //매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
+	                    });
+	                }
+	            }, barCycleLength);
+	        } else {
+	            clearInterval(timerIdForPlayingArr[nThVisualContainer]);
+	            timerIdForPlayingArr[nThVisualContainer] = undefined;
+	        }
+	    });
+
+	}); */
+
+	$(function() {
+		var newMusicBtn = $("#new-music");
+		newMusicBtn.click(function() {
+			location.href = "composeMusic.html";
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -157,93 +172,27 @@
 				<div class="music-name">치킨이 땡길 때</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">꼬깔콘을 먹으며</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">술이 땡길 때</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">먹으면서 냠냠냠</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">은혜가 은행가네</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">승길이가 학원가네</div>
 			</div>
 			<div class="ui blue button music">
-				<div class="noteVisualContainer">
-					<div class="noteVisualBar noteVisualOne"></div>
-					<div class="noteVisualBar noteVisualTwo"></div>
-					<div class="noteVisualBar noteVisualThree"></div>
-					<div class="noteVisualBar noteVisualFour"></div>
-					<div class="noteVisualBar noteVisualFive"></div>
-					<div class="noteVisualBar noteVisualSix"></div>
-					<div class="noteVisualBar noteVisualSeven"></div>
-					<div class="noteVisualBar noteVisualEight"></div>
-					<div class="noteVisualBar noteVisualNine"></div>
-					<div class="noteVisualBar noteVisualTen"></div>
-				</div>
+				<div class="noteVisualContainer"></div>
 				<div class="music-name">윤영이가 집에가네</div>
 			</div>
 			<!--<div class="ui blue button music">
