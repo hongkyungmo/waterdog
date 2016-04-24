@@ -52,7 +52,9 @@
 /* Overriding BootStrapk */
 
 /* Overriding .btn */
-.COMMON-MENUBAR-BTN {
+.COMMON-MENUBAR-BTN,
+.COMPOSE-MENUBAR-BTN
+{
     overflow: hidden;
     position: absolute;
     top: 0;
