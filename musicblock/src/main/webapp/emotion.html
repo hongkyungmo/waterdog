@@ -24,165 +24,202 @@
 
 <!-- Common Module -->
 <link rel="stylesheet" type="text/css" href="css/common/commonMenu.css">
-<link rel="stylesheet" type="text/css" href="css/common/emotion/emotion.css">
+<link rel="stylesheet" type="text/css" href="css/emotion/emotion.css">
 
 <script>
-        var count = 0;
+	var count = 0;
+	var i=0;
+	
+	//validation check
+	function fncValidate(){
+		
+		var eCount=0;
+		var upload=document.getElementById("check");
+		
+		var emotion=new Array;
+		var kind=new Array('yellow','red','violet','orange','blue');
+		
+		for(i=0;i<kind.length;i++){
+			emotion[i]=$("#icon"+i).attr('src');
+		}		
+		
+		for(i=0;i<kind.length;i++){
+			//alert(emotion[i]+'///images/smile_'+kind[i]+'_clicked.png');
+			if(emotion[i]=='images/smile_'+kind[i]+'_clicked.png'){
+				eCount++;
+				emotion[i]="that";
+			}
+		}
+		
+		if(eCount==0){
+			alert("감정은 필수 사항입니다.");
+		}else{
+			alert("선택된 감정 갯수 : "+eCount);
+			if(upload.checked){
+				sendServer(emotion);
+			}else{
+				alert("local 에 저장하는 function으로 가기ㅋㅋ");
+			}
+		}
+	};
+	
+	//Save to Server&Local
+	function sendServer(upload,emotion){
+		alert(emotion);
+		
+		var dummyNote = location.href.substr(location.href
+				.lastIndexOf('=') + 1);
+		//"미2,레#2,솔1,파#4,라3";
+		var dummyHashCodes = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
+		var dummyEmotion = "3";
 
-        //tag 추가 function
-        $(function () {
-            $("#put").click(function () {
-                var what = $("#user-input").val();
-                //$("#user-tag").append("<span>#"+what+"</span>");
-                $("#user-tag").append('<span id="test' + count + '">#' + what);
-                count++;
-                $("#user-input").val(""); // 입력텍스트 초기화
-                //$("#user-tag").empty();
-            });
-        });
+		$
+				.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+					url : 'block/blockSave',
+					type : 'POST' //Request하는 방식.
 
-        //tag 삭제 function
-        $(function () {
-            $("span").live('click', function () { // 위에 jquery 버전 바꾸면 동작안함
+					,
+					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+						emotion : dummyEmotion,
+						note : dummyNote,
+						hashCode : dummyHashCodes
+					}),
+					dataType : "json" //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 
-                var tagId = $(this).attr("id");
+					,
+					contentType : 'application/json;charset=UTF-8' //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
 
-                if (tagId != 'menu') {
-                    $("#" + tagId).remove();
-                }
-            });
-        });
+					,
+					success : function(data, status) {
+						console.log(status);
+						console.log("JSONData : "
+								+ JSON.stringify(data));
+						/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
+						$("body")
+								.append(
+										"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+						$("#popup-btn1").click(function() {
+							$("#save-popup").remove();
+							location.href = "blockMaking.html";
+						});
+						$("#popup-btn2").click(function() {
+							$("#save-popup").remove();
+							location.href = "composeMusic.html";
+						});
+						$("#save-popup")
+								.delay(3000)
+								.fadeOut(
+										500,
+										function() {
+											$("#save-popup")
+													.remove();
+											location.href = "composeMusic.html";
+										});
+					},
+					error : function(status) {
+						console.log(status);
+					}
+				})
 
-        //emotion check function
-        $(function () {
-            var emotion = $('.icon');
-            emotion.live('click', function () {
-                var checkIcon = $(this).attr('src');
-                if (checkIcon == 'images/smile_yellow.png') {
-                    $(this).attr('src', 'images/smile_yellow_clicked.png');
-                    flag = false;
-                } else if (checkIcon == 'images/smile_yellow_clicked.png') {
-                    $(this).attr('src', 'images/smile_yellow.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_red.png') {
-                    $(this).attr('src', 'images/smile_red_clicked.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_red_clicked.png') {
-                    $(this).attr('src', 'images/smile_red.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_violet.png') {
-                    $(this).attr('src', 'images/smile_violet_clicked.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_violet_clicked.png') {
-                    $(this).attr('src', 'images/smile_violet.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_orange.png') {
-                    $(this).attr('src', 'images/smile_orange_clicked.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_orange_clicked.png') {
-                    $(this).attr('src', 'images/smile_orange.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_blue.png') {
-                    $(this).attr('src', 'images/smile_blue_clicked.png');
-                    flag = true;
-                } else if (checkIcon == 'images/smile_blue_clicked.png') {
-                    $(this).attr('src', 'images/smile_blue.png');
-                    flag = true;
-                }
-            });
-        });
+	}
+	
+	//tag 추가 function
+	$(function() {
+		$("#put").click(function() {
+			var what = $("#user-input").val();
+			//$("#user-tag").append("<span>#"+what+"</span>");
+			$("#user-tag").append('<span id="test' + count + '">#' + what);
+			count++;
+			$("#user-input").val(""); // 입력텍스트 초기화
+			//$("#user-tag").empty();
+		});
+	});
 
-        // auto complete function
-        $(function () {
-            var availableTags = [
-                "happy"
+	//tag 삭제 function
+	$(function() {
+		$("span").live('click', function() { // 위에 jquery 버전 바꾸면 동작안함
+
+			var tagId = $(this).attr("id");
+
+			if (tagId != 'menu') {
+				$("#" + tagId).remove();
+			}
+		});
+	});
+
+	//emotion check function
+	$(function() {
+		var emotion = $('.icon');
+		emotion.live('click', function() {
+			var checkIcon = $(this).attr('src');
+			if (checkIcon == 'images/smile_yellow.png') {
+				$(this).attr('src', 'images/smile_yellow_clicked.png');
+				flag = false;
+			} else if (checkIcon == 'images/smile_yellow_clicked.png') {
+				$(this).attr('src', 'images/smile_yellow.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_red.png') {
+				$(this).attr('src', 'images/smile_red_clicked.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_red_clicked.png') {
+				$(this).attr('src', 'images/smile_red.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_violet.png') {
+				$(this).attr('src', 'images/smile_violet_clicked.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_violet_clicked.png') {
+				$(this).attr('src', 'images/smile_violet.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_orange.png') {
+				$(this).attr('src', 'images/smile_orange_clicked.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_orange_clicked.png') {
+				$(this).attr('src', 'images/smile_orange.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_blue.png') {
+				$(this).attr('src', 'images/smile_blue_clicked.png');
+				flag = true;
+			} else if (checkIcon == 'images/smile_blue_clicked.png') {
+				$(this).attr('src', 'images/smile_blue.png');
+				flag = true;
+			}
+		});
+	});
+
+	// auto complete function
+	$(function() {
+		var availableTags = [ "happy"
+
+		, "happiness"
+
+		, "hello" ];
+		$("#tag").autocomplete({
+			source : availableTags
+		});
+	});
 
 
-
-                
-                , "happiness"
-
-
-
-                
-                , "hello"
-            ];
-            $("#user-input").autocomplete({
-                source: availableTags
-            });
-        });
-
-        //Save to Server&Local
-        $(function () {
-            var saveBtn = $('#save');
-            saveBtn.click(function () {
-                var dummyNote = location.href.substr(location.href.lastIndexOf('=') + 1);
-                //"미2,레#2,솔1,파#4,라3";
-                var dummyHashCodes = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
-                var dummyEmotion = "3";
-
-                $.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-                    url: 'block/blockSave'
-                    , type: 'POST' //Request하는 방식.
-
-                    
-                    , data: JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-                        emotion: dummyEmotion
-                        , note: dummyNote
-                        , hashCode: dummyHashCodes
-                    })
-                    , dataType: "json" //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-
-                    
-                    , contentType: 'application/json;charset=UTF-8' //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-
-                    
-                    , success: function (data, status) {
-                        console.log(status);
-                        console.log("JSONData : " + JSON.stringify(data));
-                        /*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
-                        $("body").append("<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
-                        $("#popup-btn1").click(function () {
-                            $("#save-popup").remove();
-                            location.href="blockMaking.html";
-                        });
-                        $("#popup-btn2").click(function () {
-                            $("#save-popup").remove();
-                            location.href="composeMusic.html";
-                        });
-                        $("#save-popup").delay(3000).fadeOut(500, function () {
-                            $("#save-popup").remove();
-                            location.href="composeMusic.html";
-                        });
-                    }
-                    , error: function (status) {
-                        console.log(status);
-                    }
-                })
-            });
-        });
-    </script>
+</script>
 </head>
 
 <body>
 	<!--공통모듈 : 메뉴바-->
 	<script src="/javascript/common/commonMenu.js"></script>
 	<div id="background">
-
-		<!-- <div id="menu-container">
-			<div class="glyphicon glyphicon-chevron-left" id="back"></div>
-			<div id="menu">menu</div>
-			<span class="glyphicon glyphicon-menu-hamburger" id="menu"></span>
-		</div> -->
+		<form name="detailForm" >
 		<div id="emotion-container">
 			<center>
-				<img class="icon" src="images/smile_yellow.png"
-					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/smile_red.png" style="width: 15%; height: 20%" /> <img
-					class="icon" src="images/smile_violet.png"
-					style="width: 15%; height: 20%" /> <img class="icon"
-					src="images/smile_orange.png" style="width: 15%; height: 20%" /> <img
-					class="icon" src="images/smile_blue.png"
+				<img class="icon" id="icon0" src="images/smile_yellow.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon1"
+					src="images/smile_red.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon2" src="images/smile_violet.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon3"
+					src="images/smile_orange.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon4" src="images/smile_blue.png"
 					style="width: 15%; height: 20%" />
 			</center>
 		</div>
@@ -191,18 +228,24 @@
 
 		<div class="form-inline">
 			<div id="ui-field-contain">
-				<label for="name-input">Name Input</label> 
-				<input id="name-input"type="text" placeholder="here Name"> <br> 
-				<label for="user-input">Tag Input </label> <input id="user-input"
-					type="text" placeholder="here One Tag">
-				<button id="put">PUT</button>
+				
+				<label for="title">Name Input</label> 
+				<input id="title" type="text" placeholder="here Title"> <br> 
+				
+				<label for="tag">Tag Input </label> 
+				<input id="tag"	type="text" placeholder="here Tag">
+				
 			</div>
+			
 			<div id="user-tag"></div>
+			
 			<div id="save-container">
-				<input type="checkbox"> Upload to ShareBox
-				<button id="save">Save</button>
+				<input type="checkbox" id="check" value="g2"> Upload to ShareBox 
+				<a href="javascript:fncValidate();" id="save">Save</a>
+				
 			</div>
 		</div>
+		</form>
 	</div>
 </body>
 
