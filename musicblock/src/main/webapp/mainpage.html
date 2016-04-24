@@ -61,16 +61,30 @@
             });
         });
 
-        //버튼클릭
-
+        
+        var currentPlayingIndex = -1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
+        //음악 재생 애니메이션
         $(function () {
-            var barCycleLength = 400;
+            $(".noteVisualContainer").click(function () {
+            	//<기존 플레이 되던 엘리먼트 stop>
+            	$(".noteVisualContainer:eq("+currentPlayingIndex+")").empty();
+            	
+            	//<현재 클릭한 엘리먼트 play>
+            	//play animating div 생성
+            	currentPlayingIndex = $(".noteVisualContainer").index(this);
+            	$(".noteVisualContainer:eq("+currentPlayingIndex+")").append("<div style='background-color:black;width:20px;height:20px;'></div>");
+            });
+        });
+        
+        
+        /* $(function () {
+            var barCycleLength = 300;
             var timerIdForPlayingArr = new Array();
 
             $(".noteVisualContainer").click(function () {
+            	//현재 애니메이션 실행
                 var nThVisualContainer = $(".noteVisualContainer").index(this);
-
-                if (timerIdForPlayingArr[nThVisualContainer] == undefined) {
+				if (timerIdForPlayingArr[nThVisualContainer] == undefined) {
                     timerIdForPlayingArr[nThVisualContainer] = setInterval(function () {
                         var i = 0;
 
@@ -91,7 +105,7 @@
                 }
             });
 
-        });
+        }); */
 
         $(function () {
             var newMusicBtn = $("#new-music");
