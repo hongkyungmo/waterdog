@@ -4,7 +4,9 @@
    - 음악과 파일을 1:1로 대응
 2) localStorage
 3) sessionStorage - 휘발성이므로 X
-4) web sql database
+4) database
+   - web sql database
+   - indexedDB
 5) application cache - 용량 꽉 찼을 때 의도치 않은 갱신이나 유실 가능하므로 X
 
 <2차 후보 - 수정, 삭제를 고려해서 하나의 파일에 모두 저장하는 방식 배제>
@@ -12,7 +14,9 @@
    - 단일 파일(모든 음악을 한 파일에) - 곡 하나의 수정을 할 때에도 파일 전체를 read/write해야 하므로 X
    - 음악과 파일을 1:1로 대응
 2) localStorage
-4) web sql database
+4) database
+   - web sql database
+   - indexedDB
 
 <3차 후보 - 모두 사용해도 괜찮을 듯. 장단점이 있음>
 1) 파일 입출력
@@ -21,13 +25,15 @@
    -> 예시
      localStorage.setItem('foo', 'bar');
      localStorage.getItem('foo'); //--> "bar"
-4) web sql database
+4) database
+   - web sql database
+   - indexedDB
    - 가장 적합할 것 같음(CRUD 모두 효율적). 하지만 생소한 거라 적용에 시간이 걸릴 듯.
 
 
 
 
-<최종안>
+<최종안 - ver 1.0>
 우선 가장 적합할 것으로 보이는 web sql database를 적용해 보고, 예상치 못한 문제가 발생하면 파일 입출력 방식으로 변경할 예정.
 일단은 web sql database를 적용한 샘플을 작성할 예정.
  - 로컬 음악의 저장 형태 예시
@@ -40,3 +46,13 @@
 
 * 링크
  - web sql database : http://www.sqler.com/396957
+
+ 
+ 
+ <개선안 - ver 1.1>
+ indexedDB라는 것을 알게 됨.
+  -> 간단한 사용에도 기본 코드가 어느정도 작성되어야 함
+ localForage : firefox에서 만든 로컬 스토리지(크로스 브라우징 가능)
+  -> localStorage와는 달리 비동기식이라 버벅임이 적음
+  -> 링크 : http://enzine.tistory.com/entry/localForage-더-나아진-오프라인-저장소
+ 
