@@ -67,11 +67,13 @@
                         for (var i = 0; i < 5; i++) {
                             var rand = Math.floor((Math.random() * 100) + 1);
                             $(".noteVisualContainer:eq(" + nThVisualContainer + ")").children(":eq(" + i + ")").animate({
+                                //실질적인 애니메이션이 들어가는 곳
+                                //여기서 하고 싶은 것을 하면 됨
                                 height: rand + "%"
                             }, barCycleLength, function () {
-                                //매 주기마다 하고 싶은 것이 있으면 이곳에 기술하면 됨
+                                //매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
                             });
-                        }
+                        } 
                     }, barCycleLength);
                 }else{
                     clearInterval(timerIdForPlayingArr[nThVisualContainer]);
