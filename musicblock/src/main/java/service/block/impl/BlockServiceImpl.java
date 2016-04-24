@@ -14,34 +14,36 @@ import service.user.UserService;
 @Service("blockServiceImpl")
 public class BlockServiceImpl implements BlockService{
 
-	
+
 	//Field
-		@Autowired
-		@Qualifier("blockDaoImpl")
-		private BlockDao blockDao;
-		public void setBlockDao(BlockDao blockDao) {
-			this.blockDao = blockDao;
-		}
+	@Autowired
+	@Qualifier("blockDaoImpl")
+	private BlockDao blockDao;
+	public void setBlockDao(BlockDao blockDao) {
+		this.blockDao = blockDao;
+	}
+
+	///Constructor
+	public BlockServiceImpl() {
+		System.out.println(this.getClass());
+	}
+
+	///Method
+	public void addBlock(Block block) throws Exception {
+		blockDao.addBlock(block);
+		int bcode = blockDao.getCurrentBlockCode();
+		System.out.println("bcode>>"+bcode);
+
+		blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
 		
-		///Constructor
-		public BlockServiceImpl() {
-			System.out.println(this.getClass());
-		}
-
-		///Method
-		public void addBlock(Block block) throws Exception {
-			blockDao.addBlock(block);
-			int bcode = blockDao.getCurrentBlockCode();
-			System.out.println("bcode>>"+bcode);
-			
-			blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
+		if(block.getblockHashList()!=null){
 			blockDao.addBlockHash(block.getblockHashList(),bcode);
-
 		}
+	}
 
-		public void updateBlock(Block block) throws Exception {
-			blockDao.updateBlock(block);
-		}
+	public void updateBlock(Block block) throws Exception {
+		blockDao.updateBlock(block);
+	}
 
 
 }
