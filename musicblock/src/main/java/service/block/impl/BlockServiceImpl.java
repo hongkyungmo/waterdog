@@ -35,8 +35,8 @@ public class BlockServiceImpl implements BlockService{
 
 		blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
 		
-		if(block.getBlockHashList()!=null){
-			blockDao.addBlockHash(block.getBlockHashList(),bcode);
+		for(int i=0; i< block.getBlockHashList().size();i++){
+			blockDao.addBlockHash(block.getBlockHashList().get(i),bcode);
 		}
 	}
 

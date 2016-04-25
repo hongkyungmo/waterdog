@@ -9,7 +9,7 @@ import service.domain.BlockHash;
 public interface BlockDao {
 	public void addBlock(Block block);
 	public void addBlockEmotion(List<BlockEmotion> be,int bCode);
-	public void addBlockHash(List<BlockHash> bh, int bCode);
+	public void addBlockHash(BlockHash bh, int bCode);
 	
 	public int getCurrentBlockCode();
 	
