@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 import service.block.BlockDao;
 import service.block.BlockService;
 import service.domain.Block;
-import service.domain.BlockEmotion;
-import service.domain.BlockHash;
-import service.user.UserService;
 
 @Service("blockServiceImpl")
 public class BlockServiceImpl implements BlockService{
@@ -38,9 +35,9 @@ public class BlockServiceImpl implements BlockService{
 
 		blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
 		
-		/*if(block.getblockHashList()!=null){
-			blockDao.addBlockHash(block.getblockHashList(),bcode);
-		}*/
+		if(block.getBlockHashList()!=null){
+			blockDao.addBlockHash(block.getBlockHashList(),bcode);
+		}
 	}
 
 	public void updateBlock(Block block) throws Exception {

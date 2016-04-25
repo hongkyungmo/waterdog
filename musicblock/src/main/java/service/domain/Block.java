@@ -1,7 +1,7 @@
 package service.domain;
 
 import java.util.List;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Block {
 	private int bCode;		// Block Code
@@ -10,15 +10,19 @@ public class Block {
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
 	private String title; 	// 제목
-	private Timestamp regDate;	//업로드시간
+	private Date regDate;	//업로드시간
 	private int time;		// 블럭시간
 	List<BlockHash> blockHashList;
 	List<BlockEmotion> blockEmotionList;
 	
+	// java.sql.*
+	// 1. Date : millisecond -> SQL  DATE
+	// 2. Time : java.util.Date class -> SQL TIME value.
+	// 3. Timestamp : java.util.Date -> SQL TIMESTAMP value // 더 세밀한 단위
+	
+	
 
-	public Block() {	
-		System.out.println(this.getClass());
-	}
+	public Block(){}
 
 	public int getbCode() {
 		return bCode;
@@ -43,14 +47,6 @@ public class Block {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	public int getpCount() {
 		return pCount;
@@ -67,12 +63,20 @@ public class Block {
 	public void setdCount(int dCount) {
 		this.dCount = dCount;
 	}
-	
-	public Timestamp getRegDate() {
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Timestamp regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 
@@ -84,19 +88,12 @@ public class Block {
 		this.time = time;
 	}
 
-	public void setblockHashList(List hashList){
-		blockHashList = (List)hashList;
-//		for(int i=0;i<HashList.size();i++){
-//			blockHashList=HashList;
-//		}
-//		
-//		this.blockHashList=HashList;
-		
-		// 여기수정!!!!!!!!!!!!!!!!!!!!!!!!
-	}
-	
-	public List<BlockHash> getblockHashList(){
+	public List<BlockHash> getBlockHashList() {
 		return blockHashList;
+	}
+
+	public void setBlockHashList(List<BlockHash> blockHashList) {
+		this.blockHashList = blockHashList;
 	}
 
 	public List<BlockEmotion> getBlockEmotionList() {
@@ -106,15 +103,13 @@ public class Block {
 	public void setBlockEmotionList(List<BlockEmotion> blockEmotionList) {
 		this.blockEmotionList = blockEmotionList;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Block [bCode=" + bCode + ", uCode=" + uCode + ", note=" + note + ", pCount=" + pCount + ", dCount="
-				+ dCount + ", blockHashList=" + blockHashList + ", blockEmotionList=" + blockEmotionList + "]";
+		return "Block [bCode=" + bCode + ", uCode=" + uCode + ", note=" + note + ", pCount=" 
+	+ pCount + ", dCount=" + dCount + ", title=" + title + ", regDate=" + regDate + ", time=" + time 
+	+ ", blockHashList="+ blockHashList + ", blockEmotionList=" + blockEmotionList + "]";
 	}
 
-	
-	
-	
 }
 
