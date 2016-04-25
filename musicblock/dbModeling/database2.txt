@@ -1,10 +1,14 @@
 ﻿DROP SEQUENCE seq_user_ucode;
 DROP SEQUENCE seq_block_bcode;
 DROP SEQUENCE seq_music_mcode;
+DROP SEQUENCE seq_block_bhash;
+DROP SEQUENCE seq_music_mhash;
 
 CREATE SEQUENCE seq_user_ucode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_block_bcode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_music_mcode	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_block_bhash	INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_music_mhash	INCREMENT BY 1 START WITH 1;
 
 /* Block */
 DROP TABLE BLOCK 
