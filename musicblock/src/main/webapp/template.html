@@ -542,7 +542,27 @@
 
 
         $(function () {
+        	
+        	RecvFromServer();
+        		function RecvFromServer(){
+        			alert("1.들어왔오!");
 
+        		 	$.ajax({
+        				type:'GET'
+        				,url:'block/getJsonBlock/2'
+        				,dataType : "json"
+        				,data:""
+        				,success:function(data, status){
+	        				console.log(status);
+							console.log("JSONData : "
+									+ JSON.stringify(data));
+        				}
+        				,error : function(status) {
+    						console.log(status);
+    					}
+        			}) 
+        		}
+			
             //좋아요 클릭시 카운트 증가
             function increaseLikes() {
                 var myString = $(this).children('.nLikes').first().html();

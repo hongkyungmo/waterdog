@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,5 +73,18 @@ public class BlockController {
 		blockService.addBlock(block);
 		System.out.println("돌아왔을떄 blockService.addblock()");
 		return block;
+	}
+	
+	@RequestMapping(value = "getJsonBlock/{blockId}", method = RequestMethod.GET)
+	public void getJsonBlockGET(@PathVariable String blockId, Model model) 
+			throws Exception {
+		
+		System.out.println("/getJsonBlock/getBlock: model로 전달받은 String(JSON) : "+model);
+		//Business Logic
+		System.out.println("blockId: "+blockId);
+		System.out.println("model: "+model);
+		Block block = blockService.getBlock(blockId);
+		model.addAttribute("block", block); 
+
 	}
 }

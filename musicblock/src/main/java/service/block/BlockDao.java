@@ -10,7 +10,8 @@ public interface BlockDao {
 	public void addBlock(Block block);
 	public void addBlockEmotion(List<BlockEmotion> be,int bCode);
 	public void addBlockHash(BlockHash bh, int bCode);
-	
+	/* SELECT */
+	public Block getBlock(String blockId);
 	public int getCurrentBlockCode();
 	
 	public void updateBlock(Block block);

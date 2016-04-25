@@ -56,6 +56,10 @@ public class BlockDaoImpl implements BlockDao{
 
 	}
 	
+	public  Block getBlock(String blockId){
+		return sqlSession.selectOne("BlockMapper.getBlock", blockId);
+	}
+
 	public int getCurrentBlockCode(){
 		return sqlSession.selectOne("BlockMapper.getCurrentBlockCode");
 	}

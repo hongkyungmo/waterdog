@@ -63,6 +63,24 @@
 		</foreach>
 	</insert>
 	
+	
+	<!-- SQL : SELECT ONE -->
+<!-- 	 <select 	id="getBlock"	parameterType="string"	resultMap="BlockSelectMap">
+		SELECT
+		bcode,ucode,note,pcount,dcount,btitle,regdate,time 		
+		FROM block 
+		WHERE bcode = #{blockId}  	 block_id??
+	 </select>
+ -->	 
+	 
+	 	<!-- SQL : SELECT ONE -->
+	 <select 	id="getBlock"	parameterType="int"	resultMap="BlockSelectMap">
+		SELECT
+		bcode,ucode,note,pcount,dcount,btitle,regdate,time 		
+		FROM block 
+		WHERE bcode = #{blockCode}  	 <!--block_id?? -->
+	 </select>
+	 
 	<select id="getCurrentBlockCode" resultType="int">
 	select max(bcode) from block
 	</select>

@@ -40,6 +40,10 @@ public class BlockServiceImpl implements BlockService{
 		}
 	}
 
+	public Block getBlock(String blockId) throws Exception{
+		return blockDao.getBlock(blockId);
+	}
+
 	public void updateBlock(Block block) throws Exception {
 		blockDao.updateBlock(block);
 	}
