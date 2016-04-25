@@ -54,10 +54,10 @@ public class BlockDaoImpl implements BlockDao{
 		sqlSession.insert("BlockMapper.addBlockHash",hash);
 		
 //		//seq 변경
-//		sqlSession.selectOne("BlockMapper.updateSeq",bh.size());
+//		sqlSession.update("BlockMapper.updateSeq",bh.size());
 //		//seq 조회
 //		sqlSession.selectOne("BlockMapper.getSeq");
-//		sqlSession.selectOne("BlockMapper.updateSeq",1);
+//		sqlSession.update("BlockMapper.updateSeq",1);
 
 	}
 	
