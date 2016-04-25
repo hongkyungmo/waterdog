@@ -47,12 +47,12 @@
 
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
-	<insert id="addBlockHash" parameterType="java.util.HashMap">
-		<foreach item="item" collection="list" open="INSERT ALL"
-			separator=" " close="SELECT * FROM DUAL">
-			INTO block_hash (hcode,bcode,btag)
-			VALUES (max(hcode)+1,#{item.bCode},#{item.tag})
-		</foreach>
+	<insert id="addBlockHash" parameterType="blockHash">
+		INSERT
+		INTO
+		block_hash(hcode,bcode,btag )
+		VALUES
+		(SEQ_BLOCK_BHASH.NEXTVAL,#{bCode},#{tag})
 	</insert> 
 
 	<insert id="addBlockEmotion" parameterType="java.util.HashMap">

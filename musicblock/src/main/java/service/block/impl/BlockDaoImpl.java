@@ -44,18 +44,17 @@ public class BlockDaoImpl implements BlockDao{
 		emotion.put("list", be);
 		sqlSession.insert("BlockMapper.addBlockEmotion",emotion);
 	}
+	
 	public void addBlockHash(List<BlockHash> bh, int bCode){
-		HashMap<String, Object> hash = new HashMap<String,Object>();
 		System.out.println("addBlockHash>>"+bCode);
 		for(int i=0;i<bh.size();i++){
 			bh.get(i).setbCode(bCode);
+			sqlSession.insert("BlockMapper.addBlockHash",bh.get(i));
 		}
-		hash.put("list", bh);
-		sqlSession.insert("BlockMapper.addBlockHash",hash);
+
 		
-//		//seq 변경
+///		보류
 //		sqlSession.update("BlockMapper.updateSeq",bh.size());
-//		//seq 조회
 //		sqlSession.selectOne("BlockMapper.getSeq");
 //		sqlSession.update("BlockMapper.updateSeq",1);
 
