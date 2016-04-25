@@ -53,7 +53,7 @@
             position: absolute;
             width: 180px;
             height: 20px;
-            top: 30%;
+            margin-top: 8%;
             left: 60%;
             background-color: transparent;
         }
@@ -61,17 +61,18 @@
         #triangleBar {
             top: 5px;
             height: 10px;
-            left: 0px;
+            left: 10px;
             position: absolute;
             border-top: 10px solid transparent;
-            border-right: 180px solid white;
+            border-right: 160px solid white;
             border-bottom: 0px solid transparent;
             outline: 1px solid transparent;
         }
         
         #vol-draggable {
             width: 20px;
-            height: 100%;
+            top: -10%;
+            height: 120%;
             background-color: red;
             border-radius: 3px;
             opacity: 0.8;
@@ -92,24 +93,47 @@
             containment: "parent"
             , axis: "x"
         });
-        
+
         //블럭 볼륨 조절 - 클릭 이벤트
-        $("#vol-container").bind("click", function (event) {
-            var clickedX = event.clientX; //클릭한 곳의 x좌표
-            var containerX = $("#vol-container").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
-            
-            var volumeOffSet = clickedX - containerX;
-            //alert(volumeOffSet);//볼륨값 0~180
-            volumeSaver = volumeOffSet/160 * 6;
-            //alert(volumeSaver);
-            
-            //volume dragbar 이동
-            $("#vol-draggable").css("left", (volumeOffSet-10) + "px");
-            
-            console.log("volume : " + volumeSaver);
+        $(function () {
+            $("#vol-container").bind("click", function (event) {
+                var clickedX = event.pageX; //클릭한 곳의 x좌표
+                var containerX = $("#vol-container").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
+                console.log("clickedX : " + clickedX);
+                console.log("containerX : " + containerX);
+
+                var volumeOffSet = clickedX - containerX;
+                if (volumeOffSet < 10 || volumeOffSet > 170) {
+                    return;
+                }
+
+                volumeSaver = volumeOffSet / 160 * 6;
+                //alert(volumeSaver);
+
+                //volume dragbar 이동
+                $("#vol-draggable").css("left", (volumeOffSet - 10) + "px");
+
+                console.log("volume : " + volumeSaver);
+            });
         });
-        
-        $("#vol-draggable").css("left", volumeSaver*30 + "px");
+        $("#vol-draggable").css("left", volumeSaver * 30 + "px");
+
+        $(function () {
+            $("#vol-draggable").bind("dragstop", function (event) {
+                var clickedX = event.pageX; //클릭한 곳의 x좌표
+                var containerX = $("#vol-container").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
+                
+                var volumeOffSet = clickedX - containerX;
+                console.log(volumeOffSet);
+                if (volumeOffSet <= 10) {
+                    volumeSaver = 0;
+                }else if(volumeOffSet >= 170){
+                    volumeSaver = 170 / 160 * 6;
+                }else{
+                    volumeSaver = volumeOffSet / 160 * 6;
+                }
+            });
+        });
 
         //블럭 볼륨 조절
         //to do
