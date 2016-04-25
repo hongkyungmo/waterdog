@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+
+    <!-- jQuery CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+    <style>
+        #block-time-wrapper {
+            width: 240px;
+            height: 30px;
+            background-color: greenyellow;
+        }
+        
+        #time-controller-draggable {
+            width: 25%;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="block-time-wrapper">
+        <div id="time-controller-draggable">
+
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#time-controller-draggable").draggable({
+                containment: "parent"
+                , axis: "x"
+            });
+            
+            $("#time-controller-draggable").bind("dragstop", function (event) {
+                var clickedX = event.pageX; //클릭한 곳의 x좌표
+                var containerX = $("#time-controller-draggable").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
+                
+                var volumeOffSet = clickedX - containerX;
+                console.log(volumeOffSet);
+                if (volumeOffSet <= 10) {
+                    volumeSaver = 0;
+                }else if(volumeOffSet >= 170){
+                    volumeSaver = 170 / 160 * 6;
+                }else{
+                    volumeSaver = volumeOffSet / 160 * 6;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
