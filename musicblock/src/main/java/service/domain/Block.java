@@ -1,14 +1,17 @@
 package service.domain;
 
 import java.util.List;
+import java.sql.Timestamp;
 
 public class Block {
 	private int bCode;		// Block Code
 	private int uCode;		// User Code
 	private String note;	// 계이름
-	private String title; 	// 제목
 	private int pCount;		// Play Count
 	private int dCount;		// Download Count
+	private String title; 	// 제목
+	private Timestamp regDate;	//업로드시간
+	private int time;		// 블럭시간
 	List<BlockHash> blockHashList;
 	List<BlockEmotion> blockEmotionList;
 	
@@ -49,7 +52,6 @@ public class Block {
 		this.title = title;
 	}
 
-
 	public int getpCount() {
 		return pCount;
 	}
@@ -66,6 +68,22 @@ public class Block {
 		this.dCount = dCount;
 	}
 	
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
 	public void setblockHashList(List hashList){
 		blockHashList = (List)hashList;
 //		for(int i=0;i<HashList.size();i++){

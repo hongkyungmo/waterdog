@@ -30,15 +30,17 @@ public class BlockServiceImpl implements BlockService{
 
 	///Method
 	public void addBlock(Block block) throws Exception {
+		System.out.println("blockServiceImpl의 addblock()");
 		blockDao.addBlock(block);
+		System.out.println("돌아왔을떄 blockDao.addBlock(block)");
 		int bcode = blockDao.getCurrentBlockCode();
 		System.out.println("bcode>>"+bcode);
 
 		blockDao.addBlockEmotion(block.getBlockEmotionList(),bcode);
 		
-		if(block.getblockHashList()!=null){
+		/*if(block.getblockHashList()!=null){
 			blockDao.addBlockHash(block.getblockHashList(),bcode);
-		}
+		}*/
 	}
 
 	public void updateBlock(Block block) throws Exception {

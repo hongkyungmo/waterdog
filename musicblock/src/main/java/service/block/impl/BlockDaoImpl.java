@@ -29,7 +29,9 @@ public class BlockDaoImpl implements BlockDao{
 
 	@Override
 	public void addBlock(Block block) {
+		System.out.println("blockDaoImpl의 addblock()");
 		sqlSession.insert("BlockMapper.addBlock", block);
+		System.out.println("blockDaoImpl의 addblock()");
 	}
 	
 	
@@ -43,13 +45,13 @@ public class BlockDaoImpl implements BlockDao{
 		sqlSession.insert("BlockMapper.addBlockEmotion",emotion);
 	}
 	public void addBlockHash(List<BlockHash> bh, int bCode){
-		HashMap<String, Object> hash = new HashMap<String,Object>();
+		/*HashMap<String, Object> hash = new HashMap<String,Object>();
 		System.out.println("addBlockHash>>"+bCode);
 		for(int i=0;i<bh.size();i++){
 			bh.get(i).setbCode(bCode);
 		}
 		hash.put("list", bh);
-		sqlSession.insert("BlockMapper.addBlockHash",hash);
+		sqlSession.insert("BlockMapper.addBlockHash",hash);*/
 
 	}
 	

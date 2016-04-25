@@ -1,14 +1,17 @@
 package service.domain;
 
+import java.sql.Timestamp;
+
 public class Music {
 	
-	int mCode;		// Music Code
-	int uCode;		// User Code
-	String CMPT;	// Note
-	String title;	// title
-	int emotion;	// emotion
-	int pCount;		// Play Count
-	int dCount; 	// Download Count
+	private int mCode;		// Music Code
+	private int uCode;		// User Code
+	private String CMPT;	// Note
+	private int emotion;	// emotion
+	private int pCount;		// Play Count
+	private int dCount; 	// Download Count
+	private String Title;	// title
+	private Timestamp regDate;	//업로드시간
 	
 	
 	public Music() {
@@ -33,10 +36,16 @@ public class Music {
 		CMPT = cMPT;
 	}
 	public String getTitle() {
-		return title;
+		return Title;
 	}
 	public void setTitle(String title) {
-		this.title = title;
+		Title = title;
+	}
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 	public int getEmotion() {
 		return emotion;
@@ -60,9 +69,7 @@ public class Music {
 	@Override
 	public String toString() {
 		return "Music [mCode=" + mCode + ", uCode=" + uCode + ", CMPT=" + CMPT + ", emotion=" + emotion + ", pCount="
-				+ pCount + ", dCount=" + dCount + "]";
+				+ pCount + ", dCount=" + dCount + ", Title=" + Title + ", regDate=" + regDate + "]";
 	}
-	
-	
 	
 }

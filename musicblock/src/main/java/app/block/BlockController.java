@@ -61,12 +61,15 @@ public class BlockController {
 		block.setNote((String)map.get("note"));
 		block.setTitle("경모오빠상큼");
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함
-		block.setblockHashList(hashList);
+		/*block.setblockHashList(hashList);*/
 		block.setBlockEmotionList(emotionList);
+		block.setTime(4);
+
 		
 		System.out.println("완성된 형태의 블록 : " + block);
 		
 		blockService.addBlock(block);
+		System.out.println("돌아왔을떄 blockService.addblock()");
 		return block;
 	}
 }
