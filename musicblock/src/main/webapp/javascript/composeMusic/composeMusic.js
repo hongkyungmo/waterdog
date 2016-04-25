@@ -13,7 +13,6 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
     , spaceBetween: 0
     , grabCursor: false
     , freeMode: true
-    , autoplay: 200
 });
 
 var parent = null;
@@ -82,7 +81,7 @@ var swiperMelodyLayer = new Swiper('.layer-selector', {
     , freeMode: true
 });
 $("#btn-play").click(function () {
-    console.log(swiperMelodyLayer.params.autoplay);
+    //    swiperMelodyLayer.pauseAutoplay();
 });
 //$("#btn-play").on("click", function () {
 //    console.log(swiperMelodyLayer);
@@ -91,44 +90,82 @@ $(function () {
     //    var pointer = $(".progress-bar-pointer").offset().left;
 
     $("#btn-prev").bind("click", function () {
-        $(".progress-bar-pointer").css("left", "0");
+        $(".work-layer").css( "transform", "translate3d(0px,  0px, 0px)");
     });
 
-    //    $("#btn-play").on("click", function () {
-    //        // 포인터의 위치
-    ////        $("#work-layer").stop().animate({
-    ////            'textIndent': '320'
-    ////        }, {
-    ////            step: function (now, fx) {
-    ////                now = -500;
-    ////                $(this).css({
-    ////                    "transform": "translate3d(" + now + "px,  0px, 0px)"
-    ////                });
-    ////            }
-    ////            , duration: 5000
-    ////            , easing: 'linear'
-    ////            , queue: false
-    ////            , complete: function () {
-    ////                console.log('Animation is done');
-    ////            }
-    ////        }, 'linear');
-    ////
-    ////        $("#btn-play").animate({
-    ////            textIndent: 100
-    ////        }, {
-    ////            duration: 10000
-    ////            , easing: 'linear'
-    ////            , queue: false
-    ////        });
-    //        
-    //        
-    //        swiperMelodyLayer.stopAutoplay();
-    //        swiperMelodyLayer.params.autoplay = 200;
-    //        swiperMelodyLayer.startAutoplay();
-    //        
-    //        
-    //        
-    //    });
+    $("#btn-play").on("click", function () {
+        //        
+        //        $("#work-layer").css({
+        //                                "transform": "translate3d( -500px,  0px, 0px)"
+        //                            });
+
+
+        // 포인터의 위치
+        $("#work-layer").stop().animate({
+            'left': '-509'
+        }, {
+            step: function (now, fx) {
+                $(".swiper-scrollbar-drag").css({
+                    "transform": "translate3d(" + now + "px,  0px, 0px)"
+                });
+            }
+            , duration: 5000
+            , easing: 'linear'
+            , queue: false
+            , complete: function () {
+                $("#work-layer").css("left","0");
+                $("#work-layer").css("transform","translate3d(-509px,  0px, 0px)");
+            }
+        }, 'linear');
+
+
+
+
+//                    $("#btn-play").animate({
+//                        textIndent: 100
+//                    }, {
+//                        duration: 10000
+//                        , easing: 'linear'
+//                        , queue: false
+//                    });
+
+
+        //        var swiperTranslate = swiperMelodyLayer.translate;
+        //        var swiperSizse = swiperMelodyLayer.scrollbar.dragSize;
+        //
+        //        while (swiperTranslate < swiperSizse) {
+        //            swiperTranslate++;
+        //            sleep(0.1);
+        //            console.log(swiperTranslate);
+        //        }
+
+
+
+        //        if (swiperMelodyLayer.params.scrollbar) {
+        //            var e;
+        //            var a = swiperMelodyLayer.scrollbar;
+        //            var t = (swiperMelodyLayer.translate || 0, a.dragSize);
+        //            console.log(swiperMelodyLayer.translate);
+        //            console.log(a.dragSize);
+        //            e = (a.trackSize - a.dragSize) * swiperMelodyLayer.progress,
+        //                swiperMelodyLayer.rtl && swiperMelodyLayer.isHorizontal() ? (e = -e, e > 0 ? (t = a.dragSize - e, e = 0) : -e + a.dragSize > a.trackSize && (t = a.trackSize + e)) : 0 > e ? (t = a.dragSize + e, e = 0) : e + a.dragSize > a.trackSize && (t = a.trackSize - e), 
+        //                
+        //                swiperMelodyLayer.isHorizontal() ? (swiperMelodyLayer.support.transforms3d ? a.drag.transform("translate3d(" + e + "px, 0, 0)") : a.drag.transform("translateX(" + e + "px)"), a.drag[0].style.width = t + "px") : (swiperMelodyLayer.support.transforms3d ? a.drag.transform("translate3d(0px, " + e + "px, 0)") : a.drag.transform("translateY(" + e + "px)"), a.drag[0].style.height = t + "px"), 
+        //                
+        //                swiperMelodyLayer.params.scrollbarHide && (clearTimeout(a.timeout), 
+        //                                                           
+        //                                                           a.track[0].style.opacity = 1, 
+        //                                                           a.timeout = setTimeout(function () {
+        //                    a.track[0].style.opacity = 0, a.track.transition(400)
+        //                }, 1e3))
+        //        }
+        //        
+        ////        e : ms
+        //        swiperMelodyLayer.params.scrollbar && swiperMelodyLayer.scrollbar.drag.transition(e)
+
+
+
+    });
 
     // 매개면수 e 는 Event형태의 eventObject이다.
     // this는 선택자의 요소다
@@ -144,6 +181,14 @@ $(function () {
         //        $(".progress-bar-played").css("width", e.pageX - 10);
     });
 
+    function sleep(num) { //[1/1000초]
+        var now = new Date();
+        var stop = now.getTime() + num;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > stop) return;
+        }
+    }
 
 
 });
