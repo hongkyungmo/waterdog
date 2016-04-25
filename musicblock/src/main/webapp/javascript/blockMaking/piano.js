@@ -58,7 +58,7 @@ $(function() {
 	});
 });
 
-function play(freq, octave_for_play) {
+/*function play(freq, octave_for_play) {
 	freq = freq
 			* Math.pow(1.0594630943592952645618252949463, 12 * octave_for_play);
 	oscillator = audioContext.createOscillator();
@@ -72,4 +72,4 @@ function play(freq, octave_for_play) {
 	gain.gain.value = mainVolume;
 
 	oscillator.start();
-};
+};*/

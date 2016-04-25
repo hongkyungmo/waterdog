@@ -1,4 +1,6 @@
+//볼륨조절 전역변수
 var mainVolume = 0;
+var volumeSaver = 2;
 //블록 플레이를 위한 변수
 var timerIdForPlaying = 0;
 var countForPlaying = 0; //clickSequence의 복제품
@@ -47,7 +49,7 @@ var noteCodeToFreq = function (noteVal) {
 var playNote = function (noteVal) {
     oscillator.frequency.value = noteVal;
     
-    gain.gain.value = 2;
+    gain.gain.value = volumeSaver;
     setTimeout(function () {
         /*oscillator.connect(gain);
         oscillator.disconnect(gain);*/
@@ -56,3 +58,4 @@ var playNote = function (noteVal) {
     //테스트코드
     console.log(noteVal);
 }
+
