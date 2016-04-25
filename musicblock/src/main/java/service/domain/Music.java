@@ -1,22 +1,25 @@
 package service.domain;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.List;
 
 public class Music {
 	
-	private int mCode;		// Music Code
+	private int mCode;		// Block Code
 	private int uCode;		// User Code
-	private String CMPT;	// Note
-	private int emotion;	// emotion
+	private String cmpt;	// 계이름
 	private int pCount;		// Play Count
-	private int dCount; 	// Download Count
-	private String Title;	// title
-	private Timestamp regDate;	//업로드시간
+	private int dCount;		// Download Count
+	private String title; 	// 제목
+	private Date regDate;	//업로드시간
+	List<MusicHash> musicHashList;
+	List<MusicEmotion> musicEmotionList;
 	
 	
-	public Music() {
+	public Music(){
 		super();
 	}
+	
 	public int getmCode() {
 		return mCode;
 	}
@@ -29,29 +32,11 @@ public class Music {
 	public void setuCode(int uCode) {
 		this.uCode = uCode;
 	}
-	public String getCMPT() {
-		return CMPT;
+	public String getCmpt() {
+		return cmpt;
 	}
-	public void setCMPT(String cMPT) {
-		CMPT = cMPT;
-	}
-	public String getTitle() {
-		return Title;
-	}
-	public void setTitle(String title) {
-		Title = title;
-	}
-	public Timestamp getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
-	}
-	public int getEmotion() {
-		return emotion;
-	}
-	public void setEmotion(int emotion) {
-		this.emotion = emotion;
+	public void setCmpt(String cmpt) {
+		this.cmpt = cmpt;
 	}
 	public int getpCount() {
 		return pCount;
@@ -65,11 +50,37 @@ public class Music {
 	public void setdCount(int dCount) {
 		this.dCount = dCount;
 	}
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public List<MusicHash> getMusicHashList() {
+		return musicHashList;
+	}
+	public void setMusicHashList(List<MusicHash> musicHashList) {
+		this.musicHashList = musicHashList;
+	}
+	public List<MusicEmotion> getMusicEmotionList() {
+		return musicEmotionList;
+	}
+	public void setMusicEmotionList(List<MusicEmotion> musicEmotionList) {
+		this.musicEmotionList = musicEmotionList;
+	}
+
 	@Override
 	public String toString() {
-		return "Music [mCode=" + mCode + ", uCode=" + uCode + ", CMPT=" + CMPT + ", emotion=" + emotion + ", pCount="
-				+ pCount + ", dCount=" + dCount + ", Title=" + Title + ", regDate=" + regDate + "]";
+		return "Music [mCode=" + mCode + ", uCode=" + uCode + ", cmpt=" + cmpt + ", pCount=" + pCount 
+				+ ", dCount="+ dCount + ", title=" + title + ", regDate=" + regDate 
+				+ ", musicHashList=" + musicHashList+ ", musicEmotionList=" + musicEmotionList + "]";
 	}
+	
 	
 }

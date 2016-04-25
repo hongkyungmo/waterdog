@@ -22,7 +22,9 @@ public class Block {
 	
 	
 
-	public Block(){}
+	public Block(){
+		super();
+	}
 
 	public int getbCode() {
 		return bCode;

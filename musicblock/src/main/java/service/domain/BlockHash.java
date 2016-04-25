@@ -7,7 +7,9 @@ public class BlockHash {
 	private String tag;	// tag
 	
 	
-	public BlockHash() {	}
+	public BlockHash() {
+		super();
+	}
 	
 	public int getbCode() {
 		return bCode;

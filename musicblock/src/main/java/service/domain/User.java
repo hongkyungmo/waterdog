@@ -6,7 +6,7 @@ public class User {
 	private String nick;	// Nickname
 
 	public User() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public User(int uCode, String nick) {

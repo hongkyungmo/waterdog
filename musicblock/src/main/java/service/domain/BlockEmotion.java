@@ -6,7 +6,7 @@ public class BlockEmotion {
 	private int bCode;
 	
 	public BlockEmotion() {
-		System.out.println(this.getClass());
+		super();
 	}
 
 	public int getEmotion() {
