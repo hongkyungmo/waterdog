@@ -40,21 +40,20 @@
 		INTO
 		block(bcode,ucode,note,pcount,dcount,btitle,regdate,time )
 		VALUES
-		(SEQ_BLOCK_BCODE.NEXTVAL,1,#{note},0,0,#{title},SYSDATE,#{time})
+		(SEQ_BLOCK_BCODE.NEXTVAL,#{uCode},#{note},0,0,#{title},SYSDATE,#{time})
 	</insert>
 
 	<!-- insert uCode 수정 -->
 
 
 	<!-- addBlockHash, forEach문 이용해서 하나씩 insert -->
-	<!-- <insert id="addBlockHash" parameterType="java.util.HashMap">
+	<insert id="addBlockHash" parameterType="java.util.HashMap">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
 			INTO block_hash (hcode,bcode,btag)
-			VALUES (max,#{item.bCode},#{item.tag})
+			VALUES (max(hcode)+1,#{item.bCode},#{item.tag})
 		</foreach>
-	</insert> -->
-	 
+	</insert> 
 
 	<insert id="addBlockEmotion" parameterType="java.util.HashMap">
 		<foreach item="item" collection="list" open="INSERT ALL"
