@@ -111,19 +111,19 @@ ALTER TABLE BLOCK_HASH
 /* 블럭감정 */
 CREATE TABLE Block_Emotion (
 	BCODE INTEGER NOT NULL, /* BlockCode */
-	HEMOTION INTEGER NOT NULL /* Emotion */
+	BEMOTION INTEGER NOT NULL /* Emotion */
 );
 
 COMMENT ON TABLE Block_Emotion IS '블럭감정';
 
 COMMENT ON COLUMN Block_Emotion.BCODE IS 'BlockCode';
 
-COMMENT ON COLUMN Block_Emotion.HEMOTION IS 'Emotion';
+COMMENT ON COLUMN Block_Emotion.BEMOTION IS 'Emotion';
 
 CREATE UNIQUE INDEX PK_Block_Emotion
 	ON Block_Emotion (
 		BCODE ASC,
-		HEMOTION ASC
+		BEMOTION ASC
 	);
 
 ALTER TABLE Block_Emotion
@@ -131,7 +131,7 @@ ALTER TABLE Block_Emotion
 		CONSTRAINT PK_Block_Emotion
 		PRIMARY KEY (
 			BCODE,
-			HEMOTION
+			BEMOTION
 		);
 
 /* User */
