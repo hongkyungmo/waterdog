@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="/css/common/commonMenu.css">
     <!-- 블럭만들기(css) -->
     <link rel="stylesheet" href="/css/blockMaking/blockMaking.css">
-
+    <!-- 볼륨조절(css) -->
+    <link rel="stylesheet" href="/css/blockMaking/volume.css">
+    
     <!-- 블럭만들기(js) -->
     <script src="javascript/blockMaking/blockMaking.js"></script>
 
@@ -45,98 +47,11 @@
     <script src="javascript/blockMaking/blockPlay.js"></script>
     <!--공통모듈 : 메뉴바-->
     <script src="/javascript/common/commonMenu.js"></script>
+	<!-- 블럭 볼륨 조절 -->
+	<script src="/javascript/blockMaking/volume.js"></script>
 
-    <style>
-        /*블럭 길이 조절 스타일*/
-        
-        #vol-container {
-            position: absolute;
-            width: 180px;
-            height: 20px;
-            margin-top: 8%;
-            left: 60%;
-            background-color: transparent;
-        }
-        
-        #triangleBar {
-            top: 5px;
-            height: 10px;
-            left: 10px;
-            position: absolute;
-            border-top: 10px solid transparent;
-            border-right: 160px solid white;
-            border-bottom: 0px solid transparent;
-            outline: 1px solid transparent;
-        }
-        
-        #vol-draggable {
-            width: 20px;
-            top: -10%;
-            height: 120%;
-            background-color: red;
-            border-radius: 3px;
-            opacity: 0.8;
-        }
-    </style>
     <script>
-        //블럭 볼륨 조절(컨테이너)
-        var volumeController = "<div id='vol-container'></div>";
-        $(".COMMON-MENUBAR-ROW").append(volumeController);
-        //블럭 볼륨 조절(삼각바)
-        var triangleBar = "<div id='triangleBar'></div>";
-        $("#vol-container").append(triangleBar);
-
-        //블럭 볼륨 조절(드래그바)
-        var dragBar = "<div id='vol-draggable'></div>";
-        $("#vol-container").append(dragBar);
-        $("#vol-draggable").draggable({
-            containment: "parent"
-            , axis: "x"
-        });
-
-        //블럭 볼륨 조절 - 클릭 이벤트
-        $(function () {
-            $("#vol-container").bind("click", function (event) {
-                var clickedX = event.pageX; //클릭한 곳의 x좌표
-                var containerX = $("#vol-container").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
-                console.log("clickedX : " + clickedX);
-                console.log("containerX : " + containerX);
-
-                var volumeOffSet = clickedX - containerX;
-                if (volumeOffSet < 10 || volumeOffSet > 170) {
-                    return;
-                }
-
-                volumeSaver = volumeOffSet / 160 * 6;
-                //alert(volumeSaver);
-
-                //volume dragbar 이동
-                $("#vol-draggable").css("left", (volumeOffSet - 10) + "px");
-
-                console.log("volume : " + volumeSaver);
-            });
-        });
-        $("#vol-draggable").css("left", volumeSaver * 30 + "px");
-
-        $(function () {
-            $("#vol-draggable").bind("dragstop", function (event) {
-                var clickedX = event.pageX; //클릭한 곳의 x좌표
-                var containerX = $("#vol-container").offset().left; //현재 클릭한 엘리먼트(볼륨조절 컨테이너)가 시작하는 곳의 x좌표
-                
-                var volumeOffSet = clickedX - containerX;
-                console.log(volumeOffSet);
-                if (volumeOffSet <= 10) {
-                    volumeSaver = 0;
-                }else if(volumeOffSet >= 170){
-                    volumeSaver = 170 / 160 * 6;
-                }else{
-                    volumeSaver = volumeOffSet / 160 * 6;
-                }
-            });
-        });
-
-        //블럭 볼륨 조절
-        //to do
+		//블럭 길이 조절
     </script>
     <div id="background">
         <!-- 메뉴바 -->
