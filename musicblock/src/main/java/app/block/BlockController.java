@@ -42,9 +42,7 @@ public class BlockController {
 		List<BlockEmotion> emotionList = new ArrayList<BlockEmotion>();
 
 		for(int i=0;i<emotionArray.size();i++){
-			System.out.println("emotionArray>>"+emotionArray.get(i));;
 			if(emotionArray.get(i).equals("that")){
-
 				BlockEmotion emotion = new BlockEmotion();
 				emotion.setEmotion(i);
 				emotionList.add(emotion);
@@ -52,29 +50,28 @@ public class BlockController {
 		}
 
 		// hash 정보 담기
-		BlockHash hash = new BlockHash();
 		List<BlockHash> hashList = new ArrayList<BlockHash>();
 
 		String hashArray[] = ((String)map.get("tag")).split(",");
 
 		for(int i=0;i<hashArray.length;i++){
+			BlockHash hash = new BlockHash();
 			hash.setTag(hashArray[i]);
 			hashList.add(hash);
 		}
 		
+		System.out.println("note>>"+map.get("note"));
 
 		// title 지정하기
-		String title;
-		if((String)map.get("title")==null){
+		String title=(String)map.get("title");
+		if(title==null||title.equals("")){
 			title= new Title().getTitle();
-		}else{
-			title=(String)map.get("title");
 		}
 		
 		Block block = new Block();
 		
 		block.setTitle(title);
-		block.setNote((String)map.get("note"));
+		//block.setNote((String)map.get("note"));
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
@@ -82,8 +79,7 @@ public class BlockController {
 
 		System.out.println("완성된 형태의 블록 : " + block);
 
-		blockService.addBlock(block);
-		System.out.println("돌아왔을떄 blockService.addblock()");
+		//blockService.addBlock(block);
 		return block;
 	}
 	

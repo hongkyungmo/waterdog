@@ -37,6 +37,7 @@
 		var eCount=0;
 		var upload=document.getElementById("check");
 		
+		alert(tag.value);
 		var emotion=new Array;
 		
 		for(i=0;i<kind.length;i++){
@@ -84,7 +85,11 @@
 		//"미2,레#2,솔1,파#4,라3";
 		var dummyTag = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
 		var dummyEmotion = "3";
-		var dummyTitle;
+		var dummyTitle="경모쨔응";
+		var transNote=location.href.substr(location.href
+				.lastIndexOf('=') + 1);
+		var transTag= (document.getElementById("tag")).value;
+		var transTitle=(document.getElementById("title")).value
 
 		$
 				.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
@@ -94,10 +99,9 @@
 					,
 					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
 						emotion : transfEmotion,
-						note : location.href.substr(location.href
-								.lastIndexOf('=') + 1),
-						tag : dummyTag,
-						title : dummyTitle
+						note : transNote,
+						tag : transTag,
+						title : transTitle
 					}),
 					dataType : "json" //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 
