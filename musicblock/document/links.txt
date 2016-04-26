@@ -15,6 +15,9 @@ NHN 코딩 컨벤션 : http://nuli.navercorp.com/sharing/fe/coding
 
 박스모델(세로 중앙정렬) : http://nalrarydesigner.tistory.com/entry/CSS3-displaybox-에-대해-공부해-보자
 
+Angular.js : http://d2.naver.com/helloworld/1172239
+ -> 44~45page에 보면 Angular.js 도입시의 장단점과 어떤 프로젝트에 도입해야 하는지를 알 수 있음.
+
 <Semantic-ui.com>
 http://semantic-ui.com/
 
@@ -32,3 +35,8 @@ https://developers.naver.com/main
 
 <Daum Developers>
 https://developers.daum.net/
+
+
+
+
+
