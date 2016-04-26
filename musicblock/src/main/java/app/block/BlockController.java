@@ -60,26 +60,23 @@ public class BlockController {
 			hashList.add(hash);
 		}
 		
-		System.out.println("note>>"+map.get("note"));
-
 		// title 지정하기
 		String title=(String)map.get("title");
 		if(title==null||title.equals("")){
 			title= new Title().getTitle();
 		}
-		
+				
 		Block block = new Block();
-		
 		block.setTitle(title);
-		//block.setNote((String)map.get("note"));
+		block.setNote((String)map.get("note"));
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
-		block.setTime(4);// (수정)
+		block.setTime(Integer.parseInt((String)map.get("sec")));
 
 		System.out.println("완성된 형태의 블록 : " + block);
 
-		//blockService.addBlock(block);
+		blockService.addBlock(block);
 		return block;
 	}
 	
