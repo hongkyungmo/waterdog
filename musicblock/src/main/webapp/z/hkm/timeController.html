@@ -53,13 +53,13 @@
                 var timeDragbarCenterPositionX = timeDragbarXStart + timeDragbarCenter;
                 
                 if(timeDragbarCenterPositionX >= 0 && timeDragbarCenterPositionX < timeControlContainerWidth/4){
-                    alert("0/4 ~ 1/4조각");
+                    $("#time-controller-draggable").css("left", (timeControlContainerWidth/4)*0);
                 }else if(timeDragbarCenterPositionX >= timeControlContainerWidth/4 && timeDragbarCenterPositionX < (timeControlContainerWidth/4)*2){
-                    alert("1/4 ~ 2/4조각");
+                    $("#time-controller-draggable").css("left", (timeControlContainerWidth/4)*1);
                 }else if(timeDragbarCenterPositionX >= (timeControlContainerWidth/4)*2 && timeDragbarCenterPositionX < (timeControlContainerWidth/4)*3){
-                    alert("2/4 ~ 3/4조각");
+                    $("#time-controller-draggable").css("left", (timeControlContainerWidth/4)*2);
                 }else if(timeDragbarCenterPositionX >= (timeControlContainerWidth/4)*3 && timeDragbarCenterPositionX < (timeControlContainerWidth/4)*4){
-                    alert("3/4 ~ 4/4조각");
+                    $("#time-controller-draggable").css("left", (timeControlContainerWidth/4)*3);
                 }
                 
             });
