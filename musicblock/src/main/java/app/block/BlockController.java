@@ -24,7 +24,7 @@ public class BlockController {
 	@Autowired
 	@Qualifier("blockServiceImpl")
 	private BlockService blockService;
-	
+
 	public BlockController() {
 		System.out.println(this.getClass());
 	}
@@ -33,43 +33,44 @@ public class BlockController {
 	public Block addJsonBlockPOST(@RequestBody Map map) throws Exception {
 
 		System.out.println("(/block/blockSave)RequestBody로 전달받은 String(JSON) : "+map);
-		
+
 		//emotion 정보 담기
-		BlockEmotion emotion = new BlockEmotion();
+		List<Object> emotionArray = new ArrayList<Object>();
+		emotionArray=(ArrayList)map.get("emotion");
+
 		List<BlockEmotion> emotionList = new ArrayList<BlockEmotion>();
-		
-		String emotionArray[] = ((String)map.get("emotion")).split(",");
-		
-		for(int i=0;i<emotionArray.length;i++){
-			System.out.println("emotionArray>>"+emotionArray[i]);
-			emotion.setEmotion(Integer.parseInt(emotionArray[i]));
-			emotionList.add(emotion);
+
+		for(int i=0;i<emotionArray.size();i++){
+			System.out.println("emotionArray>>"+emotionArray.get(i));;
+			if(emotionArray.get(i).equals("that")){
+
+				BlockEmotion emotion = new BlockEmotion();
+				emotion.setEmotion(i);
+				emotionList.add(emotion);
+			}
 		}
-		
-	
+
 		// hash 정보 담기
 		BlockHash hash = new BlockHash();
 		List<BlockHash> hashList = new ArrayList<BlockHash>();
-		
-		String hashArray[] = ((String)map.get("hashCode")).split(",");
-		
+
+		String hashArray[] = ((String)map.get("tag")).split(",");
+
 		for(int i=0;i<hashArray.length;i++){
-			System.out.println("hashArray>>"+hashArray[i]);
 			hash.setTag(hashArray[i]);
 			hashList.add(hash);
 		}
-		
+
 		Block block = new Block();
 		block.setNote((String)map.get("note"));
-		block.setTitle("경모오빠상큼");
-		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함
+		block.setTitle((String)map.get("title"));
+		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
-		block.setTime(4);
+		block.setTime(4);// (수정)
 
-		
 		System.out.println("완성된 형태의 블록 : " + block);
-		
+
 		blockService.addBlock(block);
 		System.out.println("돌아왔을떄 blockService.addblock()");
 		return block;

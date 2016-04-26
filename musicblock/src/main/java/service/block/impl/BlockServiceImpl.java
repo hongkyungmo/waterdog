@@ -27,9 +27,7 @@ public class BlockServiceImpl implements BlockService{
 
 	///Method
 	public void addBlock(Block block) throws Exception {
-		System.out.println("blockServiceImpl의 addblock()");
 		blockDao.addBlock(block);
-		System.out.println("돌아왔을떄 blockDao.addBlock(block)");
 		int bcode = blockDao.getCurrentBlockCode();
 		System.out.println("bcode>>"+bcode);
 

@@ -46,7 +46,7 @@
 		for(i=0;i<kind.length;i++){
 			if(emotion[i]=='images/smile_'+kind[i]+'_clicked.png'){
 				eCount++;
-				emotion[i]="that";
+				emotion[i]='that';
 			}
 		}
 		
@@ -78,10 +78,9 @@
 	});
 			
 	//Save to Server&Local
-	function sendServer(emotion){
+	function sendServer(transfEmotion){
 		
-		var dummyNote = location.href.substr(location.href
-				.lastIndexOf('=') + 1);
+		var dummyNote ="도1,레2,레2";
 		//"미2,레#2,솔1,파#4,라3";
 		var dummyTag = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
 		var dummyEmotion = "3";
@@ -94,9 +93,11 @@
 
 					,
 					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-						emotion : dummyEmotion,
-						note : dummyNote,
-						hashCode : dummyTag,
+						emotion : transfEmotion,
+						note : location.href.substr(location.href
+								.lastIndexOf('=') + 1),
+						tag : dummyTag,
+						title : dummyTitle
 					}),
 					dataType : "json" //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 
