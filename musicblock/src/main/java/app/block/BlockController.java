@@ -17,6 +17,7 @@ import service.block.BlockService;
 import service.domain.Block;
 import service.domain.BlockEmotion;
 import service.domain.BlockHash;
+import service.domain.Title;
 
 @Controller
 @RequestMapping("/block/*")
@@ -60,10 +61,20 @@ public class BlockController {
 			hash.setTag(hashArray[i]);
 			hashList.add(hash);
 		}
+		
 
+		// title 지정하기
+		String title;
+		if((String)map.get("title")==null){
+			title= new Title().getTitle();
+		}else{
+			title=(String)map.get("title");
+		}
+		
 		Block block = new Block();
+		
+		block.setTitle(title);
 		block.setNote((String)map.get("note"));
-		block.setTitle((String)map.get("title"));
 		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
@@ -71,7 +82,7 @@ public class BlockController {
 
 		System.out.println("완성된 형태의 블록 : " + block);
 
-		blockService.addBlock(block);
+//		blockService.addBlock(block);
 		System.out.println("돌아왔을떄 blockService.addblock()");
 		return block;
 	}
