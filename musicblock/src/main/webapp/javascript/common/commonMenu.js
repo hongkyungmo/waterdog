@@ -18,7 +18,7 @@ element += "</div><div class='col-xs-10 COMMON-MENUBAR-GRID-10'>";
 var addedComposeMusic = "<div class='row COMPOSE-MENUBAR-ROW'><div class='col-xs-4 COMMON-MENUBAR-GRID-4'></div><div class='col-xs-4 COMMON-MENUBAR-GRID-4'><div class='row COMMON-MENUBAR-ROW'><div class='col-xs-4 COMMON-MENUBAR-GRID-4'><button class='btn COMPOSE-MENUBAR-BTN' data-action='prev' id='btn-prev'><span></span></button></div><div class='col-xs-4 COMMON-MENUBAR-GRID-4'><button class='btn COMPOSE-MENUBAR-BTN' data-action='play' id='btn-play'><span></span></button></div><div class='col-xs-4 COMMON-MENUBAR-GRID-4'><button class='btn COMPOSE-MENUBAR-BTN' data-action='next' id='btn-next'><span></span></button></div></div></div><div class='col-xs-4 COMMON-MENUBAR-GRID-4'></div></div>";
 
 
-if (path.indexOf("/composeMusic.html") != 1) {
+if (path.indexOf("/composeMusic.html") != -1) {
     element += addedComposeMusic;
 } else {
 
