@@ -82,7 +82,7 @@ public class BlockController {
 
 		System.out.println("완성된 형태의 블록 : " + block);
 
-//		blockService.addBlock(block);
+		blockService.addBlock(block);
 		System.out.println("돌아왔을떄 blockService.addblock()");
 		return block;
 	}
