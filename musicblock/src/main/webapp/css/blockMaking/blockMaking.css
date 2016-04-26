@@ -13,6 +13,7 @@ html, body {
 
 #syllable-container {
 	/*background-color: #78d2f4;*/
+    position:relative;
     background-color: ghostwhite;
 	width: 52%;
 	height: 90%;

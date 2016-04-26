@@ -56,9 +56,9 @@ $(function () {
             $("#play").css("background-color", '#ee4c8d');
             $(".glyphicon-play").addClass("glyphicon glyphicon-stop");
             $(".glyphicon-play").removeClass("glyphicon-play");
-            $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1.5%;height:16.7%;position:absolute;float:left;left:5.9%;z-index:1;top:16.5%;opacity:0.3'></div>");
+            $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1%;height:100%;position:absolute;float:left;left:0%;z-index:1;top:0%;opacity:0.3;overflow-x:hidden;'></div>");
             $("#display-bar").animate({
-                left: "51.3%"
+                left: "100%"
             }, blockAnimateTime, function () {
                 while ($("#display-bar").length > 0) {
                     $("#display-bar").remove();
