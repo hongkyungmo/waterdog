@@ -9,7 +9,6 @@ CREATE SEQUENCE seq_block_bcode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_music_mcode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_block_bhash	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_music_mhash	INCREMENT BY 1 START WITH 1;
-
 /* Block */
 DROP TABLE BLOCK 
 	CASCADE CONSTRAINTS;
@@ -45,28 +44,10 @@ CREATE TABLE BLOCK (
 	NOTE VARCHAR(255) NOT NULL, /* 음표 */
 	PCOUNT INTEGER NOT NULL, /* PlayCount */
 	DCOUNT INTEGER NOT NULL, /* DownCount */
-	BTITLE VARCHAR(20) NOT NULL, /* Block title */
-	REGDATE DATE NOT NULL, /* 업로드시간  */
-	TIME INTEGER NOT NULL /* 블럭시간 */
+	BTITLE VARCHAR(20) NOT NULL, /* Btitle */
+	REGDATE DATE NOT NULL, /* 등록일 */
+	TIME INTEGER NOT NULL /* 블록시간 */
 );
-
-COMMENT ON TABLE BLOCK IS 'Block';
-
-COMMENT ON COLUMN BLOCK.BCODE IS 'BlockCode';
-
-COMMENT ON COLUMN BLOCK.UCODE IS 'UserCode';
-
-COMMENT ON COLUMN BLOCK.NOTE IS '음표';
-
-COMMENT ON COLUMN BLOCK.PCOUNT IS 'PlayCount';
-
-COMMENT ON COLUMN BLOCK.DCOUNT IS 'DownCount';
-
-COMMENT ON COLUMN BLOCK.BTITLE IS 'Btitle';
-
-COMMENT ON COLUMN BLOCK.REGDATE IS '업로드시간';
-
-COMMENT ON COLUMN BLOCK.TIME IS '블럭시간';
 
 CREATE UNIQUE INDEX PK_BLOCK
 	ON BLOCK (
@@ -86,14 +67,6 @@ CREATE TABLE BLOCK_HASH (
 	BCODE INTEGER NOT NULL, /* BlockCode */
 	BTAG VARCHAR(20) NOT NULL /* HashTag */
 );
-
-COMMENT ON TABLE BLOCK_HASH IS '블럭해시태그';
-
-COMMENT ON COLUMN BLOCK_HASH.HCODE IS 'Hcod
-
-COMMENT ON COLUMN BLOCK_HASH.BCODE IS 'BlockCode';
-
-COMMENT ON COLUMN BLOCK_HASH.BTAG IS 'HashTag';
 
 CREATE UNIQUE INDEX PK_BLOCK_HASH
 	ON BLOCK_HASH (
@@ -115,19 +88,13 @@ ALTER TABLE BLOCK_HASH
 /* 블럭감정 */
 CREATE TABLE Block_Emotion (
 	BCODE INTEGER NOT NULL, /* BlockCode */
-	BEMOTION INTEGER NOT NULL /* Emotion */
+	HEMOTION INTEGER NOT NULL /* Emotion */
 );
-
-COMMENT ON TABLE Block_Emotion IS '블럭감정';
-
-COMMENT ON COLUMN Block_Emotion.BCODE IS 'BlockCode';
-
-COMMENT ON COLUMN Block_Emotion.BEMOTION IS 'Emotion';
 
 CREATE UNIQUE INDEX PK_Block_Emotion
 	ON Block_Emotion (
 		BCODE ASC,
-		BEMOTION ASC
+		HEMOTION ASC
 	);
 
 ALTER TABLE Block_Emotion
@@ -135,20 +102,16 @@ ALTER TABLE Block_Emotion
 		CONSTRAINT PK_Block_Emotion
 		PRIMARY KEY (
 			BCODE,
-			BEMOTION
+			HEMOTION
 		);
 
 /* User */
 CREATE TABLE USERS (
 	UCODE INTEGER NOT NULL, /* UserCode */
-	NICK VARCHAR(20) NOT NULL /* Nickname */
+	NICK VARCHAR(20) NOT NULL, /* Nickname */
+	EMAIL VARCHAR2(40) NOT NULL, /* 이메일 */
+	PASSWORD VARCHAR(64) NOT NULL /* 비밀번호 */
 );
-
-COMMENT ON TABLE USERS IS 'User';
-
-COMMENT ON COLUMN USERS.UCODE IS 'UserCode';
-
-COMMENT ON COLUMN USERS.NICK IS 'Nickname';
 
 CREATE UNIQUE INDEX PK_USERS
 	ON USERS (
@@ -158,6 +121,11 @@ CREATE UNIQUE INDEX PK_USERS
 CREATE UNIQUE INDEX UIX_USERS
 	ON USERS (
 		NICK ASC
+	);
+
+CREATE UNIQUE INDEX UIX_USERS2
+	ON USERS (
+		EMAIL ASC
 	);
 
 ALTER TABLE USERS
@@ -174,32 +142,23 @@ ALTER TABLE USERS
 			NICK
 		);
 
+ALTER TABLE USERS
+	ADD
+		CONSTRAINT UK_USERS2
+		UNIQUE (
+			EMAIL
+		);
+
 /* Music */
 CREATE TABLE MUSIC (
 	MCODE INTEGER NOT NULL, /* MusicCode */
 	UCODE INTEGER NOT NULL, /* UserCode */
-	CMPT VARCHAR(255) NOT NULL, /* 가진음표 */
+	CMPT clob NOT NULL, /* 가진음표 */
 	PCOUNT INTEGER NOT NULL, /* PlayCount */
 	DCOUNT INTEGER NOT NULL, /* DownCount */
-	MTITLE VARCHAR(50) NOT NULL, /* Music title */
-	REGDATE DATE NOT NULL /* 업로드 시간 */
+	MTITLE VARCHAR(50) NOT NULL, /* Mtitle */
+	REGDATE DATE NOT NULL /* 등록일 */
 );
-
-COMMENT ON TABLE MUSIC IS 'Music';
-
-COMMENT ON COLUMN MUSIC.MCODE IS 'MusicCode';
-
-COMMENT ON COLUMN MUSIC.UCODE IS 'UserCode';
-
-COMMENT ON COLUMN MUSIC.CMPT IS '가진음표';
-
-COMMENT ON COLUMN MUSIC.PCOUNT IS 'PlayCount';
-
-COMMENT ON COLUMN MUSIC.DCOUNT IS 'DownCount';
-
-COMMENT ON COLUMN MUSIC.MTITLE IS 'Mtitle';
-
-COMMENT ON COLUMN MUSIC.REGDATE IS '업로드 시간';
 
 CREATE UNIQUE INDEX PK_MUSIC
 	ON MUSIC (
@@ -218,12 +177,6 @@ CREATE TABLE MUSIC_EMOTION (
 	MCODE INTEGER NOT NULL, /* MusicCode */
 	MEMOTION INTEGER NOT NULL /* Emotion */
 );
-
-COMMENT ON TABLE MUSIC_EMOTION IS '음악감정';
-
-COMMENT ON COLUMN MUSIC_EMOTION.MCODE IS 'MusicCode';
-
-COMMENT ON COLUMN MUSIC_EMOTION.MEMOTION IS 'Emotion';
 
 CREATE UNIQUE INDEX PK_MUSIC_EMOTION
 	ON MUSIC_EMOTION (
@@ -250,14 +203,6 @@ CREATE TABLE MUSIC_HASH (
 	MCODE INTEGER NOT NULL, /* MusicCode */
 	MTAG VARCHAR(20) NOT NULL /* HashTag */
 );
-
-COMMENT ON TABLE MUSIC_HASH IS '음악해시태그';
-
-COMMENT ON COLUMN MUSIC_HASH.HCODE IS 'Hcode';
-
-COMMENT ON COLUMN MUSIC_HASH.MCODE IS 'MusicCode';
-
-COMMENT ON COLUMN MUSIC_HASH.MTAG IS 'HashTag';
 
 CREATE UNIQUE INDEX PK_MUSIC_HASH
 	ON MUSIC_HASH (
@@ -336,14 +281,14 @@ ALTER TABLE MUSIC_HASH
 			MCODE
 		);
 
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user01');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user02');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user03');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user04');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user05');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user06');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user07');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user08');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user09');
-INSERT INTO users(ucode,nick) VALUES(seq_user_ucode.nextval,'user10');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user01','email1','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user02','email2','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user03','email3','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user04','email4','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user05','email5','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user06','email6','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user07','email7','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user08','email8','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user09','email9','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user10','email10','1234');
 commit;
