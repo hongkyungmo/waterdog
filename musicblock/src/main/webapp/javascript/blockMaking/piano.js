@@ -3,49 +3,51 @@
 
 $(function() {
 	$(".key").bind(keyDown, function() {
-		var index_of_key = $(".key").index(this);
-        
-        var noteCodeForPlayNote = index_of_key + 12 * (octave-1) + 1;
-		switch (index_of_key) {
-		case 0:
-			playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 1:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 2:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 3:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 4:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 5:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 6:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 7:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 8:
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 9:
-			//play(369.9944, octave_for_play);
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 10:
-			//play(415.3047, octave_for_play);
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
-		case 11:
-			//play(466.1638, octave_for_play);
-            playNote(noteCodeToFreq(noteCodeForPlayNote));
-			break;
+		if ($("#display-bar").length == 0) {
+			var index_of_key = $(".key").index(this);
+
+			var noteCodeForPlayNote = index_of_key + 12 * (octave-1) + 1;
+			switch (index_of_key) {
+			case 0:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 1:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 2:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 3:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 4:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 5:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 6:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 7:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 8:
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 9:
+				//play(369.9944, octave_for_play);
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 10:
+				//play(415.3047, octave_for_play);
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			case 11:
+				//play(466.1638, octave_for_play);
+				playNote(noteCodeToFreq(noteCodeForPlayNote));
+				break;
+			}
 		}
 	});
 });
@@ -54,7 +56,9 @@ $(function() {
 	$(".key").bind(keyUp, function() {
 		//oscillator.stop();
         //oscillator.disconnect(gain);
-        gain.gain.value = 0;
+		if ($("#display-bar").length == 0) {
+        	gain.gain.value = 0;
+		}
 	});
 });
 

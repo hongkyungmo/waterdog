@@ -147,28 +147,30 @@ $(function () {
 //건반 클릭
 $(function () {
     $(".key").bind(keyDown, function () {
-        var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
+		if ($("#display-bar").length == 0) {
+			var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
 
-        //var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
-        //음정 표시
-        if (clickSequence == 0) {
-            displayObj = '<div class="syllable" style="width:100%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
-        } else {
-            for (var j = 0; j < clickSequence; j++) {
-                //박자 결정
-                var beat = (100 - (clickSequence)) / (clickSequence + 1);
-                $(".syllable:eq(" + j + ")").width(beat + '%');
-            }
-            displayObj = '<div class="divider"></div><div class="syllable" style="width:' + beat + '%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
-        }
-        //음 디스플레이에 표시
-        $("#syllable-container").append(displayObj);
-        //음정 조절
-        $(".syllable-bar").last().draggable({
-            containment: "parent"
-            , axis: "y"
-        });
-        clickSequence++;
+			//var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
+			//음정 표시
+			if (clickSequence == 0) {
+				displayObj = '<div class="syllable" style="width:100%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
+			} else {
+				for (var j = 0; j < clickSequence; j++) {
+					//박자 결정
+					var beat = (100 - (clickSequence)) / (clickSequence + 1);
+					$(".syllable:eq(" + j + ")").width(beat + '%');
+				}
+				displayObj = '<div class="divider"></div><div class="syllable" style="width:' + beat + '%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';
+			}
+			//음 디스플레이에 표시
+			$("#syllable-container").append(displayObj);
+			//음정 조절
+			$(".syllable-bar").last().draggable({
+				containment: "parent"
+				, axis: "y"
+			});
+			clickSequence++;
+		}
     });
 });
 
