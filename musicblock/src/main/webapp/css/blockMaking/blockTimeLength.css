@@ -1,0 +1,29 @@
+#block-time-length-container {
+	position: relative;
+	float:left;
+	width: 10%;
+	height: 90%;
+	background-color: #128cfe;
+	/* -webkit-transform: skew(-15deg);*/
+	border-radius: 5px;
+}
+
+#block-time-length-controlbar {
+	position: absolute;
+	top: -900%;
+	width: 25%;
+	height: 1800%;
+	/*background-color: #66ee55;*/
+	background-color: #66ee55;
+	border-radius: 2px;
+	opacity: 0.9;
+}
+
+#block-time-display{
+	position:absolute;
+	width:50%;
+	top:23%;
+	left:25%;
+	font-size:2em;
+	font
+}

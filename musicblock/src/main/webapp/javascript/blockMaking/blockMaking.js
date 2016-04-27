@@ -59,7 +59,7 @@ $(function () {
             $("#syllable-container").append("<div id='display-bar' style='background-color:red;width:1%;height:100%;position:absolute;float:left;left:0%;z-index:1;top:0%;opacity:0.3;overflow-x:hidden;'></div>");
             $("#display-bar").animate({
                 width: "100%"
-            }, blockAnimateTime, function () {
+            }, blockAnimateTime, 'linear', function () {
                 while ($("#display-bar").length > 0) {
                     $("#display-bar").remove();
                     $(".glyphicon-stop").addClass("glyphicon glyphicon-play");
