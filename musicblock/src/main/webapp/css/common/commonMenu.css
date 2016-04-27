@@ -49,6 +49,20 @@
     left: 100%;
 }
 
+.fa-plus-circle{
+    position: absolute;
+    top:10%;
+    right: 10%;;
+    color: white;
+}
+
+div .fa-2x{
+    font-size: 1.5em;
+    color : white
+}
+
+
+
 /* Overriding BootStrapk */
 
 /* Overriding .btn */
@@ -62,7 +76,7 @@
     width: 100%;
     height: 100%;
     background: 0 0;
-    border-radius: 0px;
+    border: 0px;
 }
 
 /* Overriding .row */

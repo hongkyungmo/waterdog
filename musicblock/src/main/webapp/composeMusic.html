@@ -52,9 +52,15 @@
     <!-- User Defined & Overriding   -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/composeMusic.css">
 
+    <!-- Semantic UI -->
+<!--    <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">-->
+    
     <!-- Tab -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/tab.css">
 
+    <!-- Common Module : Block -->
+    <link rel="stylesheet" type="text/css" href="css/common/block.css">
+    
     <!-- External css load End   -->
 
 </head>
@@ -134,39 +140,48 @@
 
         <!-- 저장소 프레임 -->
         <div class="block-repository">
+
             <div class="tab_container">
+
                 <input id="tab1" type="radio" name="tabs" checked>
                 <label for="tab1"><i class="fa fa-user"> My Blocks</i></label>
 
                 <input id="tab2" type="radio" name="tabs">
-                <label for="tab2"><i class="fa fa-group"> Hot Blocks</i></label>
+                <label for="tab2"><i class="fa fa-download"> Downloaded Blocks</i></label>
 
                 <input id="tab3" type="radio" name="tabs">
                 <label for="tab3"><i class="fa fa-gear"> Option</i></label>
 
-                <!--
-			<input id="tab4" type="radio" name="tabs">
-			<label for="tab4"><i class="fa fa-folder-open-o"></i><span>Portfolio</span></label>
-
-			<input id="tab5" type="radio" name="tabs">
-			<label for="tab5"><i class="fa fa-envelope-o"></i><span>Contact</span></label>
--->
 
                 <section id="content1" class="tab-content">
-                   <p>a</p> 
-                   
+
+                    <div class='layer-melody-block'>
+                        <!-- 블럭 리스트 -->
+
+                        <ol class='swiper-wrapper simple_with_drop vertical' id='work-layer'>
+
+                            <li class="swiper-slide highlight">
+                                <div class="noteVisualContainer"></div>
+                                <i class='icon-move'></i> Item 1</li>
+
+
+
+                            <!-- 블럭 리스트 끝 -->
+                        </ol>
+                        <!-- 스크롤 바 -->
+                        <div class="swiper-scrollbar"></div>
+
+                        <!-- 멜로디 블럭 레이어 끝 -->
+                    </div>
+
                 </section>
 
                 <section id="content2" class="tab-content">
-                   <p>b</p> 
-                   
-                    
+                    <p>b</p>
                 </section>
 
                 <section id="content3" class="tab-content">
-                    
-                    <p>c</p> 
-                    
+                    <p>c</p>
                 </section>
 
             </div>
@@ -323,10 +338,12 @@
     <script src='javascript/composeMusic/sortable.js'></script>
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
-    <!-- Player JS -->
-    <!-- <script src="javascript/composeMusic/player.js"></script> -->
+    <!-- Sementi JS -->
+<!--    <script type="text/javascript" src="javascript/common/semantic.min.js"></script>-->
     <!-- User Defined & Overriding   -->
     <script src="javascript/composeMusic/composeMusic.js"></script>
+    <!-- Common Module : Block   -->
+    <script src="javascript/common/block.js"></script>
 
 </body>
 
