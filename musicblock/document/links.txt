@@ -36,7 +36,8 @@ https://developers.naver.com/main
 <Daum Developers>
 https://developers.daum.net/
 
-
+<Exerd 한글 도움말>
+http://exerd.com:8081/help/index.jsp?lang=ko
 
 
 
