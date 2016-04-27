@@ -79,6 +79,12 @@ div .fa-2x{
     border: 0px;
 }
 
+.btn:hover
+{
+    color:white;
+    background-color: #46B8FF;
+}
+
 /* Overriding .row */
 .COMMON-MENUBAR-ROW {
     width: 100%;
@@ -98,13 +104,7 @@ div .fa-2x{
     height: 100%;
 }
 
-/* Overriding glyphicon color */
-.glyphicon-chevron-left:before{
-    color : white;
-}
-.glyphicon-menu-hamburger:before{
-    color : white;
-}
+
 
 
 /*
