@@ -3,7 +3,7 @@
  */
 
 //block이 플레이되는 시간
-var blockAnimateTime = 2000;
+var blockAnimateTime = 4000;
 //피아노건반을 누른 음이 저장되는 배열
 var noteArr = new Array();
 //이벤트 타입(모바일/데스크탑) 전환
@@ -140,7 +140,7 @@ $(function () {
         }
     });
     spaceKey.bind(keyUp, function () {
-        $(this).css("background-color", '#e1f6fa');
+        $(this).css("background-color", '#c8DDFF');//#e1f6fa
     });
 });
 
