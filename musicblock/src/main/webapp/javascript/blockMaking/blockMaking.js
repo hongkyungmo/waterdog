@@ -101,20 +101,7 @@ $(function () {
     $("#clear").bind(keyUp, function () {
         $("#clear").css("background-color", '#e1f6fa');
     });
-    //next
-    $("#next").bind(keyDown, function () {
-    	//음 배열 -> 음 String으로 저장(쉼표 추가)
-    	var noteStr = "";
-    	for(var i=0;i<noteArr.length;i++){
-    		noteStr = noteStr + noteArr[i] + ",";
-    	}
-    	console.log(noteStr.slice(0,-1));
-        location.href = "/emotion.html?var=" + noteStr.slice(0,-1);
-        $("#next").css("background-color", '##e1f6fa');
-    });
-    $("#next").bind(keyUp, function () {
-        $("#next").css("background-color", '#e1f6fa');
-    });
+    
 });
 //공백건반 클릭
 $(function () {
