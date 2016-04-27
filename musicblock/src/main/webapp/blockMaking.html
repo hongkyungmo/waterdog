@@ -72,7 +72,7 @@
 		$(function () {
 			$("#next").bind("click", function () {
 				var noteStr = "";
-				noteStr += $("#block-time-display").text().replace(/[^0-9]/g, '') + "/";
+				noteStr += $("#block-time-display").text().replace(/[^0-9]/g, '') + "?";
 				//음 배열 -> 음 String으로 저장(쉼표 추가)
 				for (var i = 0; i < noteArr.length; i++) {
 					noteStr = noteStr + noteArr[i] + ",";
