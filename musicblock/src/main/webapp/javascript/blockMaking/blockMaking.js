@@ -74,7 +74,7 @@ $(function () {
     //cancel
     $("#cancel").bind(keyDown, function () {
         if ($("#display-bar").length == 0) {
-            $("#cancel").css("background-color", '#e1f6fa');
+            $("#cancel").css("background-color", '#33ffbd');
             if (clickSequence > 0) {
                 $(".syllable").last().remove();
                 $(".divider").last().remove();
