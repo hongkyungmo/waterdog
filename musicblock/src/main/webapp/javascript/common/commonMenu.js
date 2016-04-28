@@ -6,7 +6,7 @@ var path = $(location).attr('pathname');
 
 
 
-var element = "<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1' ";
+var element = "<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
 
 if(path != "/mainpage.html"){
     element += "<button type='btn' class='btn COMMON-MENUBAR-BTN fa fa-chevron-left fa-2x' id='back'></button>";
@@ -45,12 +45,12 @@ var addedComposeMusic =
         "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='padding-right:0px;'>" +
             "<div class='row COMMON-MENUBAR-ROW'>" +  
                 "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='float:right'>" + 
-                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='btn-community'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='btn-save'>" + 
                     "<span></span>" + 
                     "</button>" + 
                 "</div>" + 
                 "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='float:right'>" + 
-                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-folder-open-o fa-2x' id='btn-community'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-folder-open-o fa-2x' id='btn-load'>" + 
                     "<span></span>" + 
                     "</button>" + 
                 "</div>" + 
@@ -65,9 +65,7 @@ if (path.indexOf("/composeMusic.html") != -1) {
 
 }
 
-element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>" 
-		+"<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'>" 
-		+"</button></div></div>";
+element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>";
 
 
 $("body").append(element);
