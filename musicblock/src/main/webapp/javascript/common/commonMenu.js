@@ -67,9 +67,7 @@ if (path.indexOf("/composeMusic.html") != -1) {
 
 element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>" 
 		+"<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'>" 
-		+"</button></div><div id='mask'></div>" +
-				"<div id='login' style='border:5px #33FF66 solid;display:none;z-index:10;'>DIV02</div>" +
-				"</div>";
+		+"</button></div></div>";
 
 
 $("body").append(element);
