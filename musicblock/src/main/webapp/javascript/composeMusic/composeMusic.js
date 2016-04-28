@@ -16,18 +16,18 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
     , freeMode: true
 });
 
-var swiperReository = new Swiper('.layer-selector', {
-    scrollbar: '.swiper-scrollbar'
-    , scrollbarHide: true
-    , slidesPerView: 'auto'
-    , spaceBetween: 0
-    , grabCursor: false
-    , freeMode: true
-});
+//var swiperReository = new Swiper('.layer-selector', {
+//    scrollbar: '.swiper-scrollbar'
+//    , scrollbarHide: true
+//    , slidesPerView: 'auto'
+//    , spaceBetween: 0
+//    , grabCursor: false
+//    , freeMode: true
+//});
+//$("ol.simple_with_drop").draggable()
 
 $("ol.simple_with_drop").sortable({
     group: 'no-drop'
-    , handle: 'i.icon-move'
     , onDragStart: function ($item, container, _super) {
         // Duplicate items of the no drop area
         parent = $item.parent();
@@ -72,12 +72,45 @@ $("ol.simple_with_no_drop").sortable({
 
 
 $(function () {
+    
+       
+    $( ".highlight" ).draggable();
+          
+       
+        
+    // Move to blockMaking.html
+    $("#btn-create").bind("click", function(){
+        // need to keep sorted blocks layer
+        $(location).attr('href',"blockMaking.html");
+    });
+        
+    // Move to template.html
+    $("#btn-community").bind("click", function(){
+        // need to keep sorted blocks layer
+        $(location).attr('href',"template.html");
+    });
+    
+    // Move to mainpage.html
+    $("#btn-load").bind("click", function(){
+        // need to keep sorted blocks layer
+        $(location).attr('href',"mainpage.html");
+    });
 
+    
+    // Move to emotion.html
+    $("#btn-save").bind("click", function(){
+        // passing information about music to that page.
+//        $(location).attr('href',"emotion.html");
+        $("#work-layer").stop()
+    });
+    
+
+    
     $("#btn-prev").bind("click", function () {
         $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
     });
 
-    $("#btn-play").on("click", function () {
+    $("#btn-play").bind("click", function () {
 
         $("#work-layer").stop().animate({
             'left': '-509'

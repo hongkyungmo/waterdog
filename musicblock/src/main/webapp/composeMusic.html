@@ -18,8 +18,10 @@
     <!-- JQuery Load End -->
 
     <!--  JQuery Mobile using ajax load Start  -->
+<!--
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+-->
     <script>
         $(document).bind('mobileinit', function () {
             $.mobile.changePage.defaults.changeHash = false;
@@ -53,16 +55,16 @@
     <link rel="stylesheet" type="text/css" href="css/composeMusic/composeMusic.css">
 
     <!-- Semantic UI -->
-<!--    <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">-->
-    
+    <!--    <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">-->
+
     <!-- Tab -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/tab.css">
 
     <!-- Common Module : Block -->
     <link rel="stylesheet" type="text/css" href="css/common/block.css">
-    
-    <!-- External css load End   -->
 
+    <!-- External css load End   -->
+   
 </head>
 
 <body>
@@ -85,44 +87,16 @@
 
                     <ol class='swiper-wrapper simple_with_drop vertical' id='work-layer'>
 
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 1</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 2</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 3</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 4</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 5</li>
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 6</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 7</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 8</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 9</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item 0</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item `</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i>Item -</li>
-
-                        <li class="swiper-slide highlight"><i class='icon-move'><span
-								class="glyphicon glyphicon-move"></span></i> Item =</li>
-
+                        <!-- no-drop : 어디서 드랍이 왔는지 확인 하기 위한 selector
+                                             swiper-slide, highlight : 스타일을 지정하기 위한 selector
+                                             layer-block : drag handler
+                                        -->
+                        <li class='swiper-slide highlight'>Item 1</li>
+                        <li class='swiper-slide highlight'>Item 2</li>
+                        <li class='swiper-slide highlight'>Item 3</li>
+                        <li class='swiper-slide highlight'>Item 4</li>
+                        <li class='swiper-slide highlight'>Item 5</li>
+                        <li class='swiper-slide highlight'>Item 6</li>
 
                         <!-- 블럭 리스트 끝 -->
                     </ol>
@@ -155,23 +129,50 @@
 
                 <section id="content1" class="tab-content">
 
-                    <div class='layer-melody-block'>
-                        <!-- 블럭 리스트 -->
+                    <!-- 스와이퍼 컨테이너-->
+                    <div class="swiper-container">
 
-                        <ol class='swiper-wrapper simple_with_drop vertical' id='work-layer'>
+                        <!-- 스와이퍼 래퍼-->
+                        <div class="swiper-wrapper">
 
-                            <li class="swiper-slide highlight">
-                                <div class="noteVisualContainer"></div>
-                                <i class='icon-move'></i> Item 1</li>
+                            <!-- 스와이퍼 슬라이드-->
+                            <div class="swiper-slide">
+
+                                <!-- 블럭 저장소-->
+                                <div class='span4'>
+
+                                    <!-- 블럭 리스트-->
+                                    <ol class='simple_with_no_drop vertical' id ='repository'>
+                                        <!-- no-drop : 어디서 드랍이 왔는지 확인 하기 위한 selector
+                                             swiper-slide, highlight : 스타일을 지정하기 위한 selector
+                                             layer-block : drag handler
+                                        -->
+                                        <li class='no_drop swiper-slide highlight'>Item 1</li>
+                                        <li class='no_drop swiper-slide highlight'>Item 2</li>
+                                        <li class='no_drop swiper-slide highlight'>Item 3</li>
+                                        <li class='no_drop swiper-slide highlight'>Item 4</li>
+                                        <li class='no_drop swiper-slide highlight'>Item 5</li>
+                                        <li class='no_drop swiper-slide highlight'>Item 6</li>
+
+                                        <!-- 블럭 리스트 끝-->
+                                    </ol>
+
+                                    <!-- 스크롤 바-->
+                                    <div class="swiper-scrollbar"></div>
+                                    <!-- 블럭 저장소 끝-->
+                                </div>
+
+                                <!-- 스와이퍼 슬라이드 끝-->
+                            </div>
 
 
 
-                            <!-- 블럭 리스트 끝 -->
-                        </ol>
-                        <!-- 스크롤 바 -->
-                        <div class="swiper-scrollbar"></div>
+                            <!--                            스와이퍼 래퍼 끝-->
+                        </div>
 
-                        <!-- 멜로디 블럭 레이어 끝 -->
+
+
+                        <!--                        스와이퍼 컨테이    너 끝-->
                     </div>
 
                 </section>
@@ -187,145 +188,7 @@
             </div>
 
             <!--
-             스와이퍼 컨테이너 
-            <div class="swiper-container">
-
-                 페이지 
-                <div class="swiper-pagination"></div>
-
-                 스와이퍼 래퍼 
-                <div class="swiper-wrapper">
-
-                     스와이퍼 슬라이드 
-                    <div class="swiper-slide">
-
-                         블럭 저장소 
-                        <div class='span4'>
-
-                            <h3>My Block Repository</h3>
-
-                             블럭 리스트 
-                            <ol class='simple_with_no_drop vertical'>
-
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i></li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 2</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 3</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 4</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 5</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 6</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 7</li>
-
-                                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 8</li>
-
-                                 블럭 리스트 끝 
-            </ol>
-
-            스크롤 바
-            <div class="swiper-scrollbar"></div>
-            블럭 저장소 끝
-        </div>
-
-        스와이퍼 슬라이드 끝
-    </div>
-
-
-    스와이퍼 슬라이드
-    <div class="swiper-slide">
-
-        블럭 저장소
-        <div class='span4'>
-
-            <h3>Hot Block Repository</h3> 블럭 리스트
-            <ol class='simple_with_no_drop vertical'>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 1</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 2</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 3</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 4</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 5</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 6</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item 7</li>
-
-                <li class='no_drop swiper-slide highlight'><i class='icon-move'> <span class="glyphicon glyphicon-move"></span>
-								</i> Item</li>
-
-                블럭 리스트 끝
-            </ol>
-
-            블럭 저장소 끝
-        </div>
-
-        스와이퍼 슬라이드 끝
-    </div>
-
-
-    스와이퍼 슬라이드
-    <div class="swiper-slide">
-        블럭 저장소
-        <div class='span4'>
-
-            <h3>Option</h3> 블럭 리스트
-            <ol class='vertical option-list'>
-
-                <a href="blockMaking.html">
-                    <li class='swiper-slide block-item'>Create block</li>
-                </a>
-
-                <a href="template.html">
-                    <li class='swiper-slide block-item'>Commity</li>
-                </a>
-
-                <a href="emotion.html">
-                    <li class='swiper-slide block-item'>Complete</li>
-                </a>
-
-                <li class='swiper-slide block-item'></li>
-
-
-
-                블럭 리스트 끝
-            </ol>
-
-            블럭 저장소 끝
-        </div>
-        스와이퍼 슬라이드 끄
-    </div>
-
-    스와이퍼 래퍼 끝
-    </div>
-
-
-
-    스와이퍼 컨테이너 끝
-    </div>
+            
 -->
             <!-- 저장소 프레임 끝-->
         </div>
@@ -336,11 +199,15 @@
 
     <!-- Sortable JS   -->
     <script src='javascript/composeMusic/sortable.js'></script>
+    <script src="javascript/composeMusic/jquery.ui.touch-punch.min.js"></script>
+    
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
     <!-- Sementi JS -->
-<!--    <script type="text/javascript" src="javascript/common/semantic.min.js"></script>-->
+    <!--    <script type="text/javascript" src="javascript/common/semantic.min.js"></script>-->
     <!-- User Defined & Overriding   -->
+    
+    
     <script src="javascript/composeMusic/composeMusic.js"></script>
     <!-- Common Module : Block   -->
     <script src="javascript/common/block.js"></script>
