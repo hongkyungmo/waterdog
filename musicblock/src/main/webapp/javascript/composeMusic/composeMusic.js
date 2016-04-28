@@ -86,7 +86,7 @@ $("ol.simple_with_no_drop").sortable({
 });
 
 // Allowed to Drag and Drop in Mobile Device
-//$(".highlight").draggable();
+$(".highlight").draggable();
 
 $('ol li').longpress(function () {
     // longpress callback
