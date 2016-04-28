@@ -4,7 +4,7 @@ var wrapper = null;
 var i = null;
 var comparedNoDrop = "simple_with_no_drop";
 var comparedWrapper = "swiper-wrapper";
-
+var sortedData = null;
 
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
@@ -26,13 +26,14 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
 //});
 //$("ol.simple_with_drop").draggable()
 
-$("ol.simple_with_drop").sortable({
+var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
-    , onDragStart: function ($item, container, _super) {
+    , onDragStart: function ($item, container, _super, event) {
         // Duplicate items of the no drop area
         parent = $item.parent();
         parent = parent[0].className;
         parent = parent.split(" ");
+        console.log(container.group);
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
@@ -61,6 +62,20 @@ $("ol.simple_with_drop").sortable({
             swiperMelodyLayer.params.loop && swiperMelodyLayer.createLoop()
                 , swiperMelodyLayer.params.observer && swiperMelodyLayer.support.observer || swiperMelodyLayer.update(!0)
         }
+
+
+        // JSON과 Touch-Punch가 충돌 되므로 직접 구현
+        var data = group.sortable("serialize").get();
+        sortedData = "";
+
+        sortedData = "[";
+        for (var j = 0; j < data[0].length; j++) {
+            sortedData += "{name:" + "\"" + data[0][j].name + "\",id:\"" + data[0][j].id + "\"}";
+            j != data[0].length - 1 ? sortedData += "," : sortedData += "";
+        }
+        sortedData += "]";
+//        console.log(sortedData);
+
     }
 
 });
@@ -70,42 +85,49 @@ $("ol.simple_with_no_drop").sortable({
     , drop: false
 });
 
+// Allowed to Drag and Drop in Mobile Device
+//$(".highlight").draggable();
+
+$('ol li').longpress(function () {
+    // longpress callback
+    console.log("길게 누름ㅋㅋ");
+});
+
+
+
 
 $(function () {
-    
-       
-    $( ".highlight" ).draggable();
-          
-       
-        
+
+
+
     // Move to blockMaking.html
-    $("#btn-create").bind("click", function(){
+    $("#btn-create").bind("click", function () {
         // need to keep sorted blocks layer
-        $(location).attr('href',"blockMaking.html");
-    });
-        
-    // Move to template.html
-    $("#btn-community").bind("click", function(){
-        // need to keep sorted blocks layer
-        $(location).attr('href',"template.html");
-    });
-    
-    // Move to mainpage.html
-    $("#btn-load").bind("click", function(){
-        // need to keep sorted blocks layer
-        $(location).attr('href',"mainpage.html");
+        $(location).attr('href', "blockMaking.html");
     });
 
-    
+    // Move to template.html
+    $("#btn-community").bind("click", function () {
+        // need to keep sorted blocks layer
+        $(location).attr('href', "template.html");
+    });
+
+    // Move to mainpage.html
+    $("#btn-load").bind("click", function () {
+        // need to keep sorted blocks layer
+        $(location).attr('href', "mainpage.html");
+    });
+
+
     // Move to emotion.html
-    $("#btn-save").bind("click", function(){
+    $("#btn-save").bind("click", function () {
         // passing information about music to that page.
-//        $(location).attr('href',"emotion.html");
+        //        $(location).attr('href',"emotion.html");
         $("#work-layer").stop()
     });
-    
 
-    
+
+
     $("#btn-prev").bind("click", function () {
         $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
     });
