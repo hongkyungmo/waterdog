@@ -33,7 +33,7 @@ var group = $("ol.simple_with_drop").sortable({
         parent = $item.parent();
         parent = parent[0].className;
         parent = parent.split(" ");
-        console.log(container.group);
+//        console.log(container.group);
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
@@ -74,7 +74,7 @@ var group = $("ol.simple_with_drop").sortable({
             j != data[0].length - 1 ? sortedData += "," : sortedData += "";
         }
         sortedData += "]";
-//        console.log(sortedData);
+        console.log(sortedData);
 
     }
 
