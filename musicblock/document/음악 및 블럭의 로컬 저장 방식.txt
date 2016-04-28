@@ -61,3 +61,13 @@
  링크 : http://mozilla.github.io/localForage/
  CDN : 
 https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js
+
+<다시 localStorage도 고려 중>
+링크(간단한 함수 소개) : https://inswave.com/support/api/w2/2.0_1.4726B.20150210.133228/WebSquare.localStorage/WebSquare.localStorage.html
+사용예제 : http://www.sqler.com/396857
+채택 고려중인 이유
+ - key/value로 관리되는 간단한 방식
+ - 모든 데이터를 순회 가능
+ - 각 데이터를 키값으로 바로 get해올 수 있음
+단점
+ - blocking 방식이라 DOM객체 생성하여 렌더링 시 시간 지연이 발생
