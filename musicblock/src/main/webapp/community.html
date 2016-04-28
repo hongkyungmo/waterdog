@@ -380,7 +380,6 @@
                             <h2>치킨이 떙길때 듣는노래</h2> <span class="info"> <nm>은혜가은행가네</nm>
 								<em>2016-04-08 20:04:03</em>
                             <hr>
-                            #행복#신남#하루#치맥
 						</span>
 
 
@@ -419,7 +418,6 @@
                             <h2>술이 떙길때 듣는노래</h2> <span class="info"> <nm>은혜가학원가네</nm>
 							<em>2016-04-08 20:04:03</em>
                             <hr>
-                            #회#소주#멍게
 						</span>
                             <ul class="toolbar">
                                 <ui>
@@ -539,28 +537,36 @@
             , /*spaceBetween: 0,*/
             grabCursor: true
         });
-
-
+	
+        var test = 0;
+       
         $(function () {
-        	
         	RecvFromServer();
         		function RecvFromServer(){
-        			alert("1.들어왔오!");
-
-        		 	$.ajax({
-        				type:'GET'
-        				,url:'block/getJsonBlock/2'
-        				,dataType : "json"
-        				,data:""
-        				,success:function(data, status){
-	        				console.log(status);
-							console.log("JSONData : "
-									+ JSON.stringify(data));
-        				}
-        				,error : function(status) {
-    						console.log(status);
-    					}
-        			}) 
+					for(test =1; test <6; ++test){
+						
+	        		 	$.ajax({
+	        				type:'GET'
+	        				,url:'block/getJsonBlock/'+test
+	        				,dataType : "json"
+	        				,data:""
+	        				,async:false
+	        				,success:function(data){
+		        				console.log(status);
+								console.log("JSONData : "
+										+ JSON.stringify(data));
+								alert("dataBase로부터 받은 message:"+JSON.stringify(data));
+								/* $.each(result,function(key){
+									
+									
+								}) */
+								/* $(".comments").html(JSON.stringify(data)); */
+	        				}
+	        				,error : function(status) {
+	    						console.log(status);
+	    					}
+	        			}) 
+					}
         		}
 			
             //좋아요 클릭시 카운트 증가
