@@ -4,6 +4,7 @@
 	<script src="
 				 https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js"></script>
 	<script>
+		//localForage
 		/*// Forcing localstorage here. Feel free to switch to other drivers :)
 		localforage.setDriver(localforage.LOCALSTORAGE).then(function () {
 			var key = 'STORE_KEY';
@@ -26,13 +27,26 @@
 				});
 			});
 		});*/
-		localforage.setDriver(localforage.LOCALSTORAGE).then(function () {
-			
-
+		/*localforage.setDriver(localforage.LOCALSTORAGE).then(function () {
 			console.log(localforage.getItem('users', function (err, readValue) {
 				console.log('Read: ', readValue);
 			}));
-		});
+		});*/
+
+
+		localStorage.setItem("a", "1ha");
+		localStorage.setItem("b", "2haha");
+		localStorage.setItem("c", "3hahaha");
+		localStorage.setItem("d", "4hahahaha");
+		localStorage.setItem("e", "5hahahahaha");
+		for(var i=0;i<5;i++){
+			var key = localStorage.key(i);
+			console.log(localStorage[key]);
+		}
+		
+		
+		//localStorage.removeItem("NickName");
+		
 	</script>
 </head>
 
