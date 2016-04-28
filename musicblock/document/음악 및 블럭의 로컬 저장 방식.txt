@@ -56,3 +56,8 @@
   -> localStorage와는 달리 비동기식이라 버벅임이 적음
   -> 링크 : http://enzine.tistory.com/entry/localForage-더-나아진-오프라인-저장소
  
+ 
+ <임시결정 - localForage>
+ 링크 : http://mozilla.github.io/localForage/
+ CDN : 
+https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js
