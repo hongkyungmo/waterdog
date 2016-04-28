@@ -109,7 +109,7 @@ $(function () {
     // Move to template.html
     $("#btn-community").bind("click", function () {
         // need to keep sorted blocks layer
-        $(location).attr('href', "template.html");
+        $(location).attr('href', "community.html");
     });
 
     // Move to mainpage.html
@@ -122,8 +122,8 @@ $(function () {
     // Move to emotion.html
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
-        //        $(location).attr('href',"emotion.html");
-        $("#work-layer").stop()
+                $(location).attr('href',"emotion.html");
+//        $("#work-layer").stop()
     });
 
 
