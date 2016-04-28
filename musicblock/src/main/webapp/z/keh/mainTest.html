@@ -39,64 +39,41 @@
 <link rel="stylesheet" href="/css/common/commonMenu.css">
 <link rel="stylesheet" href="/css/mainpage/mainpage.css">
 
-<style>
-
-</style>
-
 <script type="text/javascript">
-var currentPlayingIndex = -1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
-//음악 재생 애니메이션
-$(function() {
-	$(".noteVisualContainer")
-			.click(
-					function() {
-						var barCycleLength = 200;
 
-						//<기존 플레이 되던 엘리먼트 stop>
-						$(
-								".noteVisualContainer:eq("
-										+ currentPlayingIndex + ")")
-								.empty();
+function wrapWindowByMask(){
+	//화면의 높이와 너비를 구한다.
+	var maskHeight = $(document).height();  
+	var maskWidth = $(window).width();
+	var login=document.getElementById("login");
+	//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+	$('#mask').css({'width':maskWidth,'height':maskHeight});  
+//마스크의 투명도 처리
+      $('#mask').fadeTo("slow",0.8);
+      
+      login.style.display='block';
+}
 
-						//<현재 클릭한 엘리먼트 play>
-						//play animating div 생성
-						currentPlayingIndex = $(".noteVisualContainer")
-								.index(this);
-						$(
-								".noteVisualContainer:eq("
-										+ currentPlayingIndex + ")")
-								.append(
-										'<div class="noteVisualBar noteVisualOne"></div><div class="noteVisualBar noteVisualTwo"></div><div class="noteVisualBar noteVisualThree"></div><div class="noteVisualBar noteVisualFour"></div><div class="noteVisualBar noteVisualFive"></div><div class="noteVisualBar noteVisualSix"></div><div class="noteVisualBar noteVisualSeven"></div><div class="noteVisualBar noteVisualEight"></div><div class="noteVisualBar noteVisualNine"></div><div class="noteVisualBar noteVisualTen"></div>');
-
-						setInterval(
-								function() {
-									var i = 0;
-
-									for (var i = 0; i < 10; i++) {
-										var rand = Math.floor((Math
-												.random() * 100) + 1);
-										$(
-												".noteVisualContainer:eq("
-														+ currentPlayingIndex
-														+ ")").children(
-												":eq(" + i + ")").animate({
-											//실질적인 애니메이션이 들어가는 곳
-											//여기서 하고 싶은 것을 하면 됨
-											height : rand + "%"
-										}, barCycleLength, function() {
-											//매 주기가 끝나는 시점에 하고 싶은 것이 있으면 이곳에 기술하면 됨
-										});
-									}
-								}, barCycleLength);
-					});
-});
-
-$(function() {
-	var newMusicBtn = $("#new-music");
-	newMusicBtn.click(function() {
-		location.href = "composeMusic.html";
+$(document).ready(function(){
+	//wrapWindowByMask();
+	//불투명 배경 띄우기
+	$('#new-music').click(function(e){
+		e.preventDefault();
+		wrapWindowByMask();
 	});
 });
+
+//팝업 , 불투명 배경 띄우기
+function clicktest(){
+	$('#login').show();
+	wrapWindowByMask();
+}
+
+function btnexit(){
+	$('#login').hide();
+	$('#mask').hide();
+	
+}
 	
 </script>
 </head>
@@ -122,30 +99,16 @@ $(function() {
 				</div></div>
 				<div class="swiper-slide"><div class="ui blue button music">
 					<div class="noteVisualContainer"></div>
-					<div class="music-name">술이 땡길 때</div>
-				</div></div>
-				<div class="swiper-slide"><div class="ui blue button music">
-					<div class="noteVisualContainer"></div>
-					<div class="music-name">먹으면서 냠냠냠</div>
-				</div></div>
-				<div class="swiper-slide"><div class="ui blue button music">
-					<div class="noteVisualContainer"></div>
-					<div class="music-name">은혜가 은행가네</div>
-				</div></div>
-				<div class="swiper-slide"><div class="ui blue button music">
-					<div class="noteVisualContainer"></div>
 					<div class="music-name">승길이가 학원가네</div>
 				</div></div>
 				<div class="swiper-slide"><div class="ui blue button music">
 					<div class="noteVisualContainer"></div>
 					<div class="music-name">윤영이가 집에가네</div>
 				</div></div>
-				
 			</div>
-			
 		</div>
-
 	</div>
+	
 	<script src="/javascript/swiper.min.js"></script>
 	<script>
 	var swiper = new Swiper('.swiper-container', {
