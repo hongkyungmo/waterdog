@@ -56,9 +56,24 @@
 		}else{
 			if(upload.checked){
 				sendServer(emotion);
-			}else{
-				alert("local 에 저장 여기수정하겠습니다");
 			}
+			//local은 무조건 저장
+			//저장 시나리오
+			//1. 시퀀스를 지원하지 않으므로 직접 1씩 증가하는 변수로 largest를 저장
+			//2. 생각해보니 블럭 말고 완성된 곡도 localStorage에 저장해야 함
+			//3. 그래서 이 아이디어 폐기 예정
+			var localLength = localStorage.length;
+			var keyForSaving = localStorage.getItem("largest");
+			if(localLength == 0){
+				localStorage.setItem("largest", "0");
+			}else{
+				keyForSaving++;
+				localStorage.setItem("largest", keyForSaving+"");
+			}
+			
+			var valueForSaving = location.href.substr(location.href.lastIndexOf('=') + 1);
+			
+			localStorage.setItem(keyForSaving+"", valueForSaving);
 		}
 	};
 	
