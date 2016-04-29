@@ -71,3 +71,15 @@ https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js
  - 각 데이터를 키값으로 바로 get해올 수 있음
 단점
  - blocking 방식이라 DOM객체 생성하여 렌더링 시 시간 지연이 발생
+시도 결과 : 시퀀스를 개발자가 직접 만들어서 적용해줘야 함.
+테이블이 딱 한개만 존재한다는 개념이기 때문에 시퀀스를 딱 하나만 만들 수 있음.
+그래서 우리 프로젝트의 경우는 블록시퀀스와 완성된 곡의 시퀀스가 따로 존재해야 하기 때문에
+이 방식을 적용할 수가 없음.
+이미 블록에의 적용은 끝났으나(emotion.html 364번 commit) 이 방식 폐기하기로 결정 ㅠㅠ
+
+<그래서 다시 IndexedDB를 조사 중>
+읽어보면 IndexedDB의 특성을 쉽게 파악할 수 있는 문서
+ -> https://developer.mozilla.org/ko/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB
+요약 :	영구저장, key/value방식, 도메인 기준 저장(same-origin policy), 트랜잭션 개념 존재(수동커밋x, 자동커밋o), key-generator 존재(sequence)
+		API대부분 비동기식(동기식은 web-worker를 위해 마련된 API)
+
