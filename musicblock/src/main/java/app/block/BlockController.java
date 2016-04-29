@@ -69,7 +69,7 @@ public class BlockController {
 		Block block = new Block();
 		block.setTitle(title);
 		block.setNote((String)map.get("note"));
-		block.setuCode(1);//유저코드를 왜래키로 가지고 있어야 함 (수정)
+		block.setuCode(81);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
 		block.setTime(Integer.parseInt((String)map.get("sec")));
