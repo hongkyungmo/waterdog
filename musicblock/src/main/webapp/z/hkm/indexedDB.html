@@ -8,8 +8,8 @@
 		
 		request.onupgradeneeded = function(event){
 			alert("onupgradeneeded");
-			//db = event.target.result;
-			db = request.result;
+			db = event.target.result;
+			//db = request.result;
 			store = db.createObjectStore("mytable1", {keyPath:"id", autoIncrement: true});
 		}
 		
@@ -19,7 +19,12 @@
 		
 		request.onsuccess = function(event){
 			alert("onsuccess");
-			db = request.result;
+			//db = request.result;
+			db = event.target.result;
+			myTransaction = db.transaction("mytable1", "readwrite");
+			
+			var store = myTransaction.objectStore("mytable1");
+			
 			
 		}
 		
