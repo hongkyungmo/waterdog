@@ -79,16 +79,7 @@ $(function () {
     // Menu 버튼으로 Navigation 활성
     $("#menu").bind("click", function () {
     	console.log("메뉴버튼 누름ㅋㅋ");
-    	if ($(".menu-on").length > 0) {
-    		$(".menu-on").addClass("menu-off");
-    		$(".menu-on").removeClass("menu-on");
-    	} else {
-    		$(".menu-off").addClass("menu-on");
-    		$(".menu-off").removeClass("menu-off");
-    		/*
-    		 * $("body").append('<div
-    		 * style="height:92%;width:80%;background-color:gray;position:absolute;left:0%;top:8%;z-index:1000;opacity:0.7">zzzz</div>');
-    		 */
-    	}
+    	$(location).attr('href', "menu.html");
+    	
     });
 });
