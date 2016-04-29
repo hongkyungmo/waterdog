@@ -82,4 +82,10 @@ https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js
  -> https://developer.mozilla.org/ko/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB
 요약 :	영구저장, key/value방식, 도메인 기준 저장(same-origin policy), 트랜잭션 개념 존재(수동커밋x, 자동커밋o), key-generator 존재(sequence)
 		API대부분 비동기식(동기식은 web-worker를 위해 마련된 API)
-
+Using-indexedDB문서 : https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+			(한글화): https://developer.mozilla.org/ko/docs/IndexedDB/Using_IndexedDB
+발표자료 : http://www.slideshare.net/freaktechnik/indexed-db-47797273
+개체 만들기 및 열기
+ -> https://msdn.microsoft.com/ko-kr/library/jj154905(v=vs.85).aspx
+트랜잭션을 사용하여 데이터 관리
+ -> https://msdn.microsoft.com/ko-kr/library/jj154909(v=vs.85).aspx
