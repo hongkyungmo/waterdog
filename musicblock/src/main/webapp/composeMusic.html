@@ -18,7 +18,7 @@
     <!-- JQuery Load End -->
 
     <!--  JQuery Mobile using ajax load Start  -->
-<!--
+    <!--
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 -->
@@ -62,7 +62,7 @@
 
 
     <!-- External css load End   -->
-   
+
 </head>
 
 <body>
@@ -139,7 +139,7 @@
                                 <div class='span4'>
 
                                     <!-- 블럭 리스트-->
-                                    <ol class='simple_with_no_drop vertical' id ='repository'>
+                                    <ol class='simple_with_no_drop vertical' id='repository'>
                                         <!-- no-drop : 어디서 드랍이 왔는지 확인 하기 위한 selector
                                              swiper-slide, highlight : 스타일을 지정하기 위한 selector
                                              layer-block : drag handler
@@ -174,7 +174,48 @@
                 </section>
 
                 <section id="content2" class="tab-content">
-                    <p>b</p>
+                    <!-- 스와이퍼 컨테이너-->
+                    <div class="swiper-container">
+
+                        <!-- 스와이퍼 래퍼-->
+                        <div class="swiper-wrapper">
+
+                            <!-- 스와이퍼 슬라이드-->
+                            <div class="swiper-slide">
+
+                                <!-- 블럭 저장소-->
+                                <div class='span4'>
+
+                                    <!-- 블럭 리스트-->
+                                    <ol class='simple_with_no_drop vertical' id='repository'>
+                                        <!-- no-drop : 어디서 드랍이 왔는지 확인 하기 위한 selector
+                                             swiper-slide, highlight : 스타일을 지정하기 위한 selector
+                                             layer-block : drag handler
+                                        -->
+                                        <li class='no_drop swiper-slide highlight' data-name="Item !" data-id="!">Item !</li>
+                                        <li class='no_drop swiper-slide highlight' data-name="Item @" data-id="@">Item @</li>
+                                        <li class='no_drop swiper-slide highlight' data-name="Item #" data-id="#">Item #</li>
+                                        <li class='no_drop swiper-slide highlight' data-name="Item $" data-id="$">Item $</li>
+                                        <li class='no_drop swiper-slide highlight' data-name="Item %" data-id="%">Item %</li>
+
+                                        <!-- 블럭 리스트 끝-->
+                                    </ol>
+
+                                    <!-- 스크롤 바-->
+                                    <div class="swiper-scrollbar"></div>
+                                    <!-- 블럭 저장소 끝-->
+                                </div>
+
+                                <!-- 스와이퍼 슬라이드 끝-->
+                            </div>
+
+                            <!--                            스와이퍼 래퍼 끝-->
+                        </div>
+
+
+
+                        <!--                        스와이퍼 컨테이    너 끝-->
+                    </div>
                 </section>
 
                 <section id="content3" class="tab-content">
@@ -197,14 +238,14 @@
     <script src='javascript/composeMusic/sortable.js'></script>
     <script src="javascript/composeMusic/jquery.ui.touch-punch.min.js"></script>
     <script src="javascript/composeMusic/jquery.longpress.js"></script>
-    
+
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
     <!-- Sementi JS -->
     <!--    <script type="text/javascript" src="javascript/common/semantic.min.js"></script>-->
     <!-- User Defined & Overriding   -->
-    
-    
+
+
     <script src="javascript/composeMusic/composeMusic.js"></script>
     <!-- Common Module : Block   -->
 

@@ -5,6 +5,9 @@ var i = null;
 var comparedNoDrop = "simple_with_no_drop";
 var comparedWrapper = "swiper-wrapper";
 var sortedData = null;
+var draggedBlockDataId = null;
+var draggedBlock = null;
+var draggedBlockSelector = null;
 
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
@@ -33,10 +36,15 @@ var group = $("ol.simple_with_drop").sortable({
         parent = $item.parent();
         parent = parent[0].className;
         parent = parent.split(" ");
-//        console.log(container.group);
+
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
+        
+        $(".highlight").draggable().css("left", "0").css("top", "0").longpress(function () {
+            // longpress callback
+            console.log("길게 누름ㅋㅋ");
+        });;
     }
     , onDrop: function ($item, container) {
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
@@ -68,10 +76,11 @@ var group = $("ol.simple_with_drop").sortable({
         var data = group.sortable("serialize").get();
         sortedData = "";
 
-        sortedData = "[";
-        for (var j = 0; j < data[0].length; j++) {
-            sortedData += "{name:" + "\"" + data[0][j].name + "\",id:\"" + data[0][j].id + "\"}";
-            j != data[0].length - 1 ? sortedData += "," : sortedData += "";
+        sortedData = "[\n";
+        for (var k = 0; k < data[0].length; k++) {
+            sortedData += "\t{name:" + "\"" + data[0][k].name + "\",id:\"" + data[0][k].id + "\"}";
+            k != data[0].length - 1 ? sortedData += "," : sortedData += "";
+            sortedData += "\n";
         }
         sortedData += "]";
         console.log(sortedData);
@@ -86,9 +95,7 @@ $("ol.simple_with_no_drop").sortable({
 });
 
 // Allowed to Drag and Drop in Mobile Device
-$(".highlight").draggable();
-
-$('ol li').longpress(function () {
+$(".highlight").draggable().longpress(function () {
     // longpress callback
     console.log("길게 누름ㅋㅋ");
 });
@@ -122,8 +129,8 @@ $(function () {
     // Move to emotion.html
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
-                $(location).attr('href',"emotion.html");
-//        $("#work-layer").stop()
+        $(location).attr('href', "emotion.html");
+        //        $("#work-layer").stop()
     });
 
 

@@ -42,37 +42,16 @@
                 }, duration);
             }
 
-            // mouseup or touchend callback
-            function mouseup_callback(e) {
-                var press_time = new Date().getTime() - mouse_down_time;
-                if (press_time < duration) {
-                    // cancel the timeout
-                    clearTimeout(timeout);
-
-                    // call the shortCallback if provided
-                    if (typeof shortCallback === "function") {
-                        shortCallback.call($(this), e);
-                    } else if (typeof shortCallback === "undefined") {
-                        ;
-                    } else {
-                        $.error('Optional callback for short press should be a function.');
-                    }
-                }
-            }
 
             // cancel long press event if the finger or mouse was moved
             function move_callback(e) {
                 clearTimeout(timeout);
             }
 
-            // Browser Support
-            $this.on('mousedown', mousedown_callback);
-            $this.on('mouseup', mouseup_callback);
-            $this.on('mousemove', move_callback);
-
+       
             // Mobile Support
             $this.on('touchstart', mousedown_callback);
-            $this.on('touchend', mouseup_callback);
+//            $this.on('touchend', mouseup_callback);
             $this.on('touchmove', move_callback);
         });
     };
