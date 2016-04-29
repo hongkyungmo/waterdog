@@ -52,11 +52,11 @@ public class BlockController {
 		// hash 정보 담기
 		List<BlockHash> hashList = new ArrayList<BlockHash>();
 
-		String hashArray[] = ((String)map.get("tag")).split(",");
+		String hashArray[] = ((String)map.get("tag")).split("#");
 
 		for(int i=0;i<hashArray.length;i++){
 			BlockHash hash = new BlockHash();
-			hash.setTag(hashArray[i]);
+			hash.setTag(hashArray[i].trim());
 			hashList.add(hash);
 		}
 		
