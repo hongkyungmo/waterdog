@@ -6,6 +6,7 @@ body {
 
 #background {
     background-color: #E1F6FA;
+	/*background: linear-gradient( to top, #4499ff, #4444cc );*/
     width: auto;
     height: 88%;
 }
@@ -14,7 +15,7 @@ body {
     display: block;
     position: relative;
     font-size: 18px;
-    left: 40%;
+    left: 35%;
     top: 10%;
     width: 30%;
     height: 50px;
@@ -26,9 +27,19 @@ body {
     top: 20%;
 }
 
-.music {
-    display: block;
-    height: 160px;
+.ui.blue.button {
+	display: block;
+    height: 130px;
+    width: 70%;
+	/*background-color:#222222;*/
+	/*background: linear-gradient( to top, #4C6, #492 );*/
+	/*background: linear-gradient( to top, #55dd66, #4499ff );*/
+	background: linear-gradient( to top, #4444cc, #4499ff );
+	/*background: linear-gradient( to top, #ff5573, #c744cc );*/
+	/*background: linear-gradient( to top, #7733ff, #4499ff );*/
+	/*background: linear-gradient( to top, #114466, #4499ff );*/
+	color: #fff;
+    text-shadow: none;
 }
 
 .music-name {
@@ -39,12 +50,13 @@ body {
 .noteVisualContainer {
     position: relative;
     float: left;
-    top:10px;
+    top:8px;
     left: 0%;
     width: 100%;
-    height: 100px;
+    height: 90px;
     background-color: black;
-     border: dotted;
+	/*background: linear-gradient( to top, #3322cd, #33ccff );*/
+    border: solid;
     border-width: 1px;
     border-color:white; 
     z-index:100000000;
@@ -113,18 +125,22 @@ body {
 .swiper-container {
 	width: 100%;
 	height: 50%;
-	background-color:#E1F6FA;
+	background-color:transparent;
 	margin-top:10%;
 }
 
 .swiper-wrapper{
-	background-color:black;
+	background-color:transparent;
+}
+
+.ui.button{
+	margin:0px;
 }
 
 .swiper-slide {
 	text-align: center;
 	font-size: 18px;
-	background: #E1F6FA;
+	background: transparent;
 	/* Center slide text vertically */
 	display: -webkit-box;
 	display: -ms-flexbox;
