@@ -38,7 +38,7 @@
 			var objectStore = transaction.objectStore("blockTestTable");
 			request = objectStore.add({sec:sec,notes:notes});
 			request.onsuccess = function(event){
-				//getAllBlocks();
+				getAllBlocks();
 			};
 		}
 		function getAllBlocks(){

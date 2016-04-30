@@ -28,8 +28,17 @@
 
 <script>
 	var i=0;
-	
 	var kind=new Array('yellow','red','violet','orange','blue');
+	
+	//variables for IndexedDB
+	var request = window.indexedDB.open("musicBlockDB", 1);
+	var db;
+	
+	
+	
+	
+	
+	
 	
 	//validation check
 	function fncValidate(){
@@ -57,25 +66,81 @@
 			if(upload.checked){
 				sendServer(emotion);
 			}
-			//local은 무조건 저장
-			//저장 시나리오
-			//1. 시퀀스를 지원하지 않으므로 직접 1씩 증가하는 변수로 largest를 저장
-			//2. 생각해보니 블럭 말고 완성된 곡도 localStorage에 저장해야 함
-			//3. 그래서 이 아이디어 폐기 예정
-			var localLength = localStorage.length;
-			var keyForSaving = localStorage.getItem("largest");
-			if(localLength == 0){
-				localStorage.setItem("largest", "0");
-			}else{
-				keyForSaving++;
-				localStorage.setItem("largest", keyForSaving+"");
-			}
 			
-			var valueForSaving = location.href.substr(location.href.lastIndexOf('=') + 1);
-			
-			localStorage.setItem(keyForSaving+"", valueForSaving);
+			//localStorage -> IndexedDB로 변경(이유 테이블 및 시퀀스 존재 유무 때문)
+			//IndexedDB
+			addBlock();
 		}
-	};
+	};//end of validation check
+	
+	
+	
+	
+	
+	
+	//functions related to IndexedDB
+	$(function(){
+		request.onupgradeneeded = function(event){
+			console.log("onupgradeneeded : DB initialized / created");
+			db = event.target.result;
+			//오브젝트 스토어가 테이블 개념, keyPath가 시퀀스 개념
+			store = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
+		}
+		
+		request.onsuccess = function(event){
+			console.log("onsuccess : DB loaded successfully");
+			db = event.target.result;
+		}
+		
+		request.onerror = function(event){
+			console.log("onerror");
+		}
+		
+		request.onready = function(event){
+			console.log("onready");
+		}
+	});
+	
+	function addBlock(){
+		var transaction = db.transaction(["blockTestTable"], "readwrite");
+		var objectStore = transaction.objectStore("blockTestTable");
+		var transInfo=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
+		var transSec=transInfo[0];
+		var transNote=transInfo[1];
+		if(transSec!=null && transSec!=undefined && transSec!=""
+		   && transNote!=null && transNote!=undefined && transNote!=""){
+			request = objectStore.add({sec:transSec,notes:transNote});
+			request.onsuccess = function(event){
+				console.log("IndexedDB에 음악블럭 성공적으로 저장했습니다.");
+				getAllBlocks();
+			};
+		}else{
+			
+			console.log("초 또는 음이 입력되지 않아서 IndexedDB에 저장되지 않았습니다.");
+		}
+	}
+	
+	function getAllBlocks(){
+		var transaction = db.transaction(["blockTestTable"], "readonly");
+		var objectStore = transaction.objectStore("blockTestTable");
+		var request = objectStore.openCursor();
+		request.onsuccess = function(event){
+			var cursor = event.target.result;
+			if(cursor){
+				console.log(cursor);
+				console.log("key : " + cursor.key);
+				console.log("sec : " + cursor.value.sec);
+				console.log("notes : " + cursor.value.notes);
+				cursor.continue();
+			}
+		}
+	}
+	/* end of functions related to IndexedDB */
+	
+	
+	
+	
+	
 	
 	//emotion check function
 	$(function() {
@@ -109,56 +174,48 @@
 		var transTag= (document.getElementById("tag")).value;
 		var transTitle=(document.getElementById("title")).value;
 
-		$
-				.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-					url : 'block/blockSave',
-					type : 'POST' //Request하는 방식.
-
-					,
-					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-						emotion : transfEmotion,
-						note : transNote,
-						sec : transSec,
-						tag : transTag,
-						title : transTitle
-					}),
-					dataType : "json" //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-
-					,
-					contentType : 'application/json;charset=UTF-8' //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-
-					,
-					success : function(data, status) {
-						console.log(status);
-						console.log("JSONData : "
-								+ JSON.stringify(data));
-						/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
-						$("body")
-								.append(
-										"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
-						$("#popup-btn1").click(function() {
-							$("#save-popup").remove();
-							location.href = "blockMaking.html";
-						});
-						$("#popup-btn2").click(function() {
-							$("#save-popup").remove();
-							location.href = "composeMusic.html";
-						});
-						$("#save-popup")
-								.delay(3000)
-								.fadeOut(
-										500,
-										function() {
-											$("#save-popup")
-													.remove();
-											location.href = "composeMusic.html";
-										});
-					},
-					error : function(status) {
-						console.log(status);
-					}
-				})
-
+		$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+			url : 'block/blockSave',
+			type : 'POST', //Request하는 방식.
+			data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+				emotion : transfEmotion,
+				note : transNote,
+				sec : transSec,
+				tag : transTag,
+				title : transTitle
+			}),
+			dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
+			contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
+			success : function(data, status) {
+				console.log(status);
+				console.log("JSONData : "
+						+ JSON.stringify(data));
+				/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
+				$("body")
+						.append(
+								"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+				$("#popup-btn1").click(function() {
+					$("#save-popup").remove();
+					location.href = "blockMaking.html";
+				});
+				$("#popup-btn2").click(function() {
+					$("#save-popup").remove();
+					location.href = "composeMusic.html";
+				});
+				$("#save-popup")
+						.delay(3000)
+						.fadeOut(
+								500,
+								function() {
+									$("#save-popup")
+											.remove();
+									location.href = "composeMusic.html";
+								});
+			},
+			error : function(status) {
+				console.log(status);
+			}
+		});
 	}
 
 	// auto complete function
