@@ -35,7 +35,22 @@
 			var notes = $("#notesElement").val();
 			var transaction = db.transaction(["blockTestTable"], "readwrite");
 			var objectStore = transaction.objectStore("blockTestTable");
-			var request = objectStore.add({sec:sec,notes:notes});
+			request = objectStore.add({sec:sec,notes:notes});
+			request.onsuccess = function(event){
+				//getAllBlocks();
+			};
+		}
+		function getAllBlocks(){
+			var transaction = db.transaction(["blockTestTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.openCursor();
+			request.onsuccess = function(event){
+				var cursor = event.target.result;
+				if(cursor){
+					console.log(cursor);
+					cursor.continue();
+				}
+			}
 		}
 	</script>
 </head>
@@ -51,6 +66,7 @@
 	</fieldset>
 	<fieldset>
 		<button onclick="addBlock()">블럭 추가</button>
+		<button onclick="getAllBlocks()">블럭 보기</button>
 	</fieldset>
 </body>
 
