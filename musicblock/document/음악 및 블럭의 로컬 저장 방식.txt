@@ -91,3 +91,6 @@ Using-indexedDB문서 : https://developer.mozilla.org/en-US/docs/Web/API/Indexed
  -> https://msdn.microsoft.com/ko-kr/library/jj154909(v=vs.85).aspx
 동영상 강의(영어)
  -> https://www.youtube.com/watch?v=hFLHUAuj2KE
+IndexedDB 활용(블로그 글)
+ -> http://yaku.tistory.com/538
+ -> http://horajjan.blog.me/220300960759
