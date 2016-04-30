@@ -21,7 +21,7 @@ Angular.js : http://d2.naver.com/helloworld/1172239
 <Semantic-ui.com>
 http://semantic-ui.com/
 
-
+자바스크립트 코딩 가이드 : https://github.com/preco21/javascript-guideline/blob/master/docs/javascript-guide.md
 
 
 
