@@ -1,41 +1,57 @@
 <html>
 
 <head>
+	<!-- jQuery CDN -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 	<script>
-		var request = indexedDB.open("MyDB4", 1);
+		var request = window.indexedDB.open("MyDB5", 1.4);
 		var db;
 		var store;
 		
 		request.onupgradeneeded = function(event){
-			alert("onupgradeneeded");
+			console.log("onupgradeneeded : DB initialized / created");
 			db = event.target.result;
-			//db = request.result;
-			store = db.createObjectStore("mytable1", {keyPath:"id", autoIncrement: true});
-		}
-		
-		request.onready = function(event){
-			alert("onready");
+			store = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
 		}
 		
 		request.onsuccess = function(event){
-			alert("onsuccess");
-			//db = request.result;
+			console.log("onsuccess : DB loaded successfully");
 			db = event.target.result;
-			myTransaction = db.transaction("mytable1", "readwrite");
-			
-			var store = myTransaction.objectStore("mytable1");
-			
-			
 		}
 		
 		request.onerror = function(event){
-			alert("onerror");
+			console.log("onerror");
+		}
+		
+		request.onready = function(event){
+			console.log("onready");
+		}
+		
+		function addBlock(){
+			var sec = $("#secElement").val();
+			var notes = $("#notesElement").val();
+			var transaction = db.transaction(["blockTestTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.add({sec:sec,notes:notes});
 		}
 	</script>
 </head>
 
 <body>
-
+	<fieldset>
+		<label>블럭초</label>
+		<input type="text" id="secElement" placeholder="enter name">
+	</fieldset>
+	<fieldset>
+		<label>블럭음</label>
+		<input type="text" id="notesElement" placeholder="enter name">
+	</fieldset>
+	<fieldset>
+		<button onclick="addBlock()">블럭 추가</button>
+	</fieldset>
 </body>
 
 </html>
