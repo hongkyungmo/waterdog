@@ -63,6 +63,15 @@
 				console.log(obj);
 			}
 		}
+		
+		function deleteBlockById(id){
+			var transaction = db.transaction(["blockTestTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.delete(id);
+			request.onsuccess = function(event){
+				console.log("id가 " + id + "인 블럭을 IndexedDB로부터 삭제했습니다.");
+			}
+		}
 	</script>
 </head>
 
@@ -79,6 +88,7 @@
 		<button onclick="addBlock()">블럭 추가</button>
 		<button onclick="getAllBlocks()">블럭 전체 보기</button>
 		<button onclick="getBlockById(0,0,0)">블럭 하나 보기</button>
+		<button onclick="deleteBlockById(4)">블럭 삭제</button>
 	</fieldset>
 </body>
 
