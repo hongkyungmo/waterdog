@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow-x: hidden;
+		}
+		
+		.pages {
+			width: 200px;
+			height: 130px;
+			border: solid;
+			text-align: center;
+			margin: 0 auto;
+			position: absolute;
+			background-color:white;
+		}
+	</style>
 </head>
-<body>
-	<a href="mainpage.html">메인페이지</a><br>
-	<a href="blockMaking.html">음악블럭 생성</a><br>
-	<a href="emotion.html">블럭저장(감정/이름 부여)</a><br>
-	<a href="community.html">음악블럭 공유 커뮤니티(서버 접근)</a><br>
-	<a href="composeMusic.html">음악작곡(블럭 조립)</a><br>
-	<a href="ajax-test.html">JSON Test</a>
-	
+
+<body style="background: linear-gradient( to top, #77dd77, #44dd44 );">
+	<div style="position:absolute;margin-top:50px;width:870px;height:300px;left:20px;">
+		<center>
+			<h1>&lt;Music Block - Navigator&gt;</h1></center>
+		<div class="pages" style="left:0px;">
+			<a href="mainpage.html"><img src="../images/index/mainpage.png">
+				<br>메인페이지</a>
+			<br>
+		</div>
+		<div class="pages" style="left:220px;">
+			<a href="composeMusic.html"><img src="../images/index/composeMusic.png">
+				<br>음악작곡(블럭 조립)</a>
+			<br>
+		</div>
+		<div class="pages" style="left:440px;">
+			<a href="blockMaking.html"><img src="../images/index/blockMaking.png">
+				<br>음악블럭 생성</a>
+			<br>
+		</div>
+		<div class="pages" style="left:660px;">
+			<a href="emotion.html"><img src="../images/index/emotion.png">
+				<br>블럭저장(감정/이름 부여)</a>
+			<br>
+		</div>
+		<div class="pages" style="font-size:14px;left:440px;top:240px;">
+			<a href="community.html"><img src="../images/index/community.png">
+				<br>음악블럭 공유 커뮤니티(서버)</a>
+			<br>
+		</div>
+	</div>
+
+
+
+
 </body>
+
 </html>
+
+
