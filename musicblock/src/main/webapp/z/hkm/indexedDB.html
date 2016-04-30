@@ -65,6 +65,21 @@
 			}
 		}
 		
+		function updateBlockById(id){
+			var transaction = db.transaction(["blockTestTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.get(id);
+			
+			request.onsuccess = function(event){
+				var obj = event.target.result;
+				console.log("before update : " + obj);
+				obj.sec = "10";
+				obj.notes = "11,12,14";
+				objectStore.put(obj);
+				console.log("after update : " + obj)
+			}
+		}
+		
 		function deleteBlockById(id){
 			var transaction = db.transaction(["blockTestTable"], "readwrite");
 			var objectStore = transaction.objectStore("blockTestTable");
@@ -88,8 +103,11 @@
 	<fieldset>
 		<button onclick="addBlock()">블럭 추가</button>
 		<button onclick="getAllBlocks()">블럭 전체 보기</button>
-		<button onclick="getBlockById(0,0,0)">블럭 하나 보기</button>
+		<button onclick="getBlockById(6)">블럭 하나 보기</button>
 		<button onclick="deleteBlockById(4)">블럭 삭제</button>
+		
+		<!-- 블럭아이디, 블럭초, 블럭음 -->
+		<button onclick="updateBlockById(6)">블럭 업데이트</button>
 	</fieldset>
 </body>
 
