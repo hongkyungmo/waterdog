@@ -84,6 +84,7 @@ $(function () {
                 }
                 displayObj = '<div class="divider"></div><div class="syllable" style="width:' + k + '%"></div>';
                 clickSequence--;
+				noteArr.pop();
             }
         }
     });
@@ -96,6 +97,8 @@ $(function () {
             $("#clear").css("background-color", '#33ffbd');
             $("#syllable-container").empty();
             clickSequence = 0;
+			delete noteArr;
+			noteArr = new Array();
         }
     });
     $("#clear").bind(keyUp, function () {
