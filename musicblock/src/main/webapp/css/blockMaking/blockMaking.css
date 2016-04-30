@@ -148,6 +148,7 @@ html, body {
 
 .white-key {
 	background-color: white;
+	/*background: linear-gradient( 45deg, #eeeeff, white);*/
 	width: 14.06%;
 	height: 100%;
 	z-index: 10;
@@ -157,7 +158,8 @@ html, body {
 	position: absolute;
 	width: 9%;
 	height: 64%;
-	background-color: black;
+	/*background-color: black;*/
+	background: linear-gradient( 45deg, #111122, #333344);
 	z-index: 11;
 }
 
