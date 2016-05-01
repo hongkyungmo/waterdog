@@ -4,6 +4,8 @@
 var request = window.indexedDB.open("musicBlockDB", 1);
 var db;
 
+var repo = $("#repository");
+
 
 //functions related to IndexedDB
 $(function(){
@@ -36,6 +38,7 @@ function getAllBlocks(){
 	var transaction = db.transaction(["blockTestTable"], "readwrite");
 	var objectStore = transaction.objectStore("blockTestTable");
 	var request = objectStore.openCursor();
+	
 	request.onsuccess = function(event){
 		var cursor = event.target.result;
 		if(cursor){
@@ -43,6 +46,13 @@ function getAllBlocks(){
 			console.log("key : " + cursor.key);
 			console.log("sec : " + cursor.value.sec);
 			console.log("notes : " + cursor.value.notes);
+			
+			var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight'>indexedDB</li>";
+			$("#repository > li:last").data("key", cursor.key);
+			$("#repository > li:last").data("sec", cursor.value.sec);
+			$("#repository > li:last").data("notes", cursor.value.notes);
+			
+			repo.append(dynamicLoadedBlock);
 			cursor.continue();
 		}
 	}
