@@ -69,7 +69,7 @@ public class BlockController {
 		Block block = new Block();
 		block.setTitle(title);
 		block.setNote((String)map.get("note"));
-		block.setuCode(81);//유저코드를 왜래키로 가지고 있어야 함 (수정)
+		block.setuCode(101);//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
 		block.setTime(Integer.parseInt((String)map.get("sec")));
@@ -88,8 +88,18 @@ public class BlockController {
 		//Business Logic
 		System.out.println("blockId: "+blockId);
 		System.out.println("model: "+model);
-		Block block = blockService.getBlock(blockId);
-		model.addAttribute("block", block); 
-
-	}
+		
+			Block block = blockService.getBlock(blockId);
+			////블록값이 있을경우에만 담아온다.
+			if( block != null)
+			{
+				System.out.println("보내쪙");
+				model.addAttribute("block", block); 
+			}
+			else
+			{	System.out.println("보내지마");
+				model.addAttribute("block", null);
+			}
+		}
+		
 }
