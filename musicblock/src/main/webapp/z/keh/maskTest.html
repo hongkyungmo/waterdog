@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+
+<style type="text/css">
+#mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+</script>
+<script> 
+	function wrapWindowByMask(){
+		//화면의 높이와 너비를 구한다.
+		var maskHeight = $(document).height();  
+		var maskWidth = $(window).width();
+
+		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+		$('#mask').css({'width':maskWidth,'height':maskHeight});  
+    //마스크의 투명도 처리
+          $('#mask').fadeTo("slow",0.8);    
+	}
+
+	$(document).ready(function(){
+		//wrapWindowByMask();
+		//불투명 배경 띄우기
+		$('.openMask').click(function(e){
+			e.preventDefault();
+			wrapWindowByMask();
+		});
+	});
+	
+// 팝업 , 불투명 배경 띄우기
+	function clicktest(){
+		$('#test').show();
+		wrapWindowByMask();
+	}
+	
+	function btnexit(){
+		$('#test').hide();
+		$('#mask').hide();
+		
+	}
+	</script>
+</head>
+<body>
+	<input type="button" onclick="clicktest();" value="블러테스트" />
+
+	<div id="mask"></div>
+	<div
+		style="background-color: #86E57F; width: 300px; height: 300px; position: absolute; top: 200px; left: 500px; display: none; z-index: 10001;"
+		id="test">
+		<input type="button" onclick="btnexit();" value="닫기" />
+	</div>
+</body>
+</html>

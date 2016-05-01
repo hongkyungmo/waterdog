@@ -1,75 +1,125 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.7.js"></script>
+
+<!-- Common Module -->
+<link rel="stylesheet" type="text/css" href="../../css/common/commonMenu.css">
+<link rel="stylesheet" type="text/css" href="../../css/emotion/emotion.css">
+
+  <!-- Site Properities -->
+  <title>Semantic: Simple sidebar</title>
+   <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
     </script>
-    
     <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">
     <script type="text/javascript" src="/javascript/common/semantic.min.js"></script>
-<style></style>
+  <style media="screen">
+    .toggler {
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+				
+  $(function() {
+    $('#show-sidebar').click(function() {
+      $('.menu.sidebar').first().sidebar('toggle');
+    });
 
-<script>
-$(function (){
-	$('.left.demo.sidebar').first()
-	  .sidebar('attach events', '.toggle.button')
-	;
-	$('.toggle.button')
-	  .removeClass('disabled')
-	;
-	
-});
-
-</script>
+    $('#hide-sidebar').click(function() {
+      $('#show-sidebar').show();
+      $('.menu.sidebar').sidebar('toggle');
+    });
+  });
+  </script>
 </head>
-<body>
-<div class="ui bottom attached segment pushable">
-  <div class="ui visible inverted left vertical sidebar menu">
-    <a class="item">
-      <i class="block layout icon"></i>
+  <body>
+  <script src="/javascript/common/commonMenu.js"></script>
+    <div class='ui right inverted vertical menu sidebar'>
+      <div class='item'>
+        <div id='hide-sidebar' class='button'>
+          <i class='sidebar icon'></i>
+        </div>
+      </div>
+       <a class='item'>
+      <i class='block layout icon'></i>
       User nick<br><br>
       닉네임수정
     </a>
-    <a class="item">
-      <i class="home icon"></i>
+    <a class='item'>
+      <i class='home icon' ></i>
       Home
     </a>
-   	<a class="item">
-      <i class="smile icon"></i>
+   	<a class='item'>
+      <i class='smile icon'></i>
       Block 만들기
     </a>
-    <a class="item">
-      <i class="smile icon"></i>
+    <a class='item'>
+      <i class='smile icon'></i>
       Music 만들기
     </a>
-    <a class="item">
-      <i class="smile icon"></i>
+    <a class='item'>
+      <i class='smile icon'></i>
       Block List
     </a>
-    <a class="item">
-      <i class="smile icon"></i>
+    <a class='item'>
+      <i class='smile icon'></i>
       Music List
     </a>
-    <a class="item">
-      <i class="smile icon"></i>
+    <a class='item'>
+      <i class='smile icon'></i>
       Comunity
     </a>
-  </div>
-  <div class="pusher">
-    <div class="ui basic segment">
-      <h3 class="ui header">Application Content</h3>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
     </div>
-  </div>
-</div>
-        
-</body>
+    <div class='pusher'>
+      <div id='show-sidebar' class='button toggler'>
+        <i class='sidebar icon' style='float:right'></i>
+      </div>      
+      <!-- Site content !-->
+      	<div id="background">
+		<form name="detailForm" >
+		<div id="emotion-container">
+			<center>
+				<img class="icon" id="icon0" src="../../images/smile_yellow.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon1"
+					src="../../images/smile_red.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon2" src="../../images/smile_violet.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon3"
+					src="../../images/smile_orange.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon4" src="../../images/smile_blue.png"
+					style="width: 15%; height: 20%" />
+			</center>
+		</div>
 
+		<div class="whiteSpace"></div>
+
+		<div class="form-inline">
+			<div id="ui-field-contain">
+				
+				<label for="title">Title</label> 
+				<input id="title" type="text" placeholder="here Title"> <br> 
+				
+				<label for="tag">Tag</label> 
+				<input id="tag"	type="text" placeholder="here Tag">
+				<br>(separate to #)
+			</div>
+			
+			<div id="save-container">
+				<input type="checkbox" id="check" value="g2"> Upload to ShareBox 
+				<a href="javascript:fncValidate();" id="save">Save</a>
+				
+			</div>
+		</div>
+		</form> 
+	</div>
+    </div>
+  </body>
 </html>

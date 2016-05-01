@@ -1,79 +1,223 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-  <!-- Site Properities -->
-  <title>Semantic: Simple sidebar</title>
-   <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">
-    <script type="text/javascript" src="/javascript/common/semantic.min.js"></script>
-  <style media="screen">
-    .toggler {
-      cursor: pointer;
-    }
-  </style>
-  <script type="text/javascript">
-  $(function() {
-    $('#show-sidebar').click(function() {
-      $('.menu.sidebar').first().sidebar('toggle');
-    });
+<!-- jQuery CDN 공식 jquery버-->
+<script src="https://code.jquery.com/jquery-2.2.2.js"
+	integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
+	crossorigin="anonymous">
+	
+</script>
 
-    $('#hide-sidebar').click(function() {
-      $('#show-sidebar').show();
-      $('.menu.sidebar').sidebar('toggle');
-    });
-  });
-  </script>
+<!-- 부트스트랩 CDN -->
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<title>Hello MusicBlock!</title>
+
+<!-- swiper 설정 -->
+<link rel="stylesheet" href="/css/common/swiper.min.css">
+
+<!--  semantic 설정 -->
+<link rel="stylesheet" type="text/css"
+	href="/css/common/semantic.min.css">
+<script type="text/javascript" src="/javascript/common/semantic.min.js"></script>
+
+<!--  User definition 설정 -->
+<link rel="stylesheet" href="/css/common/commonMenu.css">
+<link rel="stylesheet" href="/css/mainpage/mainpage.css">
+
+<style>
+
+</style>
+
+<script type="text/javascript">
+	$(function() {
+
+		$("#back").bind("click", function() {
+			console.log("뒤로가기 누름ㅋㅋ");
+		});
+
+		$("#menu").bind("click", function() {
+			console.log("메뉴버튼 누름ㅋㅋ");
+			wrapWindowBymenuPage();
+
+		});
+		
+		$("#exit").bind("click",function(){
+			console.log("exit 누름ㅋㅋ");
+			$("#menuPage").hide();
+		});
+		
+		$('#test').bind("click",function() {
+			console.log("login 누름ㅋㅋ")
+			$('.ui.modal').modal('show');
+		});
+	});
+
+	function wrapWindowBymenuPage() {
+		//화면의 높이와 너비를 구한다.
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+
+		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+		$('#menuPage').css({
+			'width' : maskWidth,
+			'height' : maskHeight,
+			'z-index' : 150
+		});
+		//마스크의 투명도 처리
+
+		$('#menuPage').fadeTo("slow", 1);
+	}
+
+	$(document).ready(function() {
+		//wrapWindowBymenuPage();
+		//불투명 배경 띄우기
+		$('.openmenuPage').click(function(e) {
+			e.preventDefault();
+			wrapWindowBymenuPage();
+		});
+	});
+
+</script>
 </head>
-  <body>
-    <div class="ui right inverted vertical menu sidebar">
-      <div class="item">
-        <div id="hide-sidebar" class="button">
-          <i class="sidebar icon"></i>
-        </div>
-      </div>
-       <a class="item">
-      <i class="block layout icon"></i>
-      User nick<br><br>
-      닉네임수정
-    </a>
-    <a class="item">
-      <i class="home icon" ></i>
-      Home
-    </a>
-   	<a class="item">
-      <i class="smile icon"></i>
-      Block 만들기
-    </a>
-    <a class="item">
-      <i class="smile icon"></i>
-      Music 만들기
-    </a>
-    <a class="item">
-      <i class="smile icon"></i>
-      Block List
-    </a>
-    <a class="item">
-      <i class="smile icon"></i>
-      Music List
-    </a>
-    <a class="item">
-      <i class="smile icon"></i>
-      Comunity
-    </a>
-    </div>
-    <div class="pusher">
-      <div id="show-sidebar" class="button toggler">
-        <i class="sidebar icon" style="float:right"></i>
-      </div>      
-      <!-- Site content !-->
-      	<h3> 으네짱 오예예옝라ㅓㅁㄴ;ㅏㅣ러</h3>
-      	<h2> 으네쵝5 아럼;ㅣㅏ러;ㅣ나멀;ㅣㅁ나ㅓ리;너리;머ㅏㄹ;ㅏㅣ넝;리ㅏㅓㄴ;</h2>
-    </div>
-  </body>
+
+<body>
+
+	<div id='menuPage' >
+		<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
+			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
+			<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
+			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+				<button type='button'
+					class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>
+			</div>
+		</div>
+
+		<div id='loginPage'>
+
+			<button id='test'>Login</button>
+
+			<div class='ui modal'>
+				<i class='close icon'></i>
+				<div class='header'>Profile Picture</div>
+				<div class='image content'>
+
+					<div class='description'>
+						<input type='text' class='input' id='user_login'
+							autocomplete='off' placeholder='Email or Username'> <br>
+						<input type='password' class='input' id='user_pass'
+							autocomplete='off' placeholder='Password'> <br> <input
+							type='checkbox' class='checkbox' id='remember_me'> <label
+							for='remember_me'>Remember me</label>
+					</div>
+				</div>
+				<div class='actions'>
+					<div class='ui black deny button'>login</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
+		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
+		<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
+		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+			<button type='button'
+				class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id="menu"></button>
+		</div>
+	</div>
+
+
+
+
+
+	<div id="background" style="z-index: 100">
+
+		<div id="new-music" class="ui orange button">
+			<h4>New Music</h4>
+		</div>
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">치킨이 땡길 때</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">꼬깔콘을 먹으며</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">술이 땡길 때</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">먹으면서 냠냠냠</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">은혜가 은행가네</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">승길이가 학원가네</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="ui blue button music">
+						<div class="noteVisualContainer"></div>
+						<div class="music-name">윤영이가 집에가네</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<script src="/javascript/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+
+			slidesPerView : 4,
+			paginationClickable : true,
+			spaceBetween : 0,
+			freeMode : true
+		});
+	</script>
+</body>
+
 </html>
