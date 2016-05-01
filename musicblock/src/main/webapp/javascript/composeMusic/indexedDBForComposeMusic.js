@@ -3,6 +3,7 @@
 //variables for IndexedDB
 var request = window.indexedDB.open("musicBlockDB", 1);
 var db;
+var blockNum = 0;
 
 var repo = $("#repository");
 
@@ -47,7 +48,8 @@ function getAllBlocks(){
 			console.log("sec : " + cursor.value.sec);
 			console.log("notes : " + cursor.value.notes);
 			
-			var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight'>indexedDB</li>";
+			var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item "+blockNum+"' data-id='"+blockNum+"'>IndexedDB-" + blockNum+"</li>";
+			blockNum++;
 			$("#repository > li:last").data("key", cursor.key);
 			$("#repository > li:last").data("sec", cursor.value.sec);
 			$("#repository > li:last").data("notes", cursor.value.notes);
