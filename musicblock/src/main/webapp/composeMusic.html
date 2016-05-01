@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <!--  BootStrap Load End  --
+    <!--  BootStrap Load End  -- >
 
 
     <!-- External css load Start   -->
@@ -55,8 +55,8 @@
     <link rel="stylesheet" type="text/css" href="css/composeMusic/composeMusic.css">
     <link rel="stylesheet" type="text/css" href="css/composeMusic/indexedDBForComposeMusic.css">
     
-    <!-- Semantic UI -->
-    <!--    <link rel="stylesheet" type="text/css" href="/css/common/semantic.min.css">-->
+    <!-- Bootstrap-dialog UI -->
+    <link rel="stylesheet" type="text/css" href="/css/composemusic/bootstrap-dialog.css">
 
     <!-- Tab -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/tab.css">
@@ -67,7 +67,28 @@
 </head>
 
 <body>
+    
+    <!-- 다이얼로그 -->
+    <div id="block-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid bd-example-row">
+                        <div class="row">
+                            <div class="col-md-6">.col-md-4</div>
+                            <div class="col-md-6">.col-md-4 .col-md-offset-4</div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
     <!-- 공통 모듈 -->
     <script src="javascript/common/commonMenu.js"></script>
 
@@ -164,12 +185,12 @@
 
 
 
-                            <!--                            스와이퍼 래퍼 끝-->
+                            <!-- 스와이퍼 래퍼 끝-->
                         </div>
 
 
 
-                        <!--                        스와이퍼 컨테이    너 끝-->
+                        <!-- 스와이퍼 컨테이    너 끝-->
                     </div>
 
                 </section>
@@ -198,7 +219,11 @@
                                         <li class='no_drop swiper-slide highlight' data-name="Item #" data-id="#">Item #</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item $" data-id="$">Item $</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item %" data-id="%">Item %</li>
-
+<div class="bd-example bd-example-padded-bottom">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">
+    Launch demo modal
+  </button>
+</div>
                                         <!-- 블럭 리스트 끝-->
                                     </ol>
 
@@ -215,7 +240,7 @@
 
 
 
-                        <!-                   스와이퍼 컨테이    너 끝-->
+                        <!--                   스와이퍼 컨테이    너 끝-->
                     </div>
                 </section>
 
@@ -230,10 +255,53 @@
 -->
             <!-- 저장소 프레임 끝-->
         </div>
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+          <div class="row">
+            <div class="col-md-4">.col-md-4</div>
+            <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+            <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9">
+              Level 1: .col-sm-9
+              <div class="row">
+                <div class="col-xs-8 col-sm-6">
+                  Level 2: .col-xs-8 .col-sm-6
+                </div>
+                <div class="col-xs-4 col-sm-6">
+                  Level 2: .col-xs-4 .col-sm-6
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
         <!-- 전체 영역 끝 -->
     </div>
-<div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>
+<!--<div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>-->
 
     <!-- Sortable JS   -->
     <script src='javascript/composeMusic/sortable.js'></script>
@@ -248,12 +316,12 @@
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
     
-    <!-- Sementi JS -->
-    <!--    <script type="text/javascript" src="javascript/common/semantic.min.js"></script>-->
+    <!-- Bootstrap-dialog JS -->
+    <script type="text/javascript" src="javascript/composeMusic/bootstrap-dialog.js"></script>
     
     <!-- User Defined & Overriding   -->
     <script src="javascript/composeMusic/composeMusic.js"></script>
-    <script src="javascript/composeMusic/indexedDBForComposeMusic.js"></script>
+     <script src="javascript/composeMusic/indexedDBForComposeMusic.js"></script> 
 </body>
 
 </html>

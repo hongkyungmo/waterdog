@@ -92,11 +92,13 @@ audio:not([controls]) {
 
 /* line 42, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_reset.scss */
 
+/*
 html {
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
+*/
 
 
 /* line 48, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_reset.scss */
@@ -257,28 +259,32 @@ a:hover {
 
 /* line 561, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
 
-.row {
 /*
+.row {
     margin-left: -20px;
     *zoom: 1;
-*/
 }
+*/
 
 
 /* line 15, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
 
+/*
 .row:before,
 .row:after {
     display: table;
     content: "";
 }
+*/
 
 
 /* line 19, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
 
+/*
 .row:after {
     clear: both;
 }
+*/
 
 
 /* line 566, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_mixins.scss */
@@ -705,6 +711,7 @@ p small {
 
 /* line 26, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_type.scss */
 
+/*
 h1,
 h2,
 h3,
@@ -717,6 +724,7 @@ h6 {
     color: inherit;
     text-rendering: optimizelegibility;
 }
+*/
 
 
 /* line 32, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_type.scss */
@@ -779,18 +787,22 @@ h3 small {
 
 /* line 58, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_type.scss */
 
+/*
 h4,
 h5,
 h6 {
     line-height: 18px;
 }
+*/
 
 
 /* line 61, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_type.scss */
 
+/*
 h4 {
     font-size: 14px;
 }
+*/
 
 
 /* line 63, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_type.scss */
@@ -3853,6 +3865,7 @@ table .span24 {
 
 /* line 4, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_component-animations.scss */
 
+/*
 .fade {
     opacity: 0;
     filter: alpha(opacity=0);
@@ -3862,14 +3875,17 @@ table .span24 {
     -o-transition: opacity 0.15s linear;
     transition: opacity 0.15s linear;
 }
+*/
 
 
 /* line 7, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_component-animations.scss */
 
+/*
 .fade.in {
     opacity: 1;
     filter: alpha(opacity=100);
 }
+*/
 
 
 /* line 12, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_component-animations.scss */
@@ -6199,6 +6215,7 @@ input[type="submit"].btn.btn-mini {
 
 /* line 13, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -6208,26 +6225,32 @@ input[type="submit"].btn.btn-mini {
     z-index: 1040;
     background-color: black;
 }
+*/
 
 
 /* line 22, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal-backdrop.fade {
     opacity: 0;
 }
+*/
 
 
 /* line 26, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal-backdrop,
 .modal-backdrop.fade.in {
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
+*/
 
 
 /* line 31, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal {
     position: fixed;
     top: 50%;
@@ -6240,7 +6263,7 @@ input[type="submit"].btn.btn-mini {
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.3);
     *border: 1px solid #999;
-    /* IE6-7 */
+     IE6-7 
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
@@ -6251,10 +6274,12 @@ input[type="submit"].btn.btn-mini {
     -moz-background-clip: padding-box;
     background-clip: padding-box;
 }
+*/
 
 
 /* line 46, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal.fade {
     -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
     -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
@@ -6263,21 +6288,26 @@ input[type="submit"].btn.btn-mini {
     transition: opacity 0.3s linear, top 0.3s ease-out;
     top: -25%;
 }
+*/
 
 
 /* line 50, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal.fade.in {
     top: 50%;
 }
+*/
 
 
 /* line 52, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal-header {
     padding: 9px 15px;
     border-bottom: 1px solid #eee;
 }
+*/
 
 
 /* line 56, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
@@ -6289,11 +6319,13 @@ input[type="submit"].btn.btn-mini {
 
 /* line 60, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
 
+/*
 .modal-body {
     overflow-y: auto;
     max-height: 400px;
     padding: 15px;
 }
+*/
 
 
 /* line 66, /Users/jonasvonandrian/.rvm/gems/ruby-1.9.3-p484/bundler/gems/sass-twitter-bootstrap-06795315e047/lib/bootstrap/_modals.scss */
@@ -7383,9 +7415,11 @@ a.badge:hover {
 
 /* line 10, /Users/jonasvonandrian/jquery-sortable/source/css/application.css.sass */
 
+/*
 .row {
     position: relative;
 }
+*/
 
 
 /* line 12, /Users/jonasvonandrian/jquery-sortable/source/css/application.css.sass */
