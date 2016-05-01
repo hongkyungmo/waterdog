@@ -34,12 +34,6 @@
 	var request = window.indexedDB.open("musicBlockDB", 1);
 	var db;
 	
-	
-	
-	
-	
-	
-	
 	//validation check
 	function fncValidate(){
 		
@@ -60,7 +54,7 @@
 		}
 		
 		if(eCount==0){
-			alert("감정은 필수 사항입니다.");
+			alert("감정은 필수 사항입니다.");//수정
 		}else{
 			if(upload.checked){
 				sendServer(emotion);
@@ -71,10 +65,6 @@
 			addBlock();
 		}
 	};//end of validation check
-	
-	
-	
-	
 	
 	
 	//functions related to IndexedDB
@@ -135,9 +125,6 @@
 		}
 	}
 	/* end of functions related to IndexedDB */
-	
-	
-	
 	
 	
 	
@@ -228,6 +215,7 @@
 			source : availableTags
 		});
 	}); */
+	//auto complete 수정
 
 
 </script>
@@ -278,5 +266,4 @@
 	</div>
 	
 </body>
-
 </html>
