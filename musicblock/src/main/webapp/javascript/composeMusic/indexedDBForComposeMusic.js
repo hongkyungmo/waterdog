@@ -52,6 +52,15 @@ function getAllBlocks(){
 			$("#repository > li:last").data("sec", cursor.value.sec);
 			$("#repository > li:last").data("notes", cursor.value.notes);
 			
+			//<element에 박힌 데이터를 확인하기 위한 코드>
+			//1) 전체를 한꺼번에 확인 가능(하지만 이 경우 object로 찍힘)
+			//alert("블럭이 가지는 정보 : " + $("#repository > li:last").data());
+			//2) 개별적으로도 확인 가능
+			console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " + 
+					$("#repository > li:last").data("key") + "\nsec : " + 
+					$("#repository > li:last").data("sec") + "\nnotes : " + 
+					$("#repository > li:last").data("notes") + "\n");
+			
 			repo.append(dynamicLoadedBlock);
 			cursor.continue();
 		}
