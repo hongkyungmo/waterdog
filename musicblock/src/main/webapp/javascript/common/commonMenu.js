@@ -6,7 +6,48 @@ var path = $(location).attr('pathname');
 
 
 
-var element = "<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
+var element = 
+	
+	"<div id='menuPage' >"
++"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>"
++"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
++"<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
++"<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
++"	<button type='button'"
++"		class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>"
++"</div>"
++"</div>"
+
++"<div id='loginPage'>"
+
++"<button id='test'>Login</button>"
+
++"	<div class='ui modal'>"
++"	<i class='close icon'></i>"
++"	<div class='header'>Profile Picture</div>"
++"	<div class='image content'>"
+
++"			<div class='description'>"
++"			<input type='text' class='input' id='user_login'"
++"				autocomplete='off' placeholder='Email or Username'> <br>"
++"			<input type='password' class='input' id='user_pass'"
++"				autocomplete='off' placeholder='Password'> <br> <input"
++"				type='checkbox' class='checkbox' id='remember_me'> <label"
++"				for='remember_me'>Remember me</label>"
++"		</div>"
++"	</div>"
++"	<div class='actions'>"
++"		<div class='ui black deny button'>login</div>"
++"	</div>"
++"</div>"
++"</div>"
++"</div>"
+	
+	
+	
+	
+	
+	+"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
 
 if(path != "/mainpage.html"){
     element += "<button type='btn' class='btn COMMON-MENUBAR-BTN fa fa-chevron-left fa-2x' id='back'></button>";
@@ -70,16 +111,51 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 
 $("body").append(element);
 
-$(function () {
+$(function() {
 
-    $("#back").bind("click", function () {
-    	console.log("뒤로가기 누름ㅋㅋ");
-    });
-    
-    // Menu 버튼으로 Navigation 활성
-    $("#menu").bind("click", function () {
-    	console.log("메뉴버튼 누름ㅋㅋ");
-    	$(location).attr('href', "menu.html");
-    	
-    });
+	$("#back").bind("click", function() {
+		console.log("뒤로가기 누름ㅋㅋ");
+	});
+
+	$("#menu").bind("click", function() {
+		console.log("메뉴버튼 누름ㅋㅋ");
+		wrapWindowBymenuPage();
+
+	});
+	
+	$("#exit").bind("click",function(){
+		console.log("exit 누름ㅋㅋ");
+		$("#menuPage").hide();
+	});
+	
+	$('#test').bind("click",function() {
+		console.log("login 누름ㅋㅋ")
+		$('.ui.modal').modal('show');
+	});
 });
+
+function wrapWindowBymenuPage() {
+	//화면의 높이와 너비를 구한다.
+	var maskHeight = $(document).height();
+	var maskWidth = $(window).width();
+
+	//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+	$('#menuPage').css({
+		'width' : maskWidth,
+		'height' : maskHeight,
+		'z-index' : 150
+	});
+	//마스크의 투명도 처리
+
+	$('#menuPage').fadeTo("slow", 1);
+}
+
+$(document).ready(function() {
+	//wrapWindowBymenuPage();
+	//불투명 배경 띄우기
+	$('.openmenuPage').click(function(e) {
+		e.preventDefault();
+		wrapWindowBymenuPage();
+	});
+});
+

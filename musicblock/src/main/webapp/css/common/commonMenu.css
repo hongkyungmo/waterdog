@@ -125,3 +125,17 @@ div .fa-2x{
 */
 
 
+/* 은혜가 추가한 것                             각페이지 메뉴page*/
+#menuPage {
+	position: absolute;
+	z-index: 9000;
+	background-color: #fff;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+#loginPage {
+	height: 88%; background-color: #E1F6FA
+}
+
