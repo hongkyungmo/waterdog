@@ -120,7 +120,18 @@ $('.highlight').draggable();
 
 $(function () {
     
-
+    // Move to blockMaking.html for edit
+    $("#dialog-edit").bind("click", function () {
+        // need to keep sorted blocks layer
+        $(location).attr('href', "blockMaking.html");
+    });
+    
+    // Move to blockMaking.html for edit
+    $("#dialog-delete").bind("click", function () {
+        // need to keep sorted blocks layer
+        console.log("블록 지움");
+        $('#block-dialog').modal('hide');
+    });
     
     // Move to blockMaking.html
     $("#btn-create").bind("click", function () {
@@ -147,7 +158,6 @@ $(function () {
         $(location).attr('href', "emotion.html");
         //        $("#work-layer").stop()
     });
-
 
 
     $("#btn-prev").bind("click", function () {
