@@ -15,12 +15,9 @@
     <!--scroll-->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- Link Swiper's CSS -->
-
-    <link rel="stylesheet" href="css/min.css">
-
-
-    <!--profile이미지-->
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/community/swiper.min.css">
+    <!-- community CSS-->
+    <link rel="stylesheet" href="css/community/community.css">
 
 
     <!-- 부트스트랩 CDN -->
@@ -33,8 +30,6 @@
 
     <!-- 공통모듈 : 메뉴바 -->
     <link rel="stylesheet" href="/css/common/commonMenu.css">
-
-
 
 </head>
 
@@ -587,8 +582,9 @@
 										$('h2:eq('+(contentid)+')').append(data['block'].title);
 									
 										$('em:eq('+(contentid)+')').append(data['block'].regDate);
-										
+										contentid++;
 									}
+									
 	        				}
 	        				,error : function(status) {
 	    						console.log(status);
@@ -598,6 +594,16 @@
 					 
         		}
 			
+        	   /*  // Move to modal
+        	    $("#btn-search").bind("click", function () {
+        	       // $(location).attr('href', "emotion.html");
+        	        //        $("#work-layer").stop()
+        	    }); */
+        		$(function () {
+        			var btnSave = "<div class='btn 	COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='search'></div>";
+        			$(".col-xs-10").append(btnSave);
+        		});
+        	    
             //좋아요 클릭시 카운트 증가
             function increaseLikes() {
                 var myString = $(this).children('.nLikes').first().html();
