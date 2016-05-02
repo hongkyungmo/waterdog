@@ -67,38 +67,29 @@ $(function () {
 	$("#btn-play").click(function () {
 		if (true) {
 			var count = 0;
+			var blockSec = 0;
 			//repository -> work-layer로 변경해야 함(현재는 data가 repository에 들어있는 상태)
 			//notes 저장
-			arr = $("#repository > li:eq(0)").data("notes").split(",");
 			
-			countForPlaying = arr.length-1;
+			/*블럭 단위 반복 시작*/
+			arr = $("#repository > li:eq("+1+")").data("notes").split(",");
+			blockSec =$("#repository > li:eq("+1+")").data("sec");
+			mainVolume = 2;
+			playNote(noteCodeToFreq(arr[noteWalker]));
+			
+			countForPlaying = arr.length;
 			timerIdForPlaying = setInterval(function(){
+				noteWalker++;
 				if(noteWalker == countForPlaying){
 					clearInterval(timerIdForPlaying);
 					mainVolume = 0;
 					gain.gain.value = mainVolume;
+					noteWalker = 0;
 				}
 				playNote(noteCodeToFreq(arr[noteWalker]));
-				noteWalker++;
-			}, 1000);
-			
-			/*countForPlaying = null;
-			console.log(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-			playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-			timerIdForPlaying = setInterval(function () {
-				//playNote(noteCodeToFreq(13));
-				countForPlaying--;
-				console.log(countForPlaying);
-				if (noteArr[clickSequence - countForPlaying] != undefined) {
-					playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-				}
-				if (countForPlaying == 0) {
-					//alert("end!!");
-					clearInterval(timerIdForPlaying);
-					mainVolume = 0;
-					gain.gain.value = mainVolume;
-				}
-			}, 1000);*/
+				
+			}, (blockSec*1000)/countForPlaying);
+			/*블럭 단위 반복 종료*/
 		}
 	});
 	
