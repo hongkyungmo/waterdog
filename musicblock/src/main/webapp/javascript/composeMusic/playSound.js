@@ -3,7 +3,9 @@ var mainVolume = 2;
 /*var volumeSaver = 2;*/
 //블록 플레이를 위한 변수
 var timerIdForPlaying = 0;
-var countForPlaying = 0; //clickSequence의 복제품
+var countForPlaying = 0;
+var noteWalker = 0;
+var arr = Array();
 
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -59,3 +61,76 @@ var playNote = function (noteVal) {
     console.log(noteVal);
 }
 
+//play버튼 눌러서 블럭 연주
+$(function () {
+	// 블럭연주 - 음
+	$("#btn-play").click(function () {
+		if (true) {
+			var count = 0;
+			//repository -> work-layer로 변경해야 함(현재는 data가 repository에 들어있는 상태)
+			//notes 저장
+			arr = $("#repository > li:eq(0)").data("notes").split(",");
+			
+			countForPlaying = arr.length-1;
+			timerIdForPlaying = setInterval(function(){
+				if(noteWalker == countForPlaying){
+					clearInterval(timerIdForPlaying);
+					mainVolume = 0;
+					gain.gain.value = mainVolume;
+				}
+				playNote(noteCodeToFreq(arr[noteWalker]));
+				noteWalker++;
+			}, 1000);
+			
+			/*countForPlaying = null;
+			console.log(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+			playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+			timerIdForPlaying = setInterval(function () {
+				//playNote(noteCodeToFreq(13));
+				countForPlaying--;
+				console.log(countForPlaying);
+				if (noteArr[clickSequence - countForPlaying] != undefined) {
+					playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+				}
+				if (countForPlaying == 0) {
+					//alert("end!!");
+					clearInterval(timerIdForPlaying);
+					mainVolume = 0;
+					gain.gain.value = mainVolume;
+				}
+			}, 1000);*/
+		}
+	});
+	
+	
+	/*$("#btn-play").bind("click", function () {
+		alert($("#work-layer > li:eq(0)"));
+		
+		if (true) {
+			var count = 0;
+			if (clickSequence != 0) {
+				countForPlaying = clickSequence;
+				console.log(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+				playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+				timerIdForPlaying = setInterval(function () {
+					//playNote(noteCodeToFreq(13));
+					countForPlaying--;
+					console.log(countForPlaying);
+					if (noteArr[clickSequence - countForPlaying] != undefined) {
+						playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
+					}
+					if (countForPlaying == 0) {
+						//alert("end!!");
+						clearInterval(timerIdForPlaying);
+						mainVolume = 0;
+						gain.gain.value = mainVolume;
+					}
+				}, blockAnimateTime / clickSequence);
+			}
+		}
+	});*/
+
+	$("#btn-play").bind("click", function () {
+
+	});
+});
