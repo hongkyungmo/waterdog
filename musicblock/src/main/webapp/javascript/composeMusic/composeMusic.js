@@ -41,7 +41,18 @@ var group = $("ol.simple_with_drop").sortable({
                 draggedBlock = container.el[0].children[j].className;
                 draggedBlockSelector = draggedBlock.split(" ");
                 draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
-                $(container.el[0].children[j]).undelegate().draggable().css("left", "0").css("top", "0");
+                $(container.el[0].children[j]).draggable().css("left", "0").css("top", "0").delegate(
+                    $('.highlight').longpress(
+                        function (e) {
+                            // 길게 입력할 때
+                            $('#block-dialog').modal('show');
+                        }
+                        , function (e) {
+                            // 짧게 입력할 때
+                            console.log('짧게 누름ㅋㅋ');
+                        }
+                    )
+                );
             }
         }
 
@@ -119,20 +130,20 @@ $('.highlight').draggable();
 
 
 $(function () {
-    
+
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {
         // need to keep sorted blocks layer
         $(location).attr('href', "blockMaking.html");
     });
-    
+
     // Move to blockMaking.html for edit
     $("#dialog-delete").bind("click", function () {
         // need to keep sorted blocks layer
         console.log("블록 지움");
         $('#block-dialog').modal('hide');
     });
-    
+
     // Move to blockMaking.html
     $("#btn-create").bind("click", function () {
         // need to keep sorted blocks layer
