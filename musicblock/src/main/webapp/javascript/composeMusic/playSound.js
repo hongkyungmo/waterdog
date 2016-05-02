@@ -1,5 +1,5 @@
 //볼륨조절 전역변수
-var mainVolume = 2;
+var mainVolume = 0;
 /*var volumeSaver = 2;*/
 //블록 플레이를 위한 변수
 var timerIdForPlaying = 0;
