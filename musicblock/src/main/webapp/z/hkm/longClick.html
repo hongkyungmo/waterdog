@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+	
+	
+	
+	
+	
+	<style>
+		#longClickEl {
+			width: 100px;
+			height: 100px;
+			background-color: black;
+		}
+	</style>
+	
+	
+	
+	
+	
+	<script>
+		var touchFlag = false;
+		var setTimeoutId = null;
+		$(function () {
+			//mobile에선 mousedown -> touchstart로 변경할 것
+			$("#lock-click-test").mousedown(function () {
+				touchFlag = true;
+				setTimeoutId = setTimeout(function () {
+					if(touchFlag == true){
+						alert("롱 클릭!");
+					}
+				}, 1000);
+			});
+			//mobile에선 mousedown -> touchstart로 변경할 것
+			$("#longClickEl").mouseup(function () {
+				touchFlag = false;
+				clearTimeout(setTimeoutId);
+			});
+		});
+	</script>
+	
+	
+	
+	
+	
+</head>
+
+<body>
+	<div id="lock-click-test">
+	</div>
+</body>
+
+</html>
