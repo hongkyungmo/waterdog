@@ -64,6 +64,7 @@ function getAllBlocks() {
 
             var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>IndexedDB-" + blockNum + "</li>";
             blockNum++;
+            repo.append(dynamicLoadedBlock);
             $("#repository > li:last").data("key", cursor.key);
             $("#repository > li:last").data("sec", cursor.value.sec);
             $("#repository > li:last").data("notes", cursor.value.notes);
@@ -77,7 +78,7 @@ function getAllBlocks() {
 //                $("#repository > li:last").data("sec") + "\nnotes : " +
 //                $("#repository > li:last").data("notes") + "\n");
 
-            repo.append(dynamicLoadedBlock);
+            
             cursor.continue();
 //            console.log("디비");
             //            $('.highlight:last-of-type').bind('touchstart', function () {
