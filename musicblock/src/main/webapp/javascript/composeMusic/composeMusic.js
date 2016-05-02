@@ -2,6 +2,7 @@ var parent = null;
 var placeHoler = null;
 var wrapper = null;
 var i = null;
+var j = null;
 var comparedNoDrop = "simple_with_no_drop";
 var comparedWrapper = "swiper-wrapper";
 var sortedData = null;
@@ -26,23 +27,39 @@ var group = $("ol.simple_with_drop").sortable({
         parent = $item.parent();
         parent = parent[0].className;
         parent = parent.split(" ");
-
+        console.log(parent);
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
         //        $(".highlight").draggable().css("left", "0").css("top","0");
 
 
-        // $item의 data-id와 일치한 container의 li를 찾아내도록 작성하시오.
-        draggedBlockDataId = $item[0].attributes[2].nodeValue;
-        draggedBlock = null;
-        for (var j = 0; j < container.el[0].children.length; j++) {
-            if (container.el[0].children[j].attributes[2].nodeValue == draggedBlockDataId) {
-                draggedBlock = container.el[0].children[j].className;
-                draggedBlockSelector = draggedBlock.split(" ");
-                draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
-                $(container.el[0].children[j]).undelegate().draggable().css("left", "0").css("top", "0");
+        if (parent[0] == comparedNoDrop) {
+            draggedBlockDataId = $item[0].attributes[2].nodeValue;
+            draggedBlock = null;
+            for (j = 0; j < container.el[0].children.length; j++) {
+                if (container.el[0].children[j].attributes[2].nodeValue == draggedBlockDataId) {
+                    break;
+                }
             }
+            
+            j++;
+            draggedBlock = container.el[0].children[j].className;
+            draggedBlockSelector = draggedBlock.split(" ");
+            draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
+            console.log(j);
+            console.log(container.el[0].children[j]);
+            $(container.el[0].children[j]).css("left", "0").css("top", "0").longpress(
+                function (e) {
+                    // 길게 입력할 때
+                    $('#block-dialog').modal('show');
+                    
+                }
+                , function (e) {
+                    // 짧게 입력할 때
+                    console.log('짧게 누름ㅋㅋ');
+                }
+            ).draggable();
         }
 
 
@@ -85,7 +102,7 @@ var group = $("ol.simple_with_drop").sortable({
         }
         sortedData += "]";
         //        console.log(sortedData);
-
+        $($item).draggable();
     }
 
 });
@@ -95,31 +112,9 @@ $("ol.simple_with_no_drop").sortable({
     , drop: false
 });
 
-// Allowed to Drag and Drop in Mobile Device
-//$(".highlight").delegate();
-//draggable();
-
-$('.highlight').delegate(
-    $(this).longpress(
-        function (e) {
-            // 길게 입력할 때
-            $('#block-dialog').modal('show');
-        }
-        , function (e) {
-            // 짧게 입력할 때
-            console.log('짧게 누름ㅋㅋ');
-        }
-    )
-);
-
-$('.highlight').draggable();
-
-
-
-
 
 $(function () {
-    
+
 
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {

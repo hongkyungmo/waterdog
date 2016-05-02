@@ -17,6 +17,7 @@ var repo = $("#repository");
 
 //functions related to IndexedDB
 $(function () {
+
     request.onupgradeneeded = function (event) {
         console.log("onupgradeneeded : DB initialized / created");
         db = event.target.result;
@@ -28,10 +29,11 @@ $(function () {
     }
 
     request.onsuccess = function (event) {
-        console.log("indexedDB onsuccess : DB loaded successfully");
+//        console.log("indexedDB onsuccess : DB loaded successfully");
         db = event.target.result;
 
         getAllBlocks();
+
     }
 
     request.onerror = function (event) {
@@ -41,6 +43,8 @@ $(function () {
     request.onready = function (event) {
         alert("indexedDB onready");
     }
+
+
 });
 
 
@@ -53,10 +57,10 @@ function getAllBlocks() {
     request.onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
-            console.log(cursor);
-            console.log("key : " + cursor.key);
-            console.log("sec : " + cursor.value.sec);
-            console.log("notes : " + cursor.value.notes);
+//            console.log(cursor);
+//            console.log("key : " + cursor.key);
+//            console.log("sec : " + cursor.value.sec);
+//            console.log("notes : " + cursor.value.notes);
 
             var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>IndexedDB-" + blockNum + "</li>";
             blockNum++;
@@ -68,28 +72,31 @@ function getAllBlocks() {
             //1) 전체를 한꺼번에 확인 가능(하지만 이 경우 object로 찍힘)
             //alert("블럭이 가지는 정보 : " + $("#repository > li:last").data());
             //2) 개별적으로도 확인 가능
-            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
-                $("#repository > li:last").data("key") + "\nsec : " +
-                $("#repository > li:last").data("sec") + "\nnotes : " +
-                $("#repository > li:last").data("notes") + "\n");
+//            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
+//                $("#repository > li:last").data("key") + "\nsec : " +
+//                $("#repository > li:last").data("sec") + "\nnotes : " +
+//                $("#repository > li:last").data("notes") + "\n");
 
             repo.append(dynamicLoadedBlock);
             cursor.continue();
-            $('.highlight').delegate(
-                $(this).longpress(
-                    function (e) {
-                        // 길게 입력할 때
-                        $('#block-dialog').modal('show');
-                    }
-                    , function (e) {
-                        // 짧게 입력할 때
-                        console.log('짧게 누름ㅋㅋ');
-                    }
-                )
-            );
-
-            $('.highlight').draggable();
+//            console.log("디비");
+            //            $('.highlight:last-of-type').bind('touchstart', function () {
+            //                console.log("ㅋㅋㅋ");
+            //            });
+            $('.highlight:last-of-type').longpress(
+                function (e) {
+                    // 길게 입력할 때
+                    $('#block-dialog').modal('show');
+                }
+                , function (e) {
+                    // 짧게 입력할 때
+                    console.log('짧게 누름ㅋㅋ');
+                }
+            ).draggable();
+            
+            
         }
+
     }
 }
 
