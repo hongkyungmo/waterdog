@@ -76,7 +76,7 @@ function getAllBlocks() {
             repo.append(dynamicLoadedBlock);
             cursor.continue();
             $('.highlight').delegate(
-                $('.highlight').longpress(
+                $(this).longpress(
                     function (e) {
                         // 길게 입력할 때
                         $('#block-dialog').modal('show');
