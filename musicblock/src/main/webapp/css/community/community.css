@@ -3,17 +3,29 @@ html,
             position: relative;
             height: 100%;
             overflow-y: hidden;
+           overflow-x: hidden; /*이거의경우 웹에서 swipper적용x  */
         }
 
-		#btn-search {
+	 /* 	.btn-search {
 			background-color: transparent;
-			width: 10%;
-			padding: 2.5%;
+			width: 100%;
+			 heigth : 100%;
+			padding: 2.5%; 
 			left: 89.7%;
 			top: 1%;
+		}  */
+		
+		#btn-search span:before {
+		    border-right: 15px solid #ddd;
+				} 
+				
+		#btn-search  span:after {
+		    border-right: 15px solid #ddd;
+		    border-left: 0;
 		}
+		
         
-       #menu-search {
+ /*       #menu-search {
             float: right;
             right: 10%;
             position: relative;
@@ -30,7 +42,7 @@ html,
             background-color: deepskyblue;
             position: relative;
             z-index: 100;
-        } 
+        }  */
         
         .music-menu {
             /*padding: 1px;*/

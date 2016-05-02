@@ -19,6 +19,8 @@
     <!-- community CSS-->
 	<link rel="stylesheet" href="css/community/community.css">
 
+
+
     <!-- 부트스트랩 CDN -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -29,25 +31,72 @@
 
     <!-- 공통모듈 : 메뉴바 -->
     <link rel="stylesheet" href="/css/common/commonMenu.css">
+    
+    <style>
+    .modal{
+    	top : 20px;
+    	padding : 50%;
+    }
+    .btn{
+    	padding : 6px 12px;
+    }
+    .modal-header{
+    	padding: 5px;
+    	height : 35px;
+    	border-bottom :0.1px solid #e5e5e5;
+    }
+    .form-control{
+   		width:90%;
+   		height:25px;
+   		padding: 3px 12px;
+   		font-size:12px;
+    }
+    </style>
 
 </head>
 
 <body>
     <!--공통모듈 : 메뉴바-->
     <script src="/javascript/common/commonMenu.js"></script>
-     <script>	
-    	$(function () {
-        			var btnSearch = "<div class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search'></div>";
-        			$(".col-xs-10").append(btnSearch);
-        		
-        		});
-    	</script>        	    
-    <script>	
-	$('#btn-search').bind("click",function(){
-	    	 alert("들어왓니");
-	     });   
-	</script>
     
+    <!--모달  -->
+    
+ 	    <!-- Button trigger modal -->
+		<!-- <button class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search' data-toggle="modal" data-target="#myModal">
+		</button> -->
+		<span class="glyphicon glyphicon-search" style = "left : 89.7%; top : 50%;"  data-toggle="modal" data-target="#myModal">
+</span>
+
+		<!--   Launch demo modal -->
+
+		
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header" >
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h3 class="modal-title" id="myModalLabel" >
+		        	<button type='btn'  style = "float:left;" class='btn fa fa-chevron-left fa-1x' id='back' >
+		        		</button>
+		        		<div class="form-group" >
+   						 <input type="text" class="form-control" placeholder="Search">
+  						</div>
+		
+		        </h3>
+		      </div>
+		      <div class="modal-body">
+		  		..////////////////
+		  		
+		  		
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary">Search</button>
+		      </div>
+		    </div>
+		  </div>	
+		</div>
+		
     <!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
     <div class="music-menu" style="width: 100%; height: 10%;">
         <ul class="nav nav-pills">
@@ -64,7 +113,7 @@
 
         </ul>
     </div>
-
+	
     <div class="swiper-container" style="width: 100%; height: 100%;">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -548,22 +597,14 @@
             <div class="swiper-scrollbar"></div>
         </div>
         <!--swipperslider-->
+        
+        
     </div>
     <!--END swiper-container-->
 
-	<!-- Large modal -->
- 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-	
-	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-lg">
-	    <div class="modal-content">
-	      ...
-	    </div>
-	  </div>
-	</div>
 
- 
- 
+		
+
  
     <!-- Swiper JS -->
     <script src="javascript/swiper.min.js"></script>
@@ -578,9 +619,17 @@
             , /*spaceBetween: 0,*/
             grabCursor: true
         });
-	
-        
-        
+   
+
+
+        /*  $(function(){
+        	 $('.btn-search').bind("click",function(){
+          		console.log("메뉴버튼누르름르믊");
+          	    	 alert("들어왓니");
+          	    	
+         	 });   
+        })  */
+  
         
         var test = 2;
         var contentid = 0;
@@ -619,12 +668,7 @@
 					  }  
 					 
         		}
-			
-        	   
-
-        	
         		
-       	     	 
             //좋아요 클릭시 카운트 증가
             function increaseLikes() {
                 var myString = $(this).children('.nLikes').first().html();
