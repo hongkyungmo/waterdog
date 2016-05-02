@@ -5,15 +5,15 @@ html,
             overflow-y: hidden;
         }
 
-		#search {
+		#btn-search {
 			background-color: transparent;
 			width: 10%;
 			padding: 2.5%;
 			left: 89.7%;
-			top: 20%;
+			top: 1%;
 		}
         
-       /*  #menu-search {
+       #menu-search {
             float: right;
             right: 10%;
             position: relative;
@@ -30,7 +30,7 @@ html,
             background-color: deepskyblue;
             position: relative;
             z-index: 100;
-        } */
+        } 
         
         .music-menu {
             /*padding: 1px;*/

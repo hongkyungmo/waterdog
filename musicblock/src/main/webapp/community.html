@@ -17,8 +17,7 @@
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="css/community/swiper.min.css">
     <!-- community CSS-->
-    <link rel="stylesheet" href="css/community/community.css">
-
+	<link rel="stylesheet" href="css/community/community.css">
 
     <!-- 부트스트랩 CDN -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -36,6 +35,19 @@
 <body>
     <!--공통모듈 : 메뉴바-->
     <script src="/javascript/common/commonMenu.js"></script>
+     <script>	
+    	$(function () {
+        			var btnSearch = "<div class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search'></div>";
+        			$(".col-xs-10").append(btnSearch);
+        		
+        		});
+    	</script>        	    
+    <script>	
+	$('#btn-search').bind("click",function(){
+	    	 alert("들어왓니");
+	     });   
+	</script>
+    
     <!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
     <div class="music-menu" style="width: 100%; height: 10%;">
         <ul class="nav nav-pills">
@@ -539,6 +551,20 @@
     </div>
     <!--END swiper-container-->
 
+	<!-- Large modal -->
+ 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+	
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      ...
+	    </div>
+	  </div>
+	</div>
+
+ 
+ 
+ 
     <!-- Swiper JS -->
     <script src="javascript/swiper.min.js"></script>
     <!-- Initialize Swiper -->
@@ -594,16 +620,11 @@
 					 
         		}
 			
-        	   /*  // Move to modal
-        	    $("#btn-search").bind("click", function () {
-        	       // $(location).attr('href', "emotion.html");
-        	        //        $("#work-layer").stop()
-        	    }); */
-        		$(function () {
-        			var btnSave = "<div class='btn 	COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='search'></div>";
-        			$(".col-xs-10").append(btnSave);
-        		});
-        	    
+        	   
+
+        	
+        		
+       	     	 
             //좋아요 클릭시 카운트 증가
             function increaseLikes() {
                 var myString = $(this).children('.nLikes').first().html();
