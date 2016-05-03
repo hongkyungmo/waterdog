@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!-- jQuery CDN -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+	// In the following line, you should include the prefixes of implementations you want to test.
+	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+	// DON'T use "var indexedDB = ..." if you're not in a function.
+	// Moreover, you may need references to some window.IDB* objects:
+	window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+	// (Mozilla has never prefixed these objects, so we don't need window.mozIDB*)
+	
+		var request = window.indexedDB.open("musicBlockDB", 1);
+		var db;
+		var store;
+		
+		request.onupgradeneeded = function(event){
+			console.log("onupgradeneeded : DB initialized / created");
+			db = event.target.result;
+			store = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
+		}
+		
+		request.onsuccess = function(event){
+			console.log("onsuccess : DB loaded successfully");
+			db = event.target.result;
+		}
+		
+		request.onerror = function(event){
+			console.log("onerror");
+		}
+		
+		request.onready = function(event){
+			console.log("onready");
+		}
+		
+		function deleteBlockById(){
+			getAllBlocks();
+			var transaction = db.transaction(["blockTestTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.delete(parseInt($("#block-id").val()));
+			request.onsuccess = function(event){
+				console.log("id가 " + $("#block-id").val() + "인 블럭을 IndexedDB로부터 삭제했습니다.");
+			}
+		}
+		
+		function getAllBlocks(){
+			var transaction = db.transaction(["blockTestTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.openCursor();
+			request.onsuccess = function(event){
+				var cursor = event.target.result;
+				if(cursor){
+					console.log(cursor);
+					cursor.continue();
+				}
+			}
+		}
+		
+		
+		function getAllBlocksToDisplay(){
+			var transaction = db.transaction(["blockTestTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTestTable");
+			var request = objectStore.openCursor();
+			request.onsuccess = function(event){
+				var cursor = event.target.result;
+				if(cursor){
+					console.log(cursor);
+					$("body").append("<div>아이디:"+cursor.key+"&nbsp;&nbsp;초:"+cursor.value.sec+"&nbsp;&nbsp;음:"+cursor.value.notes+"</div>");
+					cursor.continue();
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<fieldset>
+		<button onclick="getAllBlocksToDisplay()">로컬DB에 있는 블럭 전체 보기</button>
+	</fieldset>
+	<fieldset>
+		<label>삭제할 블럭 아이디</label>
+		<input type="text" id="block-id" placeholder="enter id">
+		<button onclick="deleteBlockById()">블럭 삭제</button>
+	</fieldset>
+</body>
+
+</html>
