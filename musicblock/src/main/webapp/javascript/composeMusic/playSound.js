@@ -4,6 +4,7 @@ var mainVolume = 0;
 //블록 플레이를 위한 변수
 var timerIdForPlaying = 0;
 var countForPlaying = 0;
+var blockWalker = 0;
 var noteWalker = 0;
 var arr = Array();
 
@@ -64,64 +65,44 @@ var playNote = function (noteVal) {
 //play버튼 눌러서 블럭 연주
 $(function () {
 	// 블럭연주 - 음
-	$("#btn-play").click(function () {
-		if (true) {
-			var count = 0;
-			var blockSec = 0;
-			//repository -> work-layer로 변경해야 함(현재는 data가 repository에 들어있는 상태)
-			//notes 저장
-			
-			/*블럭 단위 반복 시작*/
-			arr = $("#repository > li:eq("+1+")").data("notes").split(",");
-			blockSec =$("#repository > li:eq("+1+")").data("sec");
-			mainVolume = 2;
-			playNote(noteCodeToFreq(arr[noteWalker]));
-			
-			countForPlaying = arr.length;
-			timerIdForPlaying = setInterval(function(){
-				noteWalker++;
-				if(noteWalker == countForPlaying){
-					clearInterval(timerIdForPlaying);
-					mainVolume = 0;
-					gain.gain.value = mainVolume;
-					noteWalker = 0;
-				}
-				playNote(noteCodeToFreq(arr[noteWalker]));
-				
-			}, (blockSec*1000)/countForPlaying);
-			/*블럭 단위 반복 종료*/
-		}
-	});
-	
-	
-	/*$("#btn-play").bind("click", function () {
-		alert($("#work-layer > li:eq(0)"));
-		
-		if (true) {
-			var count = 0;
-			if (clickSequence != 0) {
-				countForPlaying = clickSequence;
-				console.log(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-				playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-				timerIdForPlaying = setInterval(function () {
-					//playNote(noteCodeToFreq(13));
-					countForPlaying--;
-					console.log(countForPlaying);
-					if (noteArr[clickSequence - countForPlaying] != undefined) {
-						playNote(noteCodeToFreq(noteArr[clickSequence - countForPlaying]));
-					}
-					if (countForPlaying == 0) {
-						//alert("end!!");
-						clearInterval(timerIdForPlaying);
-						mainVolume = 0;
-						gain.gain.value = mainVolume;
-					}
-				}, blockAnimateTime / clickSequence);
-			}
-		}
-	});*/
-
+	$("#btn-play").click(playAllBlocks);
 	$("#btn-play").bind("click", function () {
 
 	});
 });
+
+var playAllBlocks = function() {
+	blockWalker = 0;
+	playOneBlock();
+}
+
+var playOneBlock = function () {
+	if (true) {
+		var count = 0;
+		var blockSec = 0;
+		//my-blocks -> work-layer로 변경해야 함(현재는 data가 my-blocks에 들어있는 상태)
+		//notes 저장
+		
+		/*블럭 단위 반복 시작*/
+		arr = $("#my-blocks > li:eq("+blockWalker+")").data("notes").split(",");
+		blockSec =$("#my-blocks > li:eq("+blockWalker+")").data("sec");
+		mainVolume = 2;
+		playNote(noteCodeToFreq(arr[noteWalker]));
+		
+		countForPlaying = arr.length;
+		timerIdForPlaying = setInterval(function(){
+			noteWalker++;
+			if(noteWalker == countForPlaying){
+				clearInterval(timerIdForPlaying);
+				mainVolume = 0;
+				gain.gain.value = mainVolume;
+				noteWalker = 0;
+				blockWalker++;
+				playOneBlock();
+			}
+			playNote(noteCodeToFreq(arr[noteWalker]));
+			
+		}, (blockSec*1000)/countForPlaying);
+		/*블럭 단위 반복 종료*/
+	}
+}
