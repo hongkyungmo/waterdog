@@ -13,7 +13,8 @@ var draggedBlockSelector = null;
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
     scrollbar: '.swiper-scrollbar'
-    , scrollbarHide: true
+    , scrollbarHide: false
+    , scrollbarSnapOnRelease : true
     , slidesPerView: 'auto'
     , spaceBetween: 0
     , grabCursor: false
@@ -23,11 +24,12 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
 var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
     , onDragStart: function ($item, container, _super, event) {
+    	swiperMelodyLayer.params.allowSwipeToNext = false;
+    	swiperMelodyLayer.params.allowSwipeToPrev = false;    	
         // Duplicate items of the no drop area
         parent = $item.parent();
         parent = parent[0].className;
         parent = parent.split(" ");
-        console.log(parent);
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
@@ -47,8 +49,6 @@ var group = $("ol.simple_with_drop").sortable({
             draggedBlock = container.el[0].children[j].className;
             draggedBlockSelector = draggedBlock.split(" ");
             draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
-            console.log(j);
-            console.log(container.el[0].children[j]);
             $(container.el[0].children[j]).css("left", "0").css("top", "0").longpress(
                 function (e) {
                     // 길게 입력할 때
@@ -65,6 +65,9 @@ var group = $("ol.simple_with_drop").sortable({
 
     }
     , onDrop: function ($item, container) {
+    	swiperMelodyLayer.params.allowSwipeToNext = true;
+    	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
+
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
         $("body").removeClass(container.group.options.bodyClass);
         // Index 파악
