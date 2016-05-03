@@ -12,7 +12,7 @@ var request = window.indexedDB.open("musicBlockDB", 1);
 var db;
 var blockNum = 0;
 
-var repo = $("#repository");
+var repo = $("#my-blocks");
 
 
 //functions related to IndexedDB
@@ -65,18 +65,18 @@ function getAllBlocks() {
             var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>IndexedDB-" + blockNum + "</li>";
             blockNum++;
             repo.append(dynamicLoadedBlock);
-            $("#repository > li:last").data("key", cursor.key);
-            $("#repository > li:last").data("sec", cursor.value.sec);
-            $("#repository > li:last").data("notes", cursor.value.notes);
+            $("#my-blocks > li:last").data("key", cursor.key);
+            $("#my-blocks > li:last").data("sec", cursor.value.sec);
+            $("#my-blocks > li:last").data("notes", cursor.value.notes);
 
             //<element에 박힌 데이터를 확인하기 위한 코드>
             //1) 전체를 한꺼번에 확인 가능(하지만 이 경우 object로 찍힘)
-            //alert("블럭이 가지는 정보 : " + $("#repository > li:last").data());
+            //alert("블럭이 가지는 정보 : " + $("#my-blocks > li:last").data());
             //2) 개별적으로도 확인 가능
 //            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
-//                $("#repository > li:last").data("key") + "\nsec : " +
-//                $("#repository > li:last").data("sec") + "\nnotes : " +
-//                $("#repository > li:last").data("notes") + "\n");
+//                $("#my-blocks > li:last").data("key") + "\nsec : " +
+//                $("#my-blocks > li:last").data("sec") + "\nnotes : " +
+//                $("#my-blocks > li:last").data("notes") + "\n");
 
             
             cursor.continue();
