@@ -77,7 +77,8 @@ var playAllBlocks = function() {
 }
 
 var playOneBlock = function () {
-	if (true) {
+	//blockWalker:블럭순회자 //블럭의 갯수만큼 재귀적 반복 시행
+	if (blockWalker != $("#my-blocks > li").length) {
 		var count = 0;
 		var blockSec = 0;
 		//my-blocks -> work-layer로 변경해야 함(현재는 data가 my-blocks에 들어있는 상태)
