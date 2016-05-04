@@ -156,5 +156,12 @@ body {
 	align-items: center;
 }
 
+#playing{
+	position:absolute;
+	top:25px;
+	left:33%;
+	color: #11da66;
+}
+
 /* 
 https://color.adobe.com/ko/explore/most-popular/?time=all */
