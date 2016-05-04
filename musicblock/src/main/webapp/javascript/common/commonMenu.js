@@ -124,6 +124,7 @@ $("body").append(element);
 $(function() {
 
 	$("#back").bind("click", function() {
+		history.back();
 		console.log("뒤로가기 누름ㅋㅋ");
 	});
 
