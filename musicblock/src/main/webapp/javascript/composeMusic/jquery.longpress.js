@@ -41,10 +41,10 @@
                 	
                 	alert(( 30<=gap.top && gap.top<=60 ));
                 	// 움직임의 변함이 적을 때 롱 클릭 이벤트 발생
-                    if (typeof longCallback === "function" &&
+                    if (typeof longCallback === "function"
                     
                     		// 최초 누른 위치와 움직여진 위치의 차이가 30에서 60사이 이면 움직이지 않는 걸로 간주
-                    		( 30<=gap.top && gap.top<=60 )
+//                    		 && ( 30<=gap.top && gap.top<=60 )
                     		) {
                     		longCallback.call(context, e);
                     } 

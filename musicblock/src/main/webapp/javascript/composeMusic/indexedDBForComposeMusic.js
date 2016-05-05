@@ -84,17 +84,36 @@ function getAllBlocks() {
             //            $('.highlight:last-of-type').bind('touchstart', function () {
             //                console.log("ㅋㅋㅋ");
             //            });
-            $('.highlight:last-of-type').longpress(
-                function (e) {
-                    // 길게 입력할 때
-                    $('#block-dialog').modal('show');
-                }
-                , function (e) {
-                    // 짧게 입력할 때
-                    console.log('짧게 누름ㅋㅋ');
-                }
-            ).draggable();
             
+
+            var blockFromDB = $('.highlight:last-of-type');
+            var placeholder = $('.dragged');
+            var longClick = {touchFlag:false, setTimeoutId:null, top:null, left:null};
+
+//            blockFromDB.draggable();
+//            blockFromDB.on('mousedown',function(){
+//            	
+//            });
+//            
+
+//            blockFromDB.on('mouseup',function () {
+//				touchFlag = false;
+//				clearTimeout(longClick.setTimeoutId);
+//			});
+            
+            
+            
+//            blockFromDB.longpress(
+//                function (e) {
+//                    // 길게 입력할 때
+////                    $('#block-dialog').modal('show');
+//                }
+//                , function (e) {
+//                    // 짧게 입력할 때
+//                    console.log('짧게 누름ㅋㅋ');
+//                }
+//            );
+
             
         }
 

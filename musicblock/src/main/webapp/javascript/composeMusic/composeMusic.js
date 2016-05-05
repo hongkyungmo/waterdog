@@ -9,6 +9,10 @@ var sortedData = null;
 var draggedBlockDataId = null;
 var draggedBlock = null;
 var draggedBlockSelector = null;
+var duration = 500;
+var downTime;
+var pressTime;
+var timeout;
 
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
@@ -23,6 +27,37 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
 
 var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
+    , afterMove: function (placeholder, container) {
+//    	    console.log(placeholder);
+//    	    console.log(container);
+    }
+    , onMousedown: function ($item, _super, event) {
+    	
+    	// 롱클릭 이벤트 처리
+    	var flag = true;
+    	downTime = new Date().getTime();
+    	timeout = setTimeout(function() {
+             if (true) {
+//            	 alert("롱클릭");
+            	 flag = false;
+             }
+         }, duration);
+    	
+    	
+    	if(flag){
+    		$($item).draggable();
+    		return flag;    		
+    	}else{
+    		return flag;
+    	}
+    	
+    }
+   
+    ,onDrag: function ($item, position, _super, event) {
+        $item.css(position);  
+//       posision으로 움직임의 변화가 크지 않다면 해당 이벤트를 취소시키세요.
+        console.log(position);
+    }
     , onDragStart: function ($item, container, _super, event) {
     	swiperMelodyLayer.params.allowSwipeToNext = false;
     	swiperMelodyLayer.params.allowSwipeToPrev = false;    	
@@ -33,7 +68,6 @@ var group = $("ol.simple_with_drop").sortable({
         if (!container.options.drop)
             $item.clone().insertAfter($item);
         _super($item, container);
-        //        $(".highlight").draggable().css("left", "0").css("top","0");
 
 
         if (parent[0] == comparedNoDrop) {
@@ -49,22 +83,42 @@ var group = $("ol.simple_with_drop").sortable({
             draggedBlock = container.el[0].children[j].className;
             draggedBlockSelector = draggedBlock.split(" ");
             draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
-            $(container.el[0].children[j]).css("left", "0").css("top", "0").longpress(
-                function (e) {
-                    // 길게 입력할 때
-                    $('#block-dialog').modal('show');
-                    
-                }
-                , function (e) {
-                    // 짧게 입력할 때
-                    console.log('짧게 누름ㅋㅋ');
-                }
-            ).draggable();
+//            $(container.el[0].children[j]).css("left", "0").css("top", "0").longpress(
+//                function (e) {
+//                    // 길게 입력할 때
+//                    $('#block-dialog').modal('show');
+//                    
+//                }
+//                , function (e) {
+//                    // 짧게 입력할 때
+//                    console.log('짧게 누름ㅋㅋ');
+//                }
+//            ).draggable();
         }
 
 
     }
     , onDrop: function ($item, container) {
+    	
+    	// 짧은 클릭 이벤트
+    	pressTime = new Date().getTime() - downTime;
+        if (pressTime < duration) {
+            // cancel the timeout
+            clearTimeout(timeout);
+            console.log("짧은 클릭");
+        }
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	swiperMelodyLayer.params.allowSwipeToNext = true;
     	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
 
@@ -117,7 +171,6 @@ $("ol.simple_with_no_drop").sortable({
 
 
 $(function () {
-
 
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {

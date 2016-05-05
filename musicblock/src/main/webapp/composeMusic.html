@@ -54,9 +54,6 @@
     <!-- User Defined & Overriding   -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/composeMusic.css">
     <link rel="stylesheet" type="text/css" href="css/composeMusic/indexedDBForComposeMusic.css">
-    
-    <!-- Bootstrap-dialog UI -->
-    <link rel="stylesheet" type="text/css" href="/css/composemusic/bootstrap-dialog.css">
 
     <!-- Tab -->
     <link rel="stylesheet" type="text/css" href="css/composeMusic/tab.css">
@@ -78,8 +75,12 @@
                 <div class="modal-body">
                     <div class="container-fluid bd-example-row">
                         <div class="row">
-                            <div class="col-xs-6"><i class='fa fa-pencil-square-o fa-3x' aria-hidden="true" id='dialog-edit'></i>&nbsp;수정</div>
-                            <div class="col-xs-6"><i class='fa fa-trash-o fa-3x' aria-hidden="true" id='dialog-delete'></i>&nbsp;삭제</div>
+                            <div class="col-xs-6">
+                                <i class='fa fa-pencil-square-o fa-3x' aria-hidden="true" id='dialog-edit'></i>&nbsp;수정
+                            </div>
+                            <div class="col-xs-6">
+                                <i class='fa fa-trash-o fa-3x' aria-hidden="true" id='dialog-delete'></i>&nbsp;삭제
+                            </div>
                         </div>
 
                     </div>
@@ -111,7 +112,7 @@
                                              swiper-slide, highlight : 스타일을 지정하기 위한 selector
                                              layer-block : drag handler
                                         -->
-<!--
+                        <!--
                         <li class='swiper-slide highlight' data-name="Item 1" data-id="1">Item 1</li>
                         <li class='swiper-slide highlight' data-name="Item 2" data-id="2">Item 2</li>
                         <li class='swiper-slide highlight' data-name="Item 3" data-id="3">Item 3</li>
@@ -168,13 +169,13 @@
                                              swiper-slide, highlight : 스타일을 지정하기 위한 selector
                                              layer-block : drag handler
                                         -->
-<!--
-                                        <li class='no_drop swiper-slide highlight' data-name="Item 6" data-id="6"><i class='fa fa-play-circle-o fa-3x'></i><br>Item 6</li>
+
+                                        <li class='no_drop swiper-slide highlight' data-name="Item 6" data-id="6">Item 6</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item 7" data-id="7">Item 7</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item 8" data-id="8">Item 8</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item 9" data-id="9">Item 9</li>
                                         <li class='no_drop swiper-slide highlight' data-name="Item 0" data-id="0">Item 0</li>
--->
+
 
                                         <!-- 블럭 리스트 끝-->
                                     </ol>
@@ -218,16 +219,7 @@
                                              swiper-slide, highlight : 스타일을 지정하기 위한 selector
                                              layer-block : drag handler
                                         -->
-                                        <li class='no_drop swiper-slide highlight' data-name="Item !" data-id="!">Item !</li>
-                                        <li class='no_drop swiper-slide highlight' data-name="Item @" data-id="@">Item @</li>
-                                        <li class='no_drop swiper-slide highlight' data-name="Item #" data-id="#">Item #</li>
-                                        <li class='no_drop swiper-slide highlight' data-name="Item $" data-id="$">Item $</li>
-                                        <li class='no_drop swiper-slide highlight' data-name="Item %" data-id="%">Item %</li>
-<div class="bd-example bd-example-padded-bottom">
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">
-    Launch demo modal
-  </button>
-</div>
+
                                         <!-- 블럭 리스트 끝-->
                                     </ol>
 
@@ -254,80 +246,35 @@
 
             </div>
 
-            <!--
-            
--->
             <!-- 저장소 프레임 끝-->
         </div>
-<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid bd-example-row">
-          <div class="row">
-            <div class="col-md-4">.col-md-4</div>
-            <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
-          </div>
-          <div class="row">
-            <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
-            <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-9">
-              Level 1: .col-sm-9
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
-                  Level 2: .col-xs-8 .col-sm-6
-                </div>
-                <div class="col-xs-4 col-sm-6">
-                  Level 2: .col-xs-4 .col-sm-6
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-    
 
         <!-- 전체 영역 끝 -->
     </div>
-<!--<div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>-->
+    <!--<div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div>-->
 
     <!-- Sortable JS   -->
     <script src='javascript/composeMusic/sortable.js'></script>
+    
+    <!-- Touch-punch -->
     <script src="javascript/composeMusic/jquery.ui.touch-punch.min.js"></script>
-    
-    <!-- longpress JS   -->
+
+    <!-- longpress JS 배제중   -->
     <script src="javascript/composeMusic/jquery.longpress.js"></script>
-    
-    <!-- circle progress JS   -->
+
+    <!-- circle progress JS 보류  -->
     <script src="javascript/composeMusic/circle-progress.js"></script>
 
     <!-- Swiper JS -->
     <script src="javascript/composeMusic/swiper.min.js"></script>
-    
-    <!-- Bootstrap-dialog JS -->
+
+    <!-- Bootstrap-dialog JS 배제중-->
     <script type="text/javascript" src="javascript/composeMusic/bootstrap-dialog.js"></script>
-    
+
     <!-- User Defined & Overriding   -->
-    <script src="javascript/composeMusic/indexedDBForComposeMusic.js"></script>
     <script src="javascript/composeMusic/composeMusic.js"></script>
+    <script src="javascript/composeMusic/indexedDBForComposeMusic.js"></script>
     <script src="javascript/composeMusic/playSound.js"></script>
- 
 </body>
 
 </html>
