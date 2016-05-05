@@ -47,6 +47,7 @@
 	var tempElement = null;
 	//음악 재생 애니메이션
 	$(function() {
+		//재생 시각적 효과
 		$(".noteVisualContainer").click(function() {
 			//애니메이션 속도
 			var barCycleLength = 200;
@@ -89,6 +90,40 @@
 				}
 			}, barCycleLength);
 		});
+		
+		
+		
+		
+		//indexedDB로부터 값 가져오기 및 소리 재생
+		var numOfBlocks=0;
+		var blockArr = new Array();
+		
+		//쪼개기 전의 raw String
+		musicString = "4&1,2,3/6&8,42,36/8&22,7,19,6/8&44,2,7,6/10&22,24,17,26/8&9,6,9,8/2&4,2,3,3/4&2,2,2/6&9,2,8,13/6&3,2,46,23";
+		
+		//블럭 단위로 쪼갬
+		var blockArr = musicString.split('/');
+		
+		//블럭을 초와 노트집합(음집합)로 쪼갬
+		var secAndNotesArr = blockArr[0].split('&');
+		
+		//0번인덱스 : 초
+		//1번인덱스 : 음집합
+		//노트집합을 1개의 개별 음으로 쪼갬
+		var noteArr = secAndNotesArr[1].split(',');
+		
+		for(var i=0;i<blockArr.length;i++){
+			secAndNotesArr = blockArr[i].split('&');
+			
+			console.log("***"+i+"번블럭***");
+			console.log(" 초 : " + secAndNotesArr[0]);
+			console.log(" 음집합 : " + secAndNotesArr[1]+"\n\n");
+		}
+		
+		
+		
+		
+		
 	});
 
 	$(function() {
