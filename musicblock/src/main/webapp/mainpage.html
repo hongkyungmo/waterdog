@@ -43,7 +43,7 @@
 </style>
 
 <script type="text/javascript">
-	var currentPlayingIndex = -1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
+	var currentPlayingIndex = -1.1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
 	var tempElement = null;
 	//음악 재생 애니메이션
 	$(function() {
@@ -57,7 +57,7 @@
 			if(currentClickedIndex == currentPlayingIndex){
 				$(".noteVisualContainer:eq("+currentClickedIndex+") > i").css("visibility", "visible");
 				$(".noteVisualContainer:eq("+currentClickedIndex+") > .noteVisualBar").remove();
-				currentPlayingIndex = -1;
+				currentPlayingIndex = -1.1;
 				return;
 			}
 			
