@@ -31,12 +31,25 @@
             function mousedown_callback(e) {
                 mouse_down_time = new Date().getTime();
                 var context = $(this);
-
+                var offset = {top:context.context.offsetTop, left:context.context.offsetLeft};
+                var gap = {top:0, left:0};
                 // set a timeout to call the longpress callback when time elapses
                 timeout = setTimeout(function() {
-                    if (typeof longCallback === "function") {
-                        longCallback.call(context, e);
-                    } else {
+                	gap.top = Math.abs(context.context.offsetTop-offset.top);
+                	gap.left = Math.abs(context.context.offsetLeft-offset.left);
+
+                	
+                	alert(( 30<=gap.top && gap.top<=60 ));
+                	// 움직임의 변함이 적을 때 롱 클릭 이벤트 발생
+                    if (typeof longCallback === "function" &&
+                    
+                    		// 최초 누른 위치와 움직여진 위치의 차이가 30에서 60사이 이면 움직이지 않는 걸로 간주
+                    		( 30<=gap.top && gap.top<=60 )
+                    		) {
+                    		longCallback.call(context, e);
+                    } 
+                // 움직임의 변함이 클 때 롱 클릭 이벤트 비발생
+                    else {
                         $.error('Callback required for long press. You provided: ' + typeof longCallback);
                     }
                 }, duration);
@@ -68,6 +81,7 @@
 
             // Mobile Support
             $this.on('touchstart', mousedown_callback);
+            $this.on('mousedown', mousedown_callback);
             $this.on('touchend', mouseup_callback);
             $this.on('touchmove', move_callback);
         });
