@@ -8,7 +8,7 @@ window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndex
 window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
     // (Mozilla has never prefixed these objects, so we don't need window.mozIDB*)
-var request = window.indexedDB.open("musicBlockDB", 1);
+var request = window.indexedDB.open("musicBlockDB", 2);
 var db;
 var blockNum = 0;
 
