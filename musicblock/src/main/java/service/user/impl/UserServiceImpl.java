@@ -19,5 +19,10 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) throws Exception{
 		userDao.addUser(user);
 	}
+	
+	public void checkUser(User user) throws Exception{
+		// 여기서 nick으로 할지 email로 할지 확인
+		// controll 에서 넘기니까 controll 에서 해야하나...
+	}
 
 }

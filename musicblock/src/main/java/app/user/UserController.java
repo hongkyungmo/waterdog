@@ -30,9 +30,12 @@ public class UserController {
 		User user = new User();
 		
 		String loginInfo = (String)map.get("user");
+		String password = (String)map.get("password");
+		System.out.println("password>>"+password);
 		
 		if(loginInfo.contains("@")){
 			System.out.println("Email>>"+loginInfo);
+			
 		}else{
 			System.out.println("Nick>>"+loginInfo);
 		}
