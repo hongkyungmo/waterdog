@@ -1,733 +1,293 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+<!--<link rel="stylesheet" href="/resources/demos/style.css">-->
 
-    <!--scroll-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="css/community/swiper.min.css">
-    <!-- community CSS-->
-	<link rel="stylesheet" href="css/community/community.css">
+<!--scroll-->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
 
 
-    <!-- 부트스트랩 CDN -->
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <!-- 공통모듈 : 메뉴바 -->
-    <link rel="stylesheet" href="/css/common/commonMenu.css">
-    
-    <style>
-    .modal{
-    	top : 20px;
-    	padding : 50%;
-    }
-    .btn{
-    	padding : 6px 12px;
-    }
-    .modal-header{
-    	padding: 5px;
-    	height : 35px;
-    	border-bottom :0.1px solid #e5e5e5;
-    }
-    .form-control{
-   		width:90%;
-   		height:25px;
-   		padding: 3px 12px;
-   		font-size:12px;
-    }
-    </style>
+
+<!-- 부트스트랩 CDN -->
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<!-- 공통모듈 : 메뉴바 -->
+<link rel="stylesheet" href="/css/common/commonMenu.css">
+
+<!-- community CSS-->
+<link rel="stylesheet" href="css/community/community.css">
+
+<style>
+.modal {
+	top: 20px;
+	padding: 50%;
+}
+
+.btn {
+	padding: 6px 12px;
+}
+
+.modal-header {
+	padding: 5px;
+	height: 35px;
+	border-bottom: 0.1px solid #e5e5e5;
+}
+
+.form-control {
+	width: 90%;
+	height: 25px;
+	padding: 3px 12px;
+	font-size: 12px;
+}
+</style>
 
 </head>
 
 <body>
-    <!--공통모듈 : 메뉴바-->
-    <script src="/javascript/common/commonMenu.js"></script>
-    
-    <!--모달  -->
-    
- 	    <!-- Button trigger modal -->
-		<!-- <button class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search' data-toggle="modal" data-target="#myModal">
-		</button> -->
-		<span class="glyphicon glyphicon-search" style = "left : 89.7%; top : 50%;"  data-toggle="modal" data-target="#myModal">
-</span>
+	<!--공통모듈 : 메뉴바-->
+	<script src="/javascript/common/commonMenu.js"></script>
 
-		<!--   Launch demo modal -->
+	<!--모달  -->
 
-		
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header" >
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h3 class="modal-title" id="myModalLabel" >
-		        	<button type='btn'  style = "float:left;" class='btn fa fa-chevron-left fa-1x' id='back' >
-		        		</button>
-		        		<div class="form-group" >
-   						 <input type="text" class="form-control" placeholder="Search">
-  						</div>
-		
-		        </h3>
-		      </div>
-		      <div class="modal-body">
-		  		..////////////////
-		  		
-		  		
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary">Search</button>
-		      </div>
-		    </div>
-		  </div>	
+	<!-- Button trigger modal -->
+	<!-- <button class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search' data-toggle="modal" data-target="#myModal">
+			</button> -->
+	<!--<span class="glyphicon glyphicon-search" style = "left : 89.7%; top : 50%;"  data-toggle="modal" data-target="#myModal">
+	</span>-->
+
+	<!--   Launch demo modal -->
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h3 class="modal-title" id="myModalLabel">
+						<button type='btn' style="float: left;"
+							class='btn fa fa-chevron-left fa-1x' id='back'></button>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search">
+						</div>
+
+					</h3>
+				</div>
+				<div class="modal-body">..////////////////</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Search</button>
+				</div>
+			</div>
 		</div>
-		
-    <!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
-    <div class="music-menu" style="width: 100%; height: 10%;">
-        <ul class="nav nav-pills">
-            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> MUSIC <span class="caret"></span>
+	</div>
+
+	<!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
+	<div class="music-menu" style="width: 100%; height: 10%;">
+		<ul class="nav nav-pills">
+			<li role="presentation" class="dropdown"><a
+				class="dropdown-toggle" data-toggle="dropdown" href="#"
+				role="button" aria-expanded="false"> MUSIC <span class="caret"></span>
 			</a>
-                <ul class="dropdown-menu" role="menu">BLOCK
-                </ul>
-                <li role="presentation"><a href="#">인기순위</a></li>
-                <li role="presentation"><a href="#">최신노래</a></li>
-                <li role="presentation"><a href="#">테마</a></li>
-                <li role="presentation"><a href="#">주간핫</a></li>
-                <li role="presentation"><a href="#">장르</a></li>
-                <li role="presentation"><a href="#">추천</a></li>
+				<ul class="dropdown-menu" role="menu">BLOCK
+				</ul>
+			<li role="presentation"><a href="#">인기순위</a></li>
+			<li role="presentation"><a href="#">최신노래</a></li>
+			<li role="presentation"><a href="#">테마</a></li>
+			<li role="presentation"><a href="#">주간핫</a></li>
+			<li role="presentation"><a href="#">장르</a></li>
+			<li role="presentation"><a href="#">추천</a></li>
+		</ul>
+	</div>
 
-        </ul>
-    </div>
-	
-    <div class="swiper-container" style="width: 100%; height: 100%;">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <!-- 2개씩 -->
-                <div class="contain-layer" style="width: 50%; float: left;">
-                    <!--<div class="contain">-->
-                    <!--썸네일-->
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-						<!--</span>-->
+	<!-- 헤드부분  -->
+	<div class="header"></div>
 
+	<!-- 전체 컨테이너 -->
+	<div class="total-container">
+		<div id="contain-layer-left" style="width: 50%; float: left;">
+			<!-- <div class="people">
+				<li><a href=#><img src="images/3.png" /></a>
+					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
+						<hr>
+						<div class="comments"></div> </span>
+					<ul class="toolbar">
+						<ui>
+						<p class="likes">
+							<span class="glyphicon glyphicon-heart"></span> <span
+								class="nLikes"></span>
+						</p>
+						</ui>
 
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
+						<ui>
+						<p class="download">
+							<span class="glyphicon glyphicon-download-alt"></span> <span
+								class="nDown"></span>
+						</p>
+						</ui>
+						<ui>
+						<p class="player">
+							<span class="glyphicon glyphicon-play"></span> <span
+								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
+						</p>
+						</ui>
+						<ui>
+						<p class="stop">
+							<span class="glyphicon glyphicon-stop"></span>
+						</p>
+						</ui>
+					</ul></li>
+			</div> -->
+		</div>
+		<!-- end of Left 컨테이너 -->
 
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                        <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="stop">
-                                        <span class="glyphicon glyphicon-stop"></span></p>
-                                </ui>
-                            </ul>
-
-                        </li>
-                    </div>
-
-
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가학원가네</nm>
-							<em></em>
-                            <hr>
-                             <div class="comments"></div>
-						<!--</span>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                                 <ui>
-                                    <p class="stop">
-                                        <span class="glyphicon glyphicon-stop"></span></p>
-                                </ui>
-                                
-                            </ul>
-                        </li>
-                    </div>
-
-                </div>
-
-                <!--///////////////////////////////////////////////////////-->
-                <!--right컨테이너-->
-                <!--<div class="swiper-slide">-->
-                <div class="contain-layer" style="width: 50%; float: right;">
-                    <div class="people">
-                        <li>
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info"> --><nm>이산돌</nm> <em></em>
-                            <hr>
-                            <div class="comments"></div>
-						<!--</span>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                 <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                                 <ui>
-                                    <p class="stop">
-                                        <span class="glyphicon glyphicon-stop"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
+		<!--right컨테이너-->
+		<div id="contain-layer-right" style="width: 50%; float: right;">
+		</div>
+		<!-- end of Right컨테이너 -->
+	</div>
 
 
 
-                    <div class="people">
-                        <li>
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!-- <span class="info"> --> <nm>이산돌</nm> <em></em>
-                            <hr>
-                                <div class="comments"></div>
-						<!-- </span> -->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
+	<script>
+		$(".people").click(function() {
+			alert();
+			var Pindex = $(".people").index(this);
+			alert(Pindex);
+			console.log(Pindex);
+			//$('h2:eq(1)').append("바보");
+		});
 
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                                 <ui>
-                                    <p class="stop">
-                                        <span class="glyphicon glyphicon-stop"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <!-- 2개씩 -->
-                <div class="contain-layer" style="width: 50%; float: left;">
-                    <!--<div class="contain">-->
-                    <!--썸네일-->
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                            <!--div class=-->
-                     <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
+		var test = 2;
+		var max = 30;
 
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
+		$(function() {
+			RecvFromServer();
+			function RecvFromServer() {
 
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-
-                        </li>
-                    </div>
-
-
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                             <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-
-                </div>
-
-                <!--///////////////////////////////////////////////////////-->
-                <!--right컨테이너-->
-                <!--<div class="swiper-slide">-->
-                <div class="contain-layer" style="width: 50%; float: right;">
-                    <div class="people">
-                        <li>
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-
-
-
-                    <div class="people">
-                        <li>
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <!-- 2개씩 -->
-                <div class="contain-layer" style="width: 50%; float: left;">
-                    <!--<div class="contain">-->
-                    <!--썸네일-->
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                            <!--div class=-->
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-
-
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-
-                        </li>
-                    </div>
-
-
-                    <div class="people">
-                        <!-- <ul id="people">-->
-                        <li>
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-
-                </div>
-
-                <!--///////////////////////////////////////////////////////-->
-                <!--right컨테이너-->
-                <!--<div class="swiper-slide">-->
-                <div class="contain-layer" style="width: 50%; float: right;">
-                    <div class="people">
-                        <li>
-                            <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-
-
-
-                    <div class="people">
-                        <li>
-                           <!--div class=-->
-                            <a href=#><img src="images/3.png" /></a>
-                            <h2></h2> <!--<span class="info">--> <nm>은혜가은행가네</nm>
-								<em></em>
-                            <hr>
-                            <div class="comments"></div>
-                            <!-- <div class="hash-content"></div>-->
-                            <ul class="toolbar">
-                                <ui>
-                                    <p class="likes">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="nLikes"></span></p>
-                                </ui>
-
-                                <ui>
-                                    <p class="download">
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        <span class="nDown"></span></p>
-                                </ui>
-                                <ui>
-                                    <p class="chat">
-                                        <span class="glyphicon glyphicon-option-horizontal"></span>3</p>
-                                </ui>
-                                <ui>
-                                    <p class="player">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-pause"></span>
-                                        <span class="nPlayers"></span></p>
-                                </ui>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-scrollbar"></div>
-        </div>
-        <!--swipperslider-->
-        
-        
-    </div>
-    <!--END swiper-container-->
-
-
-		
-
- 
-    <!-- Swiper JS -->
-    <script src="javascript/swiper.min.js"></script>
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            scrollbar: '.swiper-scrollbar'
-            , scrollbarHide: true
-            , slidesPerView: 'auto'
-            , centeredSlides: true
-            , direction: 'vertical'
-            , /*spaceBetween: 0,*/
-            grabCursor: true
-        });
-   
-
-
-        /*  $(function(){
-        	 $('.btn-search').bind("click",function(){
-          		console.log("메뉴버튼누르름르믊");
-          	    	 alert("들어왓니");
-          	    	
-         	 });   
-        })  */
-  
-        
-        var test = 2;
-        var contentid = 0;
-        var max = 23;
-       
-        $(function () {
-        	RecvFromServer();
-        		function RecvFromServer(){
-        			
-					 for(test =0; test <max; ++test){  
-	        		 	$.ajax({
-	        				type:'GET'
-	        				,url:'block/getJsonBlock/'+test
-	        				,dataType : "json"
-	        				,data:""
-	        				,async:false
-	        				,success:function(data){
-		        				console.log(status);
-								console.log("JSONData : "
-										+ JSON.stringify(data));	//stringify은 string type으로 바꿔줌
-									console.log("test:"+test);
+				for (test = 0; test < max; ++test) {
+					$
+							.ajax({
+								type : 'GET',
+								url : 'block/getJsonBlock/' + test,
+								dataType : "json",
+								data : "",
+								async : false,
+								success : function(data) {
+									console.log("JSONData : "
+											+ JSON.stringify(data)); //stringify은 string type으로 바꿔줌
 									//데이터 블럭값이있을경우에만
-									if( data['block'] != null){
-										/* 타이틀 */
-										$('h2:eq('+(contentid)+')').append(data['block'].title);
-									
-										$('em:eq('+(contentid)+')').append(data['block'].regDate);
-										contentid++;
+									if (data['block'] != null) {
+
+										var dynamicEl = "<div class='people'><li><a href=#><img src='images/3.png' /></a><h2>"
+												+ data['block'].title
+												+ "</h2> <span class='info'><nm>이산돌</nm> <em>"
+												+ data['block'].regDate
+												+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
+
+										var leftHeight = parseInt($(
+												"#contain-layer-left").css(
+												"height"));
+										var rightHeight = parseInt($(
+												"#contain-layer-right").css(
+												"height"));
+										if (leftHeight <= rightHeight) {
+											$("#contain-layer-left").append(
+													dynamicEl);
+										} else {
+											$("#contain-layer-right").append(
+													dynamicEl);
+										}
 									}
-									
-	        				}
-	        				,error : function(status) {
-	    						console.log(status);
-	    					}
-	        			}) 
-					  }  
-					 
-        		}
-        		
-            //좋아요 클릭시 카운트 증가
-            function increaseLikes() {
-                var myString = $(this).children('.nLikes').first().html();
-                var myInteger = parseInt(myString);
-                var myNewInteger = myInteger + 1;
-                var nlikesUp = myNewInteger.toString();
+								},
+								error : function(status) {
+									console.log(status);
+								}
+							})
+				}
 
-                $(this).children('.nLikes').first().html(nlikesUp);
-            }
-            /*$('#tab-navigation li').click(changeTab);*/
-            $('.likes').click(increaseLikes);
+			}
 
+			//좋아요 클릭시 카운트 증가
+			function increaseLikes() {
+				var myString = $(this).children('.nLikes').first().html();
+				var myInteger = parseInt(myString);
+				var myNewInteger = myInteger + 1;
+				var nlikesUp = myNewInteger.toString();
 
-            function increaseDownLoad() {
-                var DownLoadString = $(this).children('.nDown').first().html();
-                var DownLoadInteger = parseInt(DownLoadString);
-                var DownLoadNewInteger = DownLoadInteger + 1;
-                var nDownloads = DownLoadNewInteger.toString();
+				$(this).children('.nLikes').first().html(nlikesUp);
+			}
+			/*$('#tab-navigation li').click(changeTab);*/
+			$('.likes').click(increaseLikes);
 
-                $(this).children('.nDown').first().html(nDownloads);
-            }
+			function increaseDownLoad() {
+				var DownLoadString = $(this).children('.nDown').first().html();
+				var DownLoadInteger = parseInt(DownLoadString);
+				var DownLoadNewInteger = DownLoadInteger + 1;
+				var nDownloads = DownLoadNewInteger.toString();
 
-            $('.download').click(increaseDownLoad);
+				$(this).children('.nDown').first().html(nDownloads);
+			}
 
-            $('.glyphicon-pause').hide(); /*공통부분*/
+			$('.download').click(increaseDownLoad);
 
-            /*
-             1.클릭시 해당 인덱스의 이벤트만 변경되어야한다.
-            -> 해당 인덱스가 재생버튼일때만 증가함수가 호출된다.
-             */
-      
+			$('.glyphicon-pause').hide(); /*공통부분*/
 
-            function increasePlayers(index) {
-                var playersString = $('.nPlayers:eq(' + index + ')').html();
-                var playersInteger = parseInt(playersString);
-                var playersNewInteger = playersInteger + 1;
-                var nPlayersUp = playersNewInteger.toString();
-                $('.nPlayers:eq(' + index + ')').html(nPlayersUp);
-            }
+			/*
+			 1.클릭시 해당 인덱스의 이벤트만 변경되어야한다.
+			-> 해당 인덱스가 재생버튼일때만 증가함수가 호출된다.
+			 */
 
-            $('.glyphicon-play').click(function(){
-                var index = $('.glyphicon-play').index(this);
-                increasePlayers(index);
-                 $('.glyphicon-play:eq('+index+')').hide();
-                 $('.glyphicon-pause:eq('+index+')').show();
-                
-                
-            });
-            
-            
-             $('.glyphicon-pause').click(function(){
-                 
-                 var index = $('.glyphicon-pause').index(this);
-                   $('.glyphicon-pause:eq('+index+')').hide();
-                 $('.glyphicon-play:eq('+index+')').show();
-           });
+			function increasePlayers(index) {
+				var playersString = $('.nPlayers:eq(' + index + ')').html();
+				var playersInteger = parseInt(playersString);
+				var playersNewInteger = playersInteger + 1;
+				var nPlayersUp = playersNewInteger.toString();
+				$('.nPlayers:eq(' + index + ')').html(nPlayersUp);
+			}
 
-        });
-    </script>
+			$('.glyphicon-play').click(function() {
+				var index = $('.glyphicon-play').index(this);
+				increasePlayers(index);
+				$('.glyphicon-play:eq(' + index + ')').hide();
+				$('.glyphicon-pause:eq(' + index + ')').show();
+
+			});
+
+			$('.glyphicon-pause').click(function() {
+
+				var index = $('.glyphicon-pause').index(this);
+				$('.glyphicon-pause:eq(' + index + ')').hide();
+				$('.glyphicon-play:eq(' + index + ')').show();
+			});
+
+		});
+	</script>
 </body>
 
 </html>

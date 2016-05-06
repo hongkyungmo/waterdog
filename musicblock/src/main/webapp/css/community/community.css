@@ -1,10 +1,12 @@
 html,
+
         body {
             position: relative;
             height: 100%;
-            overflow-y: hidden;
-           overflow-x: hidden; /*이거의경우 웹에서 swipper적용x  */
+            background-color: lightgray;
+            overflow-x: hidden; /*이거의경우 웹에서 swipper적용x  */
         }
+
 
 	 /* 	.btn-search {
 			background-color: transparent;
@@ -44,28 +46,34 @@ html,
             z-index: 100;
         }  */
         
+        #COMMON-MENUBAR {
+			position:fixed; 
+			 z-index : 150;
+        }
+        
         .music-menu {
             /*padding: 1px;*/
             background-color: white;
-            position: relative;
-            z-index: 100;
+            position: fixed;
+            margin-top: 6.5%;
+            height:10%;
+            z-index: 150;
         }
-        
-        .contain-list {
+        .header{
             width: 100%;
-            height: 100%;
-            background-color: lightgrey;
+            height: 22%;
+            background-color:white;
             position: relative;
-            z-index: 100;
-        }
-        
-        .swiper-container {
+            z-index: 0;
+        }   
+    
+        .total-container {
             background-color: lightgrey;
             position: relative;
             z-index: 10;
             width: 100%;
-            height: 300px;
-            margin: 20px auto;
+           /*  height: 300px; */
+            /*margin: 20px auto;*/
         }
         
         .contain-layer {
@@ -74,39 +82,17 @@ html,
             z-index: 10;
             /*padding: 5px;*/
         }
-        /*  .contain {
-            background-color: whitesmoke;
-            padding: 10px;
-            margin: 3%;
-            margin-top: 5%;
-            position: relative;
-            z-index: 10;
-        }*/
-        /*게시판*/
         
-        .swiper-slide {
-            /*     text-align: center;
-            font-size: 18px;
-            background: #fff;*/
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            background-color: lightgrey;
-            position: relative;
-            z-index: 10;
-        }
-        
+
         .people {
             position: relative;
-            margin-top: -3%;
+            margin-top : 1%;
             /*상단 마진*/
             margin-bottom: -7%; /*컨텐츠간의 간격*/
             /*people클래스간 마진*/
             padding: 6%; /*가운데를중심으로 화면비율*/
-            width: 104%;
-           /* height: 180px;*/
+            width: 100%;
+           /*  height: 180px; */
             font-family: "Helvetica Neue", Helvetica, sans-serif, Bold;
             font-size: 10px;
             /*아이뒤 업로드*/
