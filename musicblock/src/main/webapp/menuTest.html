@@ -104,7 +104,7 @@
 
 		console.log('serverLogin() ');
 		
-		var dummyUser ='user01';
+		var dummyUser ='user01@gmail.com';
 		var dummyPass = '1234';
 		
 		var transUser=0;
@@ -133,14 +133,14 @@
 								function() {
 									$("#save-popup")
 											.remove();
-									location.href = "menuTest.html";
+									/* location.href = "menuTest.html"; */
 								});
 			},
 			error : function(status) {
 				console.log(status);
 			}
 		});
-	});
+	};
 
 </script>
 </head>
