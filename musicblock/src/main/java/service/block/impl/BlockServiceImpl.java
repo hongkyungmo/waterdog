@@ -18,7 +18,7 @@ public class BlockServiceImpl implements BlockService{
 	private BlockDao blockDao;
 	public void setBlockDao(BlockDao blockDao) {
 		this.blockDao = blockDao;
-	}
+	}ㅌ
 
 	///Constructor
 	public BlockServiceImpl() {
