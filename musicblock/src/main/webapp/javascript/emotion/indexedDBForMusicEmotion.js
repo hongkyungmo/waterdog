@@ -42,7 +42,7 @@ function addMusic(){
 	var transaction = db.transaction(["musicTable"], "readwrite");
 	var objectStore = transaction.objectStore("musicTable");
 	//var musicStr=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
-	var musicStr="1&1,2,3/1&11,12,13";
+	var musicStr="1&42,33,34/1&41,27,46";
 	if(musicStr!=null && musicStr!=undefined && musicStr!=""){
 		request = objectStore.add({musicInfo:musicStr});
 		request.onsuccess = function(event){
