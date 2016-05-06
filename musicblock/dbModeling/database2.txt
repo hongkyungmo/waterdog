@@ -281,14 +281,14 @@ ALTER TABLE MUSIC_HASH
 			MCODE
 		);
 
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user01','email1','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user02','email2','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user03','email3','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user04','email4','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user05','email5','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user06','email6','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user07','email7','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user08','email8','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user09','email9','1234');
-INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user10','email10','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user01','email1@naver.com','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user02','email2@daum.net','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user03','email3@gmail.com','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user04','email4@hanmail.net','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user05','email5@yahoo.com','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user06','email6@naver.com','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user07','email7@daum.net','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user08','email8@gmail.com','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user09','email9@hanmail.net','1234');
+INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user10','email10@naver.com','1234');
 commit;

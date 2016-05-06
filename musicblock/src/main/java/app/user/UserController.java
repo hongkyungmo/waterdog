@@ -28,6 +28,14 @@ public class UserController {
 		System.out.println("(/user/userLogin)RequestBody로 전달받은 String(JSON) : "+map);
 
 		User user = new User();
+		
+		String loginInfo = (String)map.get("user");
+		
+		if(loginInfo.contains("@")){
+			System.out.println("Email>>"+loginInfo);
+		}else{
+			System.out.println("Nick>>"+loginInfo);
+		}
 		return user;
 	}
 }
