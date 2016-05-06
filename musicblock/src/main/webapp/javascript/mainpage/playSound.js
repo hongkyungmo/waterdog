@@ -8,6 +8,8 @@ var blockWalker = 0;
 var noteWalker = 0;
 var arr = new Array();
 var blockArr = new Array();
+var secAndNotesArr=0;
+var noteArr=0;
 
 
 
@@ -76,17 +78,14 @@ $(function () {
 
 var playAllBlocks = function() {
 	blockWalker = 0;
-	playOneBlock();
-}
-
-var playOneBlock = function () {
+	
 	//블럭을 초와 노트집합(음집합)로 쪼갬
-	var secAndNotesArr = blockArr[0].split('&');
+	secAndNotesArr = blockArr[0].split('&');
 
 	//0번인덱스 : 초
 	//1번인덱스 : 음집합
 	//노트집합을 1개의 개별 음으로 쪼갬
-	var noteArr = secAndNotesArr[1].split(',');
+	noteArr = secAndNotesArr[1].split(',');
 	
 	//테스트코드
 	for(var i=0;i<blockArr.length;i++){
@@ -97,9 +96,16 @@ var playOneBlock = function () {
 		console.log(" 음집합 : " + secAndNotesArr[1]+"\n\n");
 	}
 	
+	playOneBlock();
+}
+
+var playOneBlock = function () {
+
+	
 	
 	//blockWalker:블럭순회자 //블럭의 갯수만큼 재귀적 반복 시행
 	if (blockWalker != blockArr.length) {
+		secAndNotesArr = blockArr[blockWalker].split('&');
 		var count = 0;
 		var blockSec = 0;
 		//my-blocks -> work-layer로 변경해야 함(현재는 data가 my-blocks에 들어있는 상태)
@@ -107,7 +113,7 @@ var playOneBlock = function () {
 		
 		/*블럭 단위 반복 시작*/
 		arr = secAndNotesArr[1].split(",");
-		blockSec =$("#my-blocks > li:eq("+blockWalker+")").data("sec");
+		blockSec =secAndNotesArr[0];
 		mainVolume = 2;
 		playNote(noteCodeToFreq(arr[noteWalker]));
 		
@@ -124,7 +130,7 @@ var playOneBlock = function () {
 			}
 			playNote(noteCodeToFreq(arr[noteWalker]));
 			
-		}, /*(blockSec*1000)/countForPlaying*/1000);
+		}, (blockSec*1000)/countForPlaying);
 		/*블럭 단위 반복 종료*/
 	}
 }
