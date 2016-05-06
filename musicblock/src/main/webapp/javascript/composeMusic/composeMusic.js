@@ -248,7 +248,7 @@ $(function () {
     // Move to emotion.html
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
-        $(location).attr('href', "BlockEmotion.html");
+        $(location).attr('href', "MusicEmotion.html");
         //        $("#work-layer").stop()
     });
 
