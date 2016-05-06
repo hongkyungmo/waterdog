@@ -64,8 +64,9 @@ $(function () {
 	
 
 	//쪼개기 전의 raw String
-	musicString = "4&1,2,3/6&8,42,36/8&22,7,19,6/8&44,2,7,6/10&22,24,17,26/8&9,6,9,8/2&4,2,3,3/4&2,2,2/6&9,2,8,13/6&3,2,46,23";
-
+	//musicString = "4&1,2,3/6&8,42,36/8&22,7,19,6/8&44,2,7,6/10&22,24,17,26/8&9,6,9,8/2&4,2,3,3/4&2,2,2/6&9,2,8,13/6&3,2,46,23";
+	musicString = "2&1,2,3/4&11,12,13/2&21,22,23,24";
+	
 	//블럭 단위로 쪼갬
 	blockArr = musicString.split('/');
 	
@@ -100,9 +101,6 @@ var playAllBlocks = function() {
 }
 
 var playOneBlock = function () {
-
-	
-	
 	//blockWalker:블럭순회자 //블럭의 갯수만큼 재귀적 반복 시행
 	if (blockWalker != blockArr.length) {
 		secAndNotesArr = blockArr[blockWalker].split('&');
