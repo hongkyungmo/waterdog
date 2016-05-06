@@ -58,9 +58,9 @@
 				sendServer(emotion);
 			}
 			
-			//localStorage -> IndexedDB로 변경(이유 테이블 및 시퀀스 존재 유무 때문)
 			//IndexedDB
-			addMusic();
+			//addMusic();
+			dummyAddMusic(); // 실제로 음악을 저장하는 것이 연결되면 위의 addMusic()으로 변경해야 함. 우선은 더미 데이터를 저장.
 		}
 	};//end of validation check
 	
