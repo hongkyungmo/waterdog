@@ -9,8 +9,25 @@ var noteArr = new Array();
 //이벤트 타입(모바일/데스크탑) 전환
 //var keyDown = "touchstart";
 //var keyUp = "touchend";
-var keyDown = "mousedown";
-var keyUp = "mouseup";
+
+
+
+//PC인지 모바일인지 구분해서 이벤트 따로 주기
+var keyDown;
+var keyUp;
+var filter = "win16|win32|win64|mac";
+if( navigator.platform  ){
+    if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+    	//mobile
+    	keyDown = "touchstart";
+    	keyUp = "touchend";
+    }else{
+    	//desktop
+    	keyDown = "mousedown";
+    	keyUp = "mouseup";
+    }
+}
+
 
 
 
