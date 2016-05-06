@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Music Block</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- tag script -->
+<script src="https://code.jquery.com/jquery-1.7.js"></script>
+
+<!-- auto complete -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.7.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+
+<!-- bootstrap script -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<!-- Common Module -->
+<link rel="stylesheet" type="text/css" href="css/common/commonMenu.css">
+<link rel="stylesheet" type="text/css" href="css/emotion/emotion.css">
+
+<script>
+	var i=0;
+	var kind=new Array('yellow','red','violet','orange','blue');
+	
+	
+	
+	//validation check
+	function fncValidate(){
+		
+		var eCount=0;
+		var upload=document.getElementById("check");
+		
+		var emotion=new Array;
+		
+		for(i=0;i<kind.length;i++){
+			emotion[i]=$("#icon"+i).attr('src');
+		}		
+		
+		for(i=0;i<kind.length;i++){
+			if(emotion[i]=='images/smile_'+kind[i]+'_clicked.png'){
+				eCount++;
+				emotion[i]='that';
+			}
+		}
+		
+		if(eCount==0){
+			alert("감정은 필수 사항입니다.");//수정
+		}else{
+			if(upload.checked){
+				sendServer(emotion);
+			}
+			
+			//localStorage -> IndexedDB로 변경(이유 테이블 및 시퀀스 존재 유무 때문)
+			//IndexedDB
+			addBlock();
+		}
+	};//end of validation check
+	
+	
+	
+	
+	
+	
+	//emotion check function
+	$(function() {
+		var emotion = $('.icon');
+		emotion.live('click', function() {
+			var checkIcon = $(this).attr('src');
+			
+			for(i=0;i<kind.length;i++){
+				if(checkIcon=='images/smile_'+kind[i]+'.png'){
+					$(this).attr('src', 'images/smile_'+kind[i]+'_clicked.png');
+				}else if(checkIcon=='images/smile_'+kind[i]+'_clicked.png'){
+					$(this).attr('src', 'images/smile_'+kind[i]+'.png');
+				}
+			}
+		});
+	});
+			
+	//Save to Server&Local
+	function sendServer(transfEmotion){
+		
+		var transInfo=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
+		
+		var dummyNote ="도1,레2,레2";
+		//"미2,레#2,솔1,파#4,라3";
+		var dummyTag = "김은혜시코드,KimEunHyeshCode,김은혜씨코드,KimEunHashCode";
+		var dummyEmotion = "3";
+		var dummyTitle="경모쨔응";
+		
+		var transSec=transInfo[0];
+		var transNote=transInfo[1];
+		var transTag= (document.getElementById("tag")).value;
+		var transTitle=(document.getElementById("title")).value;
+
+		$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+			url : 'block/blockSave',
+			type : 'POST', //Request하는 방식.
+			data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+				emotion : transfEmotion,
+				note : transNote,
+				sec : transSec,
+				tag : transTag,
+				title : transTitle
+			}),
+			dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
+			contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
+			success : function(data, status) {
+				console.log(status);
+				console.log("JSONData : "
+						+ JSON.stringify(data));
+				/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
+				$("body")
+						.append(
+								"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+				$("#popup-btn1").click(function() {
+					$("#save-popup").remove();
+					location.href = "blockMaking.html";
+				});
+				$("#popup-btn2").click(function() {
+					$("#save-popup").remove();
+					location.href = "composeMusic.html";
+				});
+				$("#save-popup")
+						.delay(3000)
+						.fadeOut(
+								500,
+								function() {
+									$("#save-popup")
+											.remove();
+									location.href = "composeMusic.html";
+								});
+			},
+			error : function(status) {
+				console.log(status);
+			}
+		});
+	}
+
+	// auto complete function
+	/* $(function() {
+		var availableTags = [ "happy"
+
+		, "happiness"
+
+		, "hello" ];
+		$("#tag").autocomplete({
+			source : availableTags
+		});
+	}); */
+	//auto complete 수정
+
+
+</script>
+
+
+
+</head>
+
+<body>
+	<!--공통모듈 : 메뉴바-->
+	<script src="/javascript/common/commonMenu.js"></script>
+	<div id="background">
+		<form name="detailForm" >
+		<div id="emotion-container">
+			<center>
+				<img class="icon" id="icon0" src="images/smile_yellow.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon1"
+					src="images/smile_red.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon2" src="images/smile_violet.png"
+					style="width: 15%; height: 20%" /> 
+					<img class="icon" id="icon3"
+					src="images/smile_orange.png" style="width: 15%; height: 20%" /> 
+					<img
+					class="icon" id="icon4" src="images/smile_blue.png"
+					style="width: 15%; height: 20%" />
+			</center>
+		</div>
+
+		<div class="whiteSpace"></div>
+
+		<div class="form-inline">
+			<div id="ui-field-contain">
+				
+				<label for="title">Title</label> 
+				<input id="title" type="text" placeholder="here Title"> <br> 
+				
+				<label for="tag">Tag</label> 
+				<input id="tag"	type="text" placeholder="here Tag">
+				<br>(separate to #)
+			</div>
+			
+			<div id="save-container">
+				<input type="checkbox" id="check" value="g2"> Upload to ShareBox 
+				<a href="javascript:fncValidate();" id="save">Save</a>
+				
+			</div>
+		</div>
+		</form> 
+	</div>
+	
+	<!-- indexedDB 관련 js -->
+	<script src="/javascript/emotion/indexedDBForEmotion.js"></script>
+	
+</body>
+</html>
