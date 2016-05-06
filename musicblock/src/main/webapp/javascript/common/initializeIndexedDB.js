@@ -21,8 +21,8 @@ $(function(){
 		console.log("onupgradeneeded : DB initialized / created");
 		db = event.target.result;
 		//오브젝트 스토어가 테이블 개념, keyPath가 시퀀스 개념
-		var blockObjectStore = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
-		var musicObjectStore = db.createObjectStore("musicTable", {keyPath:"id", autoIncrement: true});
+		/*var blockObjectStore = */db.createObjectStore("blockTable", {keyPath:"id", autoIncrement: true});
+		/*var musicObjectStore = */db.createObjectStore("musicTable", {keyPath:"id", autoIncrement: true});
 	}
 
 	request.onerror = function(event){

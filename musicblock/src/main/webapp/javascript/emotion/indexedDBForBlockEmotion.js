@@ -7,8 +7,8 @@ $(function(){
 });
 
 function addBlock(){
-	var transaction = db.transaction(["blockTestTable"], "readwrite");
-	var objectStore = transaction.objectStore("blockTestTable");
+	var transaction = db.transaction(["blockTable"], "readwrite");
+	var objectStore = transaction.objectStore("blockTable");
 	var transInfo=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
 	var transSec=transInfo[0];
 	var transNote=transInfo[1];
@@ -26,8 +26,8 @@ function addBlock(){
 }
 
 function getAllBlocks(){
-	var transaction = db.transaction(["blockTestTable"], "readonly");
-	var objectStore = transaction.objectStore("blockTestTable");
+	var transaction = db.transaction(["blockTable"], "readonly");
+	var objectStore = transaction.objectStore("blockTable");
 	var request = objectStore.openCursor();
 	request.onsuccess = function(event){
 		var cursor = event.target.result;

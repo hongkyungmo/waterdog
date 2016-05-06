@@ -23,7 +23,7 @@
 		request.onupgradeneeded = function(event){
 			console.log("onupgradeneeded : DB initialized / created");
 			db = event.target.result;
-			store = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
+			store = db.createObjectStore("blockTable", {keyPath:"id", autoIncrement: true});
 		}
 		
 		request.onsuccess = function(event){
@@ -42,16 +42,16 @@
 		function addBlock(){
 			var sec = $("#secElement").val();
 			var notes = $("#notesElement").val();
-			var transaction = db.transaction(["blockTestTable"], "readwrite");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTable");
 			request = objectStore.add({sec:sec,notes:notes});
 			request.onsuccess = function(event){
 				getAllBlocks();
 			};
 		}
 		function getAllBlocks(){
-			var transaction = db.transaction(["blockTestTable"], "readonly");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.openCursor();
 			request.onsuccess = function(event){
 				var cursor = event.target.result;
@@ -63,8 +63,8 @@
 		}
 		
 		function getBlockById(id){
-			var transaction = db.transaction(["blockTestTable"], "readonly");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.get(id);
 			//var request = objectStore.get(blockNum++);
 			request.onsuccess = function(event){
@@ -74,8 +74,8 @@
 		}
 		
 		function updateBlockById(id){
-			var transaction = db.transaction(["blockTestTable"], "readwrite");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.get(id);
 			
 			request.onsuccess = function(event){
@@ -89,8 +89,8 @@
 		}
 		
 		function deleteBlockById(id){
-			var transaction = db.transaction(["blockTestTable"], "readwrite");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.delete(id);
 			request.onsuccess = function(event){
 				console.log("id가 " + id + "인 블럭을 IndexedDB로부터 삭제했습니다.");

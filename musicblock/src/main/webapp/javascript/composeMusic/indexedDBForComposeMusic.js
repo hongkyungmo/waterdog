@@ -19,8 +19,8 @@ $(function () {
 
 
 function getAllBlocks() {
-    var transaction = db.transaction(["blockTestTable"], "readwrite");
-    var objectStore = transaction.objectStore("blockTestTable");
+    var transaction = db.transaction(["blockTable"], "readwrite");
+    var objectStore = transaction.objectStore("blockTable");
     var request = objectStore.openCursor();
 
     request.onsuccess = function (event) {
@@ -91,8 +91,8 @@ function getAllBlocks() {
 
 
 function deleteBlockById(id) {
-    var transaction = db.transaction(["blockTestTable"], "readwrite");
-    var objectStore = transaction.objectStore("blockTestTable");
+    var transaction = db.transaction(["blockTable"], "readwrite");
+    var objectStore = transaction.objectStore("blockTable");
     var request = objectStore.delete(id);
     request.onsuccess = function (event) {
         console.log("id가 " + id + "인 블럭을 IndexedDB로부터 삭제했습니다.");

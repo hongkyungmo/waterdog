@@ -28,7 +28,7 @@
 		request.onupgradeneeded = function(event){
 			console.log("onupgradeneeded : DB initialized / created");
 			db = event.target.result;
-			store = db.createObjectStore("blockTestTable", {keyPath:"id", autoIncrement: true});
+			store = db.createObjectStore("blockTable", {keyPath:"id", autoIncrement: true});
 		}
 		
 		request.onsuccess = function(event){
@@ -46,8 +46,8 @@
 		
 		function deleteBlockById(){
 			getAllBlocks();
-			var transaction = db.transaction(["blockTestTable"], "readwrite");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readwrite");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.delete(parseInt($("#block-id").val()));
 			request.onsuccess = function(event){
 				console.log("id가 " + $("#block-id").val() + "인 블럭을 IndexedDB로부터 삭제했습니다.");
@@ -55,8 +55,8 @@
 		}
 		
 		function getAllBlocks(){
-			var transaction = db.transaction(["blockTestTable"], "readonly");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.openCursor();
 			request.onsuccess = function(event){
 				var cursor = event.target.result;
@@ -69,8 +69,8 @@
 		
 		
 		function getAllBlocksToDisplay(){
-			var transaction = db.transaction(["blockTestTable"], "readonly");
-			var objectStore = transaction.objectStore("blockTestTable");
+			var transaction = db.transaction(["blockTable"], "readonly");
+			var objectStore = transaction.objectStore("blockTable");
 			var request = objectStore.openCursor();
 			request.onsuccess = function(event){
 				var cursor = event.target.result;
