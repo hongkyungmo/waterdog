@@ -10,6 +10,7 @@ var arr = new Array();
 var blockArr = new Array();
 var secAndNotesArr=0;
 var noteArr=0;
+var isPlaying = false;
 
 
 
@@ -72,21 +73,33 @@ $(function () {
 	
 	// 블럭연주 - 음
 	$(".noteVisualContainer").click(playAllBlocks);
-	$(".noteVisualContainer").bind("click", function () {
-
-	});
 });
 
-var playAllBlocks = function() {
+var playAllBlocks = function() {//플레이
+	if(isPlaying == false){
+		isPlaying = true;
+	}else{//정지
+		isPlaying = false;
+		//인터벌 타이머 종료
+		clearInterval(timerIdForPlaying);
+		//볼륨 초기화
+		mainVolume = 0;
+		gain.gain.value = mainVolume;
+		//블럭, 노트순회자 초기화
+		blockWalker = 0;
+		noteWalker = 0;
+		return;
+	}
+	
 	blockWalker = 0;
 	
-	//블럭을 초와 노트집합(음집합)로 쪼갬
+	/*//블럭을 초와 노트집합(음집합)로 쪼갬
 	secAndNotesArr = blockArr[0].split('&');
 
 	//0번인덱스 : 초
 	//1번인덱스 : 음집합
 	//노트집합을 1개의 개별 음으로 쪼갬
-	noteArr = secAndNotesArr[1].split(',');
+	noteArr = secAndNotesArr[1].split(',');*/
 	
 	//테스트코드
 	for(var i=0;i<blockArr.length;i++){
@@ -96,6 +109,7 @@ var playAllBlocks = function() {
 		console.log(" 초 : " + secAndNotesArr[0]);
 		console.log(" 음집합 : " + secAndNotesArr[1]+"\n\n");
 	}
+	
 	
 	playOneBlock();
 }
@@ -130,6 +144,8 @@ var playOneBlock = function () {
 			
 		}, (blockSec*1000)/countForPlaying);
 		/*블럭 단위 반복 종료*/
+	}else{
+		$(".noteVisualContainer").trigger("click");
 	}
 }
 
