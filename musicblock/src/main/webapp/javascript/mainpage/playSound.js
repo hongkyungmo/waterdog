@@ -1,6 +1,6 @@
-//볼륨조절 전역변수
+/*//볼륨조절 전역변수
 var mainVolume = 0;
-/*var volumeSaver = 2;*/
+var volumeSaver = 2;
 //블록 플레이를 위한 변수
 var timerIdForPlaying = 0;
 var countForPlaying = 0;
@@ -49,11 +49,11 @@ var playNote = function (noteVal) {
     oscillator.frequency.value = noteVal;
     
     gain.gain.value = mainVolume;
-    /*setTimeout(function () {
+    setTimeout(function () {
         oscillator.connect(gain);
         oscillator.disconnect(gain);
         //gain.gain.value=0;
-    }, 1000);*/
+    }, 1000);
     //테스트코드
     console.log(noteVal);
 }
@@ -66,53 +66,55 @@ $(function () {
 
 	//쪼개기 전의 raw String
 	//musicString = "4&1,2,3/6&8,42,36/8&22,7,19,6/8&44,2,7,6/10&22,24,17,26/8&9,6,9,8/2&4,2,3,3/4&2,2,2/6&9,2,8,13/6&3,2,46,23";
-	musicString = "2&1,2,3/4&11,12,13/2&21,22,23,24";
+	musicString = "1&1,2,3/1&11,12,13";
 	
 	//블럭 단위로 쪼갬
 	blockArr = musicString.split('/');
 	
 	// 블럭연주 - 음
-	$(".noteVisualContainer").click(playAllBlocks);
+	$(".noteVisualContainer").click(function() {//플레이
+		var currentClickedIndex = $(".noteVisualContainer").index(this);
+		console.log(currentClickedIndex);
+		if(isPlaying == false){
+			isPlaying = true;
+		}else{//정지
+			isPlaying = false;
+			//인터벌 타이머 종료
+			clearInterval(timerIdForPlaying);
+			//볼륨 초기화
+			mainVolume = 0;
+			gain.gain.value = mainVolume;
+			//블럭, 노트순회자 초기화
+			blockWalker = 0;
+			noteWalker = 0;
+			return;
+		}
+		
+		blockWalker = 0;
+		
+		//블럭을 초와 노트집합(음집합)로 쪼갬
+		secAndNotesArr = blockArr[0].split('&');
+
+		//0번인덱스 : 초
+		//1번인덱스 : 음집합
+		//노트집합을 1개의 개별 음으로 쪼갬
+		noteArr = secAndNotesArr[1].split(',');
+		
+		//테스트코드
+		for(var i=0;i<blockArr.length;i++){
+			secAndNotesArr = blockArr[i].split('&');
+
+			console.log("***"+i+"번블럭***");
+			console.log(" 초 : " + secAndNotesArr[0]);
+			console.log(" 음집합 : " + secAndNotesArr[1]+"\n\n");
+		}
+		
+		
+		playOneBlock();
+	});
 });
 
-var playAllBlocks = function() {//플레이
-	if(isPlaying == false){
-		isPlaying = true;
-	}else{//정지
-		isPlaying = false;
-		//인터벌 타이머 종료
-		clearInterval(timerIdForPlaying);
-		//볼륨 초기화
-		mainVolume = 0;
-		gain.gain.value = mainVolume;
-		//블럭, 노트순회자 초기화
-		blockWalker = 0;
-		noteWalker = 0;
-		return;
-	}
-	
-	blockWalker = 0;
-	
-	/*//블럭을 초와 노트집합(음집합)로 쪼갬
-	secAndNotesArr = blockArr[0].split('&');
-
-	//0번인덱스 : 초
-	//1번인덱스 : 음집합
-	//노트집합을 1개의 개별 음으로 쪼갬
-	noteArr = secAndNotesArr[1].split(',');*/
-	
-	//테스트코드
-	for(var i=0;i<blockArr.length;i++){
-		secAndNotesArr = blockArr[i].split('&');
-
-		console.log("***"+i+"번블럭***");
-		console.log(" 초 : " + secAndNotesArr[0]);
-		console.log(" 음집합 : " + secAndNotesArr[1]+"\n\n");
-	}
-	
-	
-	playOneBlock();
-}
+//var playAllBlocks = 
 
 var playOneBlock = function () {
 	//blockWalker:블럭순회자 //블럭의 갯수만큼 재귀적 반복 시행
@@ -123,7 +125,7 @@ var playOneBlock = function () {
 		//my-blocks -> work-layer로 변경해야 함(현재는 data가 my-blocks에 들어있는 상태)
 		//notes 저장
 		
-		/*블럭 단위 반복 시작*/
+		블럭 단위 반복 시작
 		arr = secAndNotesArr[1].split(",");
 		blockSec =secAndNotesArr[0];
 		mainVolume = 2;
@@ -143,11 +145,11 @@ var playOneBlock = function () {
 			playNote(noteCodeToFreq(arr[noteWalker]));
 			
 		}, (blockSec*1000)/countForPlaying);
-		/*블럭 단위 반복 종료*/
+		블럭 단위 반복 종료
 	}else{
 		$(".noteVisualContainer").trigger("click");
 	}
-}
+}*/
 
 
 
