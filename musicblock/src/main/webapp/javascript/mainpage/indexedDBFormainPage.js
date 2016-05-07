@@ -27,6 +27,9 @@ function getAllBlocks(){
 			
 			displayOneMusic(cursor.value);
 			numOfGotMusics++;
+			
+			//swiper 설정(이 설정은 아이템들이 DOM으로 구성되어 화면에 떠 있어야만 정상 적용됨)
+			//즉, 적용하는 시점이 중요하다는 것
 			if(numOfGotMusics==numOfMusics){
 				var swiper = new Swiper('.swiper-container', {
 					
@@ -37,6 +40,7 @@ function getAllBlocks(){
 				});
 				musicAnimation();
 			}
+			
 			cursor.continue();
 			
 		}
@@ -53,5 +57,7 @@ function displayOneMusic(value){
 			+"<div class='music-name'>"+value.musicTitle+"</div>"
 		+"</div>"
 	+"</div>";
+	
 	$(".swiper-wrapper").append(item);
+	$(".swiper-slide").last().data("musicInfo", value.musicInfo);
 }
