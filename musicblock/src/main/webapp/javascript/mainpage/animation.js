@@ -60,6 +60,13 @@ $(function(){
 	});
 });
 
+var stopAnimationByMusicEnding = function(){
+	$(".noteVisualContainer > i").css("visibility", "visible");
+	$(".noteVisualContainer > .noteVisualBar").remove();
+	$(".stopContainer").remove();
+	currentPlayingIndex = -1.1;
+}
+
 $(function() {
 	var newMusicBtn = $("#new-music");
 	newMusicBtn.click(function() {

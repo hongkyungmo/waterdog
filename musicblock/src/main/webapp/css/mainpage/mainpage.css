@@ -74,7 +74,7 @@ body {
     border-width: 1px;
     border-color:white; 
     z-index:1000000001;
-	opacity:0.6;
+	opacity:0;
 }
 
 .noteVisualBar {

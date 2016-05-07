@@ -71,6 +71,9 @@ var playBlock = function(){
 			clearInterval(noteTimerClearer);
 			if(blockWalker != blockWalkerLimit){
 				playBlock();
+			}else{
+				stopAnimationByMusicEnding();
+				currentPlayingIndexForSound = -1.1;
 			}
 		}
 	}, musicSec/musicNotesArr.length*1000);
@@ -82,33 +85,17 @@ var playMusic = function(currentClickedIndex){
 	//샘플 : "1&1,2,3/1&11,12,13"
 	blockArr = musicInfo.split('/');
 	mainVolume = 2;
-	/*for(var i=0;i<blockArr.length;i++){*/
-	/*for(var i=0;i<1;i++){//테스트용코드
-		var secAndNotesArr = blockArr[i].split('&');
-		var musicSec = secAndNotesArr[0];
-		var musicNotesArr = secAndNotesArr[1].split(',');
-		playBlock(musicSec, musicNotesArr);
-	}*/
-	/*blockTimerClearer = setInterval(function(){
-		blockWalker = 0;
-		blockWalkerLimit = blockArr.length;
-		
-		var secAndNotesArr = blockArr[blockWalker].split('&');
-		var musicSec = secAndNotesArr[0];
-		var musicNotesArr = secAndNotesArr[1].split(',');
-		
-		if(blockWalker < blockWalkerLimit){
-			playBlock(musicSec, musicNotesArr);
-		}else{
-			mainVolume = 0;
-			gain.gain.value = mainVolume;
-			clearInterval(blockTimerClearer);
-		}
-	}, 5*1000);*/
 	
 	blockWalker = 0;
 	blockWalkerLimit = blockArr.length;
 	playBlock();
+}
+
+var stopMusic = function(){
+	clearInterval(blockTimerClearer);
+	clearInterval(noteTimerClearer);
+	mainVolume = 0;
+	gain.gain.value = mainVolume;
 }
 
 //재생 시나리오
@@ -127,6 +114,8 @@ $(function(){
 			}else{//Play 시나리오
 				console.log("Play시나리오 : 기존 재생되던 것 중지하고, 현재 음악 재생 시작");
 				currentPlayingIndexForSound = currentClickedIndex;
+				stopMusic();
+				playMusic(currentClickedIndex);
 			}
 		}
 	});
@@ -143,6 +132,8 @@ $(function(){
 		gain.gain.value = mainVolume;
 	});
 });
+
+
 
 
 
