@@ -59,7 +59,22 @@ body {
     border: solid;
     border-width: 1px;
     border-color:white; 
-    z-index:100000000;
+    z-index:1000000000;
+}
+
+.stopContainer{
+	position: relative;
+    float: left;
+    left: 0%;
+    width: 100%;
+    height: 90px;
+    background-color: black;
+	/*background: linear-gradient( to top, #3322cd, #33ccff );*/
+    border: solid;
+    border-width: 1px;
+    border-color:white; 
+    z-index:1000000001;
+	opacity:0.6;
 }
 
 .noteVisualBar {

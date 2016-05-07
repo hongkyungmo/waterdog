@@ -1,6 +1,6 @@
 //전역 변수
 var mainVolume = 0;
-var currentPlayingIndexForSound = -1.1;
+var currentPlayingIndexForSound = -1.1;//재생 중인 음악이 없을 땐 인덱스를 의미 없는 숫자인 -1.1로 설정
 
 
 //오디오컨텍스트 설정 및 생성
@@ -41,14 +41,41 @@ var playNote = function (noteVal) {
     gain.gain.value = mainVolume;
 }
 
+var playBlock = function(sec, notesArr){
+	console.log("playBlock func start");
+	playNote(noteCodeToFreq(notesArr[0]));//첫 음 재생
+	setTimeout(function(){
+		mainVolume = 0;
+		gain.gain.value = mainVolume;
+	}, sec/notesArr.length*1000);
+}
+
+var playMusic = function(currentClickedIndex){
+	var musicInfo = $(".swiper-slide:eq("+currentClickedIndex+")").data("musicInfo");
+	console.log("playMusic func start : " + musicInfo);
+	//샘플 : "1&1,2,3/1&11,12,13"
+	var blockArr = musicInfo.split('/');
+	mainVolume = 2;
+	/*for(var i=0;i<blockArr.length;i++){*/
+	for(var i=0;i<1;i++){//테스트용코드
+		var secAndNotesArr = blockArr[i].split('&');
+		var musicSec = secAndNotesArr[0];
+		var musicNotesArr = secAndNotesArr[1].split(',');
+		playBlock(musicSec, musicNotesArr);
+	}
+	
+}
+
 //재생 시나리오
 $(function(){
 	$(document).on("click", ".noteVisualContainer", function() {
 		var currentClickedIndex = $(".noteVisualContainer").index(this);
+		console.log("@@@" + $(this).css("width"));
 		
 		if(currentPlayingIndexForSound == -1.1){//현재 재생 중인 음악 없음
 			console.log("Play시나리오 : 재생 시작");
 			currentPlayingIndexForSound = currentClickedIndex;
+			playMusic(currentClickedIndex);
 		}else{//현재 재생 중인 음악 있음
 			if(currentClickedIndex == currentPlayingIndexForSound){// Stop 시나리오
 				console.log("Stop시나리오");
