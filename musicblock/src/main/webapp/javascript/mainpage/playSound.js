@@ -1,5 +1,6 @@
-
-var mainVolume = 1;
+//전역 변수
+var mainVolume = 0;
+var currentPlayingIndexForSound = -1.1;
 
 
 //오디오컨텍스트 설정 및 생성
@@ -43,7 +44,20 @@ var playNote = function (noteVal) {
 //재생 시나리오
 $(function(){
 	$(document).on("click", ".noteVisualContainer", function() {
-		alert();
+		var currentClickedIndex = $(".noteVisualContainer").index(this);
+		
+		if(currentPlayingIndexForSound == -1.1){//현재 재생 중인 음악 없음
+			console.log("Play시나리오 : 재생 시작");
+			currentPlayingIndexForSound = currentClickedIndex;
+		}else{//현재 재생 중인 음악 있음
+			if(currentClickedIndex == currentPlayingIndexForSound){// Stop 시나리오
+				console.log("Stop시나리오");
+				currentPlayingIndexForSound = -1.1;
+			}else{//Play 시나리오
+				console.log("Play시나리오 : 기존 재생되던 것 중지하고, 현재 음악 재생 시작");
+				currentPlayingIndexForSound = currentClickedIndex;
+			}
+		}
 	});
 });
 
