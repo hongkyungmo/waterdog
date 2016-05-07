@@ -10,6 +10,9 @@ var noteWalker;
 //walker 끝내기용 변수
 var blockWalkerLimit;
 var noteWalkerLimit;
+//블럭+블럭+블럭... 배열
+var blockArr;
+
 
 //오디오컨텍스트 설정 및 생성
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -44,35 +47,68 @@ var playNote = function (noteVal) {
     gain.gain.value = mainVolume;
 }
 
-var playBlock = function(sec, notesArr){
+var playBlock = function(){
 	console.log("playBlock func start");
+	//볼륨 높임
+	mainVolume = 2;
+	gain.gain.value = mainVolume;
+	
+	
+	//초와 음 집합으로 쪼개기
+	var secAndNotesArr = blockArr[blockWalker++].split('&');
+	var musicSec = secAndNotesArr[0];
+	var musicNotesArr = secAndNotesArr[1].split(',');
+	
 	noteWalker = 0;
-	noteWalkerLimit = notesArr.length;
-	playNote(noteCodeToFreq(notesArr[noteWalker++]));//첫 음 재생
+	noteWalkerLimit = musicNotesArr.length;
+	playNote(noteCodeToFreq(musicNotesArr[noteWalker++]));//첫 음 재생
 	noteTimerClearer = setInterval(function(){
 		if(noteWalker < noteWalkerLimit){
-			playNote(noteCodeToFreq(notesArr[noteWalker++]));
+			playNote(noteCodeToFreq(musicNotesArr[noteWalker++]));
 		}else{
 			mainVolume = 0;
 			gain.gain.value = mainVolume;
 			clearInterval(noteTimerClearer);
+			if(blockWalker != blockWalkerLimit){
+				playBlock();
+			}
 		}
-	}, sec/notesArr.length*1000);
+	}, musicSec/musicNotesArr.length*1000);
 }
 
 var playMusic = function(currentClickedIndex){
 	var musicInfo = $(".swiper-slide:eq("+currentClickedIndex+")").data("musicInfo");
 	console.log("playMusic func start : " + musicInfo);
 	//샘플 : "1&1,2,3/1&11,12,13"
-	var blockArr = musicInfo.split('/');
+	blockArr = musicInfo.split('/');
 	mainVolume = 2;
 	/*for(var i=0;i<blockArr.length;i++){*/
-	for(var i=0;i<1;i++){//테스트용코드
+	/*for(var i=0;i<1;i++){//테스트용코드
 		var secAndNotesArr = blockArr[i].split('&');
 		var musicSec = secAndNotesArr[0];
 		var musicNotesArr = secAndNotesArr[1].split(',');
 		playBlock(musicSec, musicNotesArr);
-	}
+	}*/
+	/*blockTimerClearer = setInterval(function(){
+		blockWalker = 0;
+		blockWalkerLimit = blockArr.length;
+		
+		var secAndNotesArr = blockArr[blockWalker].split('&');
+		var musicSec = secAndNotesArr[0];
+		var musicNotesArr = secAndNotesArr[1].split(',');
+		
+		if(blockWalker < blockWalkerLimit){
+			playBlock(musicSec, musicNotesArr);
+		}else{
+			mainVolume = 0;
+			gain.gain.value = mainVolume;
+			clearInterval(blockTimerClearer);
+		}
+	}, 5*1000);*/
+	
+	blockWalker = 0;
+	blockWalkerLimit = blockArr.length;
+	playBlock();
 }
 
 //재생 시나리오
