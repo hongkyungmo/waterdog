@@ -46,6 +46,14 @@ function dummyAddMusic(){
 			console.log("IndexedDB에 음악을 성공적으로 저장했습니다.");
 			getAllMusics();
 		};
+		
+		//localStorage에 저장한 갯수 저장
+		if(localStorage.getItem("numOfMusics") == null){
+			localStorage.setItem("numOfMusics", "0");
+		}
+		var numOfMusics = localStorage.getItem("numOfMusics");
+		numOfMusics++;
+		localStorage.setItem("numOfMusics", numOfMusics);
 	}
 }
 
