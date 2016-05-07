@@ -1,7 +1,15 @@
 //전역 변수
 var mainVolume = 0;
 var currentPlayingIndexForSound = -1.1;//재생 중인 음악이 없을 땐 인덱스를 의미 없는 숫자인 -1.1로 설정
-
+//setInterval로 움직이는 타이머 초기화용 변수
+var blockTimerClearer;
+var noteTimerClearer;
+//walker
+var blockWalker;
+var noteWalker;
+//walker 끝내기용 변수
+var blockWalkerLimit;
+var noteWalkerLimit;
 
 //오디오컨텍스트 설정 및 생성
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -22,11 +30,6 @@ gain.connect(audioContext.destination); //데스티네이션(스피커)와 연�
 
 //오실레이터 시작
 oscillator.start();
-//gain.disconnect(audioContext.destination);
-//oscillator.disconnect(gain);
-
-
-
 
 //notecode(1~48)을 주파수로 변환해주는 함수
 var noteCodeToFreq = function (noteVal) {
@@ -43,10 +46,17 @@ var playNote = function (noteVal) {
 
 var playBlock = function(sec, notesArr){
 	console.log("playBlock func start");
-	playNote(noteCodeToFreq(notesArr[0]));//첫 음 재생
-	setTimeout(function(){
-		mainVolume = 0;
-		gain.gain.value = mainVolume;
+	noteWalker = 0;
+	noteWalkerLimit = notesArr.length;
+	playNote(noteCodeToFreq(notesArr[noteWalker++]));//첫 음 재생
+	noteTimerClearer = setInterval(function(){
+		if(noteWalker != noteWalkerLimit){
+			playNote(noteCodeToFreq(notesArr[noteWalker++]));
+		}else{
+			mainVolume = 0;
+			gain.gain.value = mainVolume;
+			clearInterval(noteTimerClearer);
+		}
 	}, sec/notesArr.length*1000);
 }
 
@@ -63,14 +73,12 @@ var playMusic = function(currentClickedIndex){
 		var musicNotesArr = secAndNotesArr[1].split(',');
 		playBlock(musicSec, musicNotesArr);
 	}
-	
 }
 
 //재생 시나리오
 $(function(){
 	$(document).on("click", ".noteVisualContainer", function() {
 		var currentClickedIndex = $(".noteVisualContainer").index(this);
-		console.log("@@@" + $(this).css("width"));
 		
 		if(currentPlayingIndexForSound == -1.1){//현재 재생 중인 음악 없음
 			console.log("Play시나리오 : 재생 시작");
