@@ -27,7 +27,8 @@ jQuery Sortable : composeMusic에 적용된 Sortable
 
 3d 큐브 : https://davidwalsh.name/css-cube
 
-
+<메인페이지에 쓴 swiper링크 추가>
+http://idangero.us/swiper/
 
 <SK플래닛 기술 블로그>
 http://readme.skplanet.com/?page_id=7
