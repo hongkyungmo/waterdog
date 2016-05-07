@@ -1,7 +1,8 @@
 var currentPlayingIndex = -1.1; //현재 재생되고 있는 음악의 인덱스(초기값은 -1임. -1인 경우 재생 중인 음악이 없는 것)
 var tempElement = null;
 //음악 재생 애니메이션
-$(function() {
+//$(function() {
+var musicAnimation = function(){
 	//재생 시각적 효과
 	$(".noteVisualContainer").click(function() {
 		//애니메이션 속도
@@ -45,7 +46,8 @@ $(function() {
 			}
 		}, barCycleLength);
 	});
-});
+}
+//});
 
 $(function() {
 	var newMusicBtn = $("#new-music");

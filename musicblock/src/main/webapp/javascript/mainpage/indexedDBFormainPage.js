@@ -35,6 +35,7 @@ function getAllBlocks(){
 					spaceBetween : 0,
 					freeMode : true
 				});
+				musicAnimation();
 			}
 			cursor.continue();
 			
