@@ -40,8 +40,21 @@ function dummyAddMusic(){
 	musicArr[7]="1&13,21,1/1&43,33,36";
 	musicArr[8]="1&22,12,24/1&11,2,46";
 	musicArr[9]="1&31,13,3/1&21,7,6";
+	
+	var musicTitleArr = new Array();
+	musicTitleArr[0] = "외로워서그래(Feat.넉살)";
+	musicTitleArr[1] = "CHEER UP";
+	musicTitleArr[2] = "RE-BYE";
+	musicTitleArr[3] = "우아해";
+	musicTitleArr[4] = "하늘바라기(Feat.하림)";
+	musicTitleArr[5] = "내입술 따뜻한 커피처럼";
+	musicTitleArr[6] = "사람들이 움직이는 게";
+	musicTitleArr[7] = "Toy";
+	musicTitleArr[8] = "이 사랑";
+	musicTitleArr[9] = "You Are My Everything";
+	
 	for(var i=0;i<10;i++){
-		request = objectStore.add({musicInfo:musicArr[i]});
+		request = objectStore.add({musicInfo:musicArr[i], musicTitle:musicTitleArr[i]});
 		request.onsuccess = function(event){
 			console.log("IndexedDB에 음악을 성공적으로 저장했습니다.");
 			getAllMusics();

@@ -25,7 +25,7 @@ function getAllBlocks(){
 			console.log("key : " + cursor.key);
 			console.log("sec : " + cursor.value.musicInfo);
 			
-			displayOneMusic(cursor.value.musicInfo);
+			displayOneMusic(cursor.value);
 			numOfGotMusics++;
 			if(numOfGotMusics==numOfMusics){
 				var swiper = new Swiper('.swiper-container', {
@@ -42,14 +42,14 @@ function getAllBlocks(){
 	}
 }
 
-function displayOneMusic(musicInfo){
-	console.log(musicInfo);
+function displayOneMusic(value){
+	console.log(value);
 	var item = "<div class='swiper-slide'>"
 		+"<div class='ui blue button music'>"
 			+"<div class='noteVisualContainer'>"
 				+"<i class='fa fa-music fa-3x' id='playing' style='color:#cc4488;'></i>"
 			+"</div>"
-			+"<div class='music-name'>"+musicInfo+"</div>"
+			+"<div class='music-name'>"+value.musicTitle+"</div>"
 		+"</div>"
 	+"</div>";
 	$(".swiper-wrapper").append(item);
