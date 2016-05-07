@@ -50,7 +50,7 @@ var playBlock = function(sec, notesArr){
 	noteWalkerLimit = notesArr.length;
 	playNote(noteCodeToFreq(notesArr[noteWalker++]));//첫 음 재생
 	noteTimerClearer = setInterval(function(){
-		if(noteWalker != noteWalkerLimit){
+		if(noteWalker < noteWalkerLimit){
 			playNote(noteCodeToFreq(notesArr[noteWalker++]));
 		}else{
 			mainVolume = 0;
@@ -93,6 +93,18 @@ $(function(){
 				currentPlayingIndexForSound = currentClickedIndex;
 			}
 		}
+	});
+});
+
+
+
+//정지 시나리오
+$(function(){
+	$(document).on("click", ".stopContainer", function() {
+		clearInterval(blockTimerClearer);
+		clearInterval(noteTimerClearer);
+		mainVolume = 0;
+		gain.gain.value = mainVolume;
 	});
 });
 
