@@ -8,11 +8,10 @@
 <!-- tag script -->
 <script src="https://code.jquery.com/jquery-1.7.js"></script>
 
-<!-- auto complete -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.7.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+<!-- jQuery CDN -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <!-- bootstrap script -->
 <link rel="stylesheet"
@@ -72,7 +71,7 @@
 	//emotion check function
 	$(function() {
 		var emotion = $('.icon');
-		emotion.live('click', function() {
+		$(document).on('click', '.icon', function(){
 			var checkIcon = $(this).attr('src');
 			
 			for(i=0;i<kind.length;i++){
