@@ -14,8 +14,14 @@
 	</insert>
 
 	<select id="checkUserByNick">
+		SELECT ucode,nick,email,password
+		FROM users
+		WHERE nick=#{nick} andd password=#{password}
 	</select>
 	
 	<select id="checkUserByEmail">
+		SELECT ucode,nick,email,password
+		FROM users
+		WHERE email=#{email} andd password=#{password}
 	</select>
 </mapper>

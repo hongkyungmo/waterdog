@@ -35,9 +35,11 @@ public class UserController {
 		if(loginInfo.contains("@")){
 			System.out.println("Email>>"+loginInfo);
 			user.setEmail(loginInfo);
+			userService.checkUserByEmail(user);
 		}else{
 			System.out.println("Nick>>"+loginInfo);
 			user.setNick(loginInfo);
+			userService.checkUserByNick(user);
 		}		
 
 		System.out.println("User>>"+user);
