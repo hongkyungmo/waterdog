@@ -28,17 +28,20 @@ public class UserController {
 		System.out.println("(/user/userLogin)RequestBody로 전달받은 String(JSON) : "+map);
 
 		User user = new User();
+
+		user.setPassword((String)map.get("pass"));
 		
 		String loginInfo = (String)map.get("user");
-		String password = (String)map.get("password");
-		System.out.println("password>>"+password);
-		
 		if(loginInfo.contains("@")){
 			System.out.println("Email>>"+loginInfo);
-			
+			user.setEmail(loginInfo);
 		}else{
 			System.out.println("Nick>>"+loginInfo);
-		}
+			user.setNick(loginInfo);
+		}		
+
+		System.out.println("User>>"+user);
+		//mapper에서 decode 사용하여 T/F return
 		return user;
 	}
 }

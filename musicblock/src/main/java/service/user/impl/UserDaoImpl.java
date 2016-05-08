@@ -29,4 +29,15 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.insert("UserMapper.addUser", user);
 	}
 
+	@Override
+	public void checkUserByNick(User user) throws Exception {
+		sqlSession.selectOne("UserMapper.checkUserByNick", user);
+	}
+
+	@Override
+	public void checkUserByEmail(User user) throws Exception {
+		sqlSession.selectOne("UserMapper.checkUserByEmail",user);	
+	}
+	
+
 }

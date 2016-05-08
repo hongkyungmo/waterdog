@@ -106,16 +106,19 @@
 		
 		var dummyUser ='user01@gmail.com';
 		var dummyPass = '1234';
+		var dummyRmember =(document.getElementById("remember_me")).checked;
 		
 		var transUser=0;
 		var transPass=0;
+		var transRmemember=(document.getElementById("remember_me")).checked;
 		
 		$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
 			url : 'user/userLogin',
 			type : 'POST', //Request하는 방식.
 			data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
 				user : dummyUser,
-				pass : dummyPass
+				pass : dummyPass,
+				remember : dummyRmember
 			}),
 			dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 			contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
@@ -171,8 +174,7 @@
 							autocomplete='off' placeholder='Email or Nickname'> <br>
 						<input type='password' class='input' id='user_pass'
 							autocomplete='off' placeholder='Password'> <br> <input
-							type='checkbox' class='checkbox' id='remember_me'> <label
-							for='remember_me'>Remember me</label>
+							type='checkbox' class='checkbox' id='remember_me'>Remember me
 					</div>
 				</div>
 				<div class='actions'>
