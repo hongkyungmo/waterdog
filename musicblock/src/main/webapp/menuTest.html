@@ -126,9 +126,9 @@
 				console.log(status);
 				console.log("JSONData : "
 						+ JSON.stringify(data));
-				$("body")
+				$("#loginPage")
 						.append(
-								"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+								"<div id='save-popup'><center>성공적으로 전송되었습니다</center></div>");
 				$("#save-popup")
 						.delay(3000)
 						.fadeOut(
@@ -136,7 +136,7 @@
 								function() {
 									$("#save-popup")
 											.remove();
-									/* location.href = "menuTest.html"; */
+									 /* location.href = "menuTest.html";  */
 								});
 			},
 			error : function(status) {

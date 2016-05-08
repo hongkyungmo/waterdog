@@ -6,10 +6,16 @@
 
 <mapper namespace="UserMapper">
 	<!-- SQL : INSERT -->
-	<insert 	id="addUser"		parameterType="user" >
-	 	INSERT
-		INTO users(ucode , nick) 
-		<!-- VALUES	 (	#{ucode} , #{nick} ) -->
-		VALUES	 (	seq_user_ucode.nextval , #{nick} )
-	 </insert>
+	<insert id="addUser" parameterType="user">
+		INSERT
+		INTO users(ucode , nick)
+		<!-- VALUES ( #{ucode} , #{nick} ) -->
+		VALUES ( seq_user_ucode.nextval , #{nick} )
+	</insert>
+
+	<select id="checkUserByNick">
+	</select>
+	
+	<select id="checkUserByEmail">
+	</select>
 </mapper>
