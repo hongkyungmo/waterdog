@@ -49,7 +49,9 @@ var noteCodeToFreq = function (noteVal) {
 var playNote = function (noteVal) {
     oscillator.frequency.value = noteVal;
     
-    gain.gain.value = volumeSaver;
+    //gain.gain.value = volumeSaver;
+    gain.gain.setTargetAtTime(volumeSaver, audioContext.currentTime, 0.1);
+    gain.gain.setTargetAtTime(0, audioContext.currentTime+1, 0.1);
     setTimeout(function () {
         /*oscillator.connect(gain);
         oscillator.disconnect(gain);*/

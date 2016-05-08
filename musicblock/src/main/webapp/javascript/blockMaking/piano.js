@@ -57,7 +57,7 @@ $(function() {
 		//oscillator.stop();
         //oscillator.disconnect(gain);
 		if ($("#display-bar").length == 0) {
-        	gain.gain.value = 0;
+        	//gain.gain.value = 0;
 		}
 	});
 });
