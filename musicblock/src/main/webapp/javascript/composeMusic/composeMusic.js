@@ -14,7 +14,6 @@ var downTime;
 var timeout;
 var dropFlag;
 
-
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
     scrollbar: '.swiper-scrollbar'
@@ -98,9 +97,7 @@ var group = $("ol.simple_with_drop").sortable({
     	}
     }
     , onDrop: function ($item, container, _super, event) {
-    	console.log($($item).data("key"));
-    	console.log($($item).data("sec"));
-    	console.log($($item).data("notes"));
+    	
     	swiperMelodyLayer.params.allowSwipeToNext = true;
     	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
 
@@ -132,18 +129,16 @@ var group = $("ol.simple_with_drop").sortable({
 	                , swiperMelodyLayer.params.observer && swiperMelodyLayer.support.observer || swiperMelodyLayer.update(!0)
 	        }
 	        
-	        // 레이어에 있는 블록의 정보를 순서대로 구현하기 위한 부분       
+	        // 레이어에 있는 블록의 정보를 순서대로 표현하기 위한 부분       
 	        // JSON과 Touch-Punch가 충돌 되므로 직접 구현
 	        var data = group.sortable("serialize").get();
-	        sortedData = "";
-	
-	        sortedData = "[\n";
+	        var JSONBlock;
+	        sortedData = ""; 
 	        for (var k = 0; k < data[0].length; k++) {
-	            sortedData += "\t{name:" + "\"" + data[0][k].name + "\",id:\"" + data[0][k].id + "\"}";
-	            k != data[0].length - 1 ? sortedData += "," : sortedData += "";
-	            sortedData += "\n";
+	            sortedData += "{\"key\":\"" + data[0][k].key + "\",\"sec\":\"" + data[0][k].sec+ "\",\"notes\":\"" +data[0][k].notes+ "\"}";
+	            k != data[0].length-1 ? sortedData += "&" : sortedData += "";	
 	        }
-	        sortedData += "]";
+	        console.log(sortedData);
     }
 });
 
@@ -188,7 +183,11 @@ $(function () {
     // Move to emotion.html
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
-        $(location).attr('href', "MusicEmotion.html");
+    	if(sortedData==null){
+    		// modal을 띄워서 경고창을 만드세요
+    	}else{
+    		$(location).attr('href', "MusicEmotion.html?"+sortedData);    		
+    	}
         //        $("#work-layer").stop()
     });
 

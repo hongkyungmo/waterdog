@@ -24,10 +24,10 @@ function getAllBlocks() {
     request.onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
-            console.log(cursor);
-            console.log("key : " + cursor.key);
-            console.log("sec : " + cursor.value.sec);
-            console.log("notes : " + cursor.value.notes);
+//            console.log(cursor);
+//            console.log("key : " + cursor.key);
+//            console.log("sec : " + cursor.value.sec);
+//            console.log("notes : " + cursor.value.notes);
 
             var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>IndexedDB-" + blockNum + "</li>";
             blockNum++;
@@ -40,10 +40,10 @@ function getAllBlocks() {
             // 1) 전체를 한꺼번에 확인 가능(하지만 이 경우 object로 찍힘)
             // alert("블럭이 가지는 정보 : " + $("#my-blocks > li:last").data());
             // 2) 개별적으로도 확인 가능
-            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
-                $("#my-blocks > li:last").data("key") + "\nsec : " +
-                $("#my-blocks > li:last").data("sec") + "\nnotes : " +
-                $("#my-blocks > li:last").data("notes") + "\n");
+//            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
+//                $("#my-blocks > li:last").data("key") + "\nsec : " +
+//                $("#my-blocks > li:last").data("sec") + "\nnotes : " +
+//                $("#my-blocks > li:last").data("notes") + "\n");
 
             cursor.continue();
             
