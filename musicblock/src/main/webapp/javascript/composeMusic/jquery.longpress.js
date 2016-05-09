@@ -80,8 +80,7 @@
 
 
             // Mobile Support
-            $this.on('touchstart', mousedown_callback);
-            $this.on('mousedown', mousedown_callback);
+            $this.on('mousedown touchstart', mousedown_callback);
             $this.on('touchend', mouseup_callback);
             $this.on('touchmove', move_callback);
         });

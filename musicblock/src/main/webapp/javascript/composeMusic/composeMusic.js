@@ -11,13 +11,8 @@ var draggedBlock = null;
 var draggedBlockSelector = null;
 var duration = 500;
 var downTime;
-var dragTime;
-var pressTime;
 var timeout;
-var containerParam;
 var dropFlag;
-var startPosition = {pageX:0, pageY:0};
-var variationPosition = {pageX:0, pageY:0};
 
 
 //'.layer-selector' 보류
@@ -31,76 +26,27 @@ var swiperMelodyLayer = new Swiper('.layer-melody-block', {
     , freeMode: true
 });
 
-
-function eventTT(event){
-	console.log(event);
-	flag=false;
+function upEvent(timeoutParam, durationTimeParam, downTimeParam){
+	// duration 변수는 composeMusic.js에 정의되어 있음
+   var pressTime = new Date().getTime() - downTimeParam;
+   if (pressTime < durationTimeParam) {
+       // cancel the timeout
+       clearTimeout(timeoutParam);
+   }
 }
 
 var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
-    , afterMove: function (placeholder, container) {
-    }
+    , delay:100
     , onMousedown: function ($item, _super, event) {
-    	// 롱클릭 이벤트 처리
-    	if(!isNaN(event.pageX) && !isNaN(event.pageY) ){    		
-    		startPosition.pageX = event.pageX;
-    		startPosition.pageY = event.pageY;
-    	}
-
-    	var flag = true;
     	downTime = new Date().getTime();
-    	timeout = setTimeout(
-    			function() {
-//    		alert("시작엑스 : " + event.pageX + "시작와이 : " + event.pageY);
-            	 $('#block-dialog').modal('show');
-//            	 flag = false;
-    			eventTT(event);
-         }
-    	, duration);
-    	
-    	console.log("시작시간 : " + downTime);
-    	console.log(event);
-
-    	console.log("시작엑스 : " + startPosition.pageX);
-    	console.log("시작와이 : " + startPosition.pageY);
-    	
-    	if(flag){
-    		$($item).draggable();
-    		return flag;    		
-    	}else{
-    		return flag;
-    	}
-    	
+    	timeout = setTimeout(function() {
+    		$('#block-dialog').modal('show');
+    		}, duration);
+    	return true;    		
     }
-   
-    ,onDrag: function ($item, position, _super, event) {
-//    	console.log("드래그");
-//    	console.log(containerParam);
-    	dragTime = new Date().getTime() - downTime; 
-    	if(!isNaN(event.pageX) && !isNaN(event.pageY)){
-    		variationPosition.pageX = Math.abs(startPosition.pageX - event.pageX);
-    		variationPosition.pageY = Math.abs(startPosition.pageY - event.pageY);    		
-    	}
-    	
-    	
-    	console.log("움직시간 : " + dragTime);
-    	console.log("움직엑스 : " + variationPosition.pageX);
-    	console.log("움직와이 : " + variationPosition.pageY);
-    	$item.css(position);  
-    	if($('#block-dialog')[0].className.indexOf('in') != -1){
-//    		$($item).remove();
-    		dropFlag=false;
-    		console.log(dropFlag);
-    		
-    	}
-//       posision으로 움직임의 변화가 크지 않다면 해당 이벤트를 취소시키세요.
-//        console.log(position);
-    }
-    
     , onDragStart: function ($item, container, _super, event) {
-//    	console.log("스타트");
-//    	console.log(container);
+    	clearTimeout(timeout);
     	dropFlag = true;
     	containerParam = container;
     	swiperMelodyLayer.params.allowSwipeToNext = false;
@@ -128,39 +74,38 @@ var group = $("ol.simple_with_drop").sortable({
             draggedBlock = container.el[0].children[j].className;
             draggedBlockSelector = draggedBlock.split(" ");
             draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
-            $(container.el[0].children[j]).css("left", "0").css("top", "0")
-//            .longpress(
-//                function (e) {
-//                    // 길게 입력할 때
-//                    $('#block-dialog').modal('show');
-//                    
-//                }
-//                , function (e) {
-//                    // 짧게 입력할 때
-//                    console.log('짧게 누름ㅋㅋ');
-//                }
-//            ).draggable();
-//        }
+            
+            // #my-blocks에 새로 생성된 블럭의 데이터를 대입
+            $(container.el[0].children[j]).data("key", $($item).data("key"));
+            $(container.el[0].children[j]).data("sec", $($item).data("sec"));
+            $(container.el[0].children[j]).data("notes", $($item).data("notes"));
+            
+            // 버튼을 뗄때
+            $(container.el[0].children[j]).css("left", "0").css("top", "0").draggable().bind('mouseup touchend', function(){
+        		// duration 변수는 composeMusic.js에 정의되어 있음
+     		   var pressTime = new Date().getTime() - downTime;
+     		   if (pressTime < duration) {
+     		       // cancel the timeout
+     		       clearTimeout(timeout);
+     		   }
+            });
         }
-
-
+    }
+    ,onDrag: function ($item, position, _super, event) {    	
+    	$item.css(position);  
+    	if($('#block-dialog')[0].className.indexOf('in') != -1){
+    		dropFlag=false;
+    	}
     }
     , onDrop: function ($item, container, _super, event) {
-    	// 짧은 클릭 이벤트
-    	pressTime = new Date().getTime() - downTime;
-        if (pressTime < duration) {
-            // cancel the timeout
-            clearTimeout(timeout);
-//            console.log("짧은 클릭");
-        }
-    	
-    	
+    	console.log($($item).data("key"));
+    	console.log($($item).data("sec"));
+    	console.log($($item).data("notes"));
     	swiperMelodyLayer.params.allowSwipeToNext = true;
     	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
 
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
         $("body").removeClass(container.group.options.bodyClass);
-//        console.log(dropFlag)
         if(!dropFlag && parent[0] == comparedNoDrop){
         	$($item).remove();
         }
@@ -186,8 +131,6 @@ var group = $("ol.simple_with_drop").sortable({
 	            swiperMelodyLayer.params.loop && swiperMelodyLayer.createLoop()
 	                , swiperMelodyLayer.params.observer && swiperMelodyLayer.support.observer || swiperMelodyLayer.update(!0)
 	        }
-	
-	
 	        
 	        // 레이어에 있는 블록의 정보를 순서대로 구현하기 위한 부분       
 	        // JSON과 Touch-Punch가 충돌 되므로 직접 구현
@@ -202,7 +145,6 @@ var group = $("ol.simple_with_drop").sortable({
 	        }
 	        sortedData += "]";
     }
-
 });
 
 $("ol.simple_with_no_drop").sortable({
@@ -211,8 +153,7 @@ $("ol.simple_with_no_drop").sortable({
 });
 
 
-$(function () {
-
+$(function () {		
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {
         // need to keep sorted blocks layer
@@ -244,7 +185,6 @@ $(function () {
         $(location).attr('href', "mainpage.html");
     });
 
-
     // Move to emotion.html
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
@@ -252,15 +192,12 @@ $(function () {
         //        $("#work-layer").stop()
     });
 
-
-
     $("#btn-prev").bind("click", function () {
         $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
     });
 
     $("#btn-play").bind("click", function () {
-
-        $("#work-layer").stop().animate({
+    	$("#work-layer").stop().animate({
             'left': '-509'
         }, {
             step: function (now, fx) {
@@ -268,7 +205,7 @@ $(function () {
                     "transform": "translate3d(" + now + "px,  0px, 0px)"
                 });
             }
-            , duration: 5000
+            , duration: $('#work-layer').data("sec")*1000
             , easing: 'linear'
             , queue: false
             , complete: function () {
@@ -276,14 +213,11 @@ $(function () {
                 $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
             }
         }, 'linear');
-
-
     });
 
     $(".progress-bar-wrapper").bind("click", function (e) {
         console.log("래퍼 클릭");
         $(".progress-bar-pointer").css("left", e.pageX - 20);
-        //        $(".progress-bar-played").css("width", e.pageX - 10);
     });
 
 

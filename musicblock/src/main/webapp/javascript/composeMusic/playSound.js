@@ -78,15 +78,15 @@ var playAllBlocks = function() {
 
 var playOneBlock = function () {
 	//blockWalker:블럭순회자 //블럭의 갯수만큼 재귀적 반복 시행
-	if (blockWalker != $("#my-blocks > li").length) {
+	if (blockWalker != $("#work-layer > li").length) {
 		var count = 0;
 		var blockSec = 0;
 		//my-blocks -> work-layer로 변경해야 함(현재는 data가 my-blocks에 들어있는 상태)
 		//notes 저장
 		
 		/*블럭 단위 반복 시작*/
-		arr = $("#my-blocks > li:eq("+blockWalker+")").data("notes").split(",");
-		blockSec =$("#my-blocks > li:eq("+blockWalker+")").data("sec");
+		arr = $("#work-layer > li:eq("+blockWalker+")").data("notes").split(",");
+		blockSec =$("#work-layer > li:eq("+blockWalker+")").data("sec");
 		mainVolume = 2;
 		playNote(noteCodeToFreq(arr[noteWalker]));
 		
