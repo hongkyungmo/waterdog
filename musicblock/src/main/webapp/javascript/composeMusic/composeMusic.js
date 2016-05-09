@@ -149,6 +149,9 @@ $("ol.simple_with_no_drop").sortable({
 
 
 $(function () {		
+	
+	$(".col-xs-10:eq(1)").append(addedMenuBar);
+	
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {
         // need to keep sorted blocks layer
@@ -221,3 +224,46 @@ $(function () {
 
 
 });
+
+var addedMenuBar = 
+    "<div class='row COMPOSE-MENUBAR-ROW'>" + 
+        "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='padding-left:0px;'>" + 
+            "<div class='row COMMON-MENUBAR-ROW'>" + 
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-music fa-2x' id='btn-create' aria-hidden='true'>" + 
+                    "<i class='fa fa-plus-circle' aria-hidden='true'></i>" + 
+                    "</button>" + 
+                "</div>" + 
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-group fa-2x' id='btn-community'>" +
+                    "</button>" + 
+                "</div>" + 
+            "</div>" + 
+        "</div>" + 
+        "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
+            "<div class='row COMMON-MENUBAR-ROW'>" + 
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-step-backward fa-2x' data-action='prev' id='btn-prev'>" + 
+                    "</button>" + 
+                "</div>" + 
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-play fa-2x' data-action='play' id='btn-play'>" + 
+                    "</button>" + 
+                "</div>" + 
+            "</div>" + 
+        "</div>" + 
+        "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='padding-right:0px;'>" +
+            "<div class='row COMMON-MENUBAR-ROW'>" +  
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='float:right'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='btn-save'>" + 
+                    "<span></span>" + 
+                    "</button>" + 
+                "</div>" + 
+                "<div class='col-xs-4 COMMON-MENUBAR-GRID-4' style='float:right'>" + 
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-folder-open-o fa-2x' id='btn-load'>" + 
+                    "<span></span>" + 
+                    "</button>" + 
+                "</div>" + 
+            "</div>" +  
+        "</div>" + 
+    "</div>";
