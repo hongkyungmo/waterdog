@@ -20,7 +20,17 @@ var element =
 
 +"<div id='loginPage'>"
 
-+"<button id='test'>Login</button>"
++"<center>"
++"<button id='test' class='customButton'>Login</button>"
++"<br>"
++"<button id='test3' class='customButton'>BlockList</button>"
++"<button id='test4' class='customButton'>MusicList</button>"
++"<button id='test5' class='customButton'>Community</button>"
++"<br>"
++"<button id='test6' class='customButton'>사용설명서</button>"
++"<button id='test7' class='customButton'>설정</button>"
++"<button id='test8' class='customButton'>기타</button>"
++"</center>"
 
 +"	<div class='ui modal'>"
 +"	<i class='close icon'></i>"
@@ -55,7 +65,7 @@ if(path != "/mainpage.html"){
 
 element += "</div><div class='col-xs-10 COMMON-MENUBAR-GRID-10'>";
 
-var addCommunity=
+/*var addCommunity=
 		"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>" +
     		"<div class='col-xs-1 COMMON-MENUBAR-GRID-1' style='float:right'>" + 
     		 "<button class='btn COMPOSE-MENUBAR-BTN fa fa-search fa-2x' id='btn-search'>" + 
@@ -64,7 +74,7 @@ var addCommunity=
                 "</button>" + 
             "</div>" + 
            "</div>";
-           
+           */
 // composeMusic.html에만 적용되는 MenuBar 버튼 추가
 var addedComposeMusic = 
     "<div class='row COMPOSE-MENUBAR-ROW'>" + 
@@ -76,7 +86,7 @@ var addedComposeMusic =
                     "</button>" + 
                 "</div>" + 
                 "<div class='col-xs-4 COMMON-MENUBAR-GRID-4'>" + 
-                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-group fa-2x'' id='btn-community'>" +
+                    "<button class='btn COMPOSE-MENUBAR-BTN fa fa-group fa-2x' id='btn-community'>" +
                     "</button>" + 
                 "</div>" + 
             "</div>" + 
@@ -113,7 +123,7 @@ var addedComposeMusic =
 if (path.indexOf("/composeMusic.html") != -1) {
     element += addedComposeMusic;
 }else if(path.indexOf("/community.html") != -1) {
-	element += addCommunity;
+	//element += addCommunity;
 }
 
 element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>";
@@ -121,6 +131,7 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 
 $("body").append(element);
 
+document.write("<script type='text/javascript' src='semantic.min.js'><"+"/script>");
 $(function() {
 
 	$("#back").bind("click", function() {

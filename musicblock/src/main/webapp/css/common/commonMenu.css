@@ -20,6 +20,7 @@
 */
 
 @import url('font-awesome.min.css');
+@import url('semantic.min.css');
 
 #COMMON-MENUBAR {
 	position:relative;
@@ -143,6 +144,12 @@ div .fa-1x{
 }
 
 #loginPage {
-	height: 88%; background-color: #E1F6FA
+	height: 88%; background-color: #E1F6FA;
+}
+
+.customButton{
+	height:33%;width:33%;
+/* 	margin-left:5%;
+	margin-right:5%; */
 }
 
