@@ -5,23 +5,27 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="UserMapper">
-	<!-- SQL : INSERT -->
-	<insert id="addUser" parameterType="user">
-		INSERT
-		INTO users(ucode , nick)
-		<!-- VALUES ( #{ucode} , #{nick} ) -->
-		VALUES ( seq_user_ucode.nextval , #{nick} )
-	</insert>
 
-	<select id="checkUserByNick">
-		SELECT ucode,nick,email,password
-		FROM users
-		WHERE nick=#{nick} andd password=#{password}
-	</select>
-	
-	<select id="checkUserByEmail">
-		SELECT ucode,nick,email,password
-		FROM users
-		WHERE email=#{email} andd password=#{password}
-	</select>
+	<resultMap type="User" id="UserSelectMap">
+		<result property="uCode" 		column="ucode" 		jdbcType="INTEGER"/>
+		<result property="nick"	 		column="nick"		jdbcType="VARCHAR"/>
+		<result property="email"		column="email"		jdbcType="VARCHAR"/>
+		<result property="password"	 	column="password"	jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+		<!-- SQL : INSERT -->
+		<insert id="addUser" parameterType="user">
+			INSERT
+			INTO users(ucode , nick)
+			<!-- VALUES ( #{ucode} , #{nick} ) -->
+			VALUES ( seq_user_ucode.nextval , #{nick} )
+		</insert>
+		
+		<select id="checkUser" parameterType="java.util.Map" resultMap="UserSelectMap">
+			SELECT ucode,nick,email,password
+			FROM users
+			WHERE (email=#{user} OR nick=#{user} )and password=#{pass}
+		</select>
+		
 </mapper>
