@@ -1,5 +1,7 @@
 package service.user.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,13 +21,8 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) throws Exception{
 		userDao.addUser(user);
 	}
-	
-	public void checkUserByNick(User user) throws Exception{
-		userDao.checkUserByNick(user);
-		
-	}
-	public void checkUserByEmail(User user) throws Exception{
-		userDao.checkUserByEmail(user);
+	public User checkUser(Map<String, String> map) throws Exception{
+		return userDao.checkUser(map);
 	}
 
 }

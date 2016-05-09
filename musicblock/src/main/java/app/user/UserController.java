@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,26 +25,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "userLogin", method = RequestMethod.POST)
-	public User getJsonUserPOST(@RequestBody Map map) throws Exception {
-		System.out.println("(/user/userLogin)RequestBody로 전달받은 String(JSON) : "+map);
-
-		User user = new User();
-
-		user.setPassword((String)map.get("pass"));
+	public void getJsonUserPOST(@RequestBody Map map, Model model) throws Exception {
+		System.out.println("/user/userLogin start");
+		System.out.println("RequestBody>>"+map);
+		System.out.println("Model>>"+model);
 		
+		String password=(String)map.get("pass");
 		String loginInfo = (String)map.get("user");
-		if(loginInfo.contains("@")){
-			System.out.println("Email>>"+loginInfo);
-			user.setEmail(loginInfo);
-			userService.checkUserByEmail(user);
-		}else{
-			System.out.println("Nick>>"+loginInfo);
-			user.setNick(loginInfo);
-			userService.checkUserByNick(user);
-		}		
-
+		
+		User user = userService.checkUser(map);		
 		System.out.println("User>>"+user);
-		//mapper에서 decode 사용하여 T/F return
-		return user;
+		
+		if(user!=null){
+			model.addAttribute("message",user.getNick()+"님 환영합니다.");
+		}else{
+			model.addAttribute("message","다시 로그인 해 주세요.");
+		}
 	}
 }

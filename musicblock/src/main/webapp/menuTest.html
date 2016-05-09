@@ -40,7 +40,6 @@
 <link rel="stylesheet" href="/css/mainpage/mainpage.css">
 
 <style>
-
 </style>
 
 <script type="text/javascript">
@@ -55,13 +54,13 @@
 			wrapWindowBymenuPage();
 
 		});
-		
-		$("#exit").bind("click",function(){
+
+		$("#exit").bind("click", function() {
 			console.log("exit 누름ㅋㅋ");
 			$("#menuPage").hide();
 		});
-		
-		$('#test').bind("click",function() {
+
+		$('#test').bind("click", function() {
 			console.log("login 누름ㅋㅋ")
 			$('.ui.modal').modal('show');
 		});
@@ -91,7 +90,7 @@
 			wrapWindowBymenuPage();
 		});
 	});
-	
+
 	$(function() {
 
 		$(".actions").bind("click", function() {
@@ -99,52 +98,53 @@
 			serverLogin();
 		});
 	});
-	
+
 	function serverLogin() {
 
 		console.log('serverLogin() ');
-		
-		var dummyUser ='user01@gmail.com';
-		var dummyPass = '1234';
-		var dummyRmember =(document.getElementById("remember_me")).checked;
-		
-		var transUser=0;
-		var transPass=0;
-		var transRmemember=(document.getElementById("remember_me")).checked;
-		
-		$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-			url : 'user/userLogin',
-			type : 'POST', //Request하는 방식.
-			data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-				user : dummyUser,
-				pass : dummyPass,
-				remember : dummyRmember
-			}),
-			dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-			contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-			success : function(data, status) {
-				console.log(status);
-				console.log("JSONData : "
-						+ JSON.stringify(data));
-				$("#loginPage")
-						.append(
-								"<div id='save-popup'><center>성공적으로 전송되었습니다</center></div>");
-				$("#save-popup")
-						.delay(3000)
-						.fadeOut(
-								500,
-								function() {
-									$("#save-popup")
-											.remove();
-									 /* location.href = "menuTest.html";  */
-								});
-			},
-			error : function(status) {
-				console.log(status);
-			}
-		});
-	};
 
+		var dummyUser = 'email1@naver.com';
+		var dummyPass = '1234';
+		var dummyRmember = (document.getElementById("remember_me")).checked;
+
+		var transUser = (document.getElementById("user_login")).value;
+		var transPass = (document.getElementById("user_pass")).value;
+		var transRmemember = (document.getElementById("remember_me")).checked;
+
+		$
+				.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+					url : 'user/userLogin',
+					type : 'POST', //Request하는 방식.
+					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+						user : transUser,
+						pass : transPass,
+						remember : transRmemember
+					}),
+					dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
+					contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
+					success : function(data, status) {
+						console.log(status);
+						console.log("JSONData : " + JSON.stringify(data));
+						if (data['message'] != null) {
+
+							console.log()
+							$("#loginPage")
+									.append(
+											"<div id='save-popup'><center>"+data['message']+"</center></div>");
+						} else {
+
+							console.log(data['message']);
+							$("#loginPage")
+							.append(
+									"<div id='save-popup'><center>"+data['message']+"</center></div>");
+				
+						}
+					},
+					error : function(status) {
+						console.log(status);
+					}
+				});
+	};
 </script>
 </head>
 
@@ -174,7 +174,8 @@
 							autocomplete='off' placeholder='Email or Nickname'> <br>
 						<input type='password' class='input' id='user_pass'
 							autocomplete='off' placeholder='Password'> <br> <input
-							type='checkbox' class='checkbox' id='remember_me'>Remember me
+							type='checkbox' class='checkbox' id='remember_me'>Remember
+						me
 					</div>
 				</div>
 				<div class='actions'>

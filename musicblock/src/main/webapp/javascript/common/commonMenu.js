@@ -181,42 +181,46 @@ $(function() {
 function serverLogin() {
 
 	console.log('serverLogin() ');
-	
-	var dummyUser ='user01';
+
+	var dummyUser = 'email1@naver.com';
 	var dummyPass = '1234';
-	
-	var transUser=(document.getElementById("user_login")).value;
-	var transPass=(document.getElementById("user_pass")).value;
-	var transRemember=(document.getElementById("remember_me")).value;
-	
-	$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-		url : 'user/userLogin',
-		type : 'POST', //Request하는 방식.
-		data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-			user : transUser,
-			pass : transPass,
-			remember : transRemember
-		}),
-		dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-		contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-		success : function(data, status) {
-			console.log(status);
-			console.log("JSONData : "
-					+ JSON.stringify(data));
-			$("body")
-					.append(
-							"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
-			$("#save-popup")
-					.delay(3000)
-					.fadeOut(
-							500,
-							function() {
-								$("#save-popup")
-										.remove();
-							});
-		},
-		error : function(status) {
-			console.log(status);
-		}
-	});
+	var dummyRmember = (document.getElementById("remember_me")).checked;
+
+	var transUser = (document.getElementById("user_login")).value;
+	var transPass = (document.getElementById("user_pass")).value;
+	var transRmemember = (document.getElementById("remember_me")).checked;
+
+	$
+			.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+				url : 'user/userLogin',
+				type : 'POST', //Request하는 방식.
+				data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+					user : transUser,
+					pass : transPass,
+					remember : transRmemember
+				}),
+				dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
+				contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
+				success : function(data, status) {
+					console.log(status);
+					console.log("JSONData : " + JSON.stringify(data));
+					if (data['message'] != null) {
+
+						console.log()
+						$("#loginPage")
+								.append(
+										"<div id='save-popup'><center>"+data['message']+"</center></div>");
+					} else {
+
+						console.log(data['message']);
+						$("#loginPage")
+						.append(
+								"<div id='save-popup'><center>"+data['message']+"</center></div>");
+			
+					}
+				},
+				error : function(status) {
+					console.log(status);
+				}
+			});
 };
