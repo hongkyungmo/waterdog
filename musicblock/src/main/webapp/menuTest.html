@@ -2,275 +2,161 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-<!-- jQuery CDN 공식 jquery버-->
-<script src="https://code.jquery.com/jquery-2.2.2.js"
-	integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
-	crossorigin="anonymous">
-	
-</script>
+    <title>MusicBlock!</title>
 
-<!-- 부트스트랩 CDN -->
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jQuery CDN 공식 jquery버-->
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
+    </script>
 
-<title>Hello MusicBlock!</title>
+    <!-- 부트스트랩 CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<!-- swiper 설정 -->
-<link rel="stylesheet" href="/css/common/swiper.min.css">
+    <!-- swiper 설정 -->
+    <link rel="stylesheet" href="/css/common/swiper.min.css">
+    <script src="/javascript/swiper.min.js"></script>
 
-<!--  semantic 설정 -->
-<link rel="stylesheet" type="text/css"
-	href="/css/common/semantic.min.css">
-<script type="text/javascript" src="/javascript/common/semantic.min.js"></script>
+    <!--  User definition 설정 -->
+    <link rel="stylesheet" href="/css/common/commonMenu.css">
+    <link rel="stylesheet" href="/css/mainpage/mainpage.css">
+    <style>
+        #keh {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#menu").bind("click", function () {
+                console.log("메뉴버튼 누름ㅋㅋ");
+                $("#COMMON-MENUBAR").hide();
+                $("#keh").show();
+            });
 
-<!--  User definition 설정 -->
-<link rel="stylesheet" href="/css/common/commonMenu.css">
-<link rel="stylesheet" href="/css/mainpage/mainpage.css">
+        });
+        $(function () {
 
-<style>
-</style>
+            $("#actions").bind("click", function () {
+                console.log("login 확인ㅋㅋ");
 
-<script type="text/javascript">
-	$(function() {
+            });
+        });
 
-		$("#back").bind("click", function() {
-			console.log("뒤로가기 누름ㅋㅋ");
-		});
+        function serverLogin() {
 
-		$("#menu").bind("click", function() {
-			console.log("메뉴버튼 누름ㅋㅋ");
-			wrapWindowBymenuPage();
+            console.log('serverLogin() ');
 
-		});
+            var dummyUser = 'email1@naver.com';
+            var dummyPass = '1234';
+            var dummyRmember = (document.getElementById("remember_me")).checked;
 
-		$("#exit").bind("click", function() {
-			console.log("exit 누름ㅋㅋ");
-			$("#menuPage").hide();
-		});
+            var transUser = (document.getElementById("user_login")).value;
+            var transPass = (document.getElementById("user_pass")).value;
+            var transRmemember = (document.getElementById("remember_me")).checked;
 
-		$('#test').bind("click", function() {
-			console.log("login 누름ㅋㅋ")
-			$('.ui.modal').modal('show');
-		});
-	});
+            $.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
+                url: 'user/userLogin'
+                , type: 'POST', //Request하는 방식.
+                data: JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
+                    user: transUser
+                    , pass: transPass
+                    , remember: transRmemember
+                })
+                , dataType: "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
+                contentType: 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
+                success: function (data, status) {
+                    console.log(status);
+                    console.log("JSONData : " + JSON.stringify(data));
+                    if (data['message'] != null) {
 
-	function wrapWindowBymenuPage() {
-		//화면의 높이와 너비를 구한다.
-		var maskHeight = $(document).height();
-		var maskWidth = $(window).width();
+                        console.log()
+                        $("#loginPage").append(
+                            "<div id='save-popup'><center>" + data['message'] + "</center></div>");
+                    } else {
 
-		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-		$('#menuPage').css({
-			'width' : maskWidth,
-			'height' : maskHeight,
-			'z-index' : 150
-		});
-		//마스크의 투명도 처리
+                        console.log(data['message']);
+                        $("#loginPage").append(
+                            "<div id='save-popup'><center>" + data['message'] + "</center></div>");
 
-		$('#menuPage').fadeTo("slow", 1);
-	}
-
-	$(document).ready(function() {
-		//wrapWindowBymenuPage();
-		//불투명 배경 띄우기
-		$('.openmenuPage').click(function(e) {
-			e.preventDefault();
-			wrapWindowBymenuPage();
-		});
-	});
-
-	$(function() {
-
-		$(".actions").bind("click", function() {
-			console.log("login 확인ㅋㅋ");
-			serverLogin();
-		});
-	});
-
-	function serverLogin() {
-
-		console.log('serverLogin() ');
-
-		var dummyUser = 'email1@naver.com';
-		var dummyPass = '1234';
-		var dummyRmember = (document.getElementById("remember_me")).checked;
-
-		var transUser = (document.getElementById("user_login")).value;
-		var transPass = (document.getElementById("user_pass")).value;
-		var transRmemember = (document.getElementById("remember_me")).checked;
-
-		$
-				.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-					url : 'user/userLogin',
-					type : 'POST', //Request하는 방식.
-					data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-						user : transUser,
-						pass : transPass,
-						remember : transRmemember
-					}),
-					dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-					contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-					success : function(data, status) {
-						console.log(status);
-						console.log("JSONData : " + JSON.stringify(data));
-						if (data['message'] != null) {
-
-							console.log()
-							$("#loginPage")
-									.append(
-											"<div id='save-popup'><center>"+data['message']+"</center></div>");
-						} else {
-
-							console.log(data['message']);
-							$("#loginPage")
-							.append(
-									"<div id='save-popup'><center>"+data['message']+"</center></div>");
-				
-						}
-					},
-					error : function(status) {
-						console.log(status);
-					}
-				});
-	};
-</script>
+                    }
+                }
+                , error: function (status) {
+                    console.log(status);
+                }
+            });
+        };
+    </script>
 </head>
 
 <body>
+    <div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
+        <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+        </div>
+        <div class='col-xs-10 COMMON-MENUBAR-GRID-10'>
+        </div>
+        <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+            <button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button>
+        </div>
+    </div>
 
-	<div id='menuPage'>
-		<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
-			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
-			<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
-			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-				<button type='button'
-					class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>
-			</div>
-		</div>
+    <div id='keh'>
 
-		<div id='loginPage'>
+        <div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR1'>
+            <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+            </div>
+            <div class='col-xs-10 COMMON-MENUBAR-GRID-10'>
+            </div>
+            <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+                <button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>
+            </div>
+        </div>
 
-			<button id='test'>Login</button>
+        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>
+        <br>
+        <button type='button' class='btn btn-primary'>BlockList</button>
+        <button type='button' class='btn btn-primary'>MusicList</button>
+        <button type='button' class='btn btn-primary'>Community</button>
+        <br>
+        <button type='button' class='btn btn-primary'>사용설명서</button>
+        <button type='button' class='btn btn-primary'>설정</button>
+        <button type='button' class='btn btn-primary'>기타</button>
 
-			<div class='ui modal'>
-				<i class='close icon'></i>
-				<div class='header'>Profile Picture</div>
-				<div class='image content'>
-
-					<div class='description'>
-						<input type='text' class='input' id='user_login'
-							autocomplete='off' placeholder='Email or Nickname'> <br>
-						<input type='password' class='input' id='user_pass'
-							autocomplete='off' placeholder='Password'> <br> <input
-							type='checkbox' class='checkbox' id='remember_me'>Remember
-						me
-					</div>
-				</div>
-				<div class='actions'>
-					<div class='ui black deny button'>login</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-	<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
-		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
-		<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
-		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-			<button type='button'
-				class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id="menu"></button>
-		</div>
-	</div>
-
-
-
-
-
-	<div id="background" style="z-index: 100">
-
-		<div id="new-music" class="ui orange button">
-			<h4>New Music</h4>
-		</div>
-
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">치킨이 땡길 때</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">꼬깔콘을 먹으며</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">술이 땡길 때</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">먹으면서 냠냠냠</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">은혜가 은행가네</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">승길이가 학원가네</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="ui blue button music">
-						<div class="noteVisualContainer"></div>
-						<div class="music-name">윤영이가 집에가네</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-	<script src="/javascript/swiper.min.js"></script>
-	<script>
-		var swiper = new Swiper('.swiper-container', {
-
-			slidesPerView : 4,
-			paginationClickable : true,
-			spaceBetween : 0,
-			freeMode : true
-		});
-	</script>
+        <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                        <h4 class='modal-title' id='exampleModalLabel'>Login</h4>
+                    </div>
+                    <div class='modal-body'>
+                        <form>
+                            <div class='form-group'>
+                                <input type='text' class='form-control' id='user_login' placeholder='Email or Nickname'>
+                            </div>
+                            <div class='form-group'>
+                                <input type='password' class='form-control' id='user_pass' placeholder='Password'>
+                            </div>
+                            <div>
+                                <input type='checkbox' class='checkbox' id='remember_me'>
+                                <label for='remember_me' style='display:block;'>Remember me</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                        <button type='button' id='actions' class='btn btn-primary'>Send message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
