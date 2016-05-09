@@ -291,4 +291,18 @@ INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user
 INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user08','email8@gmail.com','1234');
 INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user09','email9@hanmail.net','1234');
 INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user10','email10@naver.com','1234');
+
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','아하하하핳',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','왜안되니',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','집가고싶다',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','내트북이',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','김밤비',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','치킨이',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','드럽게하하',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','안녕',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','비버핳',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','저녁뭐지',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','버거킹',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'101','"4,5"','0','0','치킨버거',SYSDATE,'4');
+
 commit;

@@ -92,6 +92,15 @@ body {
 }
 
 
+#btn-search span:before {
+    border-right: 15px solid #ddd;
+		} 
+		
+#btn-search  span:after {
+    border-right: 15px solid #ddd;
+    border-left: 0;
+}
+
 /* Main Content */
 
 .main-content {
