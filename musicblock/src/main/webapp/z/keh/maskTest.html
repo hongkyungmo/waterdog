@@ -9,7 +9,7 @@
 
 
 <style type="text/css">
-#mask {
+#menuPage {
 	position: absolute;
 	z-index: 9000;
 	background-color: #000;
@@ -26,47 +26,44 @@
 	
 </script>
 <script> 
-	function wrapWindowByMask(){
-		//화면의 높이와 너비를 구한다.
-		var maskHeight = $(document).height();  
-		var maskWidth = $(window).width();
+	function wrapWindowBymenuPage(){
+		var menuPageHeight = $(document).height();  
+		var menuPageWidth = $(window).width();
 
-		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-		$('#mask').css({'width':maskWidth,'height':maskHeight});  
-    //마스크의 투명도 처리
-          $('#mask').fadeTo("slow",0.8);    
+		$('#menuPage').css({'width':menuPageWidth,'height':menuPageHeight});  
+          $('#menuPage').fadeTo("fast",1);    
 	}
 
-	$(document).ready(function(){
-		//wrapWindowByMask();
-		//불투명 배경 띄우기
-		$('.openMask').click(function(e){
-			e.preventDefault();
-			wrapWindowByMask();
-		});
-	});
-	
-// 팝업 , 불투명 배경 띄우기
 	function clicktest(){
-		$('#test').show();
-		wrapWindowByMask();
+		wrapWindowBymenuPage();
 	}
 	
 	function btnexit(){
-		$('#test').hide();
-		$('#mask').hide();
+		$('#menuPage').hide();
 		
 	}
 	</script>
 </head>
 <body>
-	<input type="button" onclick="clicktest();" value="블러테스트" />
+	<input type="button" onclick="clicktest();" value="블러스트" />
 
-	<div id="mask"></div>
-	<div
-		style="background-color: #86E57F; width: 300px; height: 300px; position: absolute; top: 200px; left: 500px; display: none; z-index: 10001;"
-		id="test">
-		<input type="button" onclick="btnexit();" value="닫기" />
+	<div id="menuPage">
+			<button type='button' class='btn btn-primary' data-toggle='modal'
+				data-target='#exampleModal' data-whatever='@mdo'>Login</button>
+			<br>
+			<button type='button' class='btn btn-primary'>BlockList</button>
+			<button type='button' class='btn btn-primary'>MusicList</button>
+			<button type='button' class='btn btn-primary'>Community</button>
+			<br>
+			<button type='button' class='btn btn-primary'>사용설명서</button>
+			<button type='button' class='btn btn-primary'>설정</button>
+			<button type='button' class='btn btn-primary'>기타</button>
+			<input type="button" onclick="btnexit();" value="닫기" />
+		
+				<div id="loginPage" style="background-color:white;">
+				ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+				
+		</div>
 	</div>
 </body>
 </html>

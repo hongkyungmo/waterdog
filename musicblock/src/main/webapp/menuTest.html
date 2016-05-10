@@ -2,161 +2,155 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <title>MusicBlock!</title>
+<title>MusicBlock!</title>
 
-    <!-- jQuery CDN 공식 jquery버-->
-    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous">
-    </script>
+<!-- jQuery CDN 공식 jquery버-->
+<script src="https://code.jquery.com/jquery-2.2.2.js"
+	integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
+	crossorigin="anonymous">
+	
+</script>
 
-    <!-- 부트스트랩 CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 부트스트랩 CDN -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <!-- swiper 설정 -->
-    <link rel="stylesheet" href="/css/common/swiper.min.css">
-    <script src="/javascript/swiper.min.js"></script>
+<!-- swiper 설정 -->
+<link rel="stylesheet" href="/css/common/swiper.min.css">
+<script src="/javascript/swiper.min.js"></script>
 
-    <!--  User definition 설정 -->
-    <link rel="stylesheet" href="/css/common/commonMenu.css">
-    <link rel="stylesheet" href="/css/mainpage/mainpage.css">
-    <style>
-        #keh {
-            display: none;
-        }
-    </style>
-    <script>
-        $(function () {
-            $("#menu").bind("click", function () {
-                console.log("메뉴버튼 누름ㅋㅋ");
-                $("#COMMON-MENUBAR").hide();
-                $("#keh").show();
-            });
+<!--  User definition 설정 -->
+<link rel="stylesheet" href="/css/common/commonMenu.css">
+<link rel="stylesheet" href="/css/mainpage/mainpage.css">
+<style>
+#menuPage {
+	position: absolute;
+	z-index: 9000;
+	background-color: white;
+	display: none;
+	left: 0;
+	top: 0;
+}
+</style>
+<script>
+	function wrapWindowBymenuPage() {
+		var menuPageHeight = $(document).height();
+		var menuPageWidth = $(window).width();
 
-        });
-        $(function () {
+		$('#menuPage').css({
+			'width' : menuPageWidth,
+			'height' : menuPageHeight
+		});
+		$('#menuPage').fadeTo("fast", 1);
+	}
 
-            $("#actions").bind("click", function () {
-                console.log("login 확인ㅋㅋ");
+	$(function() {
+		$("#menu").bind("click", function() {
+			console.log("메뉴버튼 누름ㅋㅋ");
+			wrapWindowBymenuPage();
+		});
 
-            });
-        });
+		$("#exit").bind("click", function() {
 
-        function serverLogin() {
+			$('#menuPage').hide();
+		});
 
-            console.log('serverLogin() ');
+	});
+	
+	$(function() {
+		$('#exampleModal').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget) 
+			  var recipient = button.data('whatever') 
+			  var modal = $(this)
+			})
+			
+		$("#actions").bind("click", function() {
+			console.log("login 확인ㅋㅋ");
 
-            var dummyUser = 'email1@naver.com';
-            var dummyPass = '1234';
-            var dummyRmember = (document.getElementById("remember_me")).checked;
-
-            var transUser = (document.getElementById("user_login")).value;
-            var transPass = (document.getElementById("user_pass")).value;
-            var transRmemember = (document.getElementById("remember_me")).checked;
-
-            $.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
-                url: 'user/userLogin'
-                , type: 'POST', //Request하는 방식.
-                data: JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-                    user: transUser
-                    , pass: transPass
-                    , remember: transRmemember
-                })
-                , dataType: "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
-                contentType: 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
-                success: function (data, status) {
-                    console.log(status);
-                    console.log("JSONData : " + JSON.stringify(data));
-                    if (data['message'] != null) {
-
-                        console.log()
-                        $("#loginPage").append(
-                            "<div id='save-popup'><center>" + data['message'] + "</center></div>");
-                    } else {
-
-                        console.log(data['message']);
-                        $("#loginPage").append(
-                            "<div id='save-popup'><center>" + data['message'] + "</center></div>");
-
-                    }
-                }
-                , error: function (status) {
-                    console.log(status);
-                }
-            });
-        };
-    </script>
+		});
+	});
+</script>
 </head>
 
 <body>
-    <div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
-        <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-        </div>
-        <div class='col-xs-10 COMMON-MENUBAR-GRID-10'>
-        </div>
-        <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-            <button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button>
-        </div>
-    </div>
+	<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
+		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
+		<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
+		<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+			<button type='button'
+				class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button>
+		</div>
+	</div>
 
-    <div id='keh'>
+	<div id="menuPage">
 
-        <div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR1'>
-            <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-            </div>
-            <div class='col-xs-10 COMMON-MENUBAR-GRID-10'>
-            </div>
-            <div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
-                <button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>
-            </div>
-        </div>
+		<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>
+			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>
+			<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>
+			<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>
+				<button type='button'
+					class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>
+			</div>
+		</div>
 
-        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>
-        <br>
-        <button type='button' class='btn btn-primary'>BlockList</button>
-        <button type='button' class='btn btn-primary'>MusicList</button>
-        <button type='button' class='btn btn-primary'>Community</button>
-        <br>
-        <button type='button' class='btn btn-primary'>사용설명서</button>
-        <button type='button' class='btn btn-primary'>설정</button>
-        <button type='button' class='btn btn-primary'>기타</button>
+		<button type='button' class='btn btn-primary' data-toggle='modal'
+			data-target='#exampleModal' data-whatever='@mdo'>Login</button>
+		<br>
+		<button type='button' class='btn btn-primary'>BlockList</button>
+		<button type='button' class='btn btn-primary'>MusicList</button>
+		<button type='button' class='btn btn-primary'>Community</button>
+		<br>
+		<button type='button' class='btn btn-primary'>사용설명서</button>
+		<button type='button' class='btn btn-primary'>설정</button>
+		<button type='button' class='btn btn-primary'>기타</button>
 
-        <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                        </button>
-                        <h4 class='modal-title' id='exampleModalLabel'>Login</h4>
-                    </div>
-                    <div class='modal-body'>
-                        <form>
-                            <div class='form-group'>
-                                <input type='text' class='form-control' id='user_login' placeholder='Email or Nickname'>
-                            </div>
-                            <div class='form-group'>
-                                <input type='password' class='form-control' id='user_pass' placeholder='Password'>
-                            </div>
-                            <div>
-                                <input type='checkbox' class='checkbox' id='remember_me'>
-                                <label for='remember_me' style='display:block;'>Remember me</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                        <button type='button' id='actions' class='btn btn-primary'>Send message
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		 <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog'
+			aria-labelledby='exampleModalLabel' aria-hidden='true'>
+			<div class='modal-dialog'>
+				<div class='modal-content'>
+					<div class='modal-header'>
+						<button type='button' class='close' data-dismiss='modal'
+							aria-label='Close'>
+							<span aria-hidden='true'>&times;</span>
+						</button>
+						<h4 class='modal-title' id='exampleModalLabel'>Login</h4>
+					</div>
+					<div class='modal-body'>
+						<form>
+							<div class='form-group'>
+								<input type='text' class='form-control' id='user_login'
+									placeholder='Email or Nickname'>
+							</div>
+							<div class='form-group'>
+								<input type='password' class='form-control' id='user_pass'
+									placeholder='Password'>
+							</div>
+							<div>
+								<input type='checkbox' class='checkbox' id='remember_me'>
+								<label for='remember_me' style='display: block;'>Remember
+									me</label>
+							</div>
+						</form>
+					</div>
+					<div class='modal-footer'>
+						<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+						<button type='button' id='actions' class='btn btn-primary'>Send
+							message</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<div>여기는 내용물 내용물 내용112121물</div>
 </body>
 
 </html>

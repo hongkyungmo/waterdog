@@ -40,8 +40,7 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 +"	<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
 +"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
 +"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
-
-+"<div id='btnContainer'><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exModal' data-whatever='@mdo'>Login</button>"
++"<div id='btnContainer'>"
 +"<br><button type='button' class='btn btn-primary'>BlockList</button>"
 +"<button type='button' class='btn btn-primary'>MusicList</button>"
 +"<button type='button' class='btn btn-primary'>Community</button>"
@@ -142,7 +141,7 @@ $(function() {
 		if((transUser!=="")&(transPass!=="")){
 			serverLogin(transUser,transPass,transRemember);
 		}else{
-			console.log('user 정보 이제 저장해 볼까 ㅎ');
+			console.log('너너너너널널!');
 		}
 
 	});
@@ -172,19 +171,15 @@ function serverLogin(transUser,transPass,transRemember) {
 		success : function(data, status) {
 			console.log(status);
 			console.log("JSONData : " + JSON.stringify(data));
-			if (data['message'] != null) {
+			if (data['user'] !=null) {
 
-				console.log(data['message']);
-				$("#loginPage")
-				.append(
-						"<div id='save-popup'><center>"+data['message']+"</center></div>");
+				console.log(data['user'].nick+'님 환영합니다!');
+				if(transRemember){
+					addUser(data['user']);
+				}
+				
 			} else {
-
-				console.log(data['message']);
-				$("#loginPage")
-				.append(
-						"<div id='save-popup'><center>"+data['message']+"</center></div>");
-
+				console.log('회원 정보가 없습니다. 다시 확인해 주세요.');
 			}
 		},
 		error : function(status) {
@@ -192,3 +187,40 @@ function serverLogin(transUser,transPass,transRemember) {
 		}
 	});
 };
+
+/*      자동로그인 관련 jQuery      */
+
+
+$(function(){
+	var remember=localStorage.getItem('remember');
+	var login=	"<button type='button' class='btn btn-primary' data-toggle='modal' " +
+			"data-target='#exModal' data-whatever='@mdo'>Login</button>";
+	var logout= "<button type='button' id='logout' class='btn btn-primary' >Logout</button>";
+	
+	console.log('remember>>'+remember);
+	
+	/* 여기를 toggle로 버튼이 바뀌게 수정 */
+	if(remember=='T'){
+		$("#btnContainer").append(logout);
+		
+	}else {
+		$("#btnContainer").append(login);
+	}
+});
+
+function addUser(vo){
+	console.log('addUser()');
+	console.log('vo.nick>>'+vo.nick);
+	localStorage.setItem('remember','T');
+	console.log('remember>>'+localStorage.getItem('remember'));
+}
+
+/* logout 수정 */
+$(function() {
+	$("#logout").bind("click", function() {
+		console.log("logout 누름ㅋㅋ");
+		localStorage.setItem('remember','F');
+		$("#logout").remove();
+		console.log('remember>>'+localStorage.getItem('remember'));
+	});
+});
