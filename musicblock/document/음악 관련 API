@@ -47,6 +47,9 @@ http://blog.naver.com/PostView.nhn?blogId=happyyhj&logNo=50445122
  
  음 개선에 도움이 될 코드 및 링크
   -> http://codepen.io/noogn/pen/LAiDz
+     (코드 파악 중, javascript는 Class가 따로 없어서 독특한 방법으로 Class를 정의함.
+      javascript는 객체 지향 언어인지 논란이 있었으나, 자기 자신을 객체 지향 언어라고 정의하고 있음
+        다음 링크는 javascript에서 클래스를 정의하는 3가지 방법 : http://steadypost.net/post/lecture/id/13/ )  
   -> http://codepen.io/bennettfeely/pen/GvAcf
   -> http://codepen.io/gwincr11/details/ojEDJ
   -> http://www.freesound.org/
