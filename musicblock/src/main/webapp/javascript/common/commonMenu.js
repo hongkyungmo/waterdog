@@ -130,23 +130,33 @@ $(function() {
 		
 	$("#actions").bind("click", function() {
 		console.log("login 확인ㅋㅋ");
+		
+		var transUser = (document.getElementById("user_login")).value;
+		var transPass = (document.getElementById("user_pass")).value;
+		var transRemember = (document.getElementById("remember_me")).checked;
+		
+		console.log('transUser >>_'+transUser+'_');
+		console.log('transPass >>_'+transPass+'_');
+		console.log('transRemember >>'+transRemember);
+		
+		if((transUser!=="")&(transPass!=="")){
+			serverLogin(transUser,transPass,transRemember);
+		}else{
+			console.log('user 정보 이제 저장해 볼까 ㅎ');
+		}
 
 	});
 });
 
 /* 로그인 server 통신 function */
 
-function serverLogin() {
+function serverLogin(transUser,transPass,transRemember) {
 
 	console.log('serverLogin() ');
 
 	var dummyUser = 'email1@naver.com';
 	var dummyPass = '1234';
 	var dummyRmember = (document.getElementById("remember_me")).checked;
-
-	var transUser = (document.getElementById("user_login")).value;
-	var transPass = (document.getElementById("user_pass")).value;
-	var transRmemember = (document.getElementById("remember_me")).checked;
 
 	$
 	.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
@@ -155,7 +165,7 @@ function serverLogin() {
 		data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
 			user : transUser,
 			pass : transPass,
-			remember : transRmemember
+			remember : transRemember
 		}),
 		dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 		contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
@@ -164,7 +174,7 @@ function serverLogin() {
 			console.log("JSONData : " + JSON.stringify(data));
 			if (data['message'] != null) {
 
-				console.log()
+				console.log(data['message']);
 				$("#loginPage")
 				.append(
 						"<div id='save-popup'><center>"+data['message']+"</center></div>");
