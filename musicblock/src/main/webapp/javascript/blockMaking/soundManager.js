@@ -12,11 +12,17 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
 
 //오실레이터, 게인 생성
-var oscillator = audioContext.createOscillator();
+//var oscillator = audioContext.createOscillator();
 var gain = audioContext.createGain();
 
+var oscArr = new Array();
+for(var i=0;i<48;i++){
+	oscArr[i] = audioContext.createOscillator();
+	oscArr[i].start(0);
+}
+
 //오실레이터 설정
-oscillator.type = 'sine'; //파형의 형태 sine, square, sawtooth, triangle, custom 등
+/*oscillator.type = 'sine'; //파형의 형태 sine, square, sawtooth, triangle, custom 등
 oscillator.frequency.value = 100; //주파수
 oscillator.connect(gain); //게인과 연결
 
@@ -25,15 +31,16 @@ gain.gain.value = mainVolume; //볼륨
 gain.connect(audioContext.destination); //데스티네이션(스피커)와 연결
 
 //오실레이터 시작
-oscillator.start();
+//oscillator.start();
 //gain.disconnect(audioContext.destination);
 //oscillator.disconnect(gain);
-
+*/
 
 
 //건반 클릭
 $(function () {
-    $(".key").mousedown(function () {
+    /*$(".key").mousedown(function () {*/
+	$(".key").bind(keyDown, function () {
         var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
         noteArr[clickSequence-1] = (octave - 1) * 12 + $(".key").index(this)+1;
     });
@@ -47,17 +54,16 @@ var noteCodeToFreq = function (noteVal) {
 
 //음 코드(1~48)를 넣으면 1초간 음을 연주해주는 함수
 var playNote = function (noteVal) {
-    oscillator.frequency.value = noteVal;
-    
+	oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
+	
     gain.gain.value = volumeSaver;
-    //gain.gain.setTargetAtTime(volumeSaver, audioContext.currentTime, 0.1);
-    //gain.gain.setTargetAtTime(0, audioContext.currentTime+1, 0.1);
-    setTimeout(function () {
-        /*oscillator.connect(gain);
-        oscillator.disconnect(gain);*/
-        //gain.gain.value=0;
-    }, 1000);
+    oscArr[noteVal].connect(gain);
+    gain.connect(audioContext.destination);
+    
     //테스트코드
     console.log(noteVal);
 }
 
+var stopNote = function (noteVal){
+	oscArr[noteVal].disconnect(gain);
+}
