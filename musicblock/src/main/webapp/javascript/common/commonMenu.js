@@ -8,56 +8,7 @@ var path = $(location).attr('pathname');
 
 
 var element = 
-	"<div id='menuPage' >"
-	+"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>"
-	+"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
-	+"<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
-	+"<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
-	+"	<button type='button'"
-	+"		class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>"
-	+"</div>"
-	+"</div>"
-
-	+"<div id='loginPage'>"
-
-	+"<center>"
-	+"<button id='test' class='customButton'>Login</button>"
-	+"<br>"
-	+"<button id='test3' class='customButton'>BlockList</button>"
-	+"<button id='test4' class='customButton'>MusicList</button>"
-	+"<button id='test5' class='customButton'>Community</button>"
-	+"<br>"
-	+"<button id='test6' class='customButton'>사용설명서</button>"
-	+"<button id='test7' class='customButton'>설정</button>"
-	+"<button id='test8' class='customButton'>기타</button>"
-	+"</center>"
-
-	+"	<div class='ui modal'>"
-	+"	<i class='close icon'></i>"
-	+"	<div class='header'>Profile Picture</div>"
-	+"	<div class='image content'>"
-
-	+"			<div class='description'>"
-	+"			<input type='text' class='input' id='user_login'"
-	+"				autocomplete='off' placeholder='Email or Nickname'> <br>"
-	+"			<input type='password' class='input' id='user_pass'"
-	+"				autocomplete='off' placeholder='Password'> <br> <input"
-	+"				type='checkbox' class='checkbox' id='remember_me'> <label"
-	+"				for='remember_me'>Remember me</label>"
-	+"		</div>"
-	+"	</div>"
-	+"	<div class='actions'>"
-	+"		<div class='ui black deny button'>login</div>"
-	+"	</div>"
-	+"</div>"
-	+"</div>"
-	+"</div>"
-
-
-
-
-
-	+"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
+	"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
 
 if(path != "/mainpage.html"){
 	element += "<button type='btn' class='btn COMMON-MENUBAR-BTN fa fa-chevron-left fa-2x' id='back'></button>";
@@ -81,13 +32,58 @@ if(path.indexOf("/community.html") != -1) {
 	//element += addCommunity;
 }
 
-element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>";
+element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>"
+
+
++"<div id='menuPage'><div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>"
++"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
++"	<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
++"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
++"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
+
++"<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>"
++"<br><button type='button' class='btn btn-primary'>BlockList</button>"
++"<button type='button' class='btn btn-primary'>MusicList</button>"
++"<button type='button' class='btn btn-primary'>Community</button>"
++"<br><button type='button' class='btn btn-primary'>사용설명서</button>"
++"<button type='button' class='btn btn-primary'>설정</button>"
++"<button type='button' class='btn btn-primary'>기타</button>"
+
++"<div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
++"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
++"				<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
++"					<span aria-hidden='true'>&times;</span>	</button>"
++"				<h4 class='modal-title' id='exampleModalLabel'>Login</h4></div>"
++"			<div class='modal-body'><form><div class='form-group'><input type='text' class='form-control' id='user_login'"
++"							placeholder='Email or Nickname'></div>"
++"					<div class='form-group'><input type='password' class='form-control' id='user_pass'"
++"							placeholder='Password'>	</div>"
++"					<div><input type='checkbox' class='checkbox' id='remember_me'>"
++"						<label for='remember_me' style='display: block;'>Remember me</label>"
++"					</div>	</form>	</div>	<div class='modal-footer'>"
++"				<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"
++"				<button type='button' id='actions' class='btn btn-primary'>Send	message</button>"
++"			</div></div></div></div></div> ";
+
+
+
+
+
+
 
 
 $("body").append(element);
 
-$(function() {
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////                                                                             ////////////////////
+////////////                         여기서 부터 function                                   ////////////////////
+////////////                                                                            ////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+/* 공통 메뉴바 동작 확인을 위한 log 출력 function */
+
+$(function() {
 
 	$("#back").bind("click", function() {
 		history.back();
@@ -99,50 +95,51 @@ $(function() {
 		wrapWindowBymenuPage();
 
 	});
-
-	$("#exit").bind("click",function(){
-		console.log("exit 누름ㅋㅋ");
-		$("#menuPage").hide();
-	});
-
-	$('#test').bind("click",function() {
-		console.log("login 누름ㅋㅋ")
-		$('.ui.modal').modal('show');
-	});
 });
+
+
+/* menuPage 띄우기 위한 function */
 
 function wrapWindowBymenuPage() {
-	//화면의 높이와 너비를 구한다.
-	var maskHeight = $(document).height();
-	var maskWidth = $(window).width();
+	var menuPageHeight = $(document).height();
+	var menuPageWidth = $(window).width();
 
-	//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
 	$('#menuPage').css({
-		'width' : maskWidth,
-		'height' : maskHeight,
-		'z-index' : 150
+		'width' : menuPageWidth,
+		'height' : menuPageHeight
 	});
-	//마스크의 투명도 처리
-
-	$('#menuPage').fadeTo("slow", 1);
+	$('#menuPage').fadeTo("fast", 1);
 }
 
-$(document).ready(function() {
-	//wrapWindowBymenuPage();
-	//불투명 배경 띄우기
-	$('.openmenuPage').click(function(e) {
-		e.preventDefault();
+$(function() {
+	$("#menu").bind("click", function() {
+		console.log("메뉴버튼 누름ㅋㅋ");
 		wrapWindowBymenuPage();
 	});
+
+	$("#exit").bind("click", function() {
+
+		$('#menuPage').hide();
+	});
+
 });
+
+/* modal 띄우기 위한 function */
 
 $(function() {
-
-	$(".actions").bind("click", function() {
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget) 
+		  var recipient = button.data('whatever') 
+		  var modal = $(this)
+		})
+		
+	$("#actions").bind("click", function() {
 		console.log("login 확인ㅋㅋ");
-		serverLogin();
+
 	});
 });
+
+/* 로그인 server 통신 function */
 
 function serverLogin() {
 
