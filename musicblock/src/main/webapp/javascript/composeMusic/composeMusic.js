@@ -13,6 +13,7 @@ var duration = 500;
 var downTime;
 var timeout;
 var dropFlag;
+var layeredBlocks={width:0, sec:0};
 
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
@@ -90,18 +91,23 @@ var group = $("ol.simple_with_drop").sortable({
             });
         }
     }
-    ,onDrag: function ($item, position, _super, event) {    	
+    ,onDrag: function ($item, position, _super, event) {
     	$item.css(position);  
     	if($('#block-dialog')[0].className.indexOf('in') != -1){
     		dropFlag=false;
     	}
     }
     , onDrop: function ($item, container, _super, event) {
-    	
     	swiperMelodyLayer.params.allowSwipeToNext = true;
     	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
 
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
+        // 블럭의 시간만큼 width를 늘린다.
+        var width = $item.data("sec")*3.75;
+        layeredBlocks.width += width+1;
+        layeredBlocks.sec += parseInt( $item.data("sec"));
+        console.log(layeredBlocks.sec);
+        $item.css("width",width+"%");
         $("body").removeClass(container.group.options.bodyClass);
         if(!dropFlag && parent[0] == comparedNoDrop){
         	$($item).remove();
@@ -138,7 +144,7 @@ var group = $("ol.simple_with_drop").sortable({
 	            sortedData += "{\"key\":\"" + data[0][k].key + "\",\"sec\":\"" + data[0][k].sec+ "\",\"notes\":\"" +data[0][k].notes+ "\"}";
 	            k != data[0].length-1 ? sortedData += "&" : sortedData += "";	
 	        }
-	        console.log(sortedData);
+//	        console.log(sortedData);
     }
 });
 
@@ -198,32 +204,73 @@ $(function () {
         $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
     });
 
-    $("#btn-play").bind("click", function () {
-    	$("#work-layer").stop().animate({
-            'left': '-509'
-        }, {
-            step: function (now, fx) {
-                $(".swiper-scrollbar-drag").css({
-                    "transform": "translate3d(" + now + "px,  0px, 0px)"
-                });
-            }
-            , duration: $('#work-layer').data("sec")*1000
-            , easing: 'linear'
-            , queue: false
-            , complete: function () {
-                $("#work-layer").css("left", "0");
-                $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
-            }
-        }, 'linear');
-    });
-
+//    $("#btn-play").bind("click", function () {
+//    	$("#work-layer").stop().animate({
+//            'left': '-509'
+//        }, {
+//            step: function (now, fx) {
+//                $(".swiper-scrollbar-drag").css({
+//                    "transform": "translate3d(" + now + "px,  0px, 0px)"
+//                });
+//            }
+//            , duration: $('#work-layer').data("sec")*1000
+//            , easing: 'linear'
+//            , queue: false
+//            , complete: function () {
+//                $("#work-layer").css("left", "0");
+//                $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
+//            }
+//        }, 'linear');
+    	
+    	
+    	 
+        $('#btn-play').clickToggle(
+        		function(){
+        			if(layeredBlocks.width<=0){
+        				return;
+        			}else{
+        				$('#btn-play').removeClass('fa-play');
+        				$('#btn-play').addClass('fa-pause');  
+        				$('#progress-bar').stop().animate({
+        		    		'width':layeredBlocks.width+'%'
+        		    	},{
+        		    		easing : 'swing',
+        		    		duration: layeredBlocks.sec*1000
+        		    	}
+        		    	);
+        			}
+        			
+        		}, 
+        		function(){
+        			$('#btn-play').removeClass('fa-pause');
+        			$('#btn-play').addClass('fa-play');
+        			
+        		}
+        		);
+//    });
+   
     $(".progress-bar-wrapper").bind("click", function (e) {
         console.log("래퍼 클릭");
         $(".progress-bar-pointer").css("left", e.pageX - 20);
     });
 
-
 });
+
+
+// 클릭 토글 함수 직접 구현
+(function($) {
+    $.fn.clickToggle = function(func1, func2) {
+        var funcs = [func1, func2];
+        this.data('toggleclicked', 0);
+        this.click(function() {
+            var data = $(this).data();
+            var tc = data.toggleclicked;
+            $.proxy(funcs[tc], this)();
+            data.toggleclicked = (tc + 1) % 2;
+        });
+        return this;
+    };
+}(jQuery));
 
 var addedMenuBar = 
     "<div class='row COMPOSE-MENUBAR-ROW'>" + 
