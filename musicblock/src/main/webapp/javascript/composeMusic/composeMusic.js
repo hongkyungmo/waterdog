@@ -98,16 +98,12 @@ var group = $("ol.simple_with_drop").sortable({
     	}
     }
     , onDrop: function ($item, container, _super, event) {
+
     	swiperMelodyLayer.params.allowSwipeToNext = true;
     	swiperMelodyLayer.params.allowSwipeToPrev = true;    	
 
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
-        // 블럭의 시간만큼 width를 늘린다.
-        var width = $item.data("sec")*3.75;
-        layeredBlocks.width += width+1.5;
-        layeredBlocks.sec += parseInt( $item.data("sec"));
-        console.log(layeredBlocks.sec);
-        $item.css("width",width+"%");
+        
         $("body").removeClass(container.group.options.bodyClass);
         if(!dropFlag && parent[0] == comparedNoDrop){
         	$($item).remove();
@@ -122,29 +118,38 @@ var group = $("ol.simple_with_drop").sortable({
 	        	break;
 	        }
 	    }
-	
-	        $item.removeClass("no_drop");
-	        if (parent[0] == comparedNoDrop) {
-	            // 해당 Index에 추가
-	            if (i <= 0) {
-	                $(placeHoler).before($item[0]);
-	            } else {
-	                $(placeHoler.className).after($item[0]);
-	            }
-	            swiperMelodyLayer.params.loop && swiperMelodyLayer.createLoop()
-	                , swiperMelodyLayer.params.observer && swiperMelodyLayer.support.observer || swiperMelodyLayer.update(!0)
-	        }
+	    $item.removeClass("no_drop");
+	    
+	    // 드래그가 시작된 블럭의 출발점이 repository인지 layer인지 구분한다. 
+	    // repository일 경우
+	    if (parent[0] == comparedNoDrop) {	    	
+	    	// 블럭의 시간만큼 width를 늘린다.
+	    	var width = $item.data("sec")*3.75;
+	    	$item.css("width",width+"%");
+	    	
+	    	// layer에 있는 블럭의 길이와 시간을 계산한다.
+	    	layeredBlocks.width += width+1.5;
+	        layeredBlocks.sec += parseInt( $item.data("sec"));
 	        
-	        // 레이어에 있는 블록의 정보를 순서대로 표현하기 위한 부분       
-	        // JSON과 Touch-Punch가 충돌 되므로 직접 구현
-	        var data = group.sortable("serialize").get();
-	        var JSONBlock;
-	        sortedData = ""; 
-	        for (var k = 0; k < data[0].length; k++) {
-	            sortedData += "{\"key\":\"" + data[0][k].key + "\",\"sec\":\"" + data[0][k].sec+ "\",\"notes\":\"" +data[0][k].notes+ "\"}";
-	            k != data[0].length-1 ? sortedData += "&" : sortedData += "";	
+	    	// 해당 Index에 추가
+	        if (i <= 0) {
+	        	$(placeHoler).before($item[0]);
+	        } else {
+	        	$(placeHoler.className).after($item[0]);
 	        }
-//	        console.log(sortedData);
+	        swiperMelodyLayer.params.loop && swiperMelodyLayer.createLoop()
+	        , swiperMelodyLayer.params.observer && swiperMelodyLayer.support.observer || swiperMelodyLayer.update(!0)
+	    }
+	        
+	    // 레이어에 있는 블록의 정보를 순서대로 표현하기 위한 부분       
+	    // JSON과 Touch-Punch가 충돌 되므로 직접 구현
+	    var data = group.sortable("serialize").get();
+	    var JSONBlock;
+	    sortedData = ""; 
+	    for (var k = 0; k < data[0].length; k++) {
+	    	sortedData += "{\"key\":\"" + data[0][k].key + "\",\"sec\":\"" + data[0][k].sec+ "\",\"notes\":\"" +data[0][k].notes+ "\"}";
+	        k != data[0].length-1 ? sortedData += "&" : sortedData += "";	
+	    }
     }
 });
 
@@ -231,7 +236,7 @@ $(function () {
         			if(layeredBlocks.width<=0){
         				return;
         			}else{
-        				
+        				console.log($('#progress-bar'));
         				$('#btn-play').switchClass('fa-play','fa-pause');
         				$('#progress-bar').stop().animate({
         		    		'width':layeredBlocks.width+'%'
