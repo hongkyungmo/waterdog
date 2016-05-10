@@ -121,13 +121,17 @@ div .fa-1x{
 
 #menuPage {
 	position: absolute;
+	clear:both;
 	z-index: 9000;
 	background-color: white;
 	display: none;
 	left: 0;
 	top: 0;
 }
+#btnContainer{
 
+	 position:fixed;
+}
 /*
 
 #loginPage {
