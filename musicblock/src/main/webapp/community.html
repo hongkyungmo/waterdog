@@ -19,9 +19,6 @@
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
 
-
-
-
 <!-- 부트스트랩 CDN -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
@@ -39,7 +36,7 @@
 <!-- community CSS-->
 <link rel="stylesheet" href="/css/community/community.css">
 
-<style>
+<!-- <style>
 .modal {
 	top: 20px;
 	padding: 50%;
@@ -61,7 +58,7 @@
 	padding: 3px 12px;
 	font-size: 12px;
 }
-</style>
+</style> -->
 
 </head>
 
@@ -81,7 +78,7 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -105,7 +102,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
 	<div class="music-menu" style="width: 100%; height: 10%;">
@@ -131,7 +128,7 @@
 	<!-- 전체 컨테이너 -->
 	<div class="total-container">
 		<div id="contain-layer-left" style="width: 50%; float: left;">
-			<!-- 	<div class="people">
+			 <div class="people">
 				<li><a href=#><img src="images/3.png" /></a>
 					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
 						<hr>
@@ -226,14 +223,14 @@
 						</p>
 						</ui>
 					</ul></li>
-			</div> -->
+			</div>
 
 		</div>
 		<!-- end of Left 컨테이너 -->
 
 		<!--right컨테이너-->
 		<div id="contain-layer-right" style="width: 50%; float: right;">
-			<!-- 				<div class="people">
+	 		<div class="people">
 				<li><a href=#><img src="images/3.png" /></a>
 					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
 						<hr>
@@ -328,7 +325,7 @@
 						</p>
 						</ui>
 					</ul></li>
-			</div> -->
+			</div> 
 
 
 		</div>
@@ -338,45 +335,53 @@
 
 
 	<script>
-		$(".people").click(function() {
-			var Pindex = $(".people").index(this);
-			alert(Pindex);
-			console.log(Pindex);
-			//$('h2:eq(1)').append("바보");
-		});
+		/* 	$(function() {
+		 $(window).scroll
+		 (function(){
+		 alert("scrollHeight:"+scrollHeight);
+		 alert("documentHeight"+documentHeight);  
+		 var scrollHeight = $(window).scrollTop() + $(window).height(); //윈도우는 딱 보이는 화면의 크기
+		 var documentHeight = $(document).height(); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
+		
+		 });
+		 });  */
 
-		/* $(function() {
-			 $(window).scroll(function(){ //스크롤 func
-					var scrollHeight = $(window).scrollTop() + $(window).height(); //윈도우는 딱 보이는 화면의 크기
-					var documentHeight = $(document).height(); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
-			 		alert("scrollHeight:"+scrollHeight);
-					alert("documentHeight"+documentHeight);  
-			 });
-		}); 
-		 */
+		/* 	$(".people").click(function() {
+				var Pindex = $(".people").index(this);
+				alert(Pindex);
+				console.log(Pindex);
+				//$('h2:eq(1)').append("바보");
+			}); */
+
 		var test = 2;
-		var max = 53;
-
+		var max = 50;
+		var test1 = 0;
+		var max1 = 10; 
 		$(function() {
 			RecvFromServer();
 			function RecvFromServer() {
-				$(window).scroll(function() {
+				$(window).scroll(
+								function() {
 									var scrollHeight = parseInt($(window).scrollTop()+ $(window).height()); //윈도우는 딱 보이는 화면의 크기
 									var documentHeight = parseInt($(document).height()); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
-									if (scrollHeight >= documentHeight) { //스크롤 높이가 전체 높이보다 클경우
-										for (test = 0; test < max; ++test) {
+								if (scrollHeight >= documentHeight) { 
+									for (test = 0; test < max; test+=10) {
+										//alert("test:"+test);
+										for (test1 = 0; test1 < max1; test1++) {
+										//alert("test1+test :"+(test1+test));
 											$.ajax({
 														type : 'GET',
-														url : 'block/getJsonBlock/'+ test,
+														url : 'block/getJsonBlock/'
+															+(test1+test),
 														dataType : "json",
 														data : "",
 														async : false,
 														success : function(data) {
-															console.log("JSONData : "+JSON.stringify(data)); //stringify은 string type으로 바꿔줌
+															console.log("JSONData : "+ JSON.stringify(data)); //stringify은 string type으로 바꿔줌
 															//데이터 블럭값이있을경우에만
 															if (data['block'] != null) {
-																/* 	 alert("scrollHeight: "+$(window).scrollTop() + $(window).height()+" , scrollTop:"+$(window).scrollTop());
-																	alert("window height: "+$(window).height()+", documentHeight:"+ $(document).height()); */
+																//for (test1 = 0; test1 < max1; test1++) {
+																	//alert("test1/"+test1);
 																var dynamicEl = "<div class='people'><li><a href=#><img src='images/3.png' /></a><h2>"
 																		+ data['block'].title
 																		+ "</h2> <span class='info'><nm>이산돌</nm> <em>"
@@ -404,17 +409,19 @@
 																}//end fo else문
 
 																//});//end of scroll
+																//}//end of for문 test1
 															}//end of datablock문
 														},//end of success문
 														error : function(status) {
 															console.log(status);
 														}//end of error문
 													})//end of ajax문
-										}//end of for문
+												}//end of for문 test1
+										}//end of for문 test
 									}//end of if문
 
-								})//scorll func문
-		
+								});//scorll func문
+
 			}//end of recvFun문
 			//좋아요 클릭시 카운트 증가
 			function increaseLikes() {
