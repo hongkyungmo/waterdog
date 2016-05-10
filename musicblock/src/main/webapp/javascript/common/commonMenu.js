@@ -41,13 +41,13 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 +"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
 +"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
 
-+"<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>"
++"<div id='btnContainer'><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>"
 +"<br><button type='button' class='btn btn-primary'>BlockList</button>"
 +"<button type='button' class='btn btn-primary'>MusicList</button>"
 +"<button type='button' class='btn btn-primary'>Community</button>"
 +"<br><button type='button' class='btn btn-primary'>사용설명서</button>"
 +"<button type='button' class='btn btn-primary'>설정</button>"
-+"<button type='button' class='btn btn-primary'>기타</button>"
++"<button type='button' class='btn btn-primary'>기타</button><div>"
 
 +"<div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
 +"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
