@@ -104,7 +104,7 @@ var group = $("ol.simple_with_drop").sortable({
         $item.removeClass(container.group.options.draggedClass).removeAttr("style");
         // 블럭의 시간만큼 width를 늘린다.
         var width = $item.data("sec")*3.75;
-        layeredBlocks.width += width+1;
+        layeredBlocks.width += width+1.5;
         layeredBlocks.sec += parseInt( $item.data("sec"));
         console.log(layeredBlocks.sec);
         $item.css("width",width+"%");
@@ -156,7 +156,7 @@ $("ol.simple_with_no_drop").sortable({
 
 $(function () {		
 	
-	$(".col-xs-10:eq(1)").append(addedMenuBar);
+	$(".col-xs-10:eq(0)").append(addedMenuBar);
 	
     // Move to blockMaking.html for edit
     $("#dialog-edit").bind("click", function () {
@@ -201,7 +201,10 @@ $(function () {
     });
 
     $("#btn-prev").bind("click", function () {
-        $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
+//        $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
+    	$('#progress-bar').stop().css('width','0%');
+    	
+    	
     });
 
 //    $("#btn-play").bind("click", function () {
@@ -221,30 +224,30 @@ $(function () {
 //                $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
 //            }
 //        }, 'linear');
-    	
-    	
     	 
         $('#btn-play').clickToggle(
         		function(){
+        			// 레이어에 채워진 블럭이 없으면 실행안됨
         			if(layeredBlocks.width<=0){
         				return;
         			}else{
-        				$('#btn-play').removeClass('fa-play');
-        				$('#btn-play').addClass('fa-pause');  
+        				
+        				$('#btn-play').switchClass('fa-play','fa-pause');
         				$('#progress-bar').stop().animate({
         		    		'width':layeredBlocks.width+'%'
         		    	},{
-        		    		easing : 'swing',
-        		    		duration: layeredBlocks.sec*1000
+        		    		easing : 'linear'
+        		    		, duration: layeredBlocks.sec*1000
+        		    		, complete:function(){
+        		    			$('#btn-play').switchClass('fa-pause','fa-play');
+        		    		}
         		    	}
         		    	);
         			}
-        			
         		}, 
         		function(){
-        			$('#btn-play').removeClass('fa-pause');
-        			$('#btn-play').addClass('fa-play');
-        			
+        			$('#btn-play').switchClass('fa-pause','fa-play');
+        			$('#progress-bar').stop();
         		}
         		);
 //    });
