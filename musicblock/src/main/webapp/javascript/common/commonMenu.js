@@ -90,11 +90,6 @@ $(function() {
 		console.log("뒤로가기 누름ㅋㅋ");
 	});
 
-	$("#menu").bind("click", function() {
-		console.log("메뉴버튼 누름ㅋㅋ");
-		wrapWindowBymenuPage();
-
-	});
 });
 
 
@@ -118,7 +113,7 @@ $(function() {
 	});
 
 	$("#exit").bind("click", function() {
-
+		console.log("뒤로버튼 누름ㅋㅋ")
 		$('#menuPage').hide();
 	});
 
