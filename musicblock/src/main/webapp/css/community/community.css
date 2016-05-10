@@ -48,7 +48,7 @@ html,
         
         #COMMON-MENUBAR {
 			position:fixed; 
-			 z-index : 150;
+			 z-index : 100;
         }
         
         .music-menu {
@@ -57,7 +57,7 @@ html,
             position: fixed;
             margin-top: 6.5%;
             height:10%;
-            z-index: 150;
+            z-index: 100;
         }
         .header{
             width: 100%;

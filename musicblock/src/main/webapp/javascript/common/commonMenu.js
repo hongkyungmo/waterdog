@@ -35,13 +35,13 @@ if(path.indexOf("/community.html") != -1) {
 element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>"
 
 
-+"<div id='menuPage'><div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'>"
++"<div id='menuPage'><div class='row COMMON-MENUBAR-ROW' id='MENU-MENUBAR'>"
 +"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
 +"	<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
 +"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
 +"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
 
-+"<div id='btnContainer'><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Login</button>"
++"<div id='btnContainer'><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exModal' data-whatever='@mdo'>Login</button>"
 +"<br><button type='button' class='btn btn-primary'>BlockList</button>"
 +"<button type='button' class='btn btn-primary'>MusicList</button>"
 +"<button type='button' class='btn btn-primary'>Community</button>"
@@ -49,11 +49,11 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 +"<button type='button' class='btn btn-primary'>설정</button>"
 +"<button type='button' class='btn btn-primary'>기타</button><div>"
 
-+"<div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
++"<div class='modal fade' id='exModal' tabindex='-1' role='dialog' aria-labelledby='exModalLabel' aria-hidden='true'>"
 +"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
 +"				<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
 +"					<span aria-hidden='true'>&times;</span>	</button>"
-+"				<h4 class='modal-title' id='exampleModalLabel'>Login</h4></div>"
++"				<h4 class='modal-title' id='exModalLabel'>Login</h4></div>"
 +"			<div class='modal-body'><form><div class='form-group'><input type='text' class='form-control' id='user_login'"
 +"							placeholder='Email or Nickname'></div>"
 +"					<div class='form-group'><input type='password' class='form-control' id='user_pass'"
@@ -127,7 +127,7 @@ $(function() {
 /* modal 띄우기 위한 function */
 
 $(function() {
-	$('#exampleModal').on('show.bs.modal', function (event) {
+	$('#exModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) 
 		  var recipient = button.data('whatever') 
 		  var modal = $(this)
