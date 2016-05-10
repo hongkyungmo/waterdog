@@ -253,7 +253,16 @@ $(function () {
 				$('#progress-bar').stop().animate({
 		    		'width':layeredBlocks.width+'%'
 		    	},{
-		    		easing : 'linear'
+		    		step : function(now, fx){
+		    			var helper = 90;
+		    			if(now>90){
+		    				console.log();
+		    				$("#work-layer").css({
+		    	                "transform": "translate3d(" + (-1*now+90) + "%,  0px, 0px)"
+		    	            });
+		    			}
+		    		}
+		    		, easing : 'linear'
 		    		, duration: layeredBlocks.sec*1000
 		    		, complete:function(){
 		    			$('#btn-play').switchClass('fa-pause','fa-play');
