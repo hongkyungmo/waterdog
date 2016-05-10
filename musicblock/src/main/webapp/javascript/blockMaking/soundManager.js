@@ -65,5 +65,7 @@ var playNote = function (noteVal) {
 }
 
 var stopNote = function (noteVal){
-	oscArr[noteVal].disconnect(gain);
+	if(noteVal != -1.1){
+		oscArr[noteVal].disconnect(gain);
+	}
 }
