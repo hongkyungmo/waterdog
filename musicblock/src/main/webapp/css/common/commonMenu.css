@@ -122,22 +122,24 @@ div .fa-1x{
 #menuPage {
 	position: absolute;
 	clear:both;
-	z-index: 9000;
+	z-index: 150;
 	background-color: white;
 	display: none;
 	left: 0;
 	top: 0;
 }
-#btnContainer{
 
+#MENU-MENUBAR {
+	position:relative; 
+    background-color: #46B8FF;
+    width: 100%;
+    height: 12%;
+}
+
+#btnContainer{
 	 position:fixed;
 }
-/*
 
-#loginPage {
-	height: 88%; background-color: #E1F6FA;
-}
- */
 .customButton{
 	height:33%;width:33%;
 /* 	margin-left:5%;
