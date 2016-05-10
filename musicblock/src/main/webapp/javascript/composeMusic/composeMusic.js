@@ -205,57 +205,71 @@ $(function () {
         //        $("#work-layer").stop()
     });
 
-    $("#btn-prev").bind("click", function () {
+    // 처음으로 돌아가기 아이콘
+    $("#btn-prev").bind("mouseup", function () {
 //        $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
+    	// 프로그레스바의 크기를 없애고 아이콘도 변경
     	$('#progress-bar').stop().css('width','0%');
-    	
-    	
+    	$('#progress-bar').stop();
+    	$('#btn-play').switchClass('fa-pause','fa-play');
     });
 
-//    $("#btn-play").bind("click", function () {
-//    	$("#work-layer").stop().animate({
-//            'left': '-509'
-//        }, {
-//            step: function (now, fx) {
-//                $(".swiper-scrollbar-drag").css({
-//                    "transform": "translate3d(" + now + "px,  0px, 0px)"
-//                });
-//            }
-//            , duration: $('#work-layer').data("sec")*1000
-//            , easing: 'linear'
-//            , queue: false
-//            , complete: function () {
-//                $("#work-layer").css("left", "0");
-//                $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
-//            }
-//        }, 'linear');
-    	 
-        $('#btn-play').clickToggle(
-        		function(){
-        			// 레이어에 채워진 블럭이 없으면 실행안됨
-        			if(layeredBlocks.width<=0){
-        				return;
-        			}else{
-        				console.log($('#progress-bar'));
-        				$('#btn-play').switchClass('fa-play','fa-pause');
-        				$('#progress-bar').stop().animate({
-        		    		'width':layeredBlocks.width+'%'
-        		    	},{
-        		    		easing : 'linear'
-        		    		, duration: layeredBlocks.sec*1000
-        		    		, complete:function(){
-        		    			$('#btn-play').switchClass('fa-pause','fa-play');
-        		    		}
-        		    	}
-        		    	);
-        			}
-        		}, 
-        		function(){
-        			$('#btn-play').switchClass('fa-pause','fa-play');
-        			$('#progress-bar').stop();
-        		}
-        		);
-//    });
+//  $("#btn-play").bind("click", function () {
+//	$("#work-layer").stop().animate({
+//        'left': '-509'
+//    }, {
+//        step: function (now, fx) {
+//            $(".swiper-scrollbar-drag").css({
+//                "transform": "translate3d(" + now + "px,  0px, 0px)"
+//            });
+//        }
+//        , duration: $('#work-layer').data("sec")*1000
+//        , easing: 'linear'
+//        , queue: false
+//        , complete: function () {
+//            $("#work-layer").css("left", "0");
+//            $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
+//        }
+//    }, 'linear');
+    
+    
+    $('#btn-play').bind('mouseup', function(){
+    	var className = $('#btn-play')[0].className;
+    	// 현재 아이콘이 플레이 버튼이면
+    	if(className.indexOf('fa-play') != -1){
+    		// 레이어에 채워진 블럭이 없을 때는 동작그만 
+    		if(layeredBlocks.width<=0){
+    			// modal로 블럭 채우라고 띄울까?   			
+				return;
+			}else{
+				//	프로그레스가 채워진 블록 모두 진행되면 처음으로 되돌린다.			
+				if($('#progress-bar')[0].style.width==layeredBlocks.width+'%'){
+					$('#progress-bar')[0].style.width=0+'%';
+				}
+				
+				// 아이콘을 일시정지로 변경하고 프로그레스바의 애니메이션을 진행한다.			
+				$('#btn-play').switchClass('fa-play','fa-pause');
+				
+				$('#progress-bar').stop().animate({
+		    		'width':layeredBlocks.width+'%'
+		    	},{
+		    		easing : 'linear'
+		    		, duration: layeredBlocks.sec*1000
+		    		, complete:function(){
+		    			$('#btn-play').switchClass('fa-pause','fa-play');
+		    		}
+		    	});
+				
+			}
+    	}
+    	// 현재 아이콘이 일시정지면
+    	else if(className.indexOf('fa-pause') != -1){
+    		// 아이콘을 플레이로 변경하고 현재 진행중인 애니메이션 중지   		
+    		$('#btn-play').switchClass('fa-pause','fa-play');
+			$('#progress-bar').stop();
+    	}
+    	
+    });
    
     $(".progress-bar-wrapper").bind("click", function (e) {
         console.log("래퍼 클릭");
@@ -265,20 +279,6 @@ $(function () {
 });
 
 
-// 클릭 토글 함수 직접 구현
-(function($) {
-    $.fn.clickToggle = function(func1, func2) {
-        var funcs = [func1, func2];
-        this.data('toggleclicked', 0);
-        this.click(function() {
-            var data = $(this).data();
-            var tc = data.toggleclicked;
-            $.proxy(funcs[tc], this)();
-            data.toggleclicked = (tc + 1) % 2;
-        });
-        return this;
-    };
-}(jQuery));
 
 var addedMenuBar = 
     "<div class='row COMPOSE-MENUBAR-ROW'>" + 
