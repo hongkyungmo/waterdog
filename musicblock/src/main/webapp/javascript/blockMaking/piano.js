@@ -1,6 +1,3 @@
-
-
-
 $(function() {
 	$(".key").bind(keyDown, function() {
 		if ($("#display-bar").length == 0) {
@@ -96,19 +93,3 @@ $(function() {
 		}
 	});
 });
-
-/*function play(freq, octave_for_play) {
-	freq = freq
-			* Math.pow(1.0594630943592952645618252949463, 12 * octave_for_play);
-	oscillator = audioContext.createOscillator();
-	gain = audioContext.createGain();
-	oscillator.type = 'sine';
-
-	gain.connect(audioContext.destination);
-	oscillator.connect(gain);
-
-	oscillator.frequency.value = freq;
-	gain.gain.value = mainVolume;
-
-	oscillator.start();
-};*/

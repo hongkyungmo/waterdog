@@ -9,7 +9,6 @@ $(function () {
 				console.log(noteArr[clickSequence - countForPlaying]);
 				playNote(noteArr[clickSequence - countForPlaying]);
 				timerIdForPlaying = setInterval(function () {
-					//playNote(noteCodeToFreq(13));
 					countForPlaying--;
 					console.log(countForPlaying);
 					if (noteArr[clickSequence - countForPlaying] != undefined) {
@@ -42,4 +41,3 @@ $(function () {
 		}
 	});
 });
-
