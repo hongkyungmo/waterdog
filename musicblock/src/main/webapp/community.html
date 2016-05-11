@@ -357,17 +357,17 @@ $(function() {
 		 });
 		 });  */
 
-		/* 	$(".people").click(function() {
+		 	$(".people").click(function() {
 				var Pindex = $(".people").index(this);
 				alert(Pindex);
 				console.log(Pindex);
 				//$('h2:eq(1)').append("바보");
-			}); */
+			}); 
 
 		var test = 2;
 		var max = 50;
 		var test1 = 0;
-		var max1 = 10; 
+		var max1 = 50; 
 		$(function() {
 			RecvFromServer();
 			function RecvFromServer() {
@@ -376,14 +376,14 @@ $(function() {
 									var scrollHeight = parseInt($(window).scrollTop()+ $(window).height()); //윈도우는 딱 보이는 화면의 크기
 									var documentHeight = parseInt($(document).height()); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
 								if (scrollHeight >= documentHeight) { 
-									for (test = 0; test < max; test+=10) {
+								//	for (test = 0; test < max; test+=10) {
 										//alert("test:"+test);
 										for (test1 = 0; test1 < max1; test1++) {
 										//alert("test1+test :"+(test1+test));
 											$.ajax({
 														type : 'GET',
 														url : 'block/getJsonBlock/'
-															+(test1+test),
+															+test1,
 														dataType : "json",
 														data : "",
 														async : false,
@@ -397,7 +397,7 @@ $(function() {
 																		+ data['block'].title
 																		+ "</h2> <span class='info'><nm>이산돌</nm> <em>"
 																		+ data['block'].regDate
-																		+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
+																		+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><a href ='javascript:fnc();'</a><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
 
 																var leftHeight = parseInt($(
 																		"#contain-layer-left")
@@ -427,7 +427,7 @@ $(function() {
 															console.log(status);
 														}//end of error문
 													})//end of ajax문
-												}//end of for문 test1
+												//}//end of for문 test1
 										}//end of for문 test
 									}//end of if문
 
@@ -445,6 +445,7 @@ $(function() {
 			}
 			$('.likes').click(increaseLikes);
 
+			
 			function increaseDownLoad() {
 				var DownLoadString = $(this).children('.nDown').first().html();
 				var DownLoadInteger = parseInt(DownLoadString);
@@ -455,7 +456,8 @@ $(function() {
 			}
 
 			$('.download').click(increaseDownLoad);
-
+			//<a href="javascript:fncValidate();" id="save">Save</a>
+			
 			$('.glyphicon-pause').hide();
 
 			function increasePlayers(index) {
@@ -482,7 +484,9 @@ $(function() {
 			});
 		});
 	</script>
-
+	 <!-- User Defined -->
+	  <script src="javascript/common/initializeIndexedDB.js"></script>
+	   <script src="javascript/community/indexedDBForCommunity.js"></script>
 	<!-- user defined JS -->
 	<script src="javascript/common/initializeIndexedDB.js"></script>
     <script src="javascript/community/iDBBlock.js"></script>

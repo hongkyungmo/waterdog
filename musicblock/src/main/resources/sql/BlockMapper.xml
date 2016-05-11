@@ -65,20 +65,11 @@
 	
 	
 	<!-- SQL : SELECT ONE -->
-<!-- 	 <select 	id="getBlock"	parameterType="string"	resultMap="BlockSelectMap">
+ 	 <select 	id="getBlock"	parameterType="string"	resultMap="BlockSelectMap">
 		SELECT
 		bcode,ucode,note,pcount,dcount,btitle,regdate,time 		
 		FROM block 
-		WHERE bcode = #{blockId}  	 block_id??
-	 </select>
- -->	 
-	 
-	 	<!-- SQL : SELECT ONE -->
-	 <select 	id="getBlock"	parameterType="int"	resultMap="BlockSelectMap">
-		SELECT
-		bcode,ucode,note,pcount,dcount,btitle,regdate,time 		
-		FROM block 
-		WHERE bcode = #{blockCode}  	 <!--block_id?? -->
+		WHERE bcode = #{blockId}  	 <!-- block_id?? -->
 	 </select>
 	 
 	<select id="getCurrentBlockCode" resultType="int">
