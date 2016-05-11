@@ -146,7 +146,6 @@ $(function () {
 		if ($("#display-bar").length == 0) {
 			var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
 
-			//var barLevel = 92 - (((octave - 1) * 12 + $(this).index()) * 1.95); //디스플레이에 표시될 음정bar
 			//음정 표시
 			if (clickSequence == 0) {
 				displayObj = '<div class="syllable" style="width:100%"><div class="syllable-bar" style="top:' + barLevel + '%;"></div></div>';

@@ -16,10 +16,11 @@ var audioContext = new AudioContext();
 var gain = audioContext.createGain();
 
 var oscArr = new Array();
-for(var i=1;i<=48;i++){
+for(var i=0;i<=48;i++){
 	oscArr[i] = audioContext.createOscillator();
 	oscArr[i].start(0);
 }
+oscArr[0].frequency.value = 0;
 
 //건반 클릭
 $(function () {
@@ -30,6 +31,13 @@ $(function () {
     });
 });
 
+//공백 건반 클릭
+$(function () {
+	$("#space-key").bind(keyDown, function () {
+        noteArr[clickSequence-1] = 0;
+    });
+});
+
 //notecode(1~48)을 주파수로 변환해주는 함수
 var noteCodeToFreq = function (noteVal) {
     return 130.8128 * Math.pow(1.0594630943592952645618252949463, noteVal - 1);
@@ -37,8 +45,9 @@ var noteCodeToFreq = function (noteVal) {
 
 //음 코드(1~48)를 넣으면 1초간 음을 연주해주는 함수
 var playNote = function (noteVal) {
-	oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
-	
+	if(noteVal!=0){
+		oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
+	}
     gain.gain.value = volumeSaver;
     oscArr[noteVal].connect(gain);
     gain.connect(audioContext.destination);
