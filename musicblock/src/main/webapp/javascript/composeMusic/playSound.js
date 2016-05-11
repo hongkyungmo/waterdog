@@ -19,7 +19,7 @@ var audioContext = new AudioContext();
 var gain = audioContext.createGain();
 
 var oscArr = new Array();
-for(var i=0;i<48;i++){
+for(var i=1;i<=48;i++){
 	oscArr[i] = audioContext.createOscillator();
 	oscArr[i].start(0);
 }
