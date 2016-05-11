@@ -39,6 +39,7 @@ var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
     , delay:100
     , onMousedown: function ($item, _super, event) {
+        console.log($item[0].attributes);
     	downTime = new Date().getTime();
     	timeout = setTimeout(function() {
     		$('#block-dialog').modal('show');

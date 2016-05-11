@@ -1,6 +1,6 @@
 /*indexedDB for Compose Music*/
 var repo = $("#my-blocks");
-
+var blockNum = 0;
 
 // functions related to IndexedDB
 $(function () {
@@ -22,7 +22,9 @@ function getAllBlocks() {
         var cursor = event.target.result;
         if (cursor) {
         	var block = cursor.value;
-            var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight'>" +block.title+ "</li>";
+        	
+            var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>" +block.title+ "</li>";
+            blockNum++;
             repo.append(dynamicLoadedBlock);
             $("#my-blocks > li:last").data("block", block);
             cursor.continue();
