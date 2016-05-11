@@ -1,7 +1,4 @@
 /*indexedDB for Compose Music*/
-
-var blockNum = 0;
-
 var repo = $("#my-blocks");
 
 
@@ -24,29 +21,11 @@ function getAllBlocks() {
     request.onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
-//            console.log(cursor);
-//            console.log("key : " + cursor.key);
-//            console.log("sec : " + cursor.value.sec);
-//            console.log("notes : " + cursor.value.notes);
-
-            var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight' data-name='Item " + blockNum + "' data-id='" + blockNum + "'>IndexedDB-" + blockNum + "</li>";
-            blockNum++;
+        	var block = cursor.value;
+            var dynamicLoadedBlock = "<li class='no_drop swiper-slide highlight'>" +block.title+ "</li>";
             repo.append(dynamicLoadedBlock);
-            $("#my-blocks > li:last").data("key", cursor.key);
-            $("#my-blocks > li:last").data("sec", cursor.value.sec);
-            $("#my-blocks > li:last").data("notes", cursor.value.notes);
-
-            // <element에 박힌 데이터를 확인하기 위한 코드>
-            // 1) 전체를 한꺼번에 확인 가능(하지만 이 경우 object로 찍힘)
-            // alert("블럭이 가지는 정보 : " + $("#my-blocks > li:last").data());
-            // 2) 개별적으로도 확인 가능
-//            console.log("<indexedDB로부터 가져온 블럭 정보>" + "\nkey : " +
-//                $("#my-blocks > li:last").data("key") + "\nsec : " +
-//                $("#my-blocks > li:last").data("sec") + "\nnotes : " +
-//                $("#my-blocks > li:last").data("notes") + "\n");
-
+            $("#my-blocks > li:last").data("block", block);
             cursor.continue();
-            
 
             var blockFromDB = $('.highlight:last-of-type');
             var placeholder = $('.dragged');

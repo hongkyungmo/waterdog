@@ -1,28 +1,104 @@
-var i=0;
-var kind=new Array('yellow','red','violet','orange','blue');
+var block = {title:'', sec:0, notes:'', emotion:[], hash:'', user:''}
 
-function addBlock(){
-	var transaction = db.transaction(["blockTable"], "readwrite");
-	var objectStore = transaction.objectStore("blockTable");
-	var transInfo=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
-	var transSec=transInfo[0];
-	var transNote=transInfo[1];
-	if(transSec!=null && 
-			transSec!=undefined && 
-			transSec!="" && 
-			transNote!=null && 
-			transNote!=undefined && 
-			transNote!=""){
-		request = objectStore.add({sec:transSec,notes:transNote});
-		request.onsuccess = function(event){
-			console.log("IndexedDB에 음악블럭 성공적으로 저장했습니다.");
-			getAllBlocks();
-		};
+$(function(){
+	// 쿼리스트링의 담겨있는 블럭의 시간과 멜로디에 정보를 먼저 담아둔다.
+	var queryString=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
+	block.sec = queryString[0];
+	block.notes = queryString[1];
+	
+	// indexedDB의 연결을 확인한다.
+	request.onsuccess = function(event){
+		console.log("onsuccess : DB loaded successfully");
+		db = event.target.result;
+	}
+	
+	var checkedIcon;
+	// 감정 아이콘 클릭 이벤트
+	$('.icon').clickToggle(
+			function(){
+				// 아이콘 문양 변경
+				checkedIcon = $(this).attr('src');
+				checkedIcon = checkedIcon.substr(0,checkedIcon.lastIndexOf('.'));
+				checkedIcon += '_clicked.png';
+				$(this).attr('src', checkedIcon);
+				
+				// 감정 배열에 감성저장
+				block.emotion.push($(this).attr('id'));
+				console.log(block.emotion);
+			}
+			, function(){
+				// 아이콘 문양 변경
+				checkedIcon = $(this).attr('src');
+				checkedIcon = checkedIcon.substr(0,checkedIcon.lastIndexOf('_'));
+				checkedIcon += '.png';
+				$(this).attr('src', checkedIcon);
+				
+				// 감정 배열에 있는 감성삭제
+				block.emotion.splice(block.emotion.indexOf($(this).attr('id')),1);
+				console.log(block.emotion);
+			}
+	);
+	
+	$('#save').on('mouseup', function(){
+		if(block.emotion.length==0){
+			// 감정을 선택하라는 modal 띄우기
+			return;
+		}else{
+			
+			// 타이틀의 입력이 없다면
+			if($('#title').val().length==0){
+				// 차후에 랜덤타이틀 제작하시오.
+				block.title = '랜덤타이틀';
+			}else{
+				// 사용자가 입력한 타이틀 대입			
+				block.title = $('#title').val();				
+			}
+			// 현재는 입력된 값 그대로 받지만 차후에 태그별로 분리되어 저장하도록 구현하세요.
+			block.hash = $('#hash').val();
+			
+			if($('#check').checked){
+				// 현재 유저는 더미데이터로 저장되지만 차후에 로그인된 정보를 담아주세요.
+				block.user='user01';
+				// 서버에 block을 전달하는 함수를 만드세요.
+				// 차후 작업예정
+			}
+			// indexed db에 저장.
+			addBlock(block);
+		}
+	});
+	
+});
+
+// 클릭토글 함수
+$.fn.clickToggle = function(func1, func2) {
+    var funcs = [func1, func2];
+    this.data('toggleclicked', 0);
+    this.click(function() {
+        var data = $(this).data();
+        var tc = data.toggleclicked;
+        $.proxy(funcs[tc], this)();
+        data.toggleclicked = (tc + 1) % 2;
+    });
+    return this;
+};
+
+// 블럭 추가 함수
+function addBlock(block){
+	var objectStore = db.transaction(["blockTable"], "readwrite").objectStore("blockTable");
+	// 블럭의 음이 없으면 잘못된 경로에 온 것이므로 오류 처리하도록 한다.
+	if(block.notes.length==0){
+		// 잘못된 접근이라고 modal로 표시하세요 
+		console.log('잘못된 접근입니다.'); 
 	}else{
-		console.log("초 또는 음이 입력되지 않아서 IndexedDB에 저장되지 않았습니다.");
+		request = objectStore.add({title:block.title, notes:block.notes, sec:block.sec, emotion:block.emotion, hash:block.hash});
+	}
+	request.onsuccess = function(event){
+		console.log("IndexedDB에 음악블럭 성공적으로 저장했습니다.");
+//		getAllBlocks();
 	}
 }
 
+// 블럭 조회 함수
 function getAllBlocks(){
 	var transaction = db.transaction(["blockTable"], "readonly");
 	var objectStore = transaction.objectStore("blockTable");
@@ -31,52 +107,19 @@ function getAllBlocks(){
 		var cursor = event.target.result;
 		if(cursor){
 			console.log(cursor);
-			console.log("key : " + cursor.key);
-			console.log("sec : " + cursor.value.sec);
-			console.log("notes : " + cursor.value.notes);
+			console.log("title : " + cursor.title);
+			console.log("notes : " + cursor.notes);
+			console.log("sec : " + cursor.sec);
+			console.log("emotion : " + cursor.emotion);
+			console.log("hash : " + cursor.hash);
 			cursor.continue();
 		}
 	}
 }
 
-//validation check
-function fncValidate(){
-	
-	var eCount=0;
-	var upload=document.getElementById("check");
-	
-	var emotion=new Array;
-	
-	for(i=0;i<kind.length;i++){
-		emotion[i]=$("#icon"+i).attr('src');
-	}		
-	
-	for(i=0;i<kind.length;i++){
-		if(emotion[i]=='images/smile_'+kind[i]+'_clicked.png'){
-			eCount++;
-			emotion[i]='that';
-		}
-	}
-	
-	if(eCount==0){
-		alert("감정은 필수 사항입니다.");//수정
-	}else{
-		if(upload.checked){
-			sendServer(emotion);
-		}
-		
-		//localStorage -> IndexedDB로 변경(이유 테이블 및 시퀀스 존재 유무 때문)
-		//IndexedDB
-		addBlock();
-	}
-};//end of validation check
-
-
 //Save to Server&Local
 function sendServer(transfEmotion){
-	var transInfo=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
-	var transSec=transInfo[0];
-	var transNote=transInfo[1];
+
 	var transTag= (document.getElementById("tag")).value;
 	var transTitle=(document.getElementById("title")).value;
 
@@ -125,25 +168,7 @@ function sendServer(transfEmotion){
 }
 
 
-$(function(){
-	request.onsuccess = function(event){
-		console.log("onsuccess : DB loaded successfully");
-		db = event.target.result;
-	}
-	
-	//emotion check function
-	$(document).on('click', '.icon', function(){
-		var checkIcon = $(this).attr('src');
-		
-		for(i=0;i<kind.length;i++){
-			if(checkIcon=='images/smile_'+kind[i]+'.png'){
-				$(this).attr('src', 'images/smile_'+kind[i]+'_clicked.png');
-			}else if(checkIcon=='images/smile_'+kind[i]+'_clicked.png'){
-				$(this).attr('src', 'images/smile_'+kind[i]+'.png');
-			}
-		}
-	});
-});
+
 
 // auto complete function
 /* $(function() {
