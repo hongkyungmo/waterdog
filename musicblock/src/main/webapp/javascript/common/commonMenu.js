@@ -5,7 +5,11 @@
 
 //해당 URI를 가져와서 공통 Module에 넣을 Element를 동적으로 추가
 var path = $(location).attr('pathname');
+var localUser=localStorage.getItem('user');
 
+var login=	"<button type='button' class='btn btn-primary' data-toggle='modal' " +
+"data-target='#exModal' data-whatever='@mdo'>Login</button>";
+var logout= "<button type='button' id='logout' class='btn btn-primary' >Logout</button>";
 
 var element = 
 	"<div class='row COMMON-MENUBAR-ROW' id='COMMON-MENUBAR'><div class='col-xs-1 COMMON-MENUBAR-GRID-1'>";
@@ -35,34 +39,43 @@ if(path.indexOf("/community.html") != -1) {
 element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='button' class='btn COMMON-MENUBAR-BTN fa fa-navicon fa-2x' id='menu'></button></div></div>"
 
 
-+"<div id='menuPage'><div class='row COMMON-MENUBAR-ROW' id='MENU-MENUBAR'>"
-+"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
-+"	<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
-+"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
-+"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
-+"<div id='btnContainer'>"
-+"<br><button type='button' class='btn btn-primary'>BlockList</button>"
-+"<button type='button' class='btn btn-primary'>MusicList</button>"
-+"<button type='button' class='btn btn-primary'>Community</button>"
-+"<br><button type='button' class='btn btn-primary'>사용설명서</button>"
-+"<button type='button' class='btn btn-primary'>설정</button>"
-+"<button type='button' class='btn btn-primary'>기타</button><div>"
+	+"<div id='menuPage'><div class='row COMMON-MENUBAR-ROW' id='MENU-MENUBAR'>"
+	+"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'></div>"
+	+"	<div class='col-xs-10 COMMON-MENUBAR-GRID-10'></div>"
+	+"	<div class='col-xs-1 COMMON-MENUBAR-GRID-1'>"
+	+"	<button type='button' class='btn COMMON-MENUBAR-BTN fa fa-remove fa-2x' id='exit'></button>	</div></div>"
+	+"<div id='btnContainer'>";
 
-+"<div class='modal fade' id='exModal' tabindex='-1' role='dialog' aria-labelledby='exModalLabel' aria-hidden='true'>"
-+"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
-+"				<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
-+"					<span aria-hidden='true'>&times;</span>	</button>"
-+"				<h4 class='modal-title' id='exModalLabel'>Login</h4></div>"
-+"			<div class='modal-body'><form><div class='form-group'><input type='text' class='form-control' id='user_login'"
-+"							placeholder='Email or Nickname'></div>"
-+"					<div class='form-group'><input type='password' class='form-control' id='user_pass'"
-+"							placeholder='Password'>	</div>"
-+"					<div><input type='checkbox' class='checkbox' id='remember_me'>"
-+"						<label for='remember_me' style='display: block;'>Remember me</label>"
-+"					</div>	</form>	</div>	<div class='modal-footer'>"
-+"				<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"
-+"				<button type='button' id='actions' class='btn btn-primary'>Send	message</button>"
-+"			</div></div></div></div></div> ";
+if(localUser==null){
+	element+=login;
+}else{
+	element+=logout;
+}
+
+element+= 
+
+	"<br><button type='button' class='btn btn-primary'>BlockList</button>"
+	+"<button type='button' class='btn btn-primary'>MusicList</button>"
+	+"<button type='button' class='btn btn-primary'>Community</button>"
+	+"<br><button type='button' class='btn btn-primary'>사용설명서</button>"
+	+"<button type='button' class='btn btn-primary'>설정</button>"
+	+"<button type='button' class='btn btn-primary'>기타</button><div>"
+
+	+"<div class='modal fade' id='exModal' tabindex='-1' role='dialog' aria-labelledby='exModalLabel' aria-hidden='true'>"
+	+"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
+	+"				<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
+	+"					<span aria-hidden='true'>&times;</span>	</button>"
+	+"				<h4 class='modal-title' id='exModalLabel'>Login</h4></div>"
+	+"			<div class='modal-body'><form><div class='form-group'><input type='text' class='form-control' id='user_login'"
+	+"							placeholder='Email or Nickname'></div>"
+	+"					<div class='form-group'><input type='password' class='form-control' id='user_pass'"
+	+"							placeholder='Password'>	</div>"
+	+"					<div><input type='checkbox' class='checkbox' id='remember_me'>"
+	+"						<label for='remember_me' style='display: block;'>Remember me</label>"
+	+"					</div>	</form>	</div>	<div class='modal-footer'>"
+	+"				<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"
+	+"				<button type='button' id='actions' class='btn btn-primary'>Send	message</button>"
+	+"			</div></div></div></div></div> ";
 
 
 
@@ -73,11 +86,12 @@ element += "</div><div class='col-xs-1 COMMON-MENUBAR-GRID-1'><button type='butt
 
 $("body").append(element);
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////                                                                             ////////////////////
-////////////                         여기서 부터 function                                   ////////////////////
-////////////                                                                            ////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////
+////////////여기서 부터 function                                   ////////////////////
+////////////////////////////////
+
 
 
 /* 공통 메뉴바 동작 확인을 위한 log 출력 function */
@@ -122,22 +136,22 @@ $(function() {
 
 $(function() {
 	$('#exModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) 
-		  var recipient = button.data('whatever') 
-		  var modal = $(this)
-		})
-		
+		var button = $(event.relatedTarget) 
+		var recipient = button.data('whatever') 
+		var modal = $(this)
+	})
+
 	$("#actions").bind("click", function() {
 		console.log("login 확인ㅋㅋ");
-		
+
 		var transUser = (document.getElementById("user_login")).value;
 		var transPass = (document.getElementById("user_pass")).value;
 		var transRemember = (document.getElementById("remember_me")).checked;
-		
+
 		console.log('transUser >>_'+transUser+'_');
 		console.log('transPass >>_'+transPass+'_');
 		console.log('transRemember >>'+transRemember);
-		
+
 		if((transUser!=="")&(transPass!=="")){
 			serverLogin(transUser,transPass,transRemember);
 		}else{
@@ -177,7 +191,7 @@ function serverLogin(transUser,transPass,transRemember) {
 				if(transRemember){
 					addUser(data['user']);
 				}
-				
+
 			} else {
 				console.log('회원 정보가 없습니다. 다시 확인해 주세요.');
 			}
@@ -190,37 +204,18 @@ function serverLogin(transUser,transPass,transRemember) {
 
 /*      자동로그인 관련 jQuery      */
 
-
-$(function(){
-	var remember=localStorage.getItem('remember');
-	var login=	"<button type='button' class='btn btn-primary' data-toggle='modal' " +
-			"data-target='#exModal' data-whatever='@mdo'>Login</button>";
-	var logout= "<button type='button' id='logout' class='btn btn-primary' >Logout</button>";
-	
-	console.log('remember>>'+remember);
-	
-	/* 여기를 toggle로 버튼이 바뀌게 수정 */
-	if(remember=='T'){
-		$("#btnContainer").append(logout);
-		
-	}else {
-		$("#btnContainer").append(login);
-	}
-});
-
 function addUser(vo){
 	console.log('addUser()');
 	console.log('vo.nick>>'+vo.nick);
-	localStorage.setItem('remember','T');
-	console.log('remember>>'+localStorage.getItem('remember'));
+	localStorage.setItem('user',vo);
+	window.location.reload(true);
 }
 
 /* logout 수정 */
 $(function() {
 	$("#logout").bind("click", function() {
 		console.log("logout 누름ㅋㅋ");
-		localStorage.setItem('remember','F');
-		$("#logout").remove();
-		console.log('remember>>'+localStorage.getItem('remember'));
+		localStorage.clear('user');
+		window.location.reload(true);
 	});
 });
