@@ -28,6 +28,10 @@
 <link rel="stylesheet" href="/css/common/swiper.min.css">
 <script src="/javascript/swiper.min.js"></script>
 
+<!-- toggle 설정 -->
+<link rel="stylesheet" href="/css/common/bootstrap-toggle.min.css">
+<script src="/javascript/common/bootstrap-toggle.min.js"></script>
+
 <!--  User definition 설정 -->
 <link rel="stylesheet" href="/css/common/commonMenu.css">
 <link rel="stylesheet" href="/css/mainpage/mainpage.css">
@@ -67,7 +71,7 @@
 	});
 	
 	$(function() {
-		$('#exampleModal').on('show.bs.modal', function (event) {
+		$('.toggle btn btn-primary').on('show.bs.modal', function (event) {
 			  var button = $(event.relatedTarget) 
 			  var recipient = button.data('whatever') 
 			  var modal = $(this)
@@ -78,6 +82,10 @@
 
 		});
 	});
+	
+	 $(function() {
+		   
+		  })
 </script>
 </head>
 
@@ -102,17 +110,9 @@
 			</div>
 		</div>
 
-		<button type='button' class='btn btn-primary' data-toggle='modal'
-			data-target='#exampleModal' data-whatever='@mdo'>Login</button>
-		<br>
-		<button type='button' class='btn btn-primary'>BlockList</button>
-		<button type='button' class='btn btn-primary'>MusicList</button>
-		<button type='button' class='btn btn-primary'>Community</button>
-		<br>
-		<button type='button' class='btn btn-primary'>사용설명서</button>
-		<button type='button' class='btn btn-primary'>설정</button>
-		<button type='button' class='btn btn-primary'>기타</button>
-
+		<input type='checkbox' checked data-toggle='toggle' id='exampleModal' data-onstyle='primary' data-width='100' data-height='75' data-on='Login' data-off='Logout'>
+		
+		
 		 <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog'
 			aria-labelledby='exampleModalLabel' aria-hidden='true'>
 			<div class='modal-dialog'>
@@ -151,6 +151,15 @@
 		</div>
 	</div> 
 	<div>여기는 내용물 내용물 내용112121물</div>
+	/*		
+  		var bootstrapButton = $.fn.button.noConflict() 
+		$.fn.bootstrapBtn = bootstrapButton 
+		
+		plugIn에서 충돌 해결하는 방법이라는데 어떻게 사용하는지 잘 모르겠음
+		bootstrap 홈페이지 >> javascript >> No conflict
+		에서 확인가능
+		 
+ */  
 </body>
 
 </html>
