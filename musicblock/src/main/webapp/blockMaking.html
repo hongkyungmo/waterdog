@@ -35,57 +35,8 @@
 </head>
 
 <body>
-
-	<!-- 공통모듈 : 메뉴바(css) -->
-	<link rel="stylesheet" href="/css/common/commonMenu.css">
-	<!-- 블럭만들기(css) -->
-	<link rel="stylesheet" href="/css/blockMaking/blockMaking.css?ver=11">
-	<!-- 볼륨조절(css) -->
-	<!-- <link rel="stylesheet" href="/css/blockMaking/volume.css"> -->
-	<link rel="stylesheet" href="/css/blockMaking/blockTimeLength.css">
-
-	<!-- 블럭만들기(js) -->
-	<script src="javascript/blockMaking/blockMaking.js?ver=11"></script>
-
-	<!--사운드 매니저(사운드 관련 전역함수, 전역변수)-->
-	<script src="javascript/blockMaking/soundManager.js"></script>
-	<!-- 피아노(개별음) 플레이 -->
-	<script src="javascript/blockMaking/piano.js"></script>
-	<!-- 블럭(음 집합) 플레이 -->
-	<script src="javascript/blockMaking/blockPlay.js"></script>
 	<!--공통모듈 : 메뉴바-->
 	<script src="/javascript/common/commonMenu.js"></script>
-	<!-- 블럭 볼륨 조절 -->
-	<!-- <script src="/javascript/blockMaking/volume.js"></script> -->
-
-	<!--블럭 재생시간(초) 조절-->
-	<script src="/javascript/blockMaking/blockTimeLength.js"></script>
-
-	<script>
-		//공통메뉴 부분에 저장 버튼 추가
-		$(function () {
-			var btnSave = "<div class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='next'></div>";
-			$(".col-xs-10:eq(0)").append(btnSave);
-		});
-
-		//next
-		$(function () {
-			$("#next").bind("click", function () {
-				var noteStr = "";
-				noteStr += $("#block-time-display").text().replace(/[^0-9]/g, '') + "?";
-				//음 배열 -> 음 String으로 저장(쉼표 추가)
-				for (var i = 0; i < noteArr.length; i++) {
-					noteStr = noteStr + noteArr[i] + ",";
-				}
-				console.log(noteStr.slice(0, -1));
-				location.href = "BlockEmotion.html?var=" + noteStr.slice(0, -1);
-			});
-			$("#next").bind(keyUp, function () {
-			});
-		});
-	</script>
-
-
 	<div id="background">
 		<!-- 메뉴바 -->
 
@@ -125,7 +76,6 @@
 			</div>
 		</div>
 		<!-- 건반바 -->
-
 		<div id="key-container">
 			<div id="key-space-container">
 				<div id="space-key">
@@ -166,7 +116,53 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="menu-off" id="menu-list"><font color="white">메뉴1<br>메뉴2<br>메뉴3<br>메뉴4<br></font></div> -->
+	
+	<!-- 블럭만들기(css) -->
+	<link rel="stylesheet" href="/css/blockMaking/blockMaking.css?ver=11">
+	<!-- 볼륨조절(css) -->
+	<!-- <link rel="stylesheet" href="/css/blockMaking/volume.css"> -->
+	<link rel="stylesheet" href="/css/blockMaking/blockTimeLength.css">
+	<!-- 공통모듈 : 메뉴바(css) -->
+	<link rel="stylesheet" href="/css/common/commonMenu.css">
+
+
+	
+	<!-- 블럭만들기(js) -->
+	<script src="javascript/blockMaking/blockMaking.js?ver=11"></script>
+	<!--사운드 매니저(사운드 관련 전역함수, 전역변수)-->
+	<script src="javascript/blockMaking/soundManager.js"></script>
+	<!-- 피아노(개별음) 플레이 -->
+	<script src="javascript/blockMaking/piano.js"></script>
+	<!-- 블럭(음 집합) 플레이 -->
+	<script src="javascript/blockMaking/blockPlay.js"></script>
+	<!--블럭 재생시간(초) 조절-->
+	<script src="/javascript/blockMaking/blockTimeLength.js"></script>
+	<script>
+		//공통메뉴 부분에 저장 버튼 추가
+		$(function () {
+			var btnSave = "<div class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='next'></div>";
+			$(".col-xs-10:eq(0)").append(btnSave);
+		});
+
+		//next
+		$(function () {
+			$("#next").bind("click", function () {
+				var noteStr = "";
+				noteStr += $("#block-time-display").text().replace(/[^0-9]/g, '') + "?";
+				//음 배열 -> 음 String으로 저장(쉼표 추가)
+				for (var i = 0; i < noteArr.length; i++) {
+					noteStr = noteStr + noteArr[i] + ",";
+				}
+				console.log(noteStr.slice(0, -1));
+				location.href = "BlockEmotion.html?var=" + noteStr.slice(0, -1);
+			});
+			$("#next").bind(keyUp, function () {
+			});
+		});
+	</script>
+
+	
+	
 </body>
 
 </html>
