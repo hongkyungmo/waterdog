@@ -255,7 +255,7 @@ $(function () {
 		    	},{
 		    		step : function(now, fx){
 		    			var helper = 90;
-		    			if(now>90){
+		    			if(now>90 && now < layeredBlocks.width -10){
 		    				console.log();
 		    				$("#work-layer").css({
 		    	                "transform": "translate3d(" + (-1*now+90) + "%,  0px, 0px)"
