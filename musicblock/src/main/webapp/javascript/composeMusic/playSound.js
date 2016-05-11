@@ -15,10 +15,16 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
 
 //오실레이터, 게인 생성
-var oscillator = audioContext.createOscillator();
+//var oscillator = audioContext.createOscillator();
 var gain = audioContext.createGain();
 
-//오실레이터 설정
+var oscArr = new Array();
+for(var i=0;i<48;i++){
+	oscArr[i] = audioContext.createOscillator();
+	oscArr[i].start(0);
+}
+
+/*//오실레이터 설정
 oscillator.type = 'sine'; //파형의 형태 sine, square, sawtooth, triangle, custom 등
 oscillator.frequency.value = 300; //주파수
 oscillator.connect(gain); //게인과 연결
@@ -31,17 +37,7 @@ gain.connect(audioContext.destination); //데스티네이션(스피커)와 연�
 oscillator.start();
 //gain.disconnect(audioContext.destination);
 //oscillator.disconnect(gain);
-
-
-
-//건반 클릭
-$(function () {
-    $(".key").mousedown(function () {
-        var barLevel = 94 - (((octave - 1) * 12 + $(".key").index(this)) * 2);
-        noteArr[clickSequence-1] = (octave - 1) * 12 + $(".key").index(this)+1;
-    });
-});
-
+*/
 
 //notecode(1~48)을 주파수로 변환해주는 함수
 var noteCodeToFreq = function (noteVal) {
@@ -50,16 +46,16 @@ var noteCodeToFreq = function (noteVal) {
 
 //음 코드(1~48)를 넣으면 음을 연주해주는 함수
 var playNote = function (noteVal) {
-    oscillator.frequency.value = noteVal;
+	oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
     
     gain.gain.value = mainVolume;
-    /*setTimeout(function () {
-        oscillator.connect(gain);
-        oscillator.disconnect(gain);
-        //gain.gain.value=0;
-    }, 1000);*/
-    //테스트코드
+    oscArr[noteVal].connect(gain);
+    gain.connect(audioContext.destination);
     console.log(noteVal);
+}
+
+var stopNote = function (noteVal) {
+	oscArr[noteVal].disconnect(gain);
 }
 
 //play버튼 눌러서 블럭 연주
@@ -88,21 +84,23 @@ var playOneBlock = function () {
 		arr = $("#work-layer > li:eq("+blockWalker+")").data("notes").split(",");
 		blockSec =$("#work-layer > li:eq("+blockWalker+")").data("sec");
 		mainVolume = 2;
-		playNote(noteCodeToFreq(arr[noteWalker]));
+		playNote(arr[noteWalker]);
 		
 		countForPlaying = arr.length;
 		timerIdForPlaying = setInterval(function(){
 			noteWalker++;
 			if(noteWalker == countForPlaying){
+				stopNote(arr[noteWalker-1]);
 				clearInterval(timerIdForPlaying);
 				mainVolume = 0;
 				gain.gain.value = mainVolume;
 				noteWalker = 0;
 				blockWalker++;
 				playOneBlock();
+			}else{
+				stopNote(arr[noteWalker-1]);
+				playNote(arr[noteWalker]);
 			}
-			playNote(noteCodeToFreq(arr[noteWalker]));
-			
 		}, (blockSec*1000)/countForPlaying);
 		/*블럭 단위 반복 종료*/
 	}
