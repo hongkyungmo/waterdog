@@ -14,6 +14,7 @@ var downTime;
 var timeout;
 var dropFlag;
 var layeredBlocks={width:0, sec:0};
+var blockElment;
 
 //'.layer-selector' 보류
 var swiperMelodyLayer = new Swiper('.layer-melody-block', {
@@ -39,9 +40,12 @@ var group = $("ol.simple_with_drop").sortable({
     group: 'no-drop'
     , delay:100
     , onMousedown: function ($item, _super, event) {
-        console.log($item[0].attributes);
     	downTime = new Date().getTime();
     	timeout = setTimeout(function() {
+    		blockElment=$item;
+    		var block = $($item).data('block')
+    		$('#block-dialog').data('block',block);
+    		$('#title').text(block.title);
     		$('#block-dialog').modal('show');
     		}, duration);
     	return true;    		
@@ -77,9 +81,7 @@ var group = $("ol.simple_with_drop").sortable({
             draggedBlockSelector = "." + draggedBlockSelector[draggedBlockSelector.length - 1];
             
             // #my-blocks에 새로 생성된 블럭의 데이터를 대입
-            $(container.el[0].children[j]).data("key", $($item).data("key"));
-            $(container.el[0].children[j]).data("sec", $($item).data("sec"));
-            $(container.el[0].children[j]).data("notes", $($item).data("notes"));
+            $(container.el[0].children[j]).data("block", $($item).data("block"));
             
             // 버튼을 뗄때
             $(container.el[0].children[j]).css("left", "0").css("top", "0").draggable().bind('mouseup touchend', function(){
@@ -173,7 +175,9 @@ $(function () {
     // Move to blockMaking.html for edit
     $("#dialog-delete").bind("click", function () {
         // need to keep sorted blocks layer
-        console.log("블록 지움");
+    	var data = $('#block-dialog').data('block');
+    	$(blockElment).remove();
+    	deleteBlockById(data.id);
         $('#block-dialog').modal('hide');
     });
 
@@ -208,31 +212,12 @@ $(function () {
 
     // 처음으로 돌아가기 아이콘
     $("#btn-prev").bind("mouseup", function () {
-//        $(".work-layer").css("transform", "translate3d(0px,  0px, 0px)");
     	// 프로그레스바의 크기를 없애고 아이콘도 변경
     	$('#progress-bar').stop().css('width','0%');
     	$('#progress-bar').stop();
     	$('#btn-play').switchClass('fa-pause','fa-play');
     });
 
-//  $("#btn-play").bind("click", function () {
-//	$("#work-layer").stop().animate({
-//        'left': '-509'
-//    }, {
-//        step: function (now, fx) {
-//            $(".swiper-scrollbar-drag").css({
-//                "transform": "translate3d(" + now + "px,  0px, 0px)"
-//            });
-//        }
-//        , duration: $('#work-layer').data("sec")*1000
-//        , easing: 'linear'
-//        , queue: false
-//        , complete: function () {
-//            $("#work-layer").css("left", "0");
-//            $("#work-layer").css("transform", "translate3d(-509px,  0px, 0px)");
-//        }
-//    }, 'linear');
-    
     
     $('#btn-play').bind('mouseup', function(){
     	var className = $('#btn-play')[0].className;
