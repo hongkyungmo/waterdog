@@ -122,6 +122,7 @@ function wrapWindowBymenuPage() {
 $(function() {
 	$("#menu").bind("click", function() {
 		console.log("메뉴버튼 누름ㅋㅋ");
+		console.log("user>>"+localUser);
 		wrapWindowBymenuPage();
 	});
 
