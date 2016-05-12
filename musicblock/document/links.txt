@@ -42,5 +42,21 @@ https://developers.daum.net/
 <Exerd 한글 도움말>
 http://exerd.com:8081/help/index.jsp?lang=ko
 
+신기한 데모들
+http://js1k.com/2015-hypetrain/demo/2198
+http://js1k.com/2015-hypetrain/demo/2296
+http://js1k.com/2015-hypetrain/demo/2317
+http://js1k.com/2015-hypetrain/demo/2325
+http://js1k.com/2015-hypetrain/demo/2331
+http://js1k.com/2015-hypetrain/demo/2340 -> 메인화면 후보
+http://js1k.com/2015-hypetrain/demo/2342
+http://js1k.com/2015-hypetrain/demo/2359
+http://js1k.com/2016-elemental/demo/2611 -> 큐브
+http://js1k.com/2016-elemental/demo/2565
+http://js1k.com/2016-elemental/demo/2476
+http://js1k.com/2016-elemental/demo/2445
+http://js1k.com/2013-spring/demo/1388
+http://js1k.com/2013-spring/demo/1309
 
-
+midi.js
+-> https://mudcu.be/midi-js/
