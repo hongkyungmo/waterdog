@@ -27,23 +27,23 @@ function getAllBlocks(){
 			
 			displayOneMusic(cursor.value);
 			numOfGotMusics++;
-			
 			//swiper 설정(이 설정은 아이템들이 DOM으로 구성되어 화면에 떠 있어야만 정상 적용됨)
 			//즉, 적용하는 시점이 중요하다는 것
-			if(numOfGotMusics==numOfMusics){
-				var swiper = new Swiper('.swiper-container', {
-					
-					slidesPerView : 4,
-					paginationClickable : true,
-					spaceBetween : 0,
-					freeMode : true
-				});
-				musicAnimation();
-			}
 			
 			cursor.continue();
 			
 		}
+		
+//		if(numOfGotMusics==numOfMusics){
+			var swiper = new Swiper('.swiper-container', {
+				
+				slidesPerView : 4,
+				paginationClickable : true,
+				spaceBetween : 0,
+				freeMode : true
+			});
+			musicAnimation();
+//		}
 	}
 }
 

@@ -117,6 +117,9 @@ function addMusic(music){
 	request.onsuccess = function(event){
 		console.log("IndexedDB에 음악블럭 성공적으로 저장했습니다.");
 	}
+	var numOfMusics = localStorage.getItem("numOfMusics");
+	numOfMusics++;
+	localStorage.setItem("numOfMusics", numOfMusics);
 	
 }
 
