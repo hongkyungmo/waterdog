@@ -3,13 +3,12 @@ html {
 }
 
 body {
-	height: 88%
 }
 
 #background {
 	background-color: #E1F6FA;
 	width: auto;
-	height: 100%;
+	height: 88%;
 }
 
 #menu-container {
@@ -54,6 +53,7 @@ body {
 #inputTag {
 	background-color: white;
 	height: 10%;
+	
 }
 
 #user-tag {
