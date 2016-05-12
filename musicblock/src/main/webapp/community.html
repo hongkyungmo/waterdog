@@ -60,6 +60,13 @@
 }
 </style> -->
 <script>
+
+$(function(){
+	if(localUser==null){
+		alert("로그인안되어 있구나? 로그인부터해주겠니? 여기 처리를 어떻게 할까 ㅎ?");
+	}
+});
+
 $(function() {
 	$("#menu").bind("click", function() {
 		$(".music-menu.header.total-container").hide();
