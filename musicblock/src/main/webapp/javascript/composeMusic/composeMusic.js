@@ -203,11 +203,7 @@ $(function () {
     // Move to template.html
     $("#btn-community").bind("click", function () {
         // need to keep sorted blocks layer
-    	if(localUser!=null){
-    		$(location).attr('href', "community.html");
-    	}else{
-    		console.log("에러인줄알았지? 로그인을 먼저 해야한다네 ㅎ");
-    	}
+        $(location).attr('href', "community.html");
     });
 
     // Move to mainpage.html
