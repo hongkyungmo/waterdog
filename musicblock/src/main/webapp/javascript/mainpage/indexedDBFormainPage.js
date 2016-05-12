@@ -20,7 +20,9 @@ function getAllBlocks(){
 	
 	request.onsuccess = function(event){
 		var cursor = event.target.result;
-		if(cursor){
+		if(cursor==null){
+			displayButton();
+		}else if(cursor){
 			console.log(cursor);
 			console.log("key : " + cursor.key);
 			console.log("sec : " + cursor.value.musicInfo);
@@ -61,3 +63,20 @@ function displayOneMusic(value){
 	$(".swiper-wrapper").append(item);
 	$(".swiper-slide").last().data("musicInfo", value.musicInfo);
 }
+
+function displayButton(){
+	var item= "<div id='createMusic' class='ui blue button'> createMusic </div>"
+		+"<div id='createBlock' class='ui blue button'> createBlock </div>";
+	
+	$(".swiper-wrapper").append(item);
+}
+
+$(function() {
+	$("#createMusic").bind("click", function() {
+		console.log("createMusic 누름ㅋㅋ");
+	});
+	
+	$("#createBlock").bind("click", function() {
+		console.log("createBlock 누름ㅋㅋ");
+	});
+});
