@@ -16,11 +16,8 @@ $(function () {
 						playNote(noteArr[clickSequence - countForPlaying]);
 					}
 					if (countForPlaying == 0) {
-						//alert("end!!");
 						stopNote(noteArr[clickSequence - countForPlaying-1]);
 						clearInterval(timerIdForPlaying);
-						mainVolume = 0;
-						gain.gain.value = mainVolume;
 					}
 				}, blockAnimateTime / clickSequence);
 			}
@@ -36,8 +33,6 @@ $(function () {
 		if ($("#display-bar").length == 0) {
 			stopNote(noteArr[clickSequence - countForPlaying]);
 			clearInterval(timerIdForPlaying);
-			mainVolume = 0;
-			gain.gain.value = mainVolume;
 		}
 	});
 });
