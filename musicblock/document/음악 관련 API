@@ -53,3 +53,11 @@ http://blog.naver.com/PostView.nhn?blogId=happyyhj&logNo=50445122
   -> http://codepen.io/bennettfeely/pen/GvAcf
   -> http://codepen.io/gwincr11/details/ojEDJ
   -> http://www.freesound.org/
+  
+로컬 파일 재생 이슈
+ -> http://stackoverflow.com/questions/14074833/using-local-file-for-web-audio-api-in-javascript
+Audio js
+ -> http://kolber.github.io/audiojs/
+
+Dash js
+ -> https://github.com/nums/DashJs-WebAudioAPI
