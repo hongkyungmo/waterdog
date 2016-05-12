@@ -23,23 +23,19 @@ public class UserController {
 	public UserController() {
 		System.out.println(this.getClass());
 	}
-	
+
 	@RequestMapping(value = "userLogin", method = RequestMethod.POST)
 	public void getJsonUserPOST(@RequestBody Map map, Model model) throws Exception {
 		System.out.println("/user/userLogin start");
 		System.out.println("RequestBody>>"+map);
 		System.out.println("Model>>"+model);
-		
+
 		String password=(String)map.get("pass");
 		String loginInfo = (String)map.get("user");
-		
+
 		User user = userService.checkUser(map);		
 		System.out.println("User>>"+user);
-		
-		if(user!=null){
-			model.addAttribute("message",user.getNick()+"님 환영합니다.");
-		}else{
-			model.addAttribute("message","다시 로그인 해 주세요.");
-		}
+
+		model.addAttribute("user",user);
 	}
 }
