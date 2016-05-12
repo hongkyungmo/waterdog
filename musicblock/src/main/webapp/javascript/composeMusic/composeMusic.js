@@ -150,9 +150,11 @@ var group = $("ol.simple_with_drop").sortable({
 	    var JSONBlock;
 	    sortedData = ""; 
 	    for (var k = 0; k < data[0].length; k++) {
-	    	sortedData += "{\"key\":\"" + data[0][k].key + "\",\"sec\":\"" + data[0][k].sec+ "\",\"notes\":\"" +data[0][k].notes+ "\"}";
+	    	var protoBlock = data[0][k].block;
+	    	sortedData += JSONtoString(protoBlock);
 	        k != data[0].length-1 ? sortedData += "&" : sortedData += "";	
 	    }
+	    console.log(sortedData);
     }
 });
 
@@ -160,6 +162,17 @@ $("ol.simple_with_no_drop").sortable({
     group: 'no-drop'
     , drop: false
 });
+
+// JSON객체를 문자열로 변환하는 함수 
+function JSONtoString(object) {
+    var results = [];
+    for (var property in object) {
+        var value = object[property];
+        if (value)
+            results.push(property.toString() + ': ' + value);
+        }
+        return '{' + results.join(', ') + '}';
+}
 
 
 $(function () {		
