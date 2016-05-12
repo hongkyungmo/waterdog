@@ -3,21 +3,121 @@
 var i=0;
 var kind=new Array('yellow','red','violet','orange','blue');
 var blockInformation;
+// musicInfo는 sec와 note를 합한 정보
+var music = {musicTitle:'', musicInfo:'', emotion:[], hash:'', user:''}
 
-function addMusic(){
+
+//emotion check function
+$(function() {
+	request.onsuccess = function(event){
+		console.log("onsuccess : DB loaded successfully");
+		db = event.target.result;
+	}
+	
+	// uri가 해당 페이지로 넘어 올 때, query string에 있는 double quotation이 encoding되므로 decodeURIComponent를 이용해 복호화 해준다.
+	var url = decodeURIComponent(location.href);
+	var indexOfQuestionMark = url.indexOf("?");
+	
+	// Query String의 CSV를 이용하여 블럭의 정보들을 배열로 분해한다.
+	var uri = url.substr(indexOfQuestionMark+1,url.length);
+	blockInformation = uri.split("&");
+	
+	// 해당 Query String을 JSON으로 변환하여 music객체에 담아둔다
+	for(var i = 0 ; i < blockInformation.length ; i ++){
+		var tmpJSON = jQuery.parseJSON(blockInformation[i]);
+		music.musicInfo += tmpJSON.sec + '&' + tmpJSON.notes;
+		i != blockInformation.length-1 ? music.musicInfo += '/' : music.musicInfo += '';
+	}
+	console.log(music.musicInfo);
+	
+	var checkedIcon;
+	// 감정 아이콘 클릭 이벤트
+	$('.icon').clickToggle(
+			function(){
+				// 아이콘 문양 변경
+				checkedIcon = $(this).attr('src');
+				checkedIcon = checkedIcon.substr(0,checkedIcon.lastIndexOf('.'));
+				checkedIcon += '_clicked.png';
+				$(this).attr('src', checkedIcon);
+				
+				// 감정 배열에 감성저장
+				music.emotion.push($(this).attr('id'));
+				console.log(music.emotion);
+			}
+			, function(){
+				// 아이콘 문양 변경
+				checkedIcon = $(this).attr('src');
+				checkedIcon = checkedIcon.substr(0,checkedIcon.lastIndexOf('_'));
+				checkedIcon += '.png';
+				$(this).attr('src', checkedIcon);
+				
+				// 감정 배열에 있는 감성삭제
+				music.emotion.splice(music.emotion.indexOf($(this).attr('id')),1);
+				console.log(music.emotion);
+			}
+	);
+	
+	$('#save').on('mouseup', function(){
+		if(music.emotion.length==0){
+			// 감정을 선택하라는 modal 띄우기
+			return;
+		}else{
+			
+			// 타이틀의 입력이 없다면
+			if($('#title').val().length==0){
+				// 차후에 랜덤타이틀 제작하시오.
+				music.musicTitle = '랜덤타이틀';
+			}else{
+				// 사용자가 입력한 타이틀 대입			
+				music.musicTitle = $('#title').val();				
+			}
+			// 현재는 입력된 값 그대로 받지만 차후에 태그별로 분리되어 저장하도록 구현하세요.
+			music.hash = $('#hash').val();
+			
+			if($('#check').checked){
+				// 현재 유저는 더미데이터로 저장되지만 차후에 로그인된 정보를 담아주세요.
+				music.user='user01';
+				// 서버에 block을 전달하는 함수를 만드세요.
+				// 차후 작업예정
+			}
+			// indexed db에 저장.
+			addMusic(music);
+		}
+	});
+
+});
+
+//클릭토글 함수
+$.fn.clickToggle = function(func1, func2) {
+    var funcs = [func1, func2];
+    this.data('toggleclicked', 0);
+    this.click(function() {
+        var data = $(this).data();
+        var tc = data.toggleclicked;
+        $.proxy(funcs[tc], this)();
+        data.toggleclicked = (tc + 1) % 2;
+    });
+    return this;
+};
+
+function addMusic(music){
 	var transaction = db.transaction(["musicTable"], "readwrite");
 	var objectStore = transaction.objectStore("musicTable");
-	//var musicStr=(location.href.substr(location.href.lastIndexOf('=') + 1)).split("?");
-	var musicStr="1&42,33,34/1&41,27,46";
-	if(musicStr!=null && musicStr!=undefined && musicStr!=""){
-		request = objectStore.add({musicInfo:musicStr});
-		request.onsuccess = function(event){
-			console.log("IndexedDB에 음악을 성공적으로 저장했습니다.");
-			getAllMusics();
-		};
+	
+	if(music.musicInfo.length==0){
+		// 잘못된 접근이라고 modal로 표시하세요 
+		console.log('잘못된 접근입니다.'); 
 	}else{
-		console.log("musicStr이 입력되지 않아서 IndexedDB에 저장되지 않았습니다.");
+		request = objectStore.add({musicInfo:music.musicInfo, 
+								   musicTitle:music.musicTitle, 
+								   musicEmotion:music.emotion, 
+								   musicHash : music.hash
+								   });
 	}
+	request.onsuccess = function(event){
+		console.log("IndexedDB에 음악블럭 성공적으로 저장했습니다.");
+	}
+	
 }
 
 
@@ -79,9 +179,6 @@ function getAllMusics(){
 		}
 	}
 }
-
-
-
 
 //Save to Server&Local
 function sendServer(transfEmotion){
@@ -179,40 +276,6 @@ function fncValidate(){
 
 
 
-//emotion check function
-$(function() {
-	request.onsuccess = function(event){
-		console.log("onsuccess : DB loaded successfully");
-		db = event.target.result;
-	}
-	
-	// uri가 해당 페이지로 넘어 올 때, query string에 있는 double quotation이 encoding되므로 decodeURIComponent를 이용해 복호화 해준다.
-	var url = decodeURIComponent(location.href);
-	var indexOfQuestionMark = url.indexOf("?");
-	
-	// Query String의 CSV를 이용하여 블럭의 정보들을 배열로 분해한다.
-	var uri = url.substr(indexOfQuestionMark+1,url.length);
-	blockInformation = uri.split("&");
-	
-	// 해당 Query String을 JSON으로 변환한다.
-	for(var i = 0 ; i < blockInformation.length ; i ++){
-		blockInformation[i] = jQuery.parseJSON(blockInformation[i]);
-	}
-	
-	
-	var emotion = $('.icon');
-	$(document).on('click', '.icon', function(){
-		var checkIcon = $(this).attr('src');
-		
-		for(i=0;i<kind.length;i++){
-			if(checkIcon=='images/smile_'+kind[i]+'.png'){
-				$(this).attr('src', 'images/smile_'+kind[i]+'_clicked.png');
-			}else if(checkIcon=='images/smile_'+kind[i]+'_clicked.png'){
-				$(this).attr('src', 'images/smile_'+kind[i]+'.png');
-			}
-		}
-	});
-});
 		
 
 

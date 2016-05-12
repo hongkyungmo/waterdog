@@ -168,7 +168,7 @@ function JSONtoString(object) {
     var results = [];
     for (var property in object) {
         var value = object[property];
-        if (value)
+        if (value &&(property.toString()=='sec' || property.toString()=='notes'))
             results.push('"' + property.toString() + '":"' + value + '"');
         }
         return '{' + results.join(', ') + '}';
