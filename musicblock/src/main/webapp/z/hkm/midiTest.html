@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+
+	<!-- jQuery CDN -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+	<!-- shims -->
+	<!--<script src="./inc/shim/Base64.js" type="text/javascript"></script>
+	<script src="./inc/shim/Base64binary.js" type="text/javascript"></script>
+	<script src="./inc/shim/WebAudioAPI.js" type="text/javascript"></script>-->
+	<!-- midi.js -->
+	<script src="./js/midi/audioDetect.js" type="text/javascript"></script>
+	<script src="./js/midi/gm.js" type="text/javascript"></script>
+	<script src="./js/midi/loader.js" type="text/javascript"></script>
+	<script src="./js/midi/plugin.audiotag.js" type="text/javascript"></script>
+	<script src="./js/midi/plugin.webaudio.js" type="text/javascript"></script>
+	<script src="./js/midi/plugin.webmidi.js" type="text/javascript"></script>
+	<!-- utils -->
+	<!--<script src="./js/util/dom_request_xhr.js" type="text/javascript"></script>
+	<script src="./js/util/dom_request_script.js" type="text/javascript"></script>-->
+	<script>
+		$(function(){
+			$("#play").bind("click", function(){
+				var audio = new Audio();
+				audio.src = 'soundfont/acoustic_grand_piano-mp3/A0.mp3';
+				audio.controls = true;
+				audio.autoplay = true;
+				var context = new AudioContext();
+				var analyser = context.createAnalyser();
+				var source = context.createMediaElementSource(audio);
+				var gain = context.createGain();
+				gain.gain.value = 2;
+				gain.gain.linearRampToValueAtTime(1, audio.currentTime+1);
+				//gain.gain.linearRampToValueAtTime(0, audio.currentTime + 3);
+				source.connect(analyser);
+				analyser.connect(gain);
+				gain.connect(context.destination);
+				
+			});
+		});
+	</script>
+
+
+</head>
+
+<body>
+	<div id="play" style="width:100px;height:100px;background-color:red;"></div>
+</body>
+
+</html>
