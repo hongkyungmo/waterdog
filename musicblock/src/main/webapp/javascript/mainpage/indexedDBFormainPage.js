@@ -34,7 +34,7 @@ function getAllBlocks(){
 			
 		}
 		
-//		if(numOfGotMusics==numOfMusics){
+		if(numOfGotMusics==numOfMusics){
 			var swiper = new Swiper('.swiper-container', {
 				
 				slidesPerView : 4,
@@ -43,7 +43,7 @@ function getAllBlocks(){
 				freeMode : true
 			});
 			musicAnimation();
-//		}
+		}
 	}
 }
 
