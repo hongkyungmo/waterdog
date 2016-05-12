@@ -169,7 +169,7 @@ function JSONtoString(object) {
     for (var property in object) {
         var value = object[property];
         if (value)
-            results.push(property.toString() + ': ' + value);
+            results.push('"' + property.toString() + '":"' + value + '"');
         }
         return '{' + results.join(', ') + '}';
 }
