@@ -24,10 +24,11 @@ var audioContext = new AudioContext();
 var gain = audioContext.createGain();
 
 var oscArr = new Array();
-for(var i=1;i<=48;i++){
+for(var i=0;i<=48;i++){
 	oscArr[i] = audioContext.createOscillator();
 	oscArr[i].start(0);
 }
+oscArr[0].frequency.value = 0;
 
 //오실레이터 설정
 /*oscillator.type = 'sine'; //파형의 형태 sine, square, sawtooth, triangle, custom 등
@@ -49,7 +50,9 @@ var noteCodeToFreq = function (noteVal) {
 
 //노트코드를 넣으면 음을 재생해주는 함수
 var playNote = function (noteVal) {
-	oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
+	if(noteVal!=0){
+		oscArr[noteVal].frequency.value = noteCodeToFreq(noteVal);
+	}
 	
 	gain.gain.value = mainVolume;
     oscArr[noteVal].connect(gain);
