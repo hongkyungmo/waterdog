@@ -1,4 +1,4 @@
-var block = {title:'', sec:0, notes:'', emotion:[], hash:'', user:''}
+var block = {title:'', sec:0, notes:'', emotion:[], hash:'', ucode:''}
 
 $(function(){
 	// 쿼리스트링의 담겨있는 블럭의 시간과 멜로디에 정보를 먼저 담아둔다.
@@ -8,7 +8,6 @@ $(function(){
 	
 	// indexedDB의 연결을 확인한다.
 	request.onsuccess = function(event){
-		console.log("onsuccess : DB loaded successfully");
 		db = event.target.result;
 	}
 	
@@ -55,15 +54,15 @@ $(function(){
 			}
 			// 현재는 입력된 값 그대로 받지만 차후에 태그별로 분리되어 저장하도록 구현하세요.
 			block.hash = $('#hash').val();
-			
-			if($('#check').checked){
+			if($('input[id="check"]').is(":checked")){
 				// 현재 유저는 더미데이터로 저장되지만 차후에 로그인된 정보를 담아주세요.
-				block.user='user01';
+				block.ucode='1';
 				// 서버에 block을 전달하는 함수를 만드세요.
+				sendServer();
 				// 차후 작업예정
 			}
 			// indexed db에 저장.
-			addBlock(block);
+//			addBlock(block);
 		}
 	});
 	
@@ -118,48 +117,47 @@ function getAllBlocks(){
 }
 
 //Save to Server&Local
-function sendServer(transfEmotion){
-
-	var transTag= (document.getElementById("tag")).value;
-	var transTitle=(document.getElementById("title")).value;
-
+function sendServer(){
 	$.ajax({ //$.post(), $.get(), $.getJSON 등도 있음
 		url : 'block/blockSave',
 		type : 'POST', //Request하는 방식.
 		data : JSON.stringify({ //JSON.stringify를 해줘야 제대로 된 형태의 JSON이 날아감
-			emotion : transfEmotion,
-			note : transNote,
-			sec : transSec,
-			tag : transTag,
-			title : transTitle
+			emotion : block.emotion,
+			notes : block.notes,
+			sec : block.sec,
+			tag : block.hash,
+			title : block.title,
+			ucode : block.ucode
 		}),
 		dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 		contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
 		success : function(data, status) {
+			console.log(data);
+			console.log("===============================")
 			console.log(status);
-			console.log("JSONData : "
-					+ JSON.stringify(data));
-			/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
-			$("body")
-					.append(
-							"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
-			$("#popup-btn1").click(function() {
-				$("#save-popup").remove();
-				location.href = "blockMaking.html";
-			});
-			$("#popup-btn2").click(function() {
-				$("#save-popup").remove();
-				location.href = "composeMusic.html";
-			});
-			$("#save-popup")
-					.delay(3000)
-					.fadeOut(
-							500,
-							function() {
-								$("#save-popup")
-										.remove();
-								location.href = "composeMusic.html";
-							});
+//			console.log("JSONData : "
+//					+ JSON.stringify(data));
+//			/*$("body").append("<div id='save-popup'><div id='popup-btn1'>1</div><div id='popup-btn2'>2</div><div style='top:40%;position:relative;'><font size='1px' color='red'>"+JSON.stringify(data)+"</font></div></div>");*/
+//			$("body")
+//					.append(
+//							"<div id='save-popup'><center><br>성공적으로 전송되었습니다</center><div id='popup-btn1'><center>블럭 추가</center></div><div id='popup-btn2'><center>작곡 화면<br>(3초 후 자동 이동)</center></div></div>");
+//			$("#popup-btn1").click(function() {
+//				$("#save-popup").remove();
+//				location.href = "blockMaking.html";
+//			});
+//			$("#popup-btn2").click(function() {
+//				$("#save-popup").remove();
+//				location.href = "composeMusic.html";
+//			});
+//			$("#save-popup")
+//					.delay(3000)
+//					.fadeOut(
+//							500,
+//							function() {
+//								$("#save-popup")
+//										.remove();
+//								location.href = "composeMusic.html";
+//							});
 		},
 		error : function(status) {
 			console.log(status);
