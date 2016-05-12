@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javassist.expr.Instanceof;
 import service.block.BlockService;
 import service.domain.Block;
 import service.domain.BlockEmotion;
@@ -34,27 +35,33 @@ public class BlockController {
 	public Block addJsonBlockPOST(@RequestBody Map map) throws Exception {
 
 		System.out.println("(/block/blockSave)RequestBody로 전달받은 String(JSON) : "+map);
-
-		//emotion 정보 담기
+		
+		// Client로 부터 받은 emotion 정보를 담는다.
 		List<Object> emotionArray = new ArrayList<Object>();
 		emotionArray=(ArrayList)map.get("emotion");
-
+		
+		// 감정목록 생성		
 		List<BlockEmotion> emotionList = new ArrayList<BlockEmotion>();
-
 		for(int i=0;i<emotionArray.size();i++){
-			if(emotionArray.get(i).equals("that")){
+//			if(emotionArray.get(i).equals("that")){
+//				BlockEmotion emotion = new BlockEmotion();
+//				emotion.setEmotion(i);
+//				emotionList.add(emotion);
+//			}
 				BlockEmotion emotion = new BlockEmotion();
-				emotion.setEmotion(i);
+				emotion.setEmotion(Integer.parseInt((String)emotionArray.get(i)));
 				emotionList.add(emotion);
-			}
 		}
 
 		// hash 정보 담기
 		List<BlockHash> hashList = new ArrayList<BlockHash>();
 
+		// #단위로 해시태그 분리
+		// 왜 그런지 아직은 모르겠는데 0번 배열에서 null string이 있음.
 		String hashArray[] = ((String)map.get("tag")).split("#");
-
-		for(int i=0;i<hashArray.length;i++){
+		
+		// 해시태그 목록 생성(해시브라운 먹고 싶다.)
+		for(int i=1;i<hashArray.length;i++){
 			BlockHash hash = new BlockHash();
 			hash.setTag(hashArray[i].trim());
 			hashList.add(hash);
@@ -62,14 +69,14 @@ public class BlockController {
 		
 		// title 지정하기
 		String title=(String)map.get("title");
-		if(title==null||title.equals("")){
-			title= new Title().getTitle();
-		}
+//		if(title==null||title.equals("")){
+//			title= new Title().getTitle();
+//		}
 				
 		Block block = new Block();
 		block.setTitle(title);
-		block.setNote((String)map.get("note"));
-		block.setuCode(101);//유저코드를 왜래키로 가지고 있어야 함 (수정)
+		block.setNote((String)map.get("notes"));
+		block.setuCode(Integer.parseInt((String)map.get("ucode")));//유저코드를 왜래키로 가지고 있어야 함 (수정)
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
 		block.setTime(Integer.parseInt((String)map.get("sec")));

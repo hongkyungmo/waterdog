@@ -22,8 +22,8 @@ $(function(){
 				$(this).attr('src', checkedIcon);
 				
 				// 감정 배열에 감성저장
-				block.emotion.push($(this).attr('id'));
-				console.log(block.emotion);
+				// icon_n에서 n추출
+				block.emotion.push($(this).attr('id').substr($(this).attr('id').lastIndexOf('_')+1,$(this).attr('id').length));
 			}
 			, function(){
 				// 아이콘 문양 변경
@@ -34,7 +34,6 @@ $(function(){
 				
 				// 감정 배열에 있는 감성삭제
 				block.emotion.splice(block.emotion.indexOf($(this).attr('id')),1);
-				console.log(block.emotion);
 			}
 	);
 	

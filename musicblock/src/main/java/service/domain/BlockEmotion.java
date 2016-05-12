@@ -8,6 +8,11 @@ public class BlockEmotion {
 	public BlockEmotion() {
 		super();
 	}
+	
+	public BlockEmotion(int emotion) {
+		super();
+		this.emotion = emotion;
+	}
 
 	public int getEmotion() {
 		return emotion;

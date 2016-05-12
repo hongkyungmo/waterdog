@@ -47,7 +47,7 @@ public class BlockDaoImpl implements BlockDao{
 	
 	public void addBlockHash(BlockHash bh, int bCode){
 		System.out.println("addBlockHash>>"+bCode);
-			sqlSession.insert("BlockMapper.addBlockHash",bCode);
+			sqlSession.insert("BlockMapper.addBlockHash",bh);
 
 	}
 	
