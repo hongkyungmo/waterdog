@@ -1,13 +1,32 @@
-/*indexedDB for Compose Music*/
+/*indexedDB for community Music
+ * 
+ * 
+ * 1.커뮤니티 페이지 접속시 서버로부터 받은 데이타를 indexed db에 다 insert를 하자.
+ * 2.
+ * 
+ * 
+ * */
+
+//indexedDB와 ajax의 호출 순서를 알려주는 플래그
+var sequenceFlag = false;
 
 var blockNum = 0;
 
 var repo = $(".people");
 /*<a href="javascript:fncValidate();" id="save">Save</a>*/
-
+//var db = null;
+//$(function(){
+	// indexedDB의 연결을 확인한다.
+	request.onsuccess = function(event){
+		alert("test1");
+		console.log("onsuccess : DB loaded successfully");
+		db = event.target.result;
+		sequenceFlag = true;
+	}
+//});
 
 // functions related to IndexedDB
-function fnc() {
+/*function fnc() {
 	alert("fnc함수불러옴");
     request.onsuccess = function (event) {
     	alert();
@@ -16,33 +35,27 @@ function fnc() {
        // getAllBlocks();
         addBlock();
     }
-};
+};*/
 
-//1.다운버튼을 클릭하면 
-//2.서버로부터 받아온 정보들을 IndexedDB로 저장.
-
-function addBlock(){
-	alert("addBlock");
+function addBlock(bcode,title,note,time){
+	alert("addblock()");
+	// indexedDB의 연결을 확인한다.
+	console.log("blockData: "+bcode+","+title+","+note+","+time);
 	var transaction = db.transaction(["blockTable"], "readwrite");
 	var objectStore = transaction.objectStore("blockTable");
-	var transSec = 4;
-	var transNote = 15;
-	if(transSec!=null && 
-	transSec!=undefined && 
-	transSec!="" && 
-	transNote!=null && 
-	transNote!=undefined && 
-	transNote!=""){
-		request = objectStore.add({sec:transSec,notes:transNote});
-		request.onsuccess = function(event){
-			console.log("IndexedDB에 블럭 성공적으로 저장했습니다.");
-			getAllBlocks();
-		};
-	}
-	else{
-		console.log("값 받아오기 실패");
-	}
+	request = objectStore.add({bcode:bcode,btitle:title,note:note,time:time});
+		//console.log("blockData: "+data['block'].bcode+","+data['block'].btitle+","+data['block'].notes+","+data['block'].sec);
+		/*var transaction = db.transaction(["blockTable"], "readwrite");
+		var objectStore = transaction.objectStore("blockTable");
+		console.log(objectStore);
+		var tranCode = bcode;
+		var tranTitle = btitle;
+		var transSec = sec;
+		var transNote = notes;
+		request = objectStore.add({bcode:tranCode,btitle:tranTitle,sec:transSec,notes:transNote});
+		getAllBlocks();*/
 }
+
 
 function getAllBlocks(){
 	var transaction = db.transaction(["blockTable"], "readonly");
@@ -53,6 +66,8 @@ function getAllBlocks(){
 		if(cursor){
 			console.log(cursor);
 			console.log("key : " + cursor.key);
+			console.log("btitle : " + cursor.value.btitle);
+			console.log("bcode" + cursor.value.bcode);
 			console.log("sec : " + cursor.value.sec);
 			console.log("notes : " + cursor.value.notes);
 			cursor.continue();			//다음 데이터를 검색하고, 데이터 검색이 성공할 때 또 success이벤트가 트리거.

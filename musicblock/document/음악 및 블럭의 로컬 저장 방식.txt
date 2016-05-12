@@ -94,3 +94,4 @@ Using-indexedDB문서 : https://developer.mozilla.org/en-US/docs/Web/API/Indexed
 IndexedDB 활용(블로그 글)
  -> http://yaku.tistory.com/538
  -> http://horajjan.blog.me/220300960759
+ -> https://developer.mozilla.org/ko/docs/IndexedDB/Using_IndexedDB

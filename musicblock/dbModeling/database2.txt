@@ -1,4 +1,4 @@
-﻿DROP SEQUENCE seq_user_ucode;
+﻿﻿DROP SEQUENCE seq_user_ucode;
 ﻿DROP SEQUENCE seq_user_ucode;
 DROP SEQUENCE seq_block_bcode;
 DROP SEQUENCE seq_music_mcode;

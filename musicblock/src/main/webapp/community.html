@@ -147,7 +147,7 @@ $(function() {
 	<!-- 전체 컨테이너 -->
 	<div class="total-container">
 		<div id="contain-layer-left" style="width: 50%; float: left;">
-			 <div class="people">
+	<!-- 		 <div class="people">
 				<li><a href=#><img src="images/3.png" /></a>
 					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
 						<hr>
@@ -242,14 +242,14 @@ $(function() {
 						</p>
 						</ui>
 					</ul></li>
-			</div>
+			</div> -->
 
 		</div>
 		<!-- end of Left 컨테이너 -->
 
 		<!--right컨테이너-->
 		<div id="contain-layer-right" style="width: 50%; float: right;">
-	 		<div class="people">
+<!-- 	 		<div class="people">
 				<li><a href=#><img src="images/3.png" /></a>
 					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
 						<hr>
@@ -345,13 +345,15 @@ $(function() {
 						</ui>
 					</ul></li>
 			</div> 
-
+ -->
 
 		<!-- end of Right컨테이너 -->
 	</div>
 </div>
 
-
+	 <!-- User Defined -->
+		  <script src="javascript/common/initializeIndexedDB.js"></script>
+		   <script src="javascript/community/indexedDBForCommunity.js"></script>
 	<script>
 		/* 	$(function() {
 		 $(window).scroll
@@ -363,6 +365,7 @@ $(function() {
 		
 		 });
 		 });  */
+		 
 
 		 	$(".people").click(function() {
 				var Pindex = $(".people").index(this);
@@ -376,18 +379,23 @@ $(function() {
 		var test1 = 0;
 		var max1 = 50; 
 		$(function() {
-			RecvFromServer();
+			var intervalClearer = setInterval(function(){
+				if(sequenceFlag == true){
+					RecvFromServer();
+					console.log("intervalClearer:"+intervalClearer);
+					clearInterval(intervalClearer);
+				}
+			}, 10);
 			function RecvFromServer() {
-				$(window).scroll(
-								function() {
+				//$(window).scroll(function() {
 									var scrollHeight = parseInt($(window).scrollTop()+ $(window).height()); //윈도우는 딱 보이는 화면의 크기
 									var documentHeight = parseInt($(document).height()); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
-								if (scrollHeight >= documentHeight) { 
+								//if (scrollHeight >= documentHeight) { 
 								//	for (test = 0; test < max; test+=10) {
 										//alert("test:"+test);
 										for (test1 = 0; test1 < max1; test1++) {
 										//alert("test1+test :"+(test1+test));
-											$.ajax({
+												$.ajax({
 														type : 'GET',
 														url : 'block/getJsonBlock/'
 															+test1,
@@ -398,32 +406,22 @@ $(function() {
 															console.log("JSONData : "+ JSON.stringify(data)); //stringify은 string type으로 바꿔줌
 															//데이터 블럭값이있을경우에만
 															if (data['block'] != null) {
+																//alert();
 																//for (test1 = 0; test1 < max1; test1++) {
-																	//alert("test1/"+test1);
+																	addBlock(data['block'].bCode,data['block'].title,data['block'].note,data['block'].time);
+																	//addBlock(data['block'].bcode, data['block'].btitle, data['block'].note, data['block'].time);
 																var dynamicEl = "<div class='people'><li><a href=#><img src='images/3.png' /></a><h2>"
 																		+ data['block'].title
 																		+ "</h2> <span class='info'><nm>이산돌</nm> <em>"
 																		+ data['block'].regDate
-																		+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><a href ='javascript:fnc();'</a><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
+																		+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
 
-																var leftHeight = parseInt($(
-																		"#contain-layer-left")
-																		.css(
-																				"height"));
-																var rightHeight = parseInt($(
-																		"#contain-layer-right")
-																		.css(
-																				"height"));
+																var leftHeight = parseInt($("#contain-layer-left").css("height"));
+																var rightHeight = parseInt($("#contain-layer-right").css("height"));
 																if (leftHeight <= rightHeight) {
-																	$(
-																			"#contain-layer-left")
-																			.append(
-																					dynamicEl);
+																	$("#contain-layer-left").append(dynamicEl);
 																} else {
-																	$(
-																			"#contain-layer-right")
-																			.append(
-																					dynamicEl);
+																	$("#contain-layer-right").append(dynamicEl);
 																}//end fo else문
 
 																//});//end of scroll
@@ -436,9 +434,12 @@ $(function() {
 													})//end of ajax문
 												//}//end of for문 test1
 										}//end of for문 test
-									}//end of if문
+									//}//end of if문
+									/* else{
+										return;
+									} */
 
-								});//scorll func문
+							//	});//scorll func문
 
 			}//end of recvFun문
 			//좋아요 클릭시 카운트 증가
@@ -491,13 +492,10 @@ $(function() {
 			});
 		});
 	</script>
-	 <!-- User Defined -->
-	  <script src="javascript/common/initializeIndexedDB.js"></script>
-	   <script src="javascript/community/indexedDBForCommunity.js"></script>
 	<!-- user defined JS -->
-	<script src="javascript/common/initializeIndexedDB.js"></script>
+<!-- 	<script src="javascript/common/initializeIndexedDB.js"></script>
     <script src="javascript/community/iDBBlock.js"></script>
-    <script src="javascript/community/iDBMusic.js"></script>
+    <script src="javascript/community/iDBMusic.js"></script> -->
     <script src="javascript/community/soundMgr.js"></script>
 	<script src="javascript/community/soundBlock.js"></script>
 	<script src="javascript/community/soundMusic.js"></script>
