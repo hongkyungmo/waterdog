@@ -127,12 +127,12 @@ var group = $("ol.simple_with_drop").sortable({
 	    // repository일 경우
 	    if (parent[0] == comparedNoDrop) {	    	
 	    	// 블럭의 시간만큼 width를 늘린다.
-	    	var width = $item.data("sec")*3.75;
+	    	var width = $item.data("block").sec*3.75;
 	    	$item.css("width",width+"%");
 	    	
 	    	// layer에 있는 블럭의 길이와 시간을 계산한다.
 	    	layeredBlocks.width += width+1.5;
-	        layeredBlocks.sec += parseInt( $item.data("sec"));
+	        layeredBlocks.sec += parseInt( $item.data("block").sec);
 	        
 	    	// 해당 Index에 추가
 	        if (i <= 0) {
@@ -220,6 +220,7 @@ $(function () {
 
     
     $('#btn-play').bind('mouseup', function(){
+    	console.log("zzz");
     	var className = $('#btn-play')[0].className;
     	// 현재 아이콘이 플레이 버튼이면
     	if(className.indexOf('fa-play') != -1){

@@ -81,8 +81,8 @@ var playOneBlock = function () {
 		//notes 저장
 		
 		/*블럭 단위 반복 시작*/
-		arr = $("#work-layer > li:eq("+blockWalker+")").data("notes").split(",");
-		blockSec =$("#work-layer > li:eq("+blockWalker+")").data("sec");
+		arr = $("#work-layer > li:eq("+blockWalker+")").data("block").notes.split(",");
+		blockSec =$("#work-layer > li:eq("+blockWalker+")").data("block").sec;
 		mainVolume = 2;
 		playNote(arr[noteWalker]);
 		
