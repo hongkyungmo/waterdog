@@ -14,15 +14,16 @@ import service.domain.BlockEmotion;
 import service.domain.BlockHash;
 
 @Repository("blockDaoImpl")
-public class BlockDaoImpl implements BlockDao{
-	///Field
+public class BlockDaoImpl implements BlockDao {
+	/// Field
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
 	private SqlSession sqlSession;
+
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
 	public BlockDaoImpl() {
 		System.out.println(this.getClass());
 	}
@@ -33,29 +34,29 @@ public class BlockDaoImpl implements BlockDao{
 		sqlSession.insert("BlockMapper.addBlock", block);
 		System.out.println("blockDaoImpl의 addblock()");
 	}
-	
-	
-	public void addBlockEmotion(List<BlockEmotion> be, int bCode){
-		HashMap<String, Object> emotion = new HashMap<String,Object>();
-		System.out.println("addBlockEmotion>>"+bCode);
-		for(int i=0;i<be.size();i++){
+
+	public void addBlockEmotion(List<BlockEmotion> be, int bCode) {
+		HashMap<String, Object> emotion = new HashMap<String, Object>();
+		System.out.println("addBlockEmotion>>" + bCode);
+		for (int i = 0; i < be.size(); i++) {
 			be.get(i).setbCode(bCode);
 		}
 		emotion.put("list", be);
-		sqlSession.insert("BlockMapper.addBlockEmotion",emotion);
+		sqlSession.insert("BlockMapper.addBlockEmotion", emotion);
 	}
-	
-	public void addBlockHash(BlockHash bh, int bCode){
-		System.out.println("addBlockHash>>"+bCode);
-			sqlSession.insert("BlockMapper.addBlockHash",bh);
+
+	public void addBlockHash(BlockHash bh, int bCode) {
+		bh.setbCode(bCode);
+		System.out.println("addBlockHash>>" + bh);
+		sqlSession.insert("BlockMapper.addBlockHash", bh);
 
 	}
-	
-	public  Block getBlock(String blockId){
+
+	public Block getBlock(String blockId) {
 		return sqlSession.selectOne("BlockMapper.getBlock", blockId);
 	}
 
-	public int getCurrentBlockCode(){
+	public int getCurrentBlockCode() {
 		return sqlSession.selectOne("BlockMapper.getCurrentBlockCode");
 	}
 
