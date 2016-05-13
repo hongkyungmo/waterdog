@@ -131,6 +131,7 @@ function sendServer(){
 		dataType : "json", //Response로 오는 방식. Request 타입을 지정하는 것으로 착각하기 쉬우므로 주의.
 		contentType : 'application/json;charset=UTF-8', //POST방식일 때 사용. 인코딩 안해주면 한글 깨져서 전송됨
 		success : function(data, status) {
+			// 서버에서 온 블럭의 정보
 			console.log(data);
 			console.log("===============================")
 			console.log(status);

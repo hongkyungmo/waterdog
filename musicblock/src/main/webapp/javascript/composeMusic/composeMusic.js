@@ -218,7 +218,7 @@ $(function () {
     	if(sortedData==null){
     		// modal을 띄워서 경고창을 만드세요
     	}else{
-    		$(location).attr('href', "MusicEmotion.html?"+sortedData);    		
+    		$(location).attr('href', "emotionMusic.html?"+sortedData);    		
     	}
         //        $("#work-layer").stop()
     });
