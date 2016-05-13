@@ -23,6 +23,7 @@ body {
 
 #save-container {
 	margin-top: 1%;
+	margin-left:7%;
 	padding-left: 3%;
 }
 
@@ -54,6 +55,10 @@ body {
 	background-color: white;
 	height: 10%;
 	
+}
+.form-group{
+	margin-left:10%;
+	margin-right:10%;
 }
 
 #user-tag {
