@@ -61,7 +61,7 @@ $(function(){
 				// 차후 작업예정
 			}
 			// indexed db에 저장.
-//			addBlock(block);
+			addBlock(block);
 		}
 	});
 	
