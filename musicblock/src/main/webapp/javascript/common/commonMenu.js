@@ -7,8 +7,8 @@
 var path = $(location).attr('pathname');
 var localUser=localStorage.getItem('user');
 
-var login=	"<button type='button' class='btn btn-primary' data-toggle='modal' " +
-"data-target='#exModal' data-whatever='@mdo'>Login</button>";
+var login=	"<button type='button' id='login' class='btn btn-primary' data-toggle='modal' " +
+"data-target='#loginModal'>Login</button>";
 var logout= "<button type='button' id='logout' class='btn btn-primary' >Logout</button>";
 
 var element = 
@@ -61,11 +61,11 @@ element+=
 	+"<button type='button' class='btn btn-primary'>설정</button>"
 	+"<button type='button' class='btn btn-primary'>기타</button><div>"
 
-	+"<div class='modal fade' id='exModal' tabindex='-1' role='dialog' aria-labelledby='exModalLabel' aria-hidden='true'>"
+	+"<div class='modal fade' id='loginModal' tabindex='-1' role='dialog' aria-labelledby='loginLabel' aria-hidden='true'>"
 	+"	<div class='modal-dialog'>	<div class='modal-content'> <div class='modal-header'>"
 	+"				<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
 	+"					<span aria-hidden='true'>&times;</span>	</button>"
-	+"				<h4 class='modal-title' id='exModalLabel'>Login</h4></div>"
+	+"				<h4 class='modal-title' id='loginLabel'>Login</h4></div>"
 	+"			<div class='modal-body'><form><div class='form-group'><input type='text' class='form-control' id='user_login'"
 	+"							placeholder='Email or Nickname'></div>"
 	+"					<div class='form-group'><input type='password' class='form-control' id='user_pass'"
@@ -135,13 +135,16 @@ $(function() {
 
 /* modal 띄우기 위한 function */
 
-$(function() {
-	$('#exModal').on('show.bs.modal', function (event) {
+/*function showModal(){
+	$('#loginModal').on('show.bs.modal', function (event) {
+		console.log('showModal()');
 		var button = $(event.relatedTarget) 
 		var recipient = button.data('whatever') 
 		var modal = $(this)
 	})
-
+}*/
+$(function() {
+	
 	$("#actions").bind("click", function() {
 		console.log("login 확인ㅋㅋ");
 
@@ -158,6 +161,9 @@ $(function() {
 		}else{
 			console.log('너너너너널널!');
 		}
+		
+		/*$('#loginModal').modal('hide');
+		 *모달 닫기 		 * */
 
 	});
 });
@@ -187,10 +193,10 @@ function serverLogin(transUser,transPass,transRemember) {
 			console.log(status);
 			console.log("JSONData : " + JSON.stringify(data));
 			if (data['user'] !=null) {
-
+				addUser(data['user']);
 				console.log(data['user'].nick+'님 환영합니다!');
 				if(transRemember){
-					addUser(data['user']);
+					localStorage.setItem('remember','T');
 				}
 
 			} else {
@@ -205,6 +211,16 @@ function serverLogin(transUser,transPass,transRemember) {
 
 /*      자동로그인 관련 jQuery      */
 
+function removeUser(){
+	console.log('removeUser');
+	if(localUser!=null){
+		localStorage.clear('user');
+	}
+	if(localStorage.getItem('remember')!=null){
+		localStorage.clear('remember');
+	}
+}
+
 function addUser(vo){
 	console.log('addUser()');
 	console.log('vo.nick>>'+vo.nick);
@@ -217,6 +233,10 @@ $(function() {
 	$("#logout").bind("click", function() {
 		console.log("logout 누름ㅋㅋ");
 		localStorage.clear('user');
+		localStorage.clear('remember');
 		window.location.reload(true);
 	});
 });
+
+
+window.onbeforeunload.removeUser;

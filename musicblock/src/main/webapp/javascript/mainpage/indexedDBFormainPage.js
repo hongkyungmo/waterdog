@@ -65,15 +65,17 @@ function displayOneMusic(value){
 }
 
 function displayButton(){
-	var item= "<div class='ui blue button' onclick='createMusic();' > createMusic </div>"
-		+"<div  class='ui blue button' onclick='createBlock();'> createBlock </div>";
-	
+	var item= "<div  class='ui blue button' onclick='createBlock();'> createBlock </div>"+
+			"<center>" +
+			"<div class='ui blue button' onclick='moveCommunity();'> " +
+			"내가 만든 음악이 없네요! <br> 여기 누르면 다른 사람들의 음악 보러 ㄱㄱㅅ~" +
+			"</center></div>";
 	$(".swiper-wrapper").append(item);
 }
 
-function createMusic(){
-	console.log('createMusic');
-	 $(location).attr('href', "composeMusic.html");
+function moveCommunity(){
+	console.log('moveCommunity');
+	 $(location).attr('href', "community.html");
 }
 
 function createBlock(){
