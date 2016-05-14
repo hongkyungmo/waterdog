@@ -191,3 +191,25 @@ $(function () {
 $(function () {
     $("#draggable").draggable();
 });
+
+//공통메뉴 부분에 저장 버튼 추가
+$(function () {
+	var btnSave = "<div class='btn COMPOSE-MENUBAR-BTN fa fa-save fa-2x' id='next'></div>";
+	$(".col-xs-10:eq(0)").append(btnSave);
+});
+
+//next
+$(function () {
+	$("#next").bind("click", function () {
+		var noteStr = "";
+		noteStr += $("#block-time-display").text().replace(/[^0-9]/g, '') + "?";
+		//음 배열 -> 음 String으로 저장(쉼표 추가)
+		for (var i = 0; i < noteArr.length; i++) {
+			noteStr = noteStr + noteArr[i] + ",";
+		}
+		console.log(noteStr.slice(0, -1));
+		location.href = "emotionBlock.html?var=" + noteStr.slice(0, -1);
+	});
+	$("#next").bind(keyUp, function () {
+	});
+});
