@@ -66,7 +66,7 @@ midi.js
 -> http://www.midijs.net/
 
 grunt 사용법
--> https://medium.com/sunhyoups-story/grunt%EC%99%80-bower%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9B%B9-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%A0%9C%EC%9E%91%ED%95%98%EA%B8%B0-bfa32e6614c1#.q53dx9iq7
+-> https://medium.com/sunhyoups-story/grunt와-bower를-이용한-웹-프론트엔드-제작하기-bfa32e6614c1#.y0cpct6rq
 
 폰갭 빌드 방법
--> http://www.gamjajeon.com/entry/%EC%96%B4%EC%84%A4%ED%94%88-%EC%95%B1%EB%A7%8C%EB%93%A4%EA%B8%B01-01-%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0%EC%97%90-%ED%8F%B0%EA%B0%ADphonegap%EC%9C%BC%EB%A1%9C-HelloWorld-%EC%95%B1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0
+-> http://www.gamjajeon.com/entry/어설픈-앱만들기1-01-스마트폰에-폰갭phonegap으로-HelloWorld-앱-실행하기
