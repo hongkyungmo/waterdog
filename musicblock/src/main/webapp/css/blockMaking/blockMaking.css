@@ -124,9 +124,6 @@ html, body {
 }
 
 #next {
-	/* float: left;
-	margin-left: 1.5%;
-	-webkit-border-radius: 5px; */
 	background-color: transparent;
 	width: 10%;
 	padding: 2.5%;
@@ -181,26 +178,4 @@ html, body {
 	margin: 0% 4% 4% 4%;
 	height: 23.85%;
 	width: 92.2%;
-}
-
-#menu-list {
-	height: 92%;
-	width: 40%;
-	background-color: black;
-	position: absolute;
-	top: 12%;
-	z-index: 1000;
-	margin: 0px;
-	padding: 0px;
-	opacity: 0.9;
-	text-align: center;
-	font-size: 15px;
-}
-
-.menu-on {
-	left: 60%;
-}
-
-.menu-off {
-	left: 100%;
 }

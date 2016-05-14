@@ -3,7 +3,7 @@
  */
 
 //block이 플레이되는 시간
-var blockAnimateTime = 4000;
+var blockAnimateTime = 2000;
 //피아노건반을 누른 음이 저장되는 배열
 var noteArr = new Array();
 
