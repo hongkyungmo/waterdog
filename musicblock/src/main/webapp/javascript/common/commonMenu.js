@@ -105,7 +105,21 @@ $(function() {
 
 });
 
+$(function() {
 
+	$(".menuButton").bind("click", function() {
+		var buttonIndex=$(".menuButton").index(this);
+		switch(buttonIndex){
+		case 1:
+			$(location).attr('href', "listBlock.html");
+		case 2:
+			$(location).attr('href', "listMusic.html");
+		case 3:
+			$(location).attr('href', "community.html");
+		}
+	});
+
+});
 /* menuPage 띄우기 위한 function */
 
 function wrapWindowBymenuPage() {
