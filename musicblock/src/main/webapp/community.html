@@ -63,7 +63,7 @@
 
 $(function(){
 	if(localUser==null){
-		alert("로그인안되어 있구나? 로그인부터해주겠니? 여기 처리를 어떻게 할까 ㅎ?");
+		//alert("로그인안되어 있구나? 로그인부터해주겠니? 여기 처리를 어떻게 할까 ㅎ?");
 	}
 });
 
@@ -369,7 +369,7 @@ $(function() {
 
 		 	$(".people").click(function() {
 				var Pindex = $(".people").index(this);
-				alert(Pindex);
+				//alert(Pindex);
 				console.log(Pindex);
 				//$('h2:eq(1)').append("바보");
 			}); 
@@ -397,7 +397,7 @@ $(function() {
 										//alert("test1+test :"+(test1+test));
 												$.ajax({
 														type : 'GET',
-														url : 'block/getJsonBlock/'
+														url : 'http://localhost:8080/' + 'block/getJsonBlock/'
 															+test1,
 														dataType : "json",
 														data : "",
@@ -429,6 +429,7 @@ $(function() {
 															}//end of datablock문
 														},//end of success문
 														error : function(status) {
+															alert("status>>"+status);
 															console.log(status);
 														}//end of error문
 													})//end of ajax문
