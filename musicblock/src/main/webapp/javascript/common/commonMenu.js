@@ -109,13 +109,17 @@ $(function() {
 
 	$(".menuButton").bind("click", function() {
 		var buttonIndex=$(".menuButton").index(this);
+		console.log(buttonIndex);
 		switch(buttonIndex){
 		case 1:
 			$(location).attr('href', "listBlock.html");
+			break;
 		case 2:
 			$(location).attr('href', "listMusic.html");
+			break;
 		case 3:
 			$(location).attr('href', "community.html");
+			break;
 		}
 	});
 
