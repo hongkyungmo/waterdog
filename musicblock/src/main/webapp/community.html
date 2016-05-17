@@ -27,14 +27,22 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/community/sortable.css">
+
+<!-- community-->
+<link rel="stylesheet" href="css/community/community.css">
+<script src="javascript/community/community.js"></script>
 <!-- 공통모듈 : 메뉴바 -->
 <link rel="stylesheet" href="css/common/commonMenu.css">
 
-<!-- community CSS-->
-<link rel="stylesheet" href="css/community/community.css">
+
 
 <!-- <style>
 .modal {
@@ -59,25 +67,7 @@
 	font-size: 12px;
 }
 </style> -->
-<script>
 
-$(function(){
-	if(localUser==null){
-		//alert("로그인안되어 있구나? 로그인부터해주겠니? 여기 처리를 어떻게 할까 ㅎ?");
-	}
-});
-
-$(function() {
-	$("#menu").bind("click", function() {
-		$(".music-menu.header.total-container").hide();
-	});
-	
-	$("#exit").bind("click", function() {
-		$(".music-menu.header.total-container").show();
-	});
-});
-
-</script>
 </head>
 
 <body>
@@ -124,234 +114,30 @@ $(function() {
 
 	<!--  <span class="glyphicon glyphicon-search" style = "z-index: 150" ></span>  -->
 	
-	<div class="music-menu" style="width: 100%; height: 10%;">
-		<ul class="nav nav-pills">
-			<li role="presentation" class="dropdown"><a
-				class="dropdown-toggle" data-toggle="dropdown" href="#"
-				role="button" aria-expanded="false"> MUSIC <span class="caret"></span>
-			</a>
-				<ul class="dropdown-menu" role="menu">BLOCK
-				</ul>
-			<li role="presentation"><a href="#">인기순위</a></li>
-			<li role="presentation"><a href="#">최신노래</a></li>
-			<li role="presentation"><a href="#">테마</a></li>
-			<li role="presentation"><a href="#">주간핫</a></li>
-			<li role="presentation"><a href="#">장르</a></li>
-			<li role="presentation"><a href="#">추천</a></li>
-		</ul>
-	</div>
+	<div id="background" style="height: 88%">
 
-	<!-- 헤드부분  -->
-	<div class="header"></div>
+		<input type="radio" class="tabs" style="display: none;" checked>
+		<label for="tab1"><i class="fa fa-user"> Blocks</i></label> <input
+			type="radio" class="tabs" style="display: none;"> <label
+			for="tab2"><i class="fa fa-download">Musics</i></label>
 
-	<!-- 전체 컨테이너 -->
-	<div class="total-container">
-		<div id="contain-layer-left" style="width: 50%; float: left;">
-	<!-- 		 <div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
+		<div id="blockSection" class="total-container">
+			<div class="total-container">
+				<div id="block-left" style="width: 50%; float: left;">
+				</div>
+				<div id="block-right" style="width: 50%; float: right;">
+				</div>
 			</div>
-			<div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
-			</div>
-			<div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
-			</div> -->
-
 		</div>
-		<!-- end of Left 컨테이너 -->
 
-		<!--right컨테이너-->
-		<div id="contain-layer-right" style="width: 50%; float: right;">
-<!-- 	 		<div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
-			</div>
-			<div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
-			</div>
-			<div class="people">
-				<li><a href=#><img src="images/3.png" /></a>
-					<h2>이게더길어</h2> <span class="info"><nm>이산돌</nm> <em></em>
-						<hr>
-						<div class="comments"></div> </span>
-					<ul class="toolbar">
-						<ui>
-						<p class="likes">
-							<span class="glyphicon glyphicon-heart"></span> <span
-								class="nLikes"></span>
-						</p>
-						</ui>
-
-						<ui>
-						<p class="download">
-							<span class="glyphicon glyphicon-download-alt"></span> <span
-								class="nDown"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="player">
-							<span class="glyphicon glyphicon-play"></span> <span
-								class="glyphicon glyphicon-pause"></span> <span class="nPlayers"></span>
-						</p>
-						</ui>
-						<ui>
-						<p class="stop">
-							<span class="glyphicon glyphicon-stop"></span>
-						</p>
-						</ui>
-					</ul></li>
-			</div> 
- -->
-
-		<!-- end of Right컨테이너 -->
-	</div>
+		<div id="musicSection" class="total-container">
+			<div id="music-left" style="width: 50%; float: left;"></div>
+			<div id="music-right" style="width: 50%; float: right;"></div>
+		</div>
 	</div>
 
 	 <!-- User Defined -->
+		  <!-- <script src="javascript/common/indexeddbshim.min.js"></script> -->
 		  <script src="javascript/common/initializeIndexedDB.js"></script>
 		   <script src="javascript/community/indexedDBForCommunity.js"></script>
 	<script>
@@ -362,135 +148,11 @@ $(function() {
 		 alert("documentHeight"+documentHeight);  
 		 var scrollHeight = $(window).scrollTop() + $(window).height(); //윈도우는 딱 보이는 화면의 크기
 		 var documentHeight = $(document).height(); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
-		
-		 });
 		 });  */
-		 
 
-		 	$(".people").click(function() {
-				var Pindex = $(".people").index(this);
-				//alert(Pindex);
-				console.log(Pindex);
-				//$('h2:eq(1)').append("바보");
-			}); 
-
-		
-		var test1 = 0;
-		var max1 = 40; 
-		$(function() {
-			var intervalClearer = setInterval(function(){
-				if(sequenceFlag == true){
-					RecvFromServer();
-					console.log("intervalClearer:"+intervalClearer);
-					clearInterval(intervalClearer);
-				}
-			}, 10);
-			function RecvFromServer() {
-				//$(window).scroll(function() {
-									var scrollHeight = parseInt($(window).scrollTop()+ $(window).height()); //윈도우는 딱 보이는 화면의 크기
-									var documentHeight = parseInt($(document).height()); //도큐먼트는 보이지 않는 곳도 포함한 크기(도큐먼트가 윈도우보다 더 사이즈가 큼) 
-								//if (scrollHeight >= documentHeight) { 
-										for (test1 = 0; test1 < max1; test1++) {
-												$.ajax({
-														type : 'GET',
-														url : 'http://localhost:8080/' + 'block/getJsonBlock/'
-															+test1,
-														dataType : "json",
-														data : "",
-														async : false,
-														success : function(data) {
-															console.log("JSONData : "+ JSON.stringify(data)); //stringify은 string type으로 바꿔줌
-															//데이터 블럭값이있을경우에만
-															if (data['block'] != null) {
-																
-																 $('.people').eq(0).data("title", data['block'].title);
-																 $('.people').eq(1).data("notes", data['block'].note);
-																 $('.people').eq(2).data("time", data['block'].time);
-				                                            	 console.log("title:"+$('.people').eq(0).data("title")+", notes:"+$('.people').eq(1).data("notes")+", time: "+$('.people').eq(2).data("time"));		
-				                                            	
-																var dynamicEl = "<div class='people'><li><a href=#><img src='images/3.png' /></a><h2>"
-																		+ data['block'].title
-																		+ "</h2> <span class='info'><nm>이산돌</nm> <em>"
-																		+ data['block'].regDate
-																		+ "</em><hr><div class='comments'>#주말이다 #신난다 #일주일남앗네 #슬프다#코멘트divcss가 뭔가 이상하다!!!</div></span><ul class='toolbar'><ui><p class='likes'><span class='glyphicon glyphicon-heart'></span><span class='nLikes'></span></p></ui><ui><p class='download'><span class='glyphicon glyphicon-download-alt'></span><span class='nDown'></span></p></ui><ui><p class='player'><span class='glyphicon glyphicon-play'></span><span class='glyphicon glyphicon-pause'></span><span class='nPlayers'></span></p></ui><ui><p class='stop'><span class='glyphicon glyphicon-stop'></span></p></ui></ul></li></div>";
-
-
-																var leftHeight = parseInt($("#contain-layer-left").css("height"));
-																var rightHeight = parseInt($("#contain-layer-right").css("height"));
-																if (leftHeight <= rightHeight) {
-																	$("#contain-layer-left").append(dynamicEl);
-																} else {
-																	$("#contain-layer-right").append(dynamicEl);
-																}//end fo else문
-															}//end of datablock문
-														},//end of success문
-														error : function(status) {
-															alert("status>>"+status);
-															console.log(status);
-														}//end of error문
-													})//end of ajax문
-										}//end of for문 test
-										 $(".download").click(function() {
-                                             var Pindex = $(".download").index(this);
-                                             $('.people:eq('  + Pindex +  ')').data("title");
-                                             console.log("데이터가져왔니:"+ $('.people:eq('  + Pindex +  ')').data("title"));
-                                             alert("누른 다운로드 번호::"+Pindex);
-                                  	   });
-										//addBlock(data['block'].bCode,data['block'].title,data['block'].note,data['block'].time);
-										
-
-			}//end of recvFun문
-			//좋아요 클릭시 카운트 증가
-			function increaseLikes() {
-				var myString = $(this).children('.nLikes').first().html();
-				var myInteger = parseInt(myString);
-				var myNewInteger = myInteger + 1;
-				var nlikesUp = myNewInteger.toString();
-
-				$(this).children('.nLikes').first().html(nlikesUp);
-			}
-			$('.likes').click(increaseLikes);
-
-			
-			function increaseDownLoad() {
-				var DownLoadString = $(this).children('.nDown').first().html();
-				var DownLoadInteger = parseInt(DownLoadString);
-				var DownLoadNewInteger = DownLoadInteger + 1;
-				var nDownloads = DownLoadNewInteger.toString();
-
-				$(this).children('.nDown').first().html(nDownloads);
-			}
-
-			$('.download').click(increaseDownLoad);
-			//<a href="javascript:fncValidate();" id="save">Save</a>
-			
-			$('.glyphicon-pause').hide();
-
-			function increasePlayers(index) {
-				var playersString = $('.nPlayers:eq(' + index + ')').html();
-				var playersInteger = parseInt(playersString);
-				var playersNewInteger = playersInteger + 1;
-				var nPlayersUp = playersNewInteger.toString();
-				$('.nPlayers:eq(' + index + ')').html(nPlayersUp);
-			}
-
-			$('.glyphicon-play').click(function() {
-				var index = $('.glyphicon-play').index(this);
-				increasePlayers(index);
-				$('.glyphicon-play:eq(' + index + ')').hide();
-				$('.glyphicon-pause:eq(' + index + ')').show();
-
-			});
-
-			$('.glyphicon-pause').click(function() {
-
-				var index = $('.glyphicon-pause').index(this);
-				$('.glyphicon-pause:eq(' + index + ')').hide();
-				$('.glyphicon-play:eq(' + index + ')').show();
-			});
-		});
 	</script>
 	<!-- user defined JS -->
+	
 <!-- 	<script src="javascript/common/initializeIndexedDB.js"></script>
     <script src="javascript/community/iDBBlock.js"></script>
     <script src="javascript/community/iDBMusic.js"></script> -->
