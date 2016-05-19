@@ -37,23 +37,14 @@ var repo = $(".people");
     }
 };*/
 
-function addBlock(bcode,title,note,time){
-	alert("addblock()");
+function addBlock(title,sec,notes,emotion,hash,ucode){
 	// indexedDB의 연결을 확인한다.
-	console.log("blockData: "+bcode+","+title+","+note+","+time);
+	console.log("blockData: "+title+","+sec+","+notes+","+emotion+","+hash+","+ucode);
 	var transaction = db.transaction(["blockTable"], "readwrite");
 	var objectStore = transaction.objectStore("blockTable");
-	request = objectStore.add({bcode:bcode,btitle:title,note:note,time:time});
-		//console.log("blockData: "+data['block'].bcode+","+data['block'].btitle+","+data['block'].notes+","+data['block'].sec);
-		/*var transaction = db.transaction(["blockTable"], "readwrite");
-		var objectStore = transaction.objectStore("blockTable");
+	request = objectStore.add({title:title,sec:sec,notes:notes,emotion:emotion,hash:hash,ucode:ucode});
 		console.log(objectStore);
-		var tranCode = bcode;
-		var tranTitle = btitle;
-		var transSec = sec;
-		var transNote = notes;
-		request = objectStore.add({bcode:tranCode,btitle:tranTitle,sec:transSec,notes:transNote});
-		getAllBlocks();*/
+		//getAllBlocks();
 }
 
 
@@ -66,10 +57,12 @@ function getAllBlocks(){
 		if(cursor){
 			console.log(cursor);
 			console.log("key : " + cursor.key);
-			console.log("btitle : " + cursor.value.btitle);
-			console.log("bcode" + cursor.value.bcode);
+			console.log("title : " + cursor.value.title);
 			console.log("sec : " + cursor.value.sec);
-			console.log("notes : " + cursor.value.notes);
+			console.log("note : " + cursor.value.note);
+			console.log("emotion : " + cursor.value.emotion);
+			console.log("hash : " + cursor.value.hash);
+			console.log("ucode : " + cursor.value.ucode);
 			cursor.continue();			//다음 데이터를 검색하고, 데이터 검색이 성공할 때 또 success이벤트가 트리거.
 		}
 	}
