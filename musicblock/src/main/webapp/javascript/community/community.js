@@ -77,7 +77,7 @@ $(function() {
 								for (test1 = 0; test1 < max1; test1++) {
 										$.ajax({
 												type : 'GET',
-												url : 'http://localhost:8080/' + 'block/getJsonBlock/'
+												url : 'http://192.168.0.94:8080/' + 'block/getJsonBlock/'
 													+test1,
 												dataType : "json",
 												data : "",
