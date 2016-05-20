@@ -216,6 +216,7 @@ $(function () {
     $("#btn-save").bind("click", function () {
         // passing information about music to that page.
     	if(sortedData==null){
+    		console.log('ㅋㅋㅋ')
     		// modal을 띄워서 경고창을 만드세요
     	}else{
     		$(location).attr('href', "emotionMusic.html?"+sortedData);    		
