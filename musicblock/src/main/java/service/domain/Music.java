@@ -18,6 +18,7 @@ public class Music {
 	
 	public Music(){
 		super();
+		System.out.println(this.getClass());
 	}
 	
 	public int getmCode() {

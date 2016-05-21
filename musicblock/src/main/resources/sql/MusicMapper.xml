@@ -5,11 +5,82 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MusicMapper">
-	<!-- SQL : INSERT -->
+	<!-- 
 	<insert 	id="addMusic"		parameterType="music" >
-	 	<!-- INSERT
+	 	INSERT
 		INTO music(ucode , nick) 
 		VALUES	 (	#{ucode} , #{nick} )
-		VALUES	 (	seq_user_ucode_nextval , #{nick} ) -->
-	 </insert>
+		VALUES	 (	seq_user_ucode_nextval , #{nick} )
+	 </insert> -->
+	 
+	<resultMap type="Music" id="MusicSelectMap">
+		<result property="mCode" column="mcode" jdbcType="INTEGER" />
+		<result property="uCode" column="ucode" jdbcType="INTEGER" />
+		<result property="cmpt" column="cmpt" jdbcType="CLOB" />
+		<result property="pCount" column="pcount" jdbcType="INTEGER" />
+		<result property="dCount" column="dcount" jdbcType="INTEGER" />
+		<result property="title" column="mtitle" jdbcType="VARCHAR" />
+		<result property="regDate" column="regdate" jdbcType="DATE" />
+
+ 		<collection property="musicHashList" javaType="java.util.List"
+			resultMap="MusicHashResultMap" /> 
+
+		<collection property="musickEmotionList" javaType="java.util.List"
+			resultMap="MusicEmotionResultMap" />
+	</resultMap>
+
+ 	<resultMap type="musicHash" id="MusicHashResultMap">
+		<result property="hCode" column="hcode" jdbcType="INTEGER" />
+		<result property="mCode" column="mcode" jdbcType="INTEGER" />
+		<result property="tag" column="btag" jdbcType="VARCHAR" />
+	</resultMap> 
+
+	<resultMap type="musicEmotion" id="MusicEmotionResultMap">
+		<result property="mCode" column="mcode" jdbcType="INTEGER" />
+		<result property="emotion" column="bemotion" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- SQL : INSERT -->
+	<insert id="addMusic" parameterType="music">
+		INSERT
+		INTO
+		music(mcode,ucode,cmpt,pcount,dcount,mtitle,regdate)
+		VALUES
+		(SEQ_MUSIC_MCODE.NEXTVAL,#{uCode},#{cmpt},0,0,#{title},SYSDATE)
+	</insert>
+
+	<!-- insert uCode 수정 -->
+
+
+	<!-- addMusickHash, forEach문 이용해서 하나씩 insert -->
+	<insert id="addMusicHash" parameterType="musicHash">
+		INSERT
+		INTO
+		music_hash(hcode,mcode,btag )
+		VALUES
+		(SEQ_MUSIC_HASH_HCODE.NEXTVAL,#{mCode},#{tag})
+	</insert> 
+
+	<insert id="addMusicEmotion" parameterType="java.util.HashMap">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO music_emotion (mcode,memotion)
+			VALUES (#{item.mCode}, #{item.emotion})
+		</foreach>
+	</insert>
+	
+	
+	<!-- SQL : SELECT ONE -->
+ 	 <select 	id="getMusic"	parameterType="string"	resultMap="MusicSelectMap">
+		SELECT
+		mcode,ucode,cmpt,pcount,dcount,mtitle,regdate 		
+		FROM music 
+		WHERE mcode = #{musicId}  	 <!-- block_id?? -->
+	 </select>
+	 
+	<select id="getCurrentMusicCode" resultType="int">
+	select max(mcode) from music
+	</select>
+	 
+	 
 </mapper>
