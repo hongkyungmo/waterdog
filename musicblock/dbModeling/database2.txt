@@ -1,10 +1,9 @@
-﻿﻿DROP SEQUENCE seq_user_ucode;
 ﻿DROP SEQUENCE seq_user_ucode;
 DROP SEQUENCE seq_block_bcode;
 DROP SEQUENCE seq_music_mcode;
 DROP SEQUENCE seq_block_bhash;
 DROP SEQUENCE seq_music_mhash;
-
+DROP SEQUENCE seq_user_ucode;
 CREATE SEQUENCE seq_user_ucode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_block_bcode	INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE seq_music_mcode	INCREMENT BY 1 START WITH 1;
@@ -293,18 +292,18 @@ INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user
 INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user09','email9@hanmail.net','1234');
 INSERT INTO users(ucode,nick,email,password) VALUES(seq_user_ucode.nextval,'user10','email10@naver.com','1234');
 
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'1','5','0','0','아하하하핳',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'1','1,4,5','0','0','왜안되니',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'2','4,5','0','0','집가고싶다',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'2','3,5','0','0','내트북이',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'3','4,5','0','0','김밤비',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'3','4,5','0','0','치킨이',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'4','4,5','0','0','드럽게하하',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'4','2,5','0','0','안녕',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'5','2,4','0','0','비버핳',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','4,5','0','0','저녁뭐지',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','1,5','0','0','버거킹',SYSDATE,'4');
-INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','4,5','0','0','치킨버거',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'1','5','0','0','Good Luck',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'1','1,4,5','0','0','벚꽃이 지면',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'2','4,5','0','0','Don't Cry',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'2','3,5','0','0','하늘바라기(feat.영)',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'3','4,5','0','0','봄이좋냐??',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'3','4,5','0','0','여름이좋냐??',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'4','4,5','0','0','..IS YOU',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'4','2,5','0','0','시간을 달려서',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'5','2,4','0','0','OOH-AHH하게',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','4,5','0','0','매일매일 기다려',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','1,5','0','0','넌 is뭔들',SYSDATE,'4');
+INSERT INTO block(BCODE,UCODE,NOTE,PCOUNT,DCOUNT,BTITLE,REGDATE,TIME) VALUES(seq_block_bcode.nextval,'6','4,5','0','0','걱정말아요 그대',SYSDATE,'4');
 
 INSERT INTO block_emotion(BCODE,BEMOTION) VALUES(1,5);
 INSERT INTO block_emotion(BCODE,BEMOTION) VALUES(2,1);
