@@ -76,7 +76,8 @@ public class BlockController {
 		Block block = new Block();
 		block.setTitle(title);
 		block.setNote((String)map.get("notes"));
-		block.setuCode(Integer.parseInt((String)map.get("ucode")));//유저코드를 왜래키로 가지고 있어야 함 (수정)
+		//block.setuCode(Integer.parseInt((String)map.get("ucode")));//유저코드를 왜래키로 가지고 있어야 함 (수정)
+		block.setuCode(1);
 		block.setBlockHashList(hashList);
 		block.setBlockEmotionList(emotionList);
 		block.setTime(Integer.parseInt((String)map.get("sec")));
